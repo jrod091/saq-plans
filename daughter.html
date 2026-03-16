@@ -1,0 +1,1581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Daughter's Plan — SAQ Training</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d1117; --bg2:#161b22; --bg3:#1c2128; --border:#30363d;
+  --text:#e6edf3; --muted:#8b949e;
+  --green:#3fb950; --gbg:#1a2e1a;
+  --blue:#58a6ff;  --bbg:#1a2233;
+  --amber:#e3b341; --abg:#2e2010;
+  --purple:#a371f7; --pbg:#1a1028;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font-size:15px;line-height:1.6}
+
+.hdr{background:linear-gradient(135deg,#0d2818,#0d1117 70%);border-bottom:2px solid var(--green);padding:22px 16px 18px;text-align:center}
+.hdr-emoji{font-size:2rem}
+.hdr-title{font-family:'Barlow Condensed',sans-serif;font-size:2.2rem;font-weight:800;letter-spacing:.04em;color:#fff;text-transform:uppercase}
+.hdr-sub{font-size:.82rem;color:var(--muted);margin-top:4px;letter-spacing:.08em;text-transform:uppercase}
+.hdr-tag{display:inline-block;margin-top:10px;background:var(--gbg);border:1px solid var(--green);color:var(--green);font-size:.76rem;font-weight:600;padding:3px 12px;border-radius:20px;letter-spacing:.06em}
+
+.nav{position:sticky;top:0;z-index:100;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav-tab{flex:0 0 auto;padding:13px 17px;font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;user-select:none}
+.nav-tab.on{color:var(--green);border-bottom-color:var(--green)}
+.nav-tab:hover:not(.on){color:var(--text)}
+
+.sec{display:none;padding:20px 16px 60px;max-width:800px;margin:0 auto}
+.sec.on{display:block}
+.sec-title{font-family:'Barlow Condensed',sans-serif;font-size:1.55rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#fff;margin:22px 0 6px;padding-bottom:8px;border-bottom:2px solid var(--green)}
+.sec-intro{color:var(--muted);margin-bottom:18px;font-size:.87rem}
+
+.sched{width:100%;border-collapse:collapse;font-size:.87rem;margin-top:10px}
+.sched th{background:var(--bg3);color:var(--muted);font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:8px 12px;text-align:left;border-bottom:1px solid var(--border)}
+.sched td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
+.sched tr:last-child td{border-bottom:none}
+.day-cell{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;white-space:nowrap}
+.t-pre   {border-left:3px solid var(--blue)}
+.t-full  {border-left:3px solid var(--green);background:var(--gbg)}
+.t-rest  {border-left:3px solid var(--border)}
+.t-friday{border-left:3px solid var(--purple);background:var(--pbg)}
+.t-game  {border-left:3px solid var(--amber)}
+
+.callout{border-radius:8px;padding:10px 14px;font-size:.81rem;margin:12px 0}
+.amber {background:var(--abg);border:1px solid var(--amber);color:#e6d4a0}
+.green {background:var(--gbg);border:1px solid var(--green);color:#a0d4b0}
+.blue  {background:var(--bbg);border:1px solid var(--blue); color:#a0c4f4}
+.purple{background:var(--pbg);border:1px solid var(--purple);color:#c8b0ee}
+
+.day-tabs{display:flex;gap:8px;margin:14px 0;flex-wrap:wrap}
+.day-tab{padding:7px 14px;border-radius:6px;background:var(--bg3);border:1px solid var(--border);color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;transition:all .15s}
+.day-tab.on{background:var(--gbg);border-color:var(--green);color:var(--green)}
+.pre-panel{display:none}
+.pre-panel.active{display:block}
+.sub-head{font-family:'Barlow Condensed',sans-serif;font-size:.9rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:18px 0 10px}
+
+/* drill number bubble inside ex-name */
+.drill-idx{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;border-radius:50%;background:var(--bg3);color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-size:.75rem;font-weight:700;margin-right:4px;flex-shrink:0;vertical-align:middle}
+/* category left-border on drill rows */
+.cat-left-linear           {border-left:3px solid var(--blue)  !important}
+.cat-left-lateral          {border-left:3px solid var(--green) !important}
+.cat-left-multidirectional {border-left:3px solid var(--amber) !important}
+/* shared badge */
+.cat-badge{font-size:.62rem;font-weight:700;letter-spacing:.07em;padding:2px 7px;border-radius:10px;flex-shrink:0;vertical-align:middle}
+.cat-badge.cat-linear           {background:var(--bbg);color:var(--blue)}
+.cat-badge.cat-lateral          {background:var(--gbg);color:var(--green)}
+.cat-badge.cat-multidirectional {background:var(--abg);color:var(--amber)}
+
+.vid-frame-wrap{position:relative;padding-top:56.25%;border-radius:8px;overflow:hidden;background:#000}
+.vid-frame-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+
+
+.cat-div{border-radius:8px;padding:9px 14px;margin:18px 0 8px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.cat-div.cat-linear           {background:var(--bbg);border:1px solid var(--blue)}
+.cat-div.cat-lateral          {background:var(--gbg);border:1px solid var(--green)}
+.cat-div.cat-multidirectional {background:var(--abg);border:1px solid var(--amber)}
+.cat-div-lbl{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:800;letter-spacing:.08em}
+.cat-div.cat-linear .cat-div-lbl           {color:var(--blue)}
+.cat-div.cat-lateral .cat-div-lbl          {color:var(--green)}
+.cat-div.cat-multidirectional .cat-div-lbl {color:var(--amber)}
+.cat-div-desc{font-size:.75rem;color:var(--muted)}
+
+.block-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px;margin:18px 0}
+.block-title{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--green);margin-bottom:6px}
+.block-note{font-size:.79rem;color:var(--muted);margin-bottom:11px;font-style:italic}
+
+/* EXERCISE TABLE */
+.ex-table{border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.ex-item{border-top:1px solid var(--border)}
+.ex-item:first-child{border-top:none}
+.ex-item:nth-child(even) .ex-row{background:var(--bg3)}
+.ex-item:nth-child(even) .ex-desc{background:var(--bg3)}
+.ex-row{display:grid;grid-template-columns:1fr 56px 90px 52px 82px;gap:4px;align-items:center;padding:9px 12px}
+.ex-name{font-weight:600;font-size:.85rem;color:var(--text);display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.ex-cell{display:flex;flex-direction:column;align-items:center;font-size:.83rem;color:var(--text)}
+.ex-lbl{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:1px}
+.vid-toggle{background:var(--bg3);border:1px solid var(--border);border-radius:4px;color:var(--muted);font-size:.7rem;font-weight:600;padding:4px 7px;cursor:pointer;white-space:nowrap;transition:all .15s}
+.vid-toggle:hover,.vid-toggle.on{background:var(--bbg);border-color:var(--blue);color:var(--blue)}
+/* description block — always visible, sits between stat row and video panel */
+.ex-desc{padding:0 12px 10px;border-top:1px dashed var(--border)}
+.ex-repdef{background:var(--bg3);border-radius:6px;padding:7px 10px;font-size:.81rem;margin-bottom:6px}
+.ex-repdef-lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.68rem;color:var(--green);letter-spacing:.08em;display:block;margin-bottom:2px}
+.ex-cue{font-size:.78rem;color:var(--muted);font-style:italic}
+.ex-vid-panel{display:none;padding:0 12px 12px}
+.ex-vid-panel.on{display:block}
+
+.bench{width:100%;border-collapse:collapse;font-size:.87rem;margin-top:10px}
+.bench th{background:var(--bg3);color:var(--muted);font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:8px 12px;text-align:left;border-bottom:1px solid var(--border)}
+.bench td{padding:10px 12px;border-bottom:1px solid var(--border)}
+.bench tr:last-child td{border-bottom:none}
+.bench tr:nth-child(even) td{background:var(--bg3)}
+.tgt{color:var(--green);font-weight:600}
+
+.fri-hdr{background:linear-gradient(135deg,var(--pbg),#0d1117);border:1px solid var(--purple);border-radius:10px;padding:16px;text-align:center;margin-bottom:14px}
+.fri-title{font-family:'Barlow Condensed',sans-serif;font-size:1.4rem;font-weight:800;color:var(--purple);letter-spacing:.06em}
+.fri-sub{font-size:.81rem;color:var(--muted);margin-top:4px}
+
+@media(min-width:560px){.sec{padding:20px 24px 60px}.hdr-title{font-size:2.6rem}}
+@media(max-width:460px){
+  .ex-row{grid-template-columns:1fr 48px 80px 44px 72px;gap:2px;padding:8px 10px}
+  .ex-name{font-size:.8rem}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-emoji">⚡</div>
+  <div class="hdr-title">Daughter's Plan</div>
+  <div class="hdr-sub">Speed · Agility · Quickness</div>
+  <span class="hdr-tag">Age 9 · Attacking Mid / Winger · 9v9</span>
+</header>
+
+<nav class="nav">
+  <div class="nav-tab on"  data-sec="schedule">Schedule</div>
+  <div class="nav-tab"     data-sec="pre">Pre-Practice</div>
+  <div class="nav-tab"     data-sec="session">Full Session</div>
+  <div class="nav-tab"     data-sec="friday">Friday</div>
+  <div class="nav-tab"     data-sec="goals">Goals</div>
+</nav>
+
+<section class="sec on" id="schedule">
+  <h2 class="sec-title">Weekly Schedule</h2>
+  <p class="sec-intro">Full session day is <strong>Tuesday</strong>. The Fri ✦ row applies only on no-lesson weeks.</p>
+  <table class="sched">
+    <thead><tr><th>Day</th><th>Activity</th><th>Training</th></tr></thead>
+    <tbody>
+      <tr class="t-pre"><td class="day-cell">Monday</td><td>Team Practice</td><td>Pre-Practice — 15 min BEFORE</td></tr>
+      <tr class="t-full"><td class="day-cell">Tuesday</td><td>OFF</td><td>✅ FULL SESSION — 40–45 min</td></tr>
+      <tr class="t-pre"><td class="day-cell">Wednesday</td><td>Team Practice</td><td>Pre-Practice — 15 min BEFORE</td></tr>
+      <tr class="t-pre"><td class="day-cell">Thursday</td><td>Team Practice</td><td>Pre-Practice — 15 min BEFORE</td></tr>
+      <tr class="t-rest"><td class="day-cell">Friday</td><td>Private Lesson</td><td>Rest — lesson is your training today</td></tr>
+      <tr class="t-friday"><td class="day-cell">Fri ✦</td><td>No Lesson Week</td><td>Optional Light Session — 20 min</td></tr>
+      <tr class="t-game"><td class="day-cell">Sat / Sun</td><td>Games</td><td>Game day — rest and recover</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="sec" id="pre">
+  <h2 class="sec-title">Pre-Practice Routine</h2>
+  <p class="sec-intro">15 minutes · Do this BEFORE every practice. Each day targets a different movement category.</p>
+  <div class="day-tabs">
+    
+    <div class="day-tab on" data-target="Monday">Monday <span style="opacity:.6;font-size:.72em">Linear</span></div>
+    <div class="day-tab " data-target="Wednesday">Wednesday <span style="opacity:.6;font-size:.72em">Lateral</span></div>
+    <div class="day-tab " data-target="Thursday">Thursday <span style="opacity:.6;font-size:.72em">Multi-Dir</span></div>
+  </div>
+  <div class="pre-panel active" data-day="Monday">
+      <div class="callout amber">⏱ <strong>Timing</strong> — 3 passes per drill · Walk back after each pass · 20 sec rest before Pass 3 · ~7.5 min total</div>
+      <h4 class="sub-head">Part 1 — Ladder · 5 drills</h4>
+      <div class="ex-table"><div class="ex-item cat-left-linear">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">1</span>
+          <span class="cat-badge cat-linear">LINEAR</span>
+          SL Hop — Std (L)
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>3</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~20s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Hop on LEFT foot into EVERY rung, one hop per rung, full length</div>
+        <div class="ex-cue">💡 Ball of foot only, knee soft on landing, arms relaxed at sides</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/E872fuIgF0Y?modestbranding=1&rel=0&start=117"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-linear">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">2</span>
+          <span class="cat-badge cat-linear">LINEAR</span>
+          SL Hop — Std (R)
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>3</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~20s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Hop on RIGHT foot into EVERY rung, one hop per rung, full length</div>
+        <div class="ex-cue">💡 Mirror left exactly — same posture, same pace. Note if one side feels weaker</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/E872fuIgF0Y?modestbranding=1&rel=0&start=117"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-linear">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">3</span>
+          <span class="cat-badge cat-linear">LINEAR</span>
+          Bunny Hops
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>3</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~20s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Both feet land together inside EVERY rung, full length</div>
+        <div class="ex-cue">💡 Land on balls of feet, minimize ground contact time, stay springy between hops</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=240"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-linear">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">4</span>
+          <span class="cat-badge cat-linear">LINEAR</span>
+          High Knees
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>3</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~20s</span>
+        <span></span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> One foot per rung alternating — drive each knee up to hip height with every step, full length</div>
+        <div class="ex-cue">💡 Drive opposite arm to opposite knee hard. Stay on balls of feet. Exaggerate the knee lift — this is a sprint mechanics drill</div>
+      </div>
+      
+    </div><div class="ex-item cat-left-linear">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">5</span>
+          <span class="cat-badge cat-linear">LINEAR</span>
+          Up & Down
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>3</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~20s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> BOTH feet step into rung 1, BOTH into rung 2, BOTH back into rung 1, then progress. Pattern: forward-forward, back-one. Full length</div>
+        <div class="ex-cue">💡 Two steps forward, one step back — both feet each time. Controlled rhythm. Don't rush the backward step</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=69"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div></div>
+      <h4 class="sub-head">Part 2 — Resistance Bands</h4>
+      <div class="ex-table"><div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Hip Extension Kick</span>
+        <span class="ex-cell"><span class="ex-lbl">Sets</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Reps</span>10 each leg</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>20s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 REP =</span> Band around working ankle, anchored in front of you. Stand on the opposite foot. Drive the banded leg straight BACK as far as possible, hold 1 second at the top, return slowly. ALL reps on one leg, then switch.</div>
+        <div class="ex-cue">💡 Slight forward lean from the hip is fine. Glute should be fully contracted at the top. Don't arch your lower back — if it arches, you've gone too far</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/sQCraMq0hcY?modestbranding=1&rel=0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Ankle Dorsiflexion Pull</span>
+        <span class="ex-cell"><span class="ex-lbl">Sets</span>1</span>
+        <span class="ex-cell"><span class="ex-lbl">Reps</span>12 each foot</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>15s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 REP =</span> Band anchored behind you, looped around the top of your foot. Seated or standing. Pull your toes UP toward your shin as far as possible against the resistance, hold 1 second, slowly return. ALL reps on one foot, then switch.</div>
+        <div class="ex-cue">💡 This is a small movement — feel the front of the shin (tibialis anterior) working. The slow return is as important as the pull. Don't let the band snap your foot back down</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/7e7eDLczXmg?modestbranding=1&rel=0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div></div>
+      <div class="callout green">💪 Extension kick loads the hip drive behind every forward hop · Dorsiflexion trains foot strike for linear speed</div>
+    </div><div class="pre-panel " data-day="Wednesday">
+      <div class="callout amber">⏱ <strong>Timing</strong> — 3 passes per drill · Walk back after each pass · 20 sec rest before Pass 3 · ~7.5 min total</div>
+      <h4 class="sub-head">Part 1 — Ladder · 5 drills</h4>
+      <div class="ex-table"><div class="ex-item cat-left-lateral">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">1</span>
+          <span class="cat-badge cat-lateral">LATERAL</span>
+          SL Hop — Lateral (L)
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>3</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~20s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Stand IN-LINE with the ladder, face LEFT (sideways). Hop on the FORWARD foot (left foot) through each rung, traveling the full length of the ladder</div>
+        <div class="ex-cue">💡 The forward foot does all the work — it's the foot closest to the next rung. Push laterally from the hip. Stay facing sideways throughout</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/E872fuIgF0Y?modestbranding=1&rel=0&start=197"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-lateral">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">2</span>
+          <span class="cat-badge cat-lateral">LATERAL</span>
+          SL Hop — Lateral (R)
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>3</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~20s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Stand IN-LINE with the ladder, face RIGHT (sideways). Hop on the FORWARD foot (right foot) through each rung, full length</div>
+        <div class="ex-cue">💡 Mirror of L — right foot is now the forward foot. Note if one direction feels less stable</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/E872fuIgF0Y?modestbranding=1&rel=0&start=197"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-lateral">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">3</span>
+          <span class="cat-badge cat-lateral">LATERAL</span>
+          Lateral Hops (L)
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>3</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~20s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Stand IN-LINE with the ladder, face LEFT (sideways). Both feet together, hop laterally through each rung traveling left, full length</div>
+        <div class="ex-cue">💡 Face sideways throughout. Both feet land together inside each rung. Drive from the hips, land softly on balls of feet</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=257"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-lateral">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">4</span>
+          <span class="cat-badge cat-lateral">LATERAL</span>
+          Side Shuffle (L)
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>3</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~20s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Stand IN-LINE with the ladder, face LEFT (sideways). Lead foot (left) steps into rung, trail foot (right) follows into the SAME rung — both feet must enter each rung before moving on. Shuffle full length traveling left</div>
+        <div class="ex-cue">💡 NEVER cross feet. Stay low in athletic stance. Both feet enter every rung. Drive from hips not knees</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=53"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-lateral">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">5</span>
+          <span class="cat-badge cat-lateral">LATERAL</span>
+          Side Step (L)
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>3</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~20s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Stand BESIDE the ladder, face FORWARD. Left foot (CLOSER to ladder) taps IN then OUT of each rung. Right foot (FARTHER) steps forward to progress. Full length moving left</div>
+        <div class="ex-cue">💡 Always face forward — NOT sideways. Closer foot taps in/out, far foot walks forward. Stay tall, no leaning</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=86"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div></div>
+      <h4 class="sub-head">Part 2 — Resistance Bands</h4>
+      <div class="ex-table"><div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Lateral Band Walk</span>
+        <span class="ex-cell"><span class="ex-lbl">Sets</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Reps</span>10 yds each way</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>20s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 REP =</span> Band above knees. Athletic stance, feet shoulder-width, slight squat. Step one foot sideways, then bring the other to shoulder-width — never let feet touch. Walk the full distance with constant band tension. That full distance = 1 set.</div>
+        <div class="ex-cue">💡 Hips stay level the whole time — if they dip or sway, the rep doesn't count. Toes forward, knees tracking over toes, don't stand up out of the squat</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/3cVg-kNJKMw?modestbranding=1&rel=0&start=326"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Hip Abduction Kick</span>
+        <span class="ex-cell"><span class="ex-lbl">Sets</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Reps</span>10 each leg</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>20s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 REP =</span> Band around working ankle, anchored to a fixed point at your side. Stand on the opposite foot. Drive the banded leg directly OUT to the side as far as possible, hold 1 second at the top, return slowly. ALL reps on one leg, then switch.</div>
+        <div class="ex-cue">💡 Stand tall — don't lean away from the kick. The hip drives the movement, not the knee. Control the return; don't let the band snap your leg back</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/v-tN9LG547I?modestbranding=1&rel=0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div></div>
+      <div class="callout green">💪 Band walk + abduction kick both target glute med — the exact muscle powering every lateral drill</div>
+    </div><div class="pre-panel " data-day="Thursday">
+      <div class="callout amber">⏱ <strong>Timing</strong> — 3 passes per drill · Walk back after each pass · 20 sec rest before Pass 3 · ~7.5 min total</div>
+      <h4 class="sub-head">Part 1 — Ladder · 5 drills</h4>
+      <div class="ex-table"><div class="ex-item cat-left-multidirectional">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">1</span>
+          <span class="cat-badge cat-multidirectional">MULTI-DIR</span>
+          Ickey Shuffle
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>3</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~20s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> 3-step pattern per rung: lead foot IN, trail foot IN, lead foot OUT to side. Alternate which side you exit each rung. Full length</div>
+        <div class="ex-cue">💡 Lean slightly in direction of travel. Consistent 3-count rhythm. Arms drive the direction change</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=120"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-multidirectional">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">2</span>
+          <span class="cat-badge cat-multidirectional">MULTI-DIR</span>
+          Carioca
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>3</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~20s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Move LATERALLY — crossover step pattern alternating in FRONT then BEHIND, using rungs as spacing guides. Full length each direction (once L, once R)</div>
+        <div class="ex-cue">💡 Full hip rotation every crossover — this is a hip mobility drill as much as footwork. Eyes forward, smooth rhythm</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=173"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-multidirectional">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">3</span>
+          <span class="cat-badge cat-multidirectional">MULTI-DIR</span>
+          Criss Cross
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>3</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~20s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Per rung: back foot steps IN, rotate hips and take TWO steps OUTSIDE the next rung — one foot each side, landing straddling it. Pattern: in-out-out, in-out-out. Full length</div>
+        <div class="ex-cue">💡 Hip rotation DRIVES this drill — fully rotate through hips. The two outside steps should land you perfectly straddling the next rung</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-multidirectional">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">4</span>
+          <span class="cat-badge cat-multidirectional">MULTI-DIR</span>
+          Straddle Hops
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>3</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~20s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Both feet straddle OUTSIDE rung, hop both feet IN together, immediately hop both feet back OUT straddling next rung. Full length</div>
+        <div class="ex-cue">💡 Snap feet in and out quickly, land softly each time, build a consistent rhythm</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=103"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-multidirectional">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">5</span>
+          <span class="cat-badge cat-multidirectional">MULTI-DIR</span>
+          Ski Jumps
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>3</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~20s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Face FORWARD, standing to the side of the ladder. One foot hops IN to rung 1 while the other foot lands OUTSIDE and BEHIND it. Next hop crosses to the opposite side: other foot IN to rung 2, first foot OUTSIDE and BEHIND. Alternate which foot enters each rung as you travel the full length</div>
+        <div class="ex-cue">💡 Face forward throughout. Outside foot always lands BEHIND the inside foot. You're crossing side-to-side like a skier. Think: in-behind, cross, in-behind, cross</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=209"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div></div>
+      <h4 class="sub-head">Part 2 — Resistance Bands</h4>
+      <div class="ex-table"><div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Hip Abduction Kick</span>
+        <span class="ex-cell"><span class="ex-lbl">Sets</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Reps</span>10 each leg</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>20s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 REP =</span> Band around working ankle, anchored to a fixed point at your side. Stand on the opposite foot. Drive the banded leg directly OUT to the side as far as possible, hold 1 second at the top, return slowly. ALL reps on one leg, then switch.</div>
+        <div class="ex-cue">💡 Stand tall — don't lean away from the kick. The hip drives the movement, not the knee. Control the return; don't let the band snap your leg back</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/v-tN9LG547I?modestbranding=1&rel=0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Hip Extension Kick</span>
+        <span class="ex-cell"><span class="ex-lbl">Sets</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Reps</span>10 each leg</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>20s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 REP =</span> Band around working ankle, anchored in front of you. Stand on the opposite foot. Drive the banded leg straight BACK as far as possible, hold 1 second at the top, return slowly. ALL reps on one leg, then switch.</div>
+        <div class="ex-cue">💡 Slight forward lean from the hip is fine. Glute should be fully contracted at the top. Don't arch your lower back — if it arches, you've gone too far</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/sQCraMq0hcY?modestbranding=1&rel=0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div></div>
+      <div class="callout green">💪 Multi-dir drills need both lateral hip (abduction) and forward hip (extension) — so both bands are loaded</div>
+    </div>
+</section>
+
+<section class="sec" id="session">
+  <h2 class="sec-title">Full Session — Tuesday</h2>
+  <p class="sec-intro">40–45 minutes · Ladder, bands, 4–6 cones, timer. Do blocks in order.</p>
+  <div class="block-card">
+    <div class="block-title">BLOCK 1: FULL LADDER CIRCUIT — ~19 min</div>
+    <div class="block-note">All 27 drills in order: Linear → Lateral → Multi-Dir. 2 passes per drill. Time the full circuit.</div>
+    <div class="callout amber">⏱ <strong>Per drill:</strong> Pass 1 (~8s) → walk back (~8s) → Pass 2 (~8s) → walk to next + 10s rest ≈ 42 sec · 2+ foot errors = bonus 3rd pass</div>
+    <div class="cat-div cat-linear"><span class="cat-div-lbl">LINEAR</span><span class="cat-div-desc">Face forward · Travel forward through ladder</span></div><div class="ex-table"><div class="ex-item cat-left-linear">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">1</span>
+          <span class="cat-badge cat-linear">LINEAR</span>
+          SL Hop — Std (L)
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~10s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Hop on LEFT foot into EVERY rung, one hop per rung, full length</div>
+        <div class="ex-cue">💡 Ball of foot only, knee soft on landing, arms relaxed at sides</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/E872fuIgF0Y?modestbranding=1&rel=0&start=117"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-linear">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">2</span>
+          <span class="cat-badge cat-linear">LINEAR</span>
+          SL Hop — Std (R)
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~10s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Hop on RIGHT foot into EVERY rung, one hop per rung, full length</div>
+        <div class="ex-cue">💡 Mirror left exactly — same posture, same pace. Note if one side feels weaker</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/E872fuIgF0Y?modestbranding=1&rel=0&start=117"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-linear">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">3</span>
+          <span class="cat-badge cat-linear">LINEAR</span>
+          SL Hop — Balance (L)
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~10s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Hop on LEFT foot into every OTHER rung only, HOLD each landing 1–2 sec with zero wobble before the next hop, full length</div>
+        <div class="ex-cue">💡 Balance training, not speed. Absorb quietly and freeze. If you wobble, hold longer before the next hop</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/E872fuIgF0Y?modestbranding=1&rel=0&start=65"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-linear">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">4</span>
+          <span class="cat-badge cat-linear">LINEAR</span>
+          SL Hop — Balance (R)
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~10s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Hop on RIGHT foot into every OTHER rung only, HOLD each landing 1–2 sec, full length</div>
+        <div class="ex-cue">💡 Mirror left — note which leg holds steadier. That asymmetry is exactly what this drill is fixing</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/E872fuIgF0Y?modestbranding=1&rel=0&start=65"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-linear">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">5</span>
+          <span class="cat-badge cat-linear">LINEAR</span>
+          SL Hop — Zig-Zag (L)
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~10s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Hop on LEFT foot: into rung, out right side, into next rung, out left side — alternating in-out zig-zag, full length</div>
+        <div class="ex-cue">💡 Let hips rotate naturally with each zig-zag. Quick ground contact. Keep a consistent rhythm</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/E872fuIgF0Y?modestbranding=1&rel=0&start=154"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-linear">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">6</span>
+          <span class="cat-badge cat-linear">LINEAR</span>
+          SL Hop — Zig-Zag (R)
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~10s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Hop on RIGHT foot in the same zig-zag — into rung, out right, into next rung, out left, full length</div>
+        <div class="ex-cue">💡 Mirror left. Check that zig-zag feels equally coordinated on both feet</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/E872fuIgF0Y?modestbranding=1&rel=0&start=154"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-linear">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">7</span>
+          <span class="cat-badge cat-linear">LINEAR</span>
+          Bunny Hops
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~10s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Both feet land together inside EVERY rung, full length</div>
+        <div class="ex-cue">💡 Land on balls of feet, minimize ground contact time, stay springy between hops</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=240"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-linear">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">8</span>
+          <span class="cat-badge cat-linear">LINEAR</span>
+          High Knees
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~10s</span>
+        <span></span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> One foot per rung alternating — drive each knee up to hip height with every step, full length</div>
+        <div class="ex-cue">💡 Drive opposite arm to opposite knee hard. Stay on balls of feet. Exaggerate the knee lift — this is a sprint mechanics drill</div>
+      </div>
+      
+    </div><div class="ex-item cat-left-linear">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">9</span>
+          <span class="cat-badge cat-linear">LINEAR</span>
+          Up & Down
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~10s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> BOTH feet step into rung 1, BOTH into rung 2, BOTH back into rung 1, then progress. Pattern: forward-forward, back-one. Full length</div>
+        <div class="ex-cue">💡 Two steps forward, one step back — both feet each time. Controlled rhythm. Don't rush the backward step</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=69"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div></div><div class="cat-div cat-lateral"><span class="cat-div-lbl">LATERAL</span><span class="cat-div-desc">Face sideways · Travel along ladder length</span></div><div class="ex-table"><div class="ex-item cat-left-lateral">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">10</span>
+          <span class="cat-badge cat-lateral">LATERAL</span>
+          SL Hop — Lateral (L)
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~10s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Stand IN-LINE with the ladder, face LEFT (sideways). Hop on the FORWARD foot (left foot) through each rung, traveling the full length of the ladder</div>
+        <div class="ex-cue">💡 The forward foot does all the work — it's the foot closest to the next rung. Push laterally from the hip. Stay facing sideways throughout</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/E872fuIgF0Y?modestbranding=1&rel=0&start=197"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-lateral">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">11</span>
+          <span class="cat-badge cat-lateral">LATERAL</span>
+          SL Hop — Lateral (R)
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~10s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Stand IN-LINE with the ladder, face RIGHT (sideways). Hop on the FORWARD foot (right foot) through each rung, full length</div>
+        <div class="ex-cue">💡 Mirror of L — right foot is now the forward foot. Note if one direction feels less stable</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/E872fuIgF0Y?modestbranding=1&rel=0&start=197"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-lateral">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">12</span>
+          <span class="cat-badge cat-lateral">LATERAL</span>
+          Lateral Hops (L)
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~10s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Stand IN-LINE with the ladder, face LEFT (sideways). Both feet together, hop laterally through each rung traveling left, full length</div>
+        <div class="ex-cue">💡 Face sideways throughout. Both feet land together inside each rung. Drive from the hips, land softly on balls of feet</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=257"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-lateral">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">13</span>
+          <span class="cat-badge cat-lateral">LATERAL</span>
+          Lateral Hops (R)
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~10s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Stand IN-LINE with the ladder, face RIGHT (sideways). Both feet hop through each rung traveling right, full length</div>
+        <div class="ex-cue">💡 Mirror of L — face right throughout. Same hip drive, same soft landing</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=257"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-lateral">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">14</span>
+          <span class="cat-badge cat-lateral">LATERAL</span>
+          Side Shuffle (L)
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~10s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Stand IN-LINE with the ladder, face LEFT (sideways). Lead foot (left) steps into rung, trail foot (right) follows into the SAME rung — both feet must enter each rung before moving on. Shuffle full length traveling left</div>
+        <div class="ex-cue">💡 NEVER cross feet. Stay low in athletic stance. Both feet enter every rung. Drive from hips not knees</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=53"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-lateral">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">15</span>
+          <span class="cat-badge cat-lateral">LATERAL</span>
+          Side Shuffle (R)
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~10s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Stand IN-LINE with the ladder, face RIGHT (sideways). Right foot leads, left foot follows into same rung. Both feet enter every rung. Full length traveling right</div>
+        <div class="ex-cue">💡 Mirror of L. Stay low, never cross feet</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=53"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-lateral">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">16</span>
+          <span class="cat-badge cat-lateral">LATERAL</span>
+          Side Step (L)
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~10s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Stand BESIDE the ladder, face FORWARD. Left foot (CLOSER to ladder) taps IN then OUT of each rung. Right foot (FARTHER) steps forward to progress. Full length moving left</div>
+        <div class="ex-cue">💡 Always face forward — NOT sideways. Closer foot taps in/out, far foot walks forward. Stay tall, no leaning</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=86"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-lateral">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">17</span>
+          <span class="cat-badge cat-lateral">LATERAL</span>
+          Side Step (R)
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~10s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Stand BESIDE the ladder, face FORWARD. Right foot (CLOSER) taps IN then OUT of each rung. Left foot (FARTHER) steps forward. Full length moving right</div>
+        <div class="ex-cue">💡 Mirror of L — always face forward. Right taps, left walks</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=86"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-lateral">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">18</span>
+          <span class="cat-badge cat-lateral">LATERAL</span>
+          Lateral In & Out (L)
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~10s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Stand IN-LINE with the ladder, face LEFT (sideways). Both feet step IN to each rung together, then both step OUT to the far side together — in-out-in-out — traveling full length to the left</div>
+        <div class="ex-cue">💡 Maintain side-facing position throughout. Quick in-out each rung, stay on balls of feet</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=136"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-lateral">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">19</span>
+          <span class="cat-badge cat-lateral">LATERAL</span>
+          Lateral In & Out (R)
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~10s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Stand IN-LINE with the ladder, face RIGHT (sideways). Both feet in and out of each rung, traveling full length to the right</div>
+        <div class="ex-cue">💡 Mirror of L — face right throughout. Same quick in-out rhythm</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=136"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-lateral">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">20</span>
+          <span class="cat-badge cat-lateral">LATERAL</span>
+          Scissors (L lead)
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~10s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Face SIDEWAYS beside ladder. Split stance: LEFT foot inside rung, right foot outside. Hop and SWITCH — right foot into rung, left foot outside — progress to next rung. LEFT foot leads into rung 1. Full length</div>
+        <div class="ex-cue">💡 Face sideways throughout. One foot always inside, one always outside — they switch every hop. Quick low hops</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=224"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-lateral">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">21</span>
+          <span class="cat-badge cat-lateral">LATERAL</span>
+          Scissors (R lead)
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~10s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Same as Scissors L but RIGHT foot leads into rung 1. Face SIDEWAYS, split stance, hop-switch every rung. Full length</div>
+        <div class="ex-cue">💡 Mirror of L lead — right hip does primary work. Note if one direction feels less coordinated</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=224"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div></div><div class="cat-div cat-multidirectional"><span class="cat-div-lbl">MULTI-DIRECTIONAL</span><span class="cat-div-desc">Hip rotation · Lead-foot switches · Oscillating patterns</span></div><div class="ex-table"><div class="ex-item cat-left-multidirectional">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">22</span>
+          <span class="cat-badge cat-multidirectional">MULTI-DIR</span>
+          Straddle Hops
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~10s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Both feet straddle OUTSIDE rung, hop both feet IN together, immediately hop both feet back OUT straddling next rung. Full length</div>
+        <div class="ex-cue">💡 Snap feet in and out quickly, land softly each time, build a consistent rhythm</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=103"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-multidirectional">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">23</span>
+          <span class="cat-badge cat-multidirectional">MULTI-DIR</span>
+          Straddle In & Out
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~10s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Face forward. Start straddling outside rung 1. Step IN with both feet, then OUT straddling rung 2, IN to rung 2, OUT straddling rung 3. In-out-in-out. Full length</div>
+        <div class="ex-cue">💡 Feet land slightly wider than shoulder-width when straddling. Steady rhythm, don't rush the step-in</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=154"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-multidirectional">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">24</span>
+          <span class="cat-badge cat-multidirectional">MULTI-DIR</span>
+          Ickey Shuffle
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~10s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> 3-step pattern per rung: lead foot IN, trail foot IN, lead foot OUT to side. Alternate which side you exit each rung. Full length</div>
+        <div class="ex-cue">💡 Lean slightly in direction of travel. Consistent 3-count rhythm. Arms drive the direction change</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=120"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-multidirectional">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">25</span>
+          <span class="cat-badge cat-multidirectional">MULTI-DIR</span>
+          Criss Cross
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~10s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Per rung: back foot steps IN, rotate hips and take TWO steps OUTSIDE the next rung — one foot each side, landing straddling it. Pattern: in-out-out, in-out-out. Full length</div>
+        <div class="ex-cue">💡 Hip rotation DRIVES this drill — fully rotate through hips. The two outside steps should land you perfectly straddling the next rung</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-multidirectional">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">26</span>
+          <span class="cat-badge cat-multidirectional">MULTI-DIR</span>
+          Carioca
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~10s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Move LATERALLY — crossover step pattern alternating in FRONT then BEHIND, using rungs as spacing guides. Full length each direction (once L, once R)</div>
+        <div class="ex-cue">💡 Full hip rotation every crossover — this is a hip mobility drill as much as footwork. Eyes forward, smooth rhythm</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=173"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-multidirectional">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">27</span>
+          <span class="cat-badge cat-multidirectional">MULTI-DIR</span>
+          Ski Jumps
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~10s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Face FORWARD, standing to the side of the ladder. One foot hops IN to rung 1 while the other foot lands OUTSIDE and BEHIND it. Next hop crosses to the opposite side: other foot IN to rung 2, first foot OUTSIDE and BEHIND. Alternate which foot enters each rung as you travel the full length</div>
+        <div class="ex-cue">💡 Face forward throughout. Outside foot always lands BEHIND the inside foot. You're crossing side-to-side like a skier. Think: in-behind, cross, in-behind, cross</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=209"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div></div>
+  </div>
+  
+    <div class="block-card">
+      <div class="block-title">BLOCK 2: RESISTANCE BANDS — 10 min</div>
+      <div class="block-note">Band above knees for walks, around ankle for kicks. Light resistance only.</div>
+      <div class="ex-table"><div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Lateral Band Walk</span>
+        <span class="ex-cell"><span class="ex-lbl">Sets</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Reps</span>15 yds each way</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>30s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 REP =</span> Band above knees. Athletic stance, feet shoulder-width, slight squat. Step one foot sideways, then bring the other to shoulder-width — never let feet touch. Walk the full distance with constant band tension. That full distance = 1 set.</div>
+        <div class="ex-cue">💡 Hips stay level the whole time — if they dip or sway, the rep doesn't count. Toes forward, knees tracking over toes, don't stand up out of the squat</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/3cVg-kNJKMw?modestbranding=1&rel=0&start=326"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Forward Band Walk</span>
+        <span class="ex-cell"><span class="ex-lbl">Sets</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Reps</span>10 yds fwd + back</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>30s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 REP =</span> Band above knees. Athletic stance. Walk forward keeping feet shoulder-width and band under tension the entire time. Walk the full distance forward, then backward back to start. That out-and-back = 1 rep.</div>
+        <div class="ex-cue">💡 Stay in a slight squat throughout — don't straighten up. Keep knees pushed slightly outward against the band with every step</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/3cVg-kNJKMw?modestbranding=1&rel=0&start=350"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Hip Abduction Kick</span>
+        <span class="ex-cell"><span class="ex-lbl">Sets</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Reps</span>12 each leg</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>30s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 REP =</span> Band around working ankle, anchored to a fixed point at your side. Stand on the opposite foot. Drive the banded leg directly OUT to the side as far as possible, hold 1 second at the top, return slowly. ALL reps on one leg, then switch.</div>
+        <div class="ex-cue">💡 Stand tall — don't lean away from the kick. The hip drives the movement, not the knee. Control the return; don't let the band snap your leg back</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/v-tN9LG547I?modestbranding=1&rel=0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Hip Extension Kick</span>
+        <span class="ex-cell"><span class="ex-lbl">Sets</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Reps</span>12 each leg</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>30s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 REP =</span> Band around working ankle, anchored in front of you. Stand on the opposite foot. Drive the banded leg straight BACK as far as possible, hold 1 second at the top, return slowly. ALL reps on one leg, then switch.</div>
+        <div class="ex-cue">💡 Slight forward lean from the hip is fine. Glute should be fully contracted at the top. Don't arch your lower back — if it arches, you've gone too far</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/sQCraMq0hcY?modestbranding=1&rel=0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Resisted Lateral Shuffle</span>
+        <span class="ex-cell"><span class="ex-lbl">Sets</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Reps</span>10 yds each way</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>30s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 REP =</span> Band around waist or ankles, parent holds the other end to the side. Shuffle sideways the full distance without crossing your feet. Both directions = 1 set.</div>
+        <div class="ex-cue">💡 Stay low in athletic stance. Never cross feet. Drive from the outside hip — the band should feel like it's pulling you back with each shuffle step</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/WiKjiJfnmoI?modestbranding=1&rel=0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div></div>
+    </div>
+    <div class="block-card">
+      <div class="block-title">BLOCK 3: POSITION WORK — 10 min</div>
+      <div class="block-note">Set up 4 cones for T-drill and Box drill before starting this block.</div>
+      <div class="ex-table"><div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">T-Drill</span>
+        <span class="ex-cell"><span class="ex-lbl">Sets</span>3</span>
+        <span class="ex-cell"><span class="ex-lbl">Reps</span>1 full rep</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>45s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 REP =</span> 5 yards forward to center cone — touch it. 5 yards left to left cone — touch it. 10 yards right across to right cone — touch it. 5 yards left back to center — touch it. 5 yards back to start. That full sequence = 1 rep.</div>
+        <div class="ex-cue">💡 Touch each cone with your hand. Stay low through every direction change — standing up tall loses all your speed. Don't cross feet on the shuffles</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/_6VZbOneDMY?modestbranding=1&rel=0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Box Drill</span>
+        <span class="ex-cell"><span class="ex-lbl">Sets</span>3</span>
+        <span class="ex-cell"><span class="ex-lbl">Reps</span>1 full rep</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>45s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 REP =</span> 4 cones in a square (~5 yards each side). Sprint the first side, lateral shuffle the second, backpedal the third, carioca the fourth. Touch each cone. One full circuit = 1 rep.</div>
+        <div class="ex-cue">💡 Touch every cone. The backpedal side is where most athletes lose time — drive your heels back actively, don't just shuffle backward. Low and aggressive on every turn</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/Smr1V2dL4r4?modestbranding=1&rel=0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Lateral Lunge</span>
+        <span class="ex-cell"><span class="ex-lbl">Sets</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Reps</span>10 each leg</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>30s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 REP =</span> Stand tall, feet together. Step ONE foot wide to the side, push hips back and down into the lunge. Push off that foot and return to center. ALL reps on one side, then switch. Both sides = 1 set.</div>
+        <div class="ex-cue">💡 Keep the stepping foot flat — don't rise onto your toes. The trailing leg stays straight. Feel the inner thigh of the trailing leg stretching. Don't let the stepping knee cave inward</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/ol3SXK3FQEc?modestbranding=1&rel=0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Broad Jump + Stick</span>
+        <span class="ex-cell"><span class="ex-lbl">Sets</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Reps</span>5 jumps</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>45s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 REP =</span> Two-foot takeoff. Swing arms and jump FORWARD as far as possible. Land on both feet and HOLD for 1 full second without wobbling or taking a step. Reset completely. That's 1 rep.</div>
+        <div class="ex-cue">💡 Land on balls of feet with knees bent — absorb, don't thud. If you stumble forward on landing, you're not controlling it. Stick it: the hold is the whole point</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/kL7bZQvx-fs?modestbranding=1&rel=0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div></div>
+    </div>
+    <div class="block-card">
+      <div class="block-title">BLOCK 4: BALANCE & STABILIZATION — 5 min</div>
+      <div class="block-note">Never skip this block. It protects your ankles and transfers directly to the game.</div>
+      <div class="ex-table"><div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Single-Leg Balance (eyes open)</span>
+        <span class="ex-cell"><span class="ex-lbl">Sets</span>1</span>
+        <span class="ex-cell"><span class="ex-lbl">Reps</span>30 sec each leg</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>15s</span>
+        <span></span>
+      </div>
+      
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 REP =</span> Stand on ONE foot. Start the timer when the other foot lifts. Hold without touching down for the full time. If you touch down, pause the timer.</div>
+        <div class="ex-cue">💡 Fix your eyes on a single point — this helps significantly. Small ankle adjustments are normal and good — that's your stabilizers firing. Stiffening up makes it harder, not easier</div>
+      </div>
+      
+    </div><div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Single-Leg Balance (eyes closed)</span>
+        <span class="ex-cell"><span class="ex-lbl">Sets</span>1</span>
+        <span class="ex-cell"><span class="ex-lbl">Reps</span>20 sec each leg</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>15s</span>
+        <span></span>
+      </div>
+      
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 REP =</span> Same as eyes open — stand on ONE foot, start the timer when the other foot lifts. Eyes closed the entire hold. If you touch down, pause the timer.</div>
+        <div class="ex-cue">💡 Much harder without visual feedback — your ankle has to work alone. This is exactly what happens when you land from a jump in a game. Start shorter if needed and build up each week</div>
+      </div>
+      
+    </div><div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Single-Leg on Pillow / Towel</span>
+        <span class="ex-cell"><span class="ex-lbl">Sets</span>1</span>
+        <span class="ex-cell"><span class="ex-lbl">Reps</span>30 sec each leg</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>15s</span>
+        <span></span>
+      </div>
+      
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 REP =</span> Fold a bath towel into quarters (or use a couch cushion). Stand on it on ONE foot. Hold for the full time on the unstable surface.</div>
+        <div class="ex-cue">💡 The instability forces your ankle stabilizers to fire constantly — this is exactly the training transfer you want for uneven field surfaces and landing from aerial challenges. Eyes open first; close them when you can hold 20 sec</div>
+      </div>
+      
+    </div><div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Ankle Dorsiflexion Pull</span>
+        <span class="ex-cell"><span class="ex-lbl">Sets</span>1</span>
+        <span class="ex-cell"><span class="ex-lbl">Reps</span>12 each foot</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>15s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 REP =</span> Band anchored behind you, looped around the top of your foot. Seated or standing. Pull your toes UP toward your shin as far as possible against the resistance, hold 1 second, slowly return. ALL reps on one foot, then switch.</div>
+        <div class="ex-cue">💡 This is a small movement — feel the front of the shin (tibialis anterior) working. The slow return is as important as the pull. Don't let the band snap your foot back down</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/7e7eDLczXmg?modestbranding=1&rel=0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div></div>
+    </div>
+  <div class="callout green" style="margin-top:18px">
+    <strong>✅ End-of-Session Checklist</strong>
+    <ul style="margin-top:6px;padding-left:18px;font-size:.82rem">
+      <li>Ladder circuit time written down?</li>
+      <li>Hips level during all band exercises?</li>
+      <li>Arms moving during every ladder drill?</li>
+      <li>Both sides done for every single-leg exercise?</li>
+      <li>Rate today: 1 (rough) → 5 (great)</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec" id="friday">
+  <div class="fri-hdr">
+    <div class="fri-title">⚡ Friday — No Lesson Weeks</div>
+    <div class="fri-sub">Optional · 20 minutes · Skip if legs feel heavy</div>
+  </div>
+  <div class="callout purple"><strong>Rules:</strong> Optional · NO plyos, NO sprinting, NO strength work · 70% effort only · Lower priority if Saturday game</div>
+  <div class="block-card">
+    <div class="block-title">Ladder — ~6 min</div>
+    <div class="block-note">4 drills · 3 passes each · 70% effort</div>
+    <div class="ex-table"><div class="ex-item cat-left-linear">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">1</span>
+          <span class="cat-badge cat-linear">LINEAR</span>
+          SL Hop — Std (L)
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>3</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~20s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Hop on LEFT foot into EVERY rung, one hop per rung, full length</div>
+        <div class="ex-cue">💡 Ball of foot only, knee soft on landing, arms relaxed at sides</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/E872fuIgF0Y?modestbranding=1&rel=0&start=117"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-lateral">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">2</span>
+          <span class="cat-badge cat-lateral">LATERAL</span>
+          Lateral Hops (L)
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>3</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~20s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Stand IN-LINE with the ladder, face LEFT (sideways). Both feet together, hop laterally through each rung traveling left, full length</div>
+        <div class="ex-cue">💡 Face sideways throughout. Both feet land together inside each rung. Drive from the hips, land softly on balls of feet</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=257"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-multidirectional">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">3</span>
+          <span class="cat-badge cat-multidirectional">MULTI-DIR</span>
+          Ickey Shuffle
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>3</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~20s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> 3-step pattern per rung: lead foot IN, trail foot IN, lead foot OUT to side. Alternate which side you exit each rung. Full length</div>
+        <div class="ex-cue">💡 Lean slightly in direction of travel. Consistent 3-count rhythm. Arms drive the direction change</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=120"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item cat-left-multidirectional">
+      <div class="ex-row">
+        <span class="ex-name">
+          <span class="drill-idx">4</span>
+          <span class="cat-badge cat-multidirectional">MULTI-DIR</span>
+          Carioca
+        </span>
+        <span class="ex-cell"><span class="ex-lbl">Passes</span>3</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>~20s</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 PASS =</span> Move LATERALLY — crossover step pattern alternating in FRONT then BEHIND, using rungs as spacing guides. Full length each direction (once L, once R)</div>
+        <div class="ex-cue">💡 Full hip rotation every crossover — this is a hip mobility drill as much as footwork. Eyes forward, smooth rhythm</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=173"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div></div>
+  </div>
+  <div class="block-card">
+    <div class="block-title">Band Activation — ~4 min</div>
+    <div class="block-note">1 set each · Slow controlled movement</div>
+    <div class="ex-table"><div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Hip Abduction Kick</span>
+        <span class="ex-cell"><span class="ex-lbl">Sets</span>1</span>
+        <span class="ex-cell"><span class="ex-lbl">Reps</span>10 each leg</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>—</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 REP =</span> Band around working ankle, anchored to a fixed point at your side. Stand on the opposite foot. Drive the banded leg directly OUT to the side as far as possible, hold 1 second at the top, return slowly. ALL reps on one leg, then switch.</div>
+        <div class="ex-cue">💡 Stand tall — don't lean away from the kick. The hip drives the movement, not the knee. Control the return; don't let the band snap your leg back</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/v-tN9LG547I?modestbranding=1&rel=0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div><div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Hip Extension Kick</span>
+        <span class="ex-cell"><span class="ex-lbl">Sets</span>1</span>
+        <span class="ex-cell"><span class="ex-lbl">Reps</span>10 each leg</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>—</span>
+        <button class="vid-toggle">▶ Video</button>
+      </div>
+      
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 REP =</span> Band around working ankle, anchored in front of you. Stand on the opposite foot. Drive the banded leg straight BACK as far as possible, hold 1 second at the top, return slowly. ALL reps on one leg, then switch.</div>
+        <div class="ex-cue">💡 Slight forward lean from the hip is fine. Glute should be fully contracted at the top. Don't arch your lower back — if it arches, you've gone too far</div>
+      </div>
+      <div class="ex-vid-panel"><div class="vid-frame-wrap">
+    <iframe src="https://www.youtube.com/embed/sQCraMq0hcY?modestbranding=1&rel=0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe></div></div>
+    </div></div>
+  </div>
+  <div class="block-card">
+    <div class="block-title">Cone Work — ~4 min</div>
+    <div class="block-note">2 exercises · No stopwatch · 70% only</div>
+    <div class="ex-table"><div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Box Drill at 70% effort</span>
+        <span class="ex-cell"><span class="ex-lbl">Sets</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Reps</span>—</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>—</span>
+        <span></span>
+      </div>
+      
+      
+    </div><div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Lateral Shuffle Cone Touch</span>
+        <span class="ex-cell"><span class="ex-lbl">Sets</span>2</span>
+        <span class="ex-cell"><span class="ex-lbl">Reps</span>—</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>—</span>
+        <span></span>
+      </div>
+      
+      
+    </div></div>
+  </div>
+  <div class="block-card">
+    <div class="block-title">Balance — ~6 min</div>
+    <div class="ex-table"><div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Single-Leg Balance (eyes open)</span>
+        <span class="ex-cell"><span class="ex-lbl">Sets</span>1</span>
+        <span class="ex-cell"><span class="ex-lbl">Reps</span>20 sec each</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>15s</span>
+        <span></span>
+      </div>
+      
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 REP =</span> Stand on ONE foot. Start the timer when the other foot lifts. Hold without touching down for the full time. If you touch down, pause the timer.</div>
+        <div class="ex-cue">💡 Fix your eyes on a single point — this helps significantly. Small ankle adjustments are normal and good — that's your stabilizers firing. Stiffening up makes it harder, not easier</div>
+      </div>
+      
+    </div><div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Single-Leg Balance (eyes closed)</span>
+        <span class="ex-cell"><span class="ex-lbl">Sets</span>1</span>
+        <span class="ex-cell"><span class="ex-lbl">Reps</span>15 sec each</span>
+        <span class="ex-cell"><span class="ex-lbl">Rest</span>15s</span>
+        <span></span>
+      </div>
+      
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">1 REP =</span> Same as eyes open — stand on ONE foot, start the timer when the other foot lifts. Eyes closed the entire hold. If you touch down, pause the timer.</div>
+        <div class="ex-cue">💡 Much harder without visual feedback — your ankle has to work alone. This is exactly what happens when you land from a jump in a game. Start shorter if needed and build up each week</div>
+      </div>
+      
+    </div></div>
+  </div>
+</section>
+
+<section class="sec" id="goals">
+  <h2 class="sec-title">Goal Benchmarks</h2>
+  <div class="callout blue">⏰ <strong>Don't time yourself until week 4.</strong> First 3 weeks = building correct form. Speed without form trains bad habits. Once timing starts, circle personal bests in green.</div>
+  <table class="bench">
+    <thead><tr><th>Metric</th><th>Target</th></tr></thead>
+    <tbody>
+      <tr><td>Full ladder circuit (27 drills)</td><td class="tgt">Under 19 min</td></tr>
+      <tr><td>High Knees — full length</td><td class="tgt">Under 5 sec</td></tr>
+      <tr><td>Ickey Shuffle — full length</td><td class="tgt">Under 8 sec</td></tr>
+      <tr><td>Lateral In & Out — full length</td><td class="tgt">Under 7 sec</td></tr>
+      <tr><td>T-Drill</td><td class="tgt">Under 12 sec</td></tr>
+      <tr><td>Lateral Band Walk</td><td class="tgt">3×15 reps, zero hip wobble</td></tr>
+      <tr><td>Single-Leg Balance (eyes closed)</td><td class="tgt">20 sec each leg by week 6</td></tr>
+    </tbody>
+  </table>
+  <div class="block-card" style="margin-top:18px">
+    <div class="block-title">In-Game Timeline</div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;font-size:.85rem">
+      <div><strong>Weeks 1–3</strong> <span style="color:var(--muted)">— Cleaner movement patterns. No visible game impact yet.</span></div>
+      <div><strong>Weeks 4–6</strong> <span style="color:var(--muted)">— First-step quickness starts showing. Sharper 1v1 cuts.</span></div>
+      <div><strong>Weeks 8–12</strong> <span style="color:var(--muted)">— Measurable speed and agility improvements coaches notice.</span></div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  document.querySelectorAll('.nav-tab').forEach(t=>{
+    t.addEventListener('click',()=>{
+      document.querySelectorAll('.nav-tab').forEach(x=>x.classList.remove('on'));
+      document.querySelectorAll('.sec').forEach(x=>x.classList.remove('on'));
+      t.classList.add('on');
+      document.getElementById(t.dataset.sec).classList.add('on');
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+  document.querySelectorAll('.day-tab').forEach(t=>{
+    t.addEventListener('click',()=>{
+      document.querySelectorAll('.day-tab').forEach(x=>x.classList.remove('on'));
+      document.querySelectorAll('.pre-panel').forEach(x=>x.classList.remove('active'));
+      t.classList.add('on');
+      document.querySelector('.pre-panel[data-day="'+t.dataset.target+'"]').classList.add('active');
+    });
+  });
+  document.querySelectorAll('.vid-toggle').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const panel=btn.closest('.ex-item').querySelector('.ex-vid-panel');
+      const open=panel.classList.toggle('on');
+      btn.classList.toggle('on',open);
+      btn.textContent=open?'✕ Close':'▶ Video';
+    });
+  });
+})();
+</script>
+</body>
+</html>
