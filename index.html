@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>SAQ Training Plans</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:     #0d1117;
+  --bg2:    #161b22;
+  --border: #30363d;
+  --text:   #e6edf3;
+  --muted:  #8b949e;
+  --green:  #3fb950;
+  --gbg:    #1a2e1a;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { height: 100%; }
+body {
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Barlow', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px 48px;
+}
+
+.header { text-align: center; margin-bottom: 40px; }
+.header-emoji { font-size: 2.8rem; line-height: 1; margin-bottom: 10px; }
+.header-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.header-sub {
+  font-size: .88rem;
+  color: var(--muted);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.card-header {
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.card-emoji { font-size: 1.8rem; line-height: 1; margin-bottom: 6px; }
+.card-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: .03em;
+  color: #fff;
+}
+.card-pos {
+  font-size: .78rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.card-links { padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: .9rem;
+  transition: opacity .15s;
+}
+.btn:hover { opacity: .85; }
+.btn-icon { font-size: 1.1rem; flex-shrink: 0; }
+.btn-text { flex: 1; }
+.btn-text small {
+  display: block;
+  font-size: .73rem;
+  font-weight: 400;
+  opacity: .7;
+  margin-top: 1px;
+}
+.btn-arrow { color: inherit; opacity: .5; font-size: .85rem; }
+
+.btn-primary {
+  background: var(--gbg);
+  border: 1px solid var(--green);
+  color: var(--green);
+}
+.btn-secondary {
+  background: #1c2128;
+  border: 1px solid var(--border);
+  color: var(--muted);
+}
+
+.footer {
+  margin-top: 48px;
+  font-size: .75rem;
+  color: var(--border);
+  text-align: center;
+  letter-spacing: .04em;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-emoji">🏃</div>
+  <div class="header-title">SAQ Training</div>
+  <div class="header-sub">Speed · Agility · Quickness</div>
+</div>
+
+<div class="cards">
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-emoji">⚡</div>
+      <div class="card-name">Daughter's Plan</div>
+      <div class="card-pos">Attacking Mid / Winger · Age 9</div>
+    </div>
+    <div class="card-links">
+      <a class="btn btn-primary" href="daughter.html">
+        <span class="btn-icon">📱</span>
+        <span class="btn-text">
+          Training Plan
+          <small>Interactive · With videos</small>
+        </span>
+        <span class="btn-arrow">›</span>
+      </a>
+      <a class="btn btn-secondary" href="daughter-print.html">
+        <span class="btn-icon">🖨</span>
+        <span class="btn-text">
+          Printable Version
+          <small>PDF-ready · No videos</small>
+        </span>
+        <span class="btn-arrow">›</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="card-emoji">🔥</div>
+      <div class="card-name">Son's Plan</div>
+      <div class="card-pos">Winger / Striker · Age 11</div>
+    </div>
+    <div class="card-links">
+      <a class="btn btn-primary" href="son.html">
+        <span class="btn-icon">📱</span>
+        <span class="btn-text">
+          Training Plan
+          <small>Interactive · With videos</small>
+        </span>
+        <span class="btn-arrow">›</span>
+      </a>
+      <a class="btn btn-secondary" href="son-print.html">
+        <span class="btn-icon">🖨</span>
+        <span class="btn-text">
+          Printable Version
+          <small>PDF-ready · No videos</small>
+        </span>
+        <span class="btn-arrow">›</span>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">ADD YOUR NAME HERE · SAQ TRAINING PLANS</div>
+
+</body>
+</html>
