@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Silas' Plan — SAQ Training</title>
+<title>Silas's Plan — SAQ Training</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
@@ -53,6 +53,13 @@ body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font
 .blue  {background:var(--bbg);border:1px solid var(--blue); color:#a0c4f4}
 .purple{background:var(--pbg);border:1px solid var(--purple);color:#c8b0ee}
 
+/* part headers — divide ball work from SAQ */
+.part-header{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:10px 14px;border-radius:8px;margin:16px 0 10px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.ball-header{background:#0d1f2e;border:1px solid var(--blue);color:var(--blue)}
+.saq-header {background:var(--abg);border:1px solid var(--amber);color:var(--amber)}
+.part-focus{font-size:.72rem;font-weight:500;letter-spacing:.03em;text-transform:none;color:var(--muted);font-family:'Barlow',sans-serif}
+.part-divider{border:none;border-top:2px dashed var(--border);margin:24px 0}
+
 .day-tabs{display:flex;gap:8px;margin:14px 0;flex-wrap:wrap}
 .day-tab{padding:7px 14px;border-radius:6px;background:var(--bg3);border:1px solid var(--border);color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;transition:all .15s}
 .day-tab.on{background:var(--gbg);border-color:var(--green);color:var(--green)}
@@ -75,7 +82,6 @@ body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font
 .vid-frame-wrap{position:relative;padding-top:56.25%;border-radius:8px;overflow:hidden;background:#000}
 .vid-frame-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
 
-
 .cat-div{border-radius:8px;padding:9px 14px;margin:18px 0 8px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
 .cat-div.cat-linear           {background:var(--bbg);border:1px solid var(--blue)}
 .cat-div.cat-lateral          {background:var(--gbg);border:1px solid var(--green)}
@@ -90,7 +96,10 @@ body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font
 .block-title{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--green);margin-bottom:6px}
 .block-note{font-size:.79rem;color:var(--muted);margin-bottom:11px;font-style:italic}
 
-/* EXERCISE TABLE */
+/* ball work item — duration only, no rest column */
+.bw-row{display:grid !important;grid-template-columns:1fr 120px !important}
+.bw-item .ex-desc{background:inherit}
+
 .ex-table{border:1px solid var(--border);border-radius:8px;overflow:hidden}
 .ex-item{border-top:1px solid var(--border)}
 .ex-item:first-child{border-top:none}
@@ -102,7 +111,6 @@ body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font
 .ex-lbl{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:1px}
 .vid-toggle{background:var(--bg3);border:1px solid var(--border);border-radius:4px;color:var(--muted);font-size:.7rem;font-weight:600;padding:4px 7px;cursor:pointer;white-space:nowrap;transition:all .15s}
 .vid-toggle:hover,.vid-toggle.on{background:var(--bbg);border-color:var(--blue);color:var(--blue)}
-/* description block — always visible, sits between stat row and video panel */
 .ex-desc{padding:0 12px 10px;border-top:1px dashed var(--border)}
 .ex-repdef{background:var(--bg3);border-radius:6px;padding:7px 10px;font-size:.81rem;margin-bottom:6px}
 .ex-repdef-lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.68rem;color:var(--green);letter-spacing:.08em;display:block;margin-bottom:2px}
@@ -125,6 +133,7 @@ body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font
 @media(max-width:460px){
   .ex-row{grid-template-columns:1fr 48px 80px 44px 72px;gap:2px;padding:8px 10px}
   .ex-name{font-size:.8rem}
+  .bw-row{grid-template-columns:1fr 100px !important}
 }
 </style>
 </head>
@@ -132,9 +141,9 @@ body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font
 
 <header class="hdr">
   <div class="hdr-emoji">🔥</div>
-  <div class="hdr-title">Silas' Plan</div>
+  <div class="hdr-title">Silas's Plan</div>
   <div class="hdr-sub">Speed · Agility · Quickness</div>
-  <span class="hdr-tag">Age 11 · Winger / Striker · 9v9</span>
+  <span class="hdr-tag">Age 11 · Winger · 9v9</span>
 </header>
 
 <nav class="nav">
@@ -151,12 +160,12 @@ body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font
   <table class="sched">
     <thead><tr><th>Day</th><th>Activity</th><th>Training</th></tr></thead>
     <tbody>
-      <tr class="t-pre"><td class="day-cell">Monday</td><td>Team Practice</td><td>Pre-Practice — 15 min BEFORE</td></tr>
-      <tr class="t-pre"><td class="day-cell">Tuesday</td><td>Team Practice</td><td>Pre-Practice — 15 min BEFORE</td></tr>
-      <tr class="t-pre"><td class="day-cell">Wednesday</td><td>Team Practice</td><td>Pre-Practice — 15 min BEFORE</td></tr>
-      <tr class="t-full"><td class="day-cell">Thursday</td><td>OFF</td><td>✅ FULL SESSION — 40–45 min</td></tr>
-      <tr class="t-rest"><td class="day-cell">Friday</td><td>Private lesson</td><td>Rest — lesson is your training today</td></tr>
-      <tr class="t-friday"><td class="day-cell">Fri ✦</td><td>No lesson Week</td><td>Optional Light Session — 20 min</td></tr>
+      <tr class="t-pre"><td class="day-cell">Monday</td><td>Team Practice</td><td>Ball Work + SAQ — 30 min BEFORE</td></tr>
+      <tr class="t-pre"><td class="day-cell">Tuesday</td><td>Team Practice</td><td>Ball Work + SAQ — 30 min BEFORE</td></tr>
+      <tr class="t-pre"><td class="day-cell">Wednesday</td><td>Team Practice</td><td>Ball Work + SAQ — 30 min BEFORE</td></tr>
+      <tr class="t-full"><td class="day-cell">Thursday</td><td>OFF</td><td>✅ FULL SESSION — 55–60 min</td></tr>
+      <tr class="t-rest"><td class="day-cell">Friday</td><td>Private Lesson</td><td>Rest — lesson is your training today</td></tr>
+      <tr class="t-friday"><td class="day-cell">Fri ✦</td><td>No Lesson Week</td><td>Optional Light Session — 30 min</td></tr>
       <tr class="t-game"><td class="day-cell">Sat / Sun</td><td>Games</td><td>Game day — rest and recover</td></tr>
     </tbody>
   </table>
@@ -164,7 +173,7 @@ body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font
 
 <section class="sec" id="pre">
   <h2 class="sec-title">Pre-Practice Routine</h2>
-  <p class="sec-intro">15 minutes · Do this BEFORE every practice. Each day targets a different movement category.</p>
+  <p class="sec-intro">30 minutes total before leaving · 15 min ball work → 15 min SAQ · Category rotates each day</p>
   <div class="day-tabs">
     
     <div class="day-tab on" data-target="Monday">Monday <span style="opacity:.6;font-size:.72em">Linear</span></div>
@@ -172,8 +181,114 @@ body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font
     <div class="day-tab " data-target="Wednesday">Wednesday <span style="opacity:.6;font-size:.72em">Multi-Dir</span></div>
   </div>
   <div class="pre-panel active" data-day="Monday">
-      <div class="callout amber">⏱ <strong>Timing</strong> — 3 passes per drill · Walk back after each pass · 20 sec rest before Pass 3 · ~7.5 min total</div>
-      <h4 class="sub-head">Part 1 — Ladder · 5 drills</h4>
+
+      <div class="part-header ball-header">⚽ Part 1 — Ball Work · 15 min <span class="part-focus">Forward Drive & Receiving in Stride</span></div>
+      <div class="callout green" style="margin-bottom:10px">🎯 Focus on <strong>quality of touch</strong>, not volume — every rep should have intention behind it</div>
+
+      <h4 class="sub-head">Foundation — 3 min · Every day</h4>
+      <div class="ex-table">
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Sole Rolls</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>30 sec each foot</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Ball under sole, roll it across your body using just the bottom of your foot, alternating feet continuously</div>
+        <div class="ex-cue">💡 Stay on the balls of your feet. Keep the ball close — smooth rhythm, not speed</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Inside / Outside Taps</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>30 sec each foot</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Tap ball with inside of foot, then outside of same foot, alternating, moving slowly forward. Do all reps on one foot then switch</div>
+        <div class="ex-cue">💡 Soft touch each tap. Ball stays within one foot of you at all times</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Toe Taps</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>45 sec</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Alternate feet tapping the top of the ball rapidly, light and quick</div>
+        <div class="ex-cue">💡 Light quick taps — your feet barely leave the ground. Stay bouncy, stay on toes</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Slow Scissors</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>10 each foot</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Step over the ball with one foot, shift your full weight, step over with the other. Full, deliberate scissors — not rushed</div>
+        <div class="ex-cue">💡 Commit to the full body feint even going slowly. This is where the move gets grooved</div>
+      </div>
+    </div></div>
+
+      <h4 class="sub-head">Category Work — Linear</h4>
+      <div class="ex-table">
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Rebounder 1-Touch Wall Pass</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>45 sec each foot</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Face rebounder 3–4 yards away. Play 1-touch passes continuously striking with the inside of the same foot the whole set, then switch</div>
+        <div class="ex-cue">💡 Get your foot behind the ball early. Firm pass into the rebounder, relaxed receive. Stay on your toes between each touch</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Receive & Drive</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>8 reps</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Pass to rebounder, receive the return with your FIRST TOUCH out of your feet into space — not under your body — drive the ball forward 5 yards to a cone, jog back. That's 1 rep</div>
+        <div class="ex-cue">💡 The first touch is the whole point. It should set up your next stride, not stop you</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Angled Receive & Lay-Off</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>10 reps each side</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Stand at an angle to the rebounder. Receive with the far foot, lay off with the near foot back to the rebounder. Swap sides. That's 1 rep each side</div>
+        <div class="ex-cue">💡 Open your hips on the receive. Body angle lets you see more of the field before you touch the ball</div>
+      </div>
+    </div></div>
+
+      <h4 class="sub-head">Position Work — Winger</h4>
+      <div class="ex-table">
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Wide Run Receive in Stride</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>8 reps each side</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Pass to rebounder, make an angled run toward a wide cone, receive the return pass in stride while moving laterally toward the cone. Walk back. That's 1 rep</div>
+        <div class="ex-cue">💡 Time the run so you're already moving when the ball arrives — a stationary receive on the wing gets you dispossessed at this level</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Drive the Line</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>6 reps each side</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Receive from rebounder wide, push ball at full speed along a line of cones to the far end, sharp inside cut. Walk back. That's 1 rep</div>
+        <div class="ex-cue">💡 Push the ball further ahead than feels comfortable and chase it — that's how you beat defenders with pace. If the ball is under your feet, you can't accelerate</div>
+      </div>
+    </div></div>
+
+      <div class="part-divider"></div>
+
+      <div class="part-header saq-header">🏃 Part 2 — SAQ · 15 min</div>
+      <div class="callout amber">⏱ <strong>Timing</strong> — 3 passes per drill · Walk back after each pass · 20 sec rest before Pass 3 · ~7.5 min ladder</div>
+      <h4 class="sub-head">Ladder · 5 drills</h4>
       <div class="ex-table"><div class="ex-item cat-left-linear">
       <div class="ex-row">
         <span class="ex-name">
@@ -267,7 +382,7 @@ body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen loading="lazy"></iframe></div></div>
     </div></div>
-      <h4 class="sub-head">Part 2 — Resistance Bands</h4>
+      <h4 class="sub-head">Resistance Bands</h4>
       <div class="ex-table"><div class="ex-item">
       <div class="ex-row">
         <span class="ex-name">Hip Extension Kick</span>
@@ -305,8 +420,114 @@ body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font
     </div></div>
       <div class="callout green">💪 Extension kick loads the hip drive behind every forward hop · Dorsiflexion trains foot strike for linear speed</div>
     </div><div class="pre-panel " data-day="Tuesday">
-      <div class="callout amber">⏱ <strong>Timing</strong> — 3 passes per drill · Walk back after each pass · 20 sec rest before Pass 3 · ~7.5 min total</div>
-      <h4 class="sub-head">Part 1 — Ladder · 5 drills</h4>
+
+      <div class="part-header ball-header">⚽ Part 1 — Ball Work · 15 min <span class="part-focus">Wide Play & Side-to-Side Movement</span></div>
+      <div class="callout green" style="margin-bottom:10px">🎯 Focus on <strong>quality of touch</strong>, not volume — every rep should have intention behind it</div>
+
+      <h4 class="sub-head">Foundation — 3 min · Every day</h4>
+      <div class="ex-table">
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Sole Rolls</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>30 sec each foot</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Ball under sole, roll it across your body using just the bottom of your foot, alternating feet continuously</div>
+        <div class="ex-cue">💡 Stay on the balls of your feet. Keep the ball close — smooth rhythm, not speed</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Inside / Outside Taps</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>30 sec each foot</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Tap ball with inside of foot, then outside of same foot, alternating, moving slowly forward. Do all reps on one foot then switch</div>
+        <div class="ex-cue">💡 Soft touch each tap. Ball stays within one foot of you at all times</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Toe Taps</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>45 sec</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Alternate feet tapping the top of the ball rapidly, light and quick</div>
+        <div class="ex-cue">💡 Light quick taps — your feet barely leave the ground. Stay bouncy, stay on toes</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Slow Scissors</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>10 each foot</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Step over the ball with one foot, shift your full weight, step over with the other. Full, deliberate scissors — not rushed</div>
+        <div class="ex-cue">💡 Commit to the full body feint even going slowly. This is where the move gets grooved</div>
+      </div>
+    </div></div>
+
+      <h4 class="sub-head">Category Work — Lateral</h4>
+      <div class="ex-table">
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Rebounder Cross-Body Receive</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>10 reps each side</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Stand sideways to rebounder. Ball comes across your body — receive with the far foot and play back with the near foot. Swap sides. That's 1 rep each side</div>
+        <div class="ex-cue">💡 Open your hips early. Receive with the foot further from the rebounder — don't reach across your body</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Inside Cut Cone Drill</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>8 reps each side</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Dribble to a cone, plant your outside foot just past the ball, sharp inside cut at 45°, accelerate 5 yards to a second cone. Walk back. That's 1 rep</div>
+        <div class="ex-cue">💡 Plant foot goes PAST the ball, not beside it. The cut is at 45° — not straight back</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Outside Cut Cone Drill</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>8 reps each side</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Dribble to cone, chop step, drop your shoulder inside as a fake, cut outside and accelerate. Walk back. That's 1 rep</div>
+        <div class="ex-cue">💡 The shoulder drop sells the fake. If you don't drop the shoulder, it's just turning — not a move</div>
+      </div>
+    </div></div>
+
+      <h4 class="sub-head">Position Work — Winger</h4>
+      <div class="ex-table">
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Step-Over into Cut</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>8 reps each side</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Dribble toward a cone (the defender), perform a full step-over, cut to the outside and accelerate 5 yards past. Walk back. That's 1 rep</div>
+        <div class="ex-cue">💡 The step-over has to look convincing — exaggerate it in training so it becomes natural in games. A half-committed step-over doesn't work</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Scissors into Acceleration</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>8 reps each side</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Dribble to cone, perform scissors move, cut inside or outside depending on your decision, accelerate 5 yards. Walk back. That's 1 rep</div>
+        <div class="ex-cue">💡 Weight shifts to outside foot during the scissors. The first step after is explosive — don't ease into the sprint</div>
+      </div>
+    </div></div>
+
+      <div class="part-divider"></div>
+
+      <div class="part-header saq-header">🏃 Part 2 — SAQ · 15 min</div>
+      <div class="callout amber">⏱ <strong>Timing</strong> — 3 passes per drill · Walk back after each pass · 20 sec rest before Pass 3 · ~7.5 min ladder</div>
+      <h4 class="sub-head">Ladder · 5 drills</h4>
       <div class="ex-table"><div class="ex-item cat-left-lateral">
       <div class="ex-row">
         <span class="ex-name">
@@ -403,7 +624,7 @@ body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen loading="lazy"></iframe></div></div>
     </div></div>
-      <h4 class="sub-head">Part 2 — Resistance Bands</h4>
+      <h4 class="sub-head">Resistance Bands</h4>
       <div class="ex-table"><div class="ex-item">
       <div class="ex-row">
         <span class="ex-name">Lateral Band Walk</span>
@@ -441,8 +662,114 @@ body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font
     </div></div>
       <div class="callout green">💪 Band walk + abduction kick both target glute med — the exact muscle powering every lateral drill</div>
     </div><div class="pre-panel " data-day="Wednesday">
-      <div class="callout amber">⏱ <strong>Timing</strong> — 3 passes per drill · Walk back after each pass · 20 sec rest before Pass 3 · ~7.5 min total</div>
-      <h4 class="sub-head">Part 1 — Ladder · 5 drills</h4>
+
+      <div class="part-header ball-header">⚽ Part 1 — Ball Work · 15 min <span class="part-focus">Turning, Combination Play & 1v1 Moves</span></div>
+      <div class="callout green" style="margin-bottom:10px">🎯 Focus on <strong>quality of touch</strong>, not volume — every rep should have intention behind it</div>
+
+      <h4 class="sub-head">Foundation — 3 min · Every day</h4>
+      <div class="ex-table">
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Sole Rolls</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>30 sec each foot</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Ball under sole, roll it across your body using just the bottom of your foot, alternating feet continuously</div>
+        <div class="ex-cue">💡 Stay on the balls of your feet. Keep the ball close — smooth rhythm, not speed</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Inside / Outside Taps</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>30 sec each foot</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Tap ball with inside of foot, then outside of same foot, alternating, moving slowly forward. Do all reps on one foot then switch</div>
+        <div class="ex-cue">💡 Soft touch each tap. Ball stays within one foot of you at all times</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Toe Taps</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>45 sec</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Alternate feet tapping the top of the ball rapidly, light and quick</div>
+        <div class="ex-cue">💡 Light quick taps — your feet barely leave the ground. Stay bouncy, stay on toes</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Slow Scissors</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>10 each foot</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Step over the ball with one foot, shift your full weight, step over with the other. Full, deliberate scissors — not rushed</div>
+        <div class="ex-cue">💡 Commit to the full body feint even going slowly. This is where the move gets grooved</div>
+      </div>
+    </div></div>
+
+      <h4 class="sub-head">Category Work — Multi-Dir</h4>
+      <div class="ex-table">
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Back-to-Goal Receive & Turn</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>10 reps each direction</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Stand with back to rebounder. Ball bounces back, receive with one touch, turn quickly using inside or outside of foot, drive 5 yards. Return. That's 1 rep</div>
+        <div class="ex-cue">💡 Check your shoulder BEFORE the ball arrives. Decide your turn direction before you touch it — not after</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Give & Go</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>10 reps</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Pass to rebounder, immediately move to a new position (diagonal or lateral), receive the return in your new spot, control. That's 1 rep</div>
+        <div class="ex-cue">💡 After the pass, MOVE NOW — don't watch the ball. Run to where you want it to come back to</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Free Creativity</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>2 min</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Choose any moves or combinations from the session. Focus on your weaker foot. No structure — just play</div>
+        <div class="ex-cue">💡 Try things and fail. The freedom is the point. This is how moves become yours</div>
+      </div>
+    </div></div>
+
+      <h4 class="sub-head">Position Work — Winger</h4>
+      <div class="ex-table">
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">1v1 Move Sequence</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>10 reps — mix moves each rep</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Dribble toward cone (defender), choose any move (step-over, scissors, Cruyff, heel turn), accelerate past. Choose a DIFFERENT move each rep. That's 1 rep</div>
+        <div class="ex-cue">💡 Commit to the move fully — a half-committed move doesn't work in training or games. Indecision is the defender's friend</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Wide-to-Inside Combination</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>8 reps</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Receive wide from rebounder, take 2 touches inside, pass back to rebounder, immediately make a diagonal run into the half-space to receive the return. That's 1 rep</div>
+        <div class="ex-cue">💡 The diagonal run into the half-space after the pass is the third-man movement. This is how wingers combine with midfielders to get in behind — the pass is just the setup</div>
+      </div>
+    </div></div>
+
+      <div class="part-divider"></div>
+
+      <div class="part-header saq-header">🏃 Part 2 — SAQ · 15 min</div>
+      <div class="callout amber">⏱ <strong>Timing</strong> — 3 passes per drill · Walk back after each pass · 20 sec rest before Pass 3 · ~7.5 min ladder</div>
+      <h4 class="sub-head">Ladder · 5 drills</h4>
       <div class="ex-table"><div class="ex-item cat-left-multidirectional">
       <div class="ex-row">
         <span class="ex-name">
@@ -539,7 +866,7 @@ body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen loading="lazy"></iframe></div></div>
     </div></div>
-      <h4 class="sub-head">Part 2 — Resistance Bands</h4>
+      <h4 class="sub-head">Resistance Bands</h4>
       <div class="ex-table"><div class="ex-item">
       <div class="ex-row">
         <span class="ex-name">Hip Abduction Kick</span>
@@ -581,12 +908,139 @@ body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font
 
 <section class="sec" id="session">
   <h2 class="sec-title">Full Session — Thursday</h2>
-  <p class="sec-intro">40–45 minutes · Ladder, bands, 4–6 cones, timer. Do blocks in order.</p>
+  <p class="sec-intro">55–60 minutes · Ball work opener → ladder → strength & conditioning. Do blocks in order.</p>
+
+  <div class="block-card">
+    <div class="block-title" style="color:var(--blue)">BLOCK 0: BALL WORK — 15 min</div>
+    <div class="block-note">Foundation + rebounder combinations + position-specific sequences + free creativity. This comes first while your mind and feet are fresh.</div>
+    <div class="ex-table">
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Sole Rolls</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>30 sec each foot</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Ball under sole, roll it across your body using just the bottom of your foot, alternating feet continuously</div>
+        <div class="ex-cue">💡 Stay on the balls of your feet. Keep the ball close — smooth rhythm, not speed</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Inside / Outside Taps</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>30 sec each foot</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Tap ball with inside of foot, then outside of same foot, alternating, moving slowly forward. Do all reps on one foot then switch</div>
+        <div class="ex-cue">💡 Soft touch each tap. Ball stays within one foot of you at all times</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Toe Taps</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>45 sec</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Alternate feet tapping the top of the ball rapidly, light and quick</div>
+        <div class="ex-cue">💡 Light quick taps — your feet barely leave the ground. Stay bouncy, stay on toes</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Slow Scissors</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>10 each foot</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Step over the ball with one foot, shift your full weight, step over with the other. Full, deliberate scissors — not rushed</div>
+        <div class="ex-cue">💡 Commit to the full body feint even going slowly. This is where the move gets grooved</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Rebounder 1-Touch (both feet)</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>45 sec each foot</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Face rebounder 3–4 yards away. Play 1-touch passes continuously striking with the inside of the same foot the whole set, then switch</div>
+        <div class="ex-cue">💡 Get your foot behind the ball early. Firm pass into the rebounder, relaxed receive. Stay on your toes between each touch</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Receive & Drive</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>8 reps</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Pass to rebounder, receive the return with your FIRST TOUCH out of your feet into space — not under your body — drive the ball forward 5 yards to a cone, jog back. That's 1 rep</div>
+        <div class="ex-cue">💡 The first touch is the whole point. It should set up your next stride, not stop you</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Rebounder Cross-Body Receive</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>10 reps each side</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Stand sideways to rebounder. Ball comes across your body — receive with the far foot and play back with the near foot. Swap sides. That's 1 rep each side</div>
+        <div class="ex-cue">💡 Open your hips early. Receive with the foot further from the rebounder — don't reach across your body</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Step-Over into Cut</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>6 reps each side</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Dribble toward a cone (the defender), perform a full step-over, cut to the outside and accelerate 5 yards past. Walk back. That's 1 rep</div>
+        <div class="ex-cue">💡 The step-over has to look convincing — exaggerate it in training so it becomes natural in games. A half-committed step-over doesn't work</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Back-to-Goal Receive & Turn</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>10 reps each dir</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Stand with back to rebounder. Ball bounces back, receive with one touch, turn quickly using inside or outside of foot, drive 5 yards. Return. That's 1 rep</div>
+        <div class="ex-cue">💡 Check your shoulder BEFORE the ball arrives. Decide your turn direction before you touch it — not after</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">1v1 Move Sequence</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>10 reps mix</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Dribble toward cone (defender), choose any move (step-over, scissors, Cruyff, heel turn), accelerate past. Choose a DIFFERENT move each rep. That's 1 rep</div>
+        <div class="ex-cue">💡 Commit to the move fully — a half-committed move doesn't work in training or games. Indecision is the defender's friend</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Wide-to-Inside Combination</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>8 reps</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Receive wide from rebounder, take 2 touches inside, pass back to rebounder, immediately make a diagonal run into the half-space to receive the return. That's 1 rep</div>
+        <div class="ex-cue">💡 The diagonal run into the half-space after the pass is the third-man movement. This is how wingers combine with midfielders to get in behind — the pass is just the setup</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Free Creativity</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>2 min</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Choose any moves or combinations from the session. Focus on your weaker foot. No structure — just play</div>
+        <div class="ex-cue">💡 Try things and fail. The freedom is the point. This is how moves become yours</div>
+      </div>
+    </div></div>
+  </div>
+
   <div class="block-card">
     <div class="block-title">BLOCK 1: FULL LADDER CIRCUIT — ~19 min</div>
     <div class="block-note">All 27 drills in order: Linear → Lateral → Multi-Dir. 2 passes per drill. Time the full circuit.</div>
     <div class="callout amber">⏱ <strong>Per drill:</strong> Pass 1 (~8s) → walk back (~8s) → Pass 2 (~8s) → walk to next + 10s rest ≈ 42 sec · 2+ foot errors = bonus 3rd pass</div>
-    <div class="cat-div cat-linear"><span class="cat-div-lbl">LINEAR</span><span class="cat-div-desc">Face forward · Travel forward through ladder</span></div><div class="ex-table"><div class="ex-item cat-left-linear">
+    <div style="margin-top:14px"><div class="cat-div cat-linear"><span class="cat-div-lbl">LINEAR</span><span class="cat-div-desc">Face forward · Travel forward through ladder</span></div><div class="ex-table"><div class="ex-item cat-left-linear">
       <div class="ex-row">
         <span class="ex-name">
           <span class="drill-idx">1</span>
@@ -1096,8 +1550,9 @@ body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font
     <iframe src="https://www.youtube.com/embed/9Mh8tPajqWM?modestbranding=1&rel=0&start=209"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowfullscreen loading="lazy"></iframe></div></div>
-    </div></div>
+    </div></div></div>
   </div>
+
   
     <div class="block-card">
       <div class="block-title">BLOCK 2: RESISTANCE BANDS — 8 min</div>
@@ -1390,6 +1845,7 @@ body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font
       allowfullscreen loading="lazy"></iframe></div></div>
     </div></div>
     </div>
+
   <div class="callout green" style="margin-top:18px">
     <strong>✅ End-of-Session Checklist</strong>
     <ul style="margin-top:6px;padding-left:18px;font-size:.82rem">
@@ -1404,10 +1860,77 @@ body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font
 
 <section class="sec" id="friday">
   <div class="fri-hdr">
-    <div class="fri-title">⚡ Friday — No lesson Weeks</div>
-    <div class="fri-sub">Optional · 20 minutes · Skip if legs feel heavy</div>
+    <div class="fri-title">⚡ Friday — No Lesson Weeks</div>
+    <div class="fri-sub">Optional · ~30 min · Skip if legs feel heavy</div>
   </div>
   <div class="callout purple"><strong>Rules:</strong> Optional · NO plyos, NO sprinting, NO strength work · 70% effort only · Lower priority if Saturday game</div>
+
+  <div class="block-card">
+    <div class="block-title" style="color:var(--blue)">Ball Work — ~10 min</div>
+    <div class="block-note">Foundation + light rebounder only · 70% effort · Focus on touch quality</div>
+    <div class="ex-table">
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Sole Rolls</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>30 sec each foot</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Ball under sole, roll it across your body using just the bottom of your foot, alternating feet continuously</div>
+        <div class="ex-cue">💡 Stay on the balls of your feet. Keep the ball close — smooth rhythm, not speed</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Inside / Outside Taps</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>30 sec each foot</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Tap ball with inside of foot, then outside of same foot, alternating, moving slowly forward. Do all reps on one foot then switch</div>
+        <div class="ex-cue">💡 Soft touch each tap. Ball stays within one foot of you at all times</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Toe Taps</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>45 sec</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Alternate feet tapping the top of the ball rapidly, light and quick</div>
+        <div class="ex-cue">💡 Light quick taps — your feet barely leave the ground. Stay bouncy, stay on toes</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Slow Scissors</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>10 each foot</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Step over the ball with one foot, shift your full weight, step over with the other. Full, deliberate scissors — not rushed</div>
+        <div class="ex-cue">💡 Commit to the full body feint even going slowly. This is where the move gets grooved</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Rebounder 1-Touch — Light</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>60 sec each foot</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Face rebounder 3–4 yards away. 1-touch passes at 70% pace — relaxed, rhythmic, both feet</div>
+        <div class="ex-cue">💡 Quality of touch, not speed. This is maintenance, not training. Feel the ball</div>
+      </div>
+    </div>
+    <div class="ex-item bw-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Receive & Control — Both Feet</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>10 reps each foot</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Pass to rebounder, receive the return and settle it cleanly under your foot in 1 touch. No driving, just clean control</div>
+        <div class="ex-cue">💡 70% effort. Focus on a clean first touch — where the ball ends up after the first touch tells you everything about your technique</div>
+      </div>
+    </div></div>
+  </div>
+
   <div class="block-card">
     <div class="block-title">Ladder — ~6 min</div>
     <div class="block-note">4 drills · 3 passes each · 70% effort</div>
@@ -1489,6 +2012,7 @@ body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font
       allowfullscreen loading="lazy"></iframe></div></div>
     </div></div>
   </div>
+
   <div class="block-card">
     <div class="block-title">Band Activation — ~4 min</div>
     <div class="block-note">1 set each · Slow controlled movement</div>
@@ -1528,6 +2052,7 @@ body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font
       allowfullscreen loading="lazy"></iframe></div></div>
     </div></div>
   </div>
+
   <div class="block-card">
     <div class="block-title">Cone Work — ~4 min</div>
     <div class="block-note">2 exercises · No stopwatch · 70% only</div>
@@ -1553,6 +2078,7 @@ body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font
       
     </div></div>
   </div>
+
   <div class="block-card">
     <div class="block-title">Balance — ~6 min</div>
     <div class="ex-table"><div class="ex-item">

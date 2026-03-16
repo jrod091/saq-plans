@@ -4,96 +4,42 @@
 <meta charset="UTF-8">
 <title>Nora's Plan — Print</title>
 <style>
-/* ── RESET & BASE ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  font-family: 'Georgia', serif;
-  font-size: 9.5pt;
-  color: #111;
-  background: #fff;
-  line-height: 1.45;
-}
-
-/* ── PAGE ── */
+body { font-family: 'Georgia', serif; font-size: 9.5pt; color: #111; background: #fff; line-height: 1.45; }
 @page { size: letter; margin: 0.65in 0.6in 0.65in 0.6in; }
 @media print { .no-print { display: none !important; } }
-
-/* ── SCREEN PREVIEW ── */
-@media screen {
-  body { max-width: 780px; margin: 0 auto; padding: 24px; background: #f5f5f5; }
-  .page { background: #fff; padding: 0.65in 0.6in; box-shadow: 0 2px 12px rgba(0,0,0,.15); margin-bottom: 32px; }
-}
+@media screen { body { max-width: 780px; margin: 0 auto; padding: 24px; background: #f5f5f5; } .page { background: #fff; padding: 0.65in 0.6in; box-shadow: 0 2px 12px rgba(0,0,0,.15); margin-bottom: 32px; } }
 @media print { .page { margin: 0; padding: 0; } }
 
-/* ── HEADER ── */
-.plan-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  border-bottom: 2.5pt solid #1a7a3a;
-  padding-bottom: 8pt;
-  margin-bottom: 14pt;
-}
-.plan-title { font-family: Arial, sans-serif; font-size: 20pt; font-weight: 900; color: #1a7a3a; letter-spacing: .02em; }
-.plan-meta  { font-size: 8pt; color: #555; text-align: right; line-height: 1.6; }
+.plan-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2.5pt solid #1a7a3a; padding-bottom: 8pt; margin-bottom: 14pt; }
+.plan-title { font-family: Arial, sans-serif; font-size: 20pt; font-weight: 900; color: #1a7a3a; }
+.plan-meta { font-size: 8pt; color: #555; text-align: right; line-height: 1.6; }
 
-/* ── SECTION HEADINGS ── */
-.sec-head {
-  font-family: Arial, sans-serif;
-  font-size: 12pt;
-  font-weight: 900;
-  color: #1a7a3a;
-  text-transform: uppercase;
-  letter-spacing: .04em;
-  margin: 0 0 4pt;
-  border-bottom: 1pt solid #ccc;
-  padding-bottom: 3pt;
-}
-.sec-sub   { font-size: 8.5pt; font-weight: 400; color: #555; text-transform: none; letter-spacing: 0; }
-.block-head { font-family: Arial, sans-serif; font-size: 9pt; font-weight: 700; color: #333; text-transform: uppercase; letter-spacing: .05em; margin: 10pt 0 4pt; }
+.sec-head { font-family: Arial, sans-serif; font-size: 12pt; font-weight: 900; color: #1a7a3a; text-transform: uppercase; letter-spacing: .04em; margin: 0 0 4pt; border-bottom: 1pt solid #ccc; padding-bottom: 3pt; }
+.sec-sub { font-size: 8.5pt; font-weight: 400; color: #555; text-transform: none; letter-spacing: 0; }
+.block-head { font-family: Arial, sans-serif; font-size: 9pt; font-weight: 700; color: #333; text-transform: uppercase; letter-spacing: .05em; margin: 10pt 0 3pt; }
+.block-sub  { font-family: Arial, sans-serif; font-size: 8pt; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: .04em; margin: 7pt 0 3pt; }
 .block-note { font-size: 8pt; color: #666; font-style: italic; margin-bottom: 4pt; }
 
-/* ── TIMING / WHY NOTES ── */
-.timing-note { font-size: 8pt; color: #555; background: #fffbec; border: 1pt solid #e3b341; border-radius: 3pt; padding: 4pt 8pt; margin-bottom: 8pt; }
+.timing-note { font-size: 8pt; color: #555; background: #fffbec; border: 1pt solid #e3b341; border-radius: 3pt; padding: 4pt 8pt; margin-bottom: 6pt; }
 .why-note    { font-size: 7.5pt; color: #1a5c2e; background: #edfaed; border: 1pt solid #3fb950; border-radius: 3pt; padding: 4pt 8pt; margin-top: 6pt; }
 .info-note   { font-size: 8pt; color: #555; background: #edf4ff; border: 1pt solid #58a6ff; border-radius: 3pt; padding: 4pt 8pt; margin-bottom: 8pt; }
 
-/* ── PRINT TABLE ── */
 .p-table { width: 100%; border-collapse: collapse; font-size: 8.5pt; }
 .p-table thead tr { background: #f0f0f0; }
-.p-table th {
-  font-family: Arial, sans-serif;
-  font-size: 7pt;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  color: #444;
-  padding: 4pt 6pt;
-  border: 1pt solid #ccc;
-  text-align: left;
-}
+.p-table th { font-family: Arial, sans-serif; font-size: 7pt; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #444; padding: 4pt 6pt; border: 1pt solid #ccc; text-align: left; }
 .p-table td { padding: 5pt 6pt; border: 1pt solid #ddd; vertical-align: top; }
 .p-table tr:nth-child(even) td { background: #fafafa; }
 
 .col-name { width: auto; }
-.col-stat { width: 48pt; text-align: center; white-space: nowrap; font-family: Arial, sans-serif; font-size: 8pt; }
-.col-log  { width: 28pt; }
+.col-stat { width: 52pt; text-align: center; white-space: nowrap; font-family: Arial, sans-serif; font-size: 8pt; }
+.col-log  { width: 24pt; }
 
-/* ── WITHIN-CELL DESCRIPTION ── */
 .p-repdef { margin-top: 3pt; font-size: 7.8pt; color: #222; }
 .p-lbl    { font-family: Arial, sans-serif; font-size: 6.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: #1a7a3a; margin-right: 3pt; }
 .p-cue    { font-size: 7.5pt; color: #555; font-style: italic; margin-top: 2pt; }
 
-/* ── CATEGORY COLORS ── */
-.cat-header td {
-  font-family: Arial, sans-serif;
-  font-size: 8pt;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  padding: 4pt 6pt;
-  border: 1pt solid #ccc;
-}
+.cat-header td { font-family: Arial, sans-serif; font-size: 8pt; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; padding: 4pt 6pt; border: 1pt solid #ccc; }
 .cat-hdr-linear            { background: #ddeeff; color: #1a4a7a; border-left: 3pt solid #58a6ff; }
 .cat-hdr-lateral           { background: #ddf2e2; color: #1a5c2e; border-left: 3pt solid #3fb950; }
 .cat-hdr-multidirectional  { background: #fef3d5; color: #6b4800; border-left: 3pt solid #e3b341; }
@@ -103,53 +49,35 @@ body {
 .drill-row.cat-lateral           td:first-child { border-left: 3pt solid #3fb950; }
 .drill-row.cat-multidirectional  td:first-child { border-left: 3pt solid #e3b341; }
 
-.p-badge { font-family: Arial, sans-serif; font-size: 6pt; font-weight: 700; letter-spacing: .06em; padding: 1pt 5pt; border-radius: 8pt; margin-right: 4pt; vertical-align: middle; }
+.p-badge { font-family: Arial, sans-serif; font-size: 6pt; font-weight: 700; letter-spacing: .06em; padding: 1pt 5pt; border-radius: 8pt; margin-right: 4pt; }
 .badge-linear            { background: #ddeeff; color: #1a4a7a; }
 .badge-lateral           { background: #ddf2e2; color: #1a5c2e; }
 .badge-multidirectional  { background: #fef3d5; color: #6b4800; }
 
-/* ── BENCHMARK TABLE ── */
 .bench-table { width: 100%; border-collapse: collapse; font-size: 8.5pt; }
 .bench-table th { font-family: Arial, sans-serif; font-size: 7pt; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #444; padding: 4pt 6pt; border: 1pt solid #ccc; background: #f0f0f0; text-align: left; }
 .bench-table td { padding: 5pt 6pt; border: 1pt solid #ddd; }
 .bench-table tr:nth-child(even) td { background: #fafafa; }
 .tgt-cell { color: #1a7a3a; font-weight: 700; }
 
-/* ── CHECKLIST ── */
 .checklist { margin: 6pt 0 0; padding-left: 0; list-style: none; }
 .checklist li { font-size: 8.5pt; padding: 3pt 0 3pt 18pt; position: relative; border-bottom: 1pt solid #eee; }
 .checklist li::before { content: '☐'; position: absolute; left: 0; font-size: 10pt; color: #999; }
 
-/* ── PAGE BREAKS ── */
-.page-break   { page-break-before: always; break-before: page; }
-.avoid-break  { page-break-inside: avoid; break-inside: avoid; }
-.print-section { margin-bottom: 18pt; }
-
-/* ── PRINT BUTTON (screen only) ── */
-.print-btn {
-  display: block;
-  margin: 0 auto 20px;
-  padding: 10px 28px;
-  background: #1a7a3a;
-  color: #fff;
-  font-family: Arial, sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  letter-spacing: .04em;
-}
-.print-btn:hover { background: #155c2c; }
-@media print { .print-btn { display: none; } }
-
-/* ── SCHEDULE TABLE ── */
 .sched-table { width: 100%; border-collapse: collapse; font-size: 8.5pt; margin-top: 6pt; }
 .sched-table th { font-family: Arial, sans-serif; font-size: 7pt; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #444; padding: 4pt 6pt; border: 1pt solid #ccc; background: #f0f0f0; text-align: left; }
 .sched-table td { padding: 5pt 6pt; border: 1pt solid #ddd; }
 .sched-full   { background: #edfaed; }
 .sched-friday { background: #f5eeff; }
 .sched-game   { background: #fffbec; }
+
+.page-break  { page-break-before: always; break-before: page; }
+.avoid-break { page-break-inside: avoid; break-inside: avoid; }
+.print-section { margin-bottom: 16pt; }
+
+.print-btn { display: block; margin: 0 auto 20px; padding: 10px 28px; background: #1a7a3a; color: #fff; font-family: Arial, sans-serif; font-size: 13px; font-weight: 700; border: none; border-radius: 6px; cursor: pointer; }
+.print-btn:hover { background: #155c2c; }
+@media print { .print-btn { display: none; } }
 </style>
 </head>
 <body>
@@ -157,8 +85,6 @@ body {
 <button class="print-btn no-print" onclick="window.print()">🖨 Print / Save as PDF</button>
 
 <div class="page">
-
-<!-- ══ PAGE 1: OVERVIEW ══════════════════════════════════════════════════════ -->
 
 <div class="plan-header">
   <div>
@@ -171,7 +97,6 @@ body {
   </div>
 </div>
 
-<!-- SCHEDULE -->
 <div class="print-section avoid-break">
   <h2 class="sec-head">Weekly Schedule</h2>
   <table class="sched-table">
@@ -180,22 +105,22 @@ body {
     <tr class="sched-pre">
       <td><strong>Monday</strong></td>
       <td>Team Practice</td>
-      <td>Pre-Practice — 15 min BEFORE</td>
+      <td>Ball Work + SAQ — 30 min BEFORE</td>
     </tr>
     <tr class="sched-full">
       <td><strong>Tuesday</strong></td>
       <td>OFF</td>
-      <td>✅ FULL SESSION — 40–45 min</td>
+      <td>✅ FULL SESSION — 55–60 min</td>
     </tr>
     <tr class="sched-pre">
       <td><strong>Wednesday</strong></td>
       <td>Team Practice</td>
-      <td>Pre-Practice — 15 min BEFORE</td>
+      <td>Ball Work + SAQ — 30 min BEFORE</td>
     </tr>
     <tr class="sched-pre">
       <td><strong>Thursday</strong></td>
       <td>Team Practice</td>
-      <td>Pre-Practice — 15 min BEFORE</td>
+      <td>Ball Work + SAQ — 30 min BEFORE</td>
     </tr>
     <tr class="sched-rest">
       <td><strong>Friday</strong></td>
@@ -205,7 +130,7 @@ body {
     <tr class="sched-friday">
       <td><strong>Fri ✦</strong></td>
       <td>No Lesson Week</td>
-      <td>Optional Light Session — 20 min</td>
+      <td>Optional Light Session — 30 min</td>
     </tr>
     <tr class="sched-game">
       <td><strong>Sat / Sun</strong></td>
@@ -215,8 +140,7 @@ body {
   </table>
 </div>
 
-<!-- GOALS -->
-<div class="print-section avoid-break" style="margin-top:16pt">
+<div class="print-section avoid-break" style="margin-top:14pt">
   <h2 class="sec-head">Goal Benchmarks</h2>
   <p class="info-note">⏰ Don't time yourself until week 4 — first 3 weeks are about building correct form.</p>
   <table class="bench-table">
@@ -225,7 +149,6 @@ body {
   </table>
 </div>
 
-<!-- IN-GAME TIMELINE -->
 <div class="print-section avoid-break" style="margin-top:14pt">
   <h2 class="sec-head">In-Game Timeline</h2>
   <table class="bench-table">
@@ -238,15 +161,117 @@ body {
   </table>
 </div>
 
-<!-- ══ PAGE 2+: PRE-PRACTICE ════════════════════════════════════════════════ -->
 <div class="page-break"></div>
 
-
     <div class="print-section avoid-break">
-      <h2 class="sec-head">Monday Pre-Practice <span class="sec-sub">— Linear Day · 15 min</span></h2>
+      <h2 class="sec-head">Monday Pre-Practice <span class="sec-sub">— Linear Day · 30 min total</span></h2>
+
+      <h3 class="block-head" style="color:#1a4a7a;border-bottom:1pt solid #1a4a7a;padding-bottom:2pt">⚽ Part 1 — Ball Work · 15 min · Forward Drive & Receiving in Stride</h3>
+      <p class="block-note">Focus on quality of touch — every rep has intention behind it</p>
+
+      <h4 class="block-sub">Foundation — 3 min</h4>
+      <table class="p-table">
+        <thead><tr><th>Exercise</th><th>Duration</th><th>✓</th></tr></thead>
+        <tbody>
+      <tr>
+        <td class="col-name">
+          <strong>Sole Rolls</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Ball under sole, roll it across your body using just the bottom of your foot, alternating feet continuously</div>
+          <div class="p-cue">💡 Stay on the balls of your feet. Keep the ball close — smooth rhythm, not speed</div>
+        </td>
+        <td class="col-stat">30 sec each foot</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Inside / Outside Taps</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Tap ball with inside of foot, then outside of same foot, alternating, moving slowly forward. Do all reps on one foot then switch</div>
+          <div class="p-cue">💡 Soft touch each tap. Ball stays within one foot of you at all times</div>
+        </td>
+        <td class="col-stat">30 sec each foot</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Toe Taps</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Alternate feet tapping the top of the ball rapidly, light and quick</div>
+          <div class="p-cue">💡 Light quick taps — your feet barely leave the ground. Stay bouncy, stay on toes</div>
+        </td>
+        <td class="col-stat">45 sec</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Slow Scissors</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Step over the ball with one foot, shift your full weight, step over with the other. Full, deliberate scissors — not rushed</div>
+          <div class="p-cue">💡 Commit to the full body feint even going slowly. This is where the move gets grooved</div>
+        </td>
+        <td class="col-stat">10 each foot</td>
+        <td class="col-log"></td>
+      </tr></tbody>
+      </table>
+
+      <h4 class="block-sub" style="margin-top:8pt">Category Work — Linear</h4>
+      <table class="p-table">
+        <thead><tr><th>Exercise</th><th>Duration</th><th>✓</th></tr></thead>
+        <tbody>
+      <tr>
+        <td class="col-name">
+          <strong>Rebounder 1-Touch Wall Pass</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Face rebounder 3–4 yards away. Play 1-touch passes continuously striking with the inside of the same foot the whole set, then switch</div>
+          <div class="p-cue">💡 Get your foot behind the ball early. Firm pass into the rebounder, relaxed receive. Stay on your toes between each touch</div>
+        </td>
+        <td class="col-stat">45 sec each foot</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Receive & Drive</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Pass to rebounder, receive the return with your FIRST TOUCH out of your feet into space — not under your body — drive the ball forward 5 yards to a cone, jog back. That's 1 rep</div>
+          <div class="p-cue">💡 The first touch is the whole point. It should set up your next stride, not stop you</div>
+        </td>
+        <td class="col-stat">8 reps</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Angled Receive & Lay-Off</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Stand at an angle to the rebounder. Receive with the far foot, lay off with the near foot back to the rebounder. Swap sides. That's 1 rep each side</div>
+          <div class="p-cue">💡 Open your hips on the receive. Body angle lets you see more of the field before you touch the ball</div>
+        </td>
+        <td class="col-stat">10 reps each side</td>
+        <td class="col-log"></td>
+      </tr></tbody>
+      </table>
+
+      <h4 class="block-sub" style="margin-top:8pt">Position Work — Attacking Mid / Winger</h4>
+      <table class="p-table">
+        <thead><tr><th>Exercise</th><th>Duration</th><th>✓</th></tr></thead>
+        <tbody>
+      <tr>
+        <td class="col-name">
+          <strong>Run-In Receive</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Start 6 yards behind rebounder. Time a run forward, receive the ball in stride from the rebounder while moving, control and drive to a target cone. Walk back. That's 1 rep</div>
+          <div class="p-cue">💡 Don't receive standing still — you want the touch while moving. That's how it happens in a game. If you're stopping to receive it, you'll get caught</div>
+        </td>
+        <td class="col-stat">8 reps</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Wide Receive → Inside Cut</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Receive from rebounder on the wide side, take 2 touches toward a wide cone, sharp inside cut, drive toward a center target cone. That's 1 rep</div>
+          <div class="p-cue">💡 Slow into the cut, explosive out of it. The hesitation step before the cut is what creates the separation</div>
+        </td>
+        <td class="col-stat">6 reps each side</td>
+        <td class="col-log"></td>
+      </tr></tbody>
+      </table>
+
+      <h3 class="block-head" style="margin-top:12pt;color:#6b4800;border-bottom:1pt solid #6b4800;padding-bottom:2pt">🏃 Part 2 — SAQ · 15 min</h3>
       <p class="timing-note">⏱ 3 passes per drill · Walk back after each · 20 sec rest before Pass 3 · ~7.5 min ladder</p>
 
-      <h3 class="block-head">Ladder — 5 drills</h3>
+      <h4 class="block-sub">Ladder — 5 drills</h4>
       <table class="p-table">
         <thead><tr><th>Drill</th><th>Passes</th><th>Rest</th><th>✓</th></tr></thead>
         <tbody>
@@ -307,7 +332,7 @@ body {
       </tr></tbody>
       </table>
 
-      <h3 class="block-head" style="margin-top:14pt">Resistance Bands</h3>
+      <h4 class="block-sub" style="margin-top:8pt">Resistance Bands</h4>
       <table class="p-table">
         <thead><tr><th>Exercise</th><th>Sets</th><th>Reps</th><th>Rest</th><th>✓</th></tr></thead>
         <tbody>
@@ -337,10 +362,114 @@ body {
       <p class="why-note">💪 Extension kick loads the hip drive behind every forward hop · Dorsiflexion trains foot strike for linear speed</p>
     </div>
     <div class="print-section avoid-break">
-      <h2 class="sec-head">Wednesday Pre-Practice <span class="sec-sub">— Lateral Day · 15 min</span></h2>
+      <h2 class="sec-head">Wednesday Pre-Practice <span class="sec-sub">— Lateral Day · 30 min total</span></h2>
+
+      <h3 class="block-head" style="color:#1a4a7a;border-bottom:1pt solid #1a4a7a;padding-bottom:2pt">⚽ Part 1 — Ball Work · 15 min · Wide Play & Side-to-Side Movement</h3>
+      <p class="block-note">Focus on quality of touch — every rep has intention behind it</p>
+
+      <h4 class="block-sub">Foundation — 3 min</h4>
+      <table class="p-table">
+        <thead><tr><th>Exercise</th><th>Duration</th><th>✓</th></tr></thead>
+        <tbody>
+      <tr>
+        <td class="col-name">
+          <strong>Sole Rolls</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Ball under sole, roll it across your body using just the bottom of your foot, alternating feet continuously</div>
+          <div class="p-cue">💡 Stay on the balls of your feet. Keep the ball close — smooth rhythm, not speed</div>
+        </td>
+        <td class="col-stat">30 sec each foot</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Inside / Outside Taps</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Tap ball with inside of foot, then outside of same foot, alternating, moving slowly forward. Do all reps on one foot then switch</div>
+          <div class="p-cue">💡 Soft touch each tap. Ball stays within one foot of you at all times</div>
+        </td>
+        <td class="col-stat">30 sec each foot</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Toe Taps</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Alternate feet tapping the top of the ball rapidly, light and quick</div>
+          <div class="p-cue">💡 Light quick taps — your feet barely leave the ground. Stay bouncy, stay on toes</div>
+        </td>
+        <td class="col-stat">45 sec</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Slow Scissors</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Step over the ball with one foot, shift your full weight, step over with the other. Full, deliberate scissors — not rushed</div>
+          <div class="p-cue">💡 Commit to the full body feint even going slowly. This is where the move gets grooved</div>
+        </td>
+        <td class="col-stat">10 each foot</td>
+        <td class="col-log"></td>
+      </tr></tbody>
+      </table>
+
+      <h4 class="block-sub" style="margin-top:8pt">Category Work — Lateral</h4>
+      <table class="p-table">
+        <thead><tr><th>Exercise</th><th>Duration</th><th>✓</th></tr></thead>
+        <tbody>
+      <tr>
+        <td class="col-name">
+          <strong>Rebounder Cross-Body Receive</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Stand sideways to rebounder. Ball comes across your body — receive with the far foot and play back with the near foot. Swap sides. That's 1 rep each side</div>
+          <div class="p-cue">💡 Open your hips early. Receive with the foot further from the rebounder — don't reach across your body</div>
+        </td>
+        <td class="col-stat">10 reps each side</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Inside Cut Cone Drill</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Dribble to a cone, plant your outside foot just past the ball, sharp inside cut at 45°, accelerate 5 yards to a second cone. Walk back. That's 1 rep</div>
+          <div class="p-cue">💡 Plant foot goes PAST the ball, not beside it. The cut is at 45° — not straight back</div>
+        </td>
+        <td class="col-stat">8 reps each side</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Outside Cut Cone Drill</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Dribble to cone, chop step, drop your shoulder inside as a fake, cut outside and accelerate. Walk back. That's 1 rep</div>
+          <div class="p-cue">💡 The shoulder drop sells the fake. If you don't drop the shoulder, it's just turning — not a move</div>
+        </td>
+        <td class="col-stat">8 reps each side</td>
+        <td class="col-log"></td>
+      </tr></tbody>
+      </table>
+
+      <h4 class="block-sub" style="margin-top:8pt">Position Work — Attacking Mid / Winger</h4>
+      <table class="p-table">
+        <thead><tr><th>Exercise</th><th>Duration</th><th>✓</th></tr></thead>
+        <tbody>
+      <tr>
+        <td class="col-name">
+          <strong>Switch of Play Receive</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Pass to rebounder from one side, receive the return on that same side, immediately redirect the ball in 2 touches across to the other side of your space. That's 1 rep</div>
+          <div class="p-cue">💡 Receive and redirect in 2 touches max. This simulates receiving a switch pass and quickly moving the ball again — first touch sets the direction</div>
+        </td>
+        <td class="col-stat">8 reps</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Inside Cut → 1-Touch Release</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Dribble wide to a cone, inside cut toward center, 1-touch pass back to rebounder as you continue driving through. That's 1 rep</div>
+          <div class="p-cue">💡 The pass should come off the cut with pace — you're getting past a defender and immediately releasing to a teammate</div>
+        </td>
+        <td class="col-stat">8 reps each side</td>
+        <td class="col-log"></td>
+      </tr></tbody>
+      </table>
+
+      <h3 class="block-head" style="margin-top:12pt;color:#6b4800;border-bottom:1pt solid #6b4800;padding-bottom:2pt">🏃 Part 2 — SAQ · 15 min</h3>
       <p class="timing-note">⏱ 3 passes per drill · Walk back after each · 20 sec rest before Pass 3 · ~7.5 min ladder</p>
 
-      <h3 class="block-head">Ladder — 5 drills</h3>
+      <h4 class="block-sub">Ladder — 5 drills</h4>
       <table class="p-table">
         <thead><tr><th>Drill</th><th>Passes</th><th>Rest</th><th>✓</th></tr></thead>
         <tbody>
@@ -401,7 +530,7 @@ body {
       </tr></tbody>
       </table>
 
-      <h3 class="block-head" style="margin-top:14pt">Resistance Bands</h3>
+      <h4 class="block-sub" style="margin-top:8pt">Resistance Bands</h4>
       <table class="p-table">
         <thead><tr><th>Exercise</th><th>Sets</th><th>Reps</th><th>Rest</th><th>✓</th></tr></thead>
         <tbody>
@@ -431,10 +560,114 @@ body {
       <p class="why-note">💪 Band walk + abduction kick both target glute med — the exact muscle powering every lateral drill</p>
     </div>
     <div class="print-section avoid-break">
-      <h2 class="sec-head">Thursday Pre-Practice <span class="sec-sub">— Multi-Dir Day · 15 min</span></h2>
+      <h2 class="sec-head">Thursday Pre-Practice <span class="sec-sub">— Multi-Dir Day · 30 min total</span></h2>
+
+      <h3 class="block-head" style="color:#1a4a7a;border-bottom:1pt solid #1a4a7a;padding-bottom:2pt">⚽ Part 1 — Ball Work · 15 min · Turning, Combination Play & 1v1 Moves</h3>
+      <p class="block-note">Focus on quality of touch — every rep has intention behind it</p>
+
+      <h4 class="block-sub">Foundation — 3 min</h4>
+      <table class="p-table">
+        <thead><tr><th>Exercise</th><th>Duration</th><th>✓</th></tr></thead>
+        <tbody>
+      <tr>
+        <td class="col-name">
+          <strong>Sole Rolls</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Ball under sole, roll it across your body using just the bottom of your foot, alternating feet continuously</div>
+          <div class="p-cue">💡 Stay on the balls of your feet. Keep the ball close — smooth rhythm, not speed</div>
+        </td>
+        <td class="col-stat">30 sec each foot</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Inside / Outside Taps</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Tap ball with inside of foot, then outside of same foot, alternating, moving slowly forward. Do all reps on one foot then switch</div>
+          <div class="p-cue">💡 Soft touch each tap. Ball stays within one foot of you at all times</div>
+        </td>
+        <td class="col-stat">30 sec each foot</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Toe Taps</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Alternate feet tapping the top of the ball rapidly, light and quick</div>
+          <div class="p-cue">💡 Light quick taps — your feet barely leave the ground. Stay bouncy, stay on toes</div>
+        </td>
+        <td class="col-stat">45 sec</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Slow Scissors</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Step over the ball with one foot, shift your full weight, step over with the other. Full, deliberate scissors — not rushed</div>
+          <div class="p-cue">💡 Commit to the full body feint even going slowly. This is where the move gets grooved</div>
+        </td>
+        <td class="col-stat">10 each foot</td>
+        <td class="col-log"></td>
+      </tr></tbody>
+      </table>
+
+      <h4 class="block-sub" style="margin-top:8pt">Category Work — Multi-Dir</h4>
+      <table class="p-table">
+        <thead><tr><th>Exercise</th><th>Duration</th><th>✓</th></tr></thead>
+        <tbody>
+      <tr>
+        <td class="col-name">
+          <strong>Back-to-Goal Receive & Turn</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Stand with back to rebounder. Ball bounces back, receive with one touch, turn quickly using inside or outside of foot, drive 5 yards. Return. That's 1 rep</div>
+          <div class="p-cue">💡 Check your shoulder BEFORE the ball arrives. Decide your turn direction before you touch it — not after</div>
+        </td>
+        <td class="col-stat">10 reps each direction</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Give & Go</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Pass to rebounder, immediately move to a new position (diagonal or lateral), receive the return in your new spot, control. That's 1 rep</div>
+          <div class="p-cue">💡 After the pass, MOVE NOW — don't watch the ball. Run to where you want it to come back to</div>
+        </td>
+        <td class="col-stat">10 reps</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Free Creativity</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Choose any moves or combinations from the session. Focus on your weaker foot. No structure — just play</div>
+          <div class="p-cue">💡 Try things and fail. The freedom is the point. This is how moves become yours</div>
+        </td>
+        <td class="col-stat">2 min</td>
+        <td class="col-log"></td>
+      </tr></tbody>
+      </table>
+
+      <h4 class="block-sub" style="margin-top:8pt">Position Work — Attacking Mid / Winger</h4>
+      <table class="p-table">
+        <thead><tr><th>Exercise</th><th>Duration</th><th>✓</th></tr></thead>
+        <tbody>
+      <tr>
+        <td class="col-name">
+          <strong>Wall Pass & Overlap Run</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Pass to rebounder, sprint past the rebounder on the outside, receive the return pass in stride as you continue running. That's 1 rep</div>
+          <div class="p-cue">💡 The run after the pass is the whole point. Commit to it fully before you know if the pass is good enough — that timing is what makes the combination work</div>
+        </td>
+        <td class="col-stat">10 reps each side</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Receive in Pocket → Cruyff Turn</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Receive from rebounder with back to goal, use a Cruyff turn (fake forward, drag-back behind standing leg), drive in the opposite direction. That's 1 rep each direction</div>
+          <div class="p-cue">💡 Fake the forward pass with your whole body, then drag-back with the inside of the foot behind the standing leg. The quicker the turn, the less time a defender has</div>
+        </td>
+        <td class="col-stat">10 reps each direction</td>
+        <td class="col-log"></td>
+      </tr></tbody>
+      </table>
+
+      <h3 class="block-head" style="margin-top:12pt;color:#6b4800;border-bottom:1pt solid #6b4800;padding-bottom:2pt">🏃 Part 2 — SAQ · 15 min</h3>
       <p class="timing-note">⏱ 3 passes per drill · Walk back after each · 20 sec rest before Pass 3 · ~7.5 min ladder</p>
 
-      <h3 class="block-head">Ladder — 5 drills</h3>
+      <h4 class="block-sub">Ladder — 5 drills</h4>
       <table class="p-table">
         <thead><tr><th>Drill</th><th>Passes</th><th>Rest</th><th>✓</th></tr></thead>
         <tbody>
@@ -495,7 +728,7 @@ body {
       </tr></tbody>
       </table>
 
-      <h3 class="block-head" style="margin-top:14pt">Resistance Bands</h3>
+      <h4 class="block-sub" style="margin-top:8pt">Resistance Bands</h4>
       <table class="p-table">
         <thead><tr><th>Exercise</th><th>Sets</th><th>Reps</th><th>Rest</th><th>✓</th></tr></thead>
         <tbody>
@@ -525,14 +758,129 @@ body {
       <p class="why-note">💪 Multi-dir drills need both lateral hip (abduction) and forward hip (extension) — so both bands are loaded</p>
     </div>
 
-<!-- ══ FULL SESSION ══════════════════════════════════════════════════════════ -->
 <div class="page-break"></div>
 
 <div class="print-section">
-  <h2 class="sec-head">Full Session — Tuesday <span class="sec-sub">· 40–45 min</span></h2>
+  <h2 class="sec-head">Full Session — Tuesday <span class="sec-sub">· 55–60 min</span></h2>
 
+  <h3 class="block-head" style="color:#1a4a7a">⚽ Block 0 — Ball Work (15 min)</h3>
+  <p class="block-note">Foundation + rebounder combinations + position-specific sequences + free creativity · Do this first while mind and feet are fresh</p>
+  <table class="p-table">
+    <thead><tr><th>Exercise</th><th>Duration</th><th>✓</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="col-name">
+          <strong>Sole Rolls</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Ball under sole, roll it across your body using just the bottom of your foot, alternating feet continuously</div>
+          <div class="p-cue">💡 Stay on the balls of your feet. Keep the ball close — smooth rhythm, not speed</div>
+        </td>
+        <td class="col-stat">30 sec each foot</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Inside / Outside Taps</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Tap ball with inside of foot, then outside of same foot, alternating, moving slowly forward. Do all reps on one foot then switch</div>
+          <div class="p-cue">💡 Soft touch each tap. Ball stays within one foot of you at all times</div>
+        </td>
+        <td class="col-stat">30 sec each foot</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Toe Taps</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Alternate feet tapping the top of the ball rapidly, light and quick</div>
+          <div class="p-cue">💡 Light quick taps — your feet barely leave the ground. Stay bouncy, stay on toes</div>
+        </td>
+        <td class="col-stat">45 sec</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Slow Scissors</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Step over the ball with one foot, shift your full weight, step over with the other. Full, deliberate scissors — not rushed</div>
+          <div class="p-cue">💡 Commit to the full body feint even going slowly. This is where the move gets grooved</div>
+        </td>
+        <td class="col-stat">10 each foot</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Rebounder 1-Touch (both feet)</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Face rebounder 3–4 yards away. Play 1-touch passes continuously striking with the inside of the same foot the whole set, then switch</div>
+          <div class="p-cue">💡 Get your foot behind the ball early. Firm pass into the rebounder, relaxed receive. Stay on your toes between each touch</div>
+        </td>
+        <td class="col-stat">45 sec each foot</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Receive & Drive</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Pass to rebounder, receive the return with your FIRST TOUCH out of your feet into space — not under your body — drive the ball forward 5 yards to a cone, jog back. That's 1 rep</div>
+          <div class="p-cue">💡 The first touch is the whole point. It should set up your next stride, not stop you</div>
+        </td>
+        <td class="col-stat">8 reps</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Rebounder Cross-Body Receive</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Stand sideways to rebounder. Ball comes across your body — receive with the far foot and play back with the near foot. Swap sides. That's 1 rep each side</div>
+          <div class="p-cue">💡 Open your hips early. Receive with the foot further from the rebounder — don't reach across your body</div>
+        </td>
+        <td class="col-stat">10 reps each side</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Inside Cut Cone Drill</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Dribble to a cone, plant your outside foot just past the ball, sharp inside cut at 45°, accelerate 5 yards to a second cone. Walk back. That's 1 rep</div>
+          <div class="p-cue">💡 Plant foot goes PAST the ball, not beside it. The cut is at 45° — not straight back</div>
+        </td>
+        <td class="col-stat">6 reps each side</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Back-to-Goal Receive & Turn</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Stand with back to rebounder. Ball bounces back, receive with one touch, turn quickly using inside or outside of foot, drive 5 yards. Return. That's 1 rep</div>
+          <div class="p-cue">💡 Check your shoulder BEFORE the ball arrives. Decide your turn direction before you touch it — not after</div>
+        </td>
+        <td class="col-stat">10 reps each dir</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Wall Pass & Overlap Run</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Pass to rebounder, sprint past the rebounder on the outside, receive the return pass in stride as you continue running. That's 1 rep</div>
+          <div class="p-cue">💡 The run after the pass is the whole point. Commit to it fully before you know if the pass is good enough — that timing is what makes the combination work</div>
+        </td>
+        <td class="col-stat">10 reps each side</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Receive in Pocket → Cruyff Turn</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Receive from rebounder with back to goal, use a Cruyff turn (fake forward, drag-back behind standing leg), drive in the opposite direction. That's 1 rep each direction</div>
+          <div class="p-cue">💡 Fake the forward pass with your whole body, then drag-back with the inside of the foot behind the standing leg. The quicker the turn, the less time a defender has</div>
+        </td>
+        <td class="col-stat">10 reps each dir</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Free Creativity</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Choose any moves or combinations from the session. Focus on your weaker foot. No structure — just play</div>
+          <div class="p-cue">💡 Try things and fail. The freedom is the point. This is how moves become yours</div>
+        </td>
+        <td class="col-stat">2 min</td>
+        <td class="col-log"></td>
+      </tr></tbody>
+  </table>
+
+  <div style="margin-top:14pt">
   <h3 class="block-head">Block 1 — Full Ladder Circuit (~19 min)</h3>
-  <p class="timing-note">⏱ 2 passes per drill · Pass 1 (~8s) → walk back → Pass 2 (~8s) → walk to next + ~10s rest ≈ 42 sec per drill · 2+ foot errors = bonus 3rd pass · Time the full circuit and write it down</p>
+  <p class="timing-note">⏱ 2 passes per drill · ~42 sec per drill · 2+ foot errors = bonus 3rd pass · Time the full circuit</p>
   <table class="p-table">
     <thead><tr><th>Drill</th><th>Passes</th><th>Rest</th><th>✓</th></tr></thead>
     <tbody>
@@ -846,10 +1194,11 @@ body {
         <td class="col-log"></td>
       </tr></tbody>
   </table>
+  </div>
 </div>
 
 
-    <div class="print-section avoid-break" style="margin-top:18pt">
+    <div class="print-section avoid-break" style="margin-top:14pt">
       <h3 class="block-head">BLOCK 2: RESISTANCE BANDS — 10 min</h3>
       <p class="block-note">Band above knees for walks, around ankle for kicks. Light resistance only.</p>
       <table class="p-table">
@@ -912,7 +1261,7 @@ body {
       </tr></tbody>
       </table>
     </div>
-    <div class="print-section avoid-break" style="margin-top:18pt">
+    <div class="print-section avoid-break" style="margin-top:14pt">
       <h3 class="block-head">BLOCK 3: POSITION WORK — 10 min</h3>
       <p class="block-note">Set up 4 cones for T-drill and Box drill before starting this block.</p>
       <table class="p-table">
@@ -964,7 +1313,7 @@ body {
       </tr></tbody>
       </table>
     </div>
-    <div class="print-section avoid-break" style="margin-top:18pt">
+    <div class="print-section avoid-break" style="margin-top:14pt">
       <h3 class="block-head">BLOCK 4: BALANCE & STABILIZATION — 5 min</h3>
       <p class="block-note">Never skip this block. It protects your ankles and transfers directly to the game.</p>
       <table class="p-table">
@@ -1017,11 +1366,10 @@ body {
       </table>
     </div>
 
-<!-- END OF SESSION CHECKLIST -->
 <div class="print-section avoid-break" style="margin-top:14pt">
   <h3 class="block-head">End-of-Session Checklist</h3>
   <ul class="checklist">
-    <li>Ladder circuit time written down: _______ min (goal: under 19 min)</li>
+    <li>Ladder circuit time: _______ min (goal: under 19 min)</li>
     <li>Hips level during all band exercises?</li>
     <li>Arms moving during every ladder drill?</li>
     <li>Both sides done for every single-leg exercise?</li>
@@ -1029,15 +1377,73 @@ body {
   </ul>
 </div>
 
-<!-- ══ FRIDAY ════════════════════════════════════════════════════════════════ -->
 <div class="page-break"></div>
 
 <div class="print-section">
-  <h2 class="sec-head">⚡ Friday — No Lesson Weeks <span class="sec-sub">· Optional · 20 min</span></h2>
-  <p class="why-note" style="background:#f5eeff;border-color:#a371f7;color:#4a1e8a">Rules: Optional · NO plyos, NO sprinting, NO strength work · 70% effort only · Lower priority if Saturday game</p>
+  <h2 class="sec-head">⚡ Friday — No Lesson Weeks <span class="sec-sub">· Optional · ~30 min</span></h2>
+  <p class="why-note" style="background:#f5eeff;border-color:#a371f7;color:#4a1e8a">Rules: Optional · NO plyos, NO sprinting, NO strength work · 70% effort only</p>
 
-  <h3 class="block-head" style="margin-top:10pt">Ladder — ~6 min</h3>
-  <p class="block-note">4 drills · 3 passes each · 70% effort</p>
+  <h3 class="block-head" style="margin-top:10pt;color:#1a4a7a">⚽ Ball Work — ~10 min</h3>
+  <table class="p-table">
+    <thead><tr><th>Exercise</th><th>Duration</th><th>✓</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="col-name">
+          <strong>Sole Rolls</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Ball under sole, roll it across your body using just the bottom of your foot, alternating feet continuously</div>
+          <div class="p-cue">💡 Stay on the balls of your feet. Keep the ball close — smooth rhythm, not speed</div>
+        </td>
+        <td class="col-stat">30 sec each foot</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Inside / Outside Taps</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Tap ball with inside of foot, then outside of same foot, alternating, moving slowly forward. Do all reps on one foot then switch</div>
+          <div class="p-cue">💡 Soft touch each tap. Ball stays within one foot of you at all times</div>
+        </td>
+        <td class="col-stat">30 sec each foot</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Toe Taps</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Alternate feet tapping the top of the ball rapidly, light and quick</div>
+          <div class="p-cue">💡 Light quick taps — your feet barely leave the ground. Stay bouncy, stay on toes</div>
+        </td>
+        <td class="col-stat">45 sec</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Slow Scissors</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Step over the ball with one foot, shift your full weight, step over with the other. Full, deliberate scissors — not rushed</div>
+          <div class="p-cue">💡 Commit to the full body feint even going slowly. This is where the move gets grooved</div>
+        </td>
+        <td class="col-stat">10 each foot</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Rebounder 1-Touch — Light</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Face rebounder 3–4 yards away. 1-touch passes at 70% pace — relaxed, rhythmic, both feet</div>
+          <div class="p-cue">💡 Quality of touch, not speed. This is maintenance, not training. Feel the ball</div>
+        </td>
+        <td class="col-stat">60 sec each foot</td>
+        <td class="col-log"></td>
+      </tr>
+      <tr>
+        <td class="col-name">
+          <strong>Receive & Control — Both Feet</strong>
+          <div class="p-repdef"><span class="p-lbl">WHAT =</span> Pass to rebounder, receive the return and settle it cleanly under your foot in 1 touch. No driving, just clean control</div>
+          <div class="p-cue">💡 70% effort. Focus on a clean first touch — where the ball ends up after the first touch tells you everything about your technique</div>
+        </td>
+        <td class="col-stat">10 reps each foot</td>
+        <td class="col-log"></td>
+      </tr></tbody>
+  </table>
+
+  <h3 class="block-head" style="margin-top:10pt">Ladder — ~6 min · 70% effort</h3>
   <table class="p-table">
     <thead><tr><th>Drill</th><th>Passes</th><th>Rest</th><th>✓</th></tr></thead>
     <tbody>
@@ -1087,8 +1493,7 @@ body {
       </tr></tbody>
   </table>
 
-  <h3 class="block-head" style="margin-top:12pt">Band Activation — ~4 min</h3>
-  <p class="block-note">1 set each · Slow controlled movement</p>
+  <h3 class="block-head" style="margin-top:10pt">Band Activation — ~4 min</h3>
   <table class="p-table">
     <thead><tr><th>Exercise</th><th>Sets</th><th>Reps</th><th>Rest</th><th>✓</th></tr></thead>
     <tbody>
@@ -1116,8 +1521,7 @@ body {
       </tr></tbody>
   </table>
 
-  <h3 class="block-head" style="margin-top:12pt">Cone Work — ~4 min</h3>
-  <p class="block-note">No stopwatch · 70% only</p>
+  <h3 class="block-head" style="margin-top:10pt">Cone Work — ~4 min</h3>
   <table class="p-table">
     <thead><tr><th>Exercise</th><th>Sets</th><th>✓</th></tr></thead>
     <tbody>
@@ -1125,7 +1529,7 @@ body {
     </tbody>
   </table>
 
-  <h3 class="block-head" style="margin-top:12pt">Balance — ~6 min</h3>
+  <h3 class="block-head" style="margin-top:10pt">Balance — ~6 min</h3>
   <table class="p-table">
     <thead><tr><th>Exercise</th><th>Sets</th><th>Hold</th><th>Rest</th><th>✓</th></tr></thead>
     <tbody>
@@ -1156,6 +1560,6 @@ body {
   </table>
 </div>
 
-</div><!-- /page -->
+</div>
 </body>
 </html>
