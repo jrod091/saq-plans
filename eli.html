@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Eli's Plan — Goalkeeper Training</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d1117; --bg2:#161b22; --bg3:#1c2128; --border:#30363d;
+  --text:#e6edf3; --muted:#8b949e;
+  --green:#3fb950; --gbg:#1a2e1a;
+  --blue:#58a6ff;  --bbg:#1a2233;
+  --amber:#e3b341; --abg:#2e2010;
+  --purple:#a371f7; --pbg:#1a1028;
+  --partner:#f78166; --parbg:#2e1510;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font-size:15px;line-height:1.6}
+
+/* ── HEADER ── */
+.hdr{background:linear-gradient(135deg,#0d2818,#0d1117 70%);border-bottom:2px solid var(--green);padding:22px 16px 18px;text-align:center}
+.hdr-emoji{font-size:2rem}
+.hdr-title{font-family:'Barlow Condensed',sans-serif;font-size:2.2rem;font-weight:800;letter-spacing:.04em;color:#fff;text-transform:uppercase}
+.hdr-sub{font-size:.82rem;color:var(--muted);margin-top:4px;letter-spacing:.08em;text-transform:uppercase}
+.hdr-tag{display:inline-block;margin-top:10px;background:var(--gbg);border:1px solid var(--green);color:var(--green);font-size:.76rem;font-weight:600;padding:3px 12px;border-radius:20px;letter-spacing:.06em}
+
+/* ── NAV ── */
+.nav{position:sticky;top:0;z-index:100;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav-tab{flex:0 0 auto;padding:13px 17px;font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;user-select:none}
+.nav-tab.on{color:var(--green);border-bottom-color:var(--green)}
+.nav-tab:hover:not(.on){color:var(--text)}
+
+/* ── SECTIONS ── */
+.sec{display:none;padding:20px 16px 60px;max-width:800px;margin:0 auto}
+.sec.on{display:block}
+.sec-title{font-family:'Barlow Condensed',sans-serif;font-size:1.55rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#fff;margin:22px 0 6px;padding-bottom:8px;border-bottom:2px solid var(--green)}
+.sec-intro{color:var(--muted);margin-bottom:18px;font-size:.87rem}
+
+/* ── SCHEDULE TABLE ── */
+.sched{width:100%;border-collapse:collapse;font-size:.87rem;margin-top:10px}
+.sched th{background:var(--bg3);color:var(--muted);font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:8px 12px;text-align:left;border-bottom:1px solid var(--border)}
+.sched td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
+.sched tr:last-child td{border-bottom:none}
+.day-cell{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;white-space:nowrap}
+.t-pre    {border-left:3px solid var(--blue)}
+.t-full   {border-left:3px solid var(--green);background:var(--gbg)}
+.t-gk     {border-left:3px solid var(--purple);background:var(--pbg)}
+.t-rest   {border-left:3px solid var(--border)}
+.t-game   {border-left:3px solid var(--amber)}
+.t-weekend{border-left:3px solid var(--partner);background:var(--parbg)}
+
+/* ── CALLOUTS ── */
+.callout{border-radius:8px;padding:10px 14px;font-size:.81rem;margin:12px 0}
+.amber {background:var(--abg);border:1px solid var(--amber);color:#e6d4a0}
+.green {background:var(--gbg);border:1px solid var(--green);color:#a0d4b0}
+.blue  {background:var(--bbg);border:1px solid var(--blue); color:#a0c4f4}
+.purple{background:var(--pbg);border:1px solid var(--purple);color:#c8b0ee}
+.partner-note{background:var(--parbg);border:1px solid var(--partner);border-radius:8px;padding:10px 14px;font-size:.81rem;color:#f4b5a8;margin:10px 0}
+
+/* ── ENVIRONMENT BADGE ── */
+.env-badge{display:inline-block;font-size:.58rem;font-weight:700;letter-spacing:.07em;padding:2px 7px;border-radius:10px;flex-shrink:0;vertical-align:middle;text-transform:uppercase}
+.env-confined{background:#1a2233;color:var(--blue);border:1px solid var(--blue)}
+.env-open    {background:var(--parbg);color:var(--partner);border:1px solid var(--partner)}
+
+/* ── PART HEADERS ── */
+.part-header{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:10px 14px;border-radius:8px;margin:16px 0 10px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.gk-header    {background:#0d1f2e;border:1px solid var(--blue);color:var(--blue)}
+.plyo-header  {background:var(--gbg);border:1px solid var(--green);color:var(--green)}
+.dive-header  {background:var(--abg);border:1px solid var(--amber);color:var(--amber)}
+.wknd-header  {background:var(--gbg);border:1px solid var(--green);color:var(--green)}
+.partner-header{background:var(--parbg);border:1px solid var(--partner);color:var(--partner)}
+.solo-header  {background:var(--pbg);border:1px solid var(--purple);color:var(--purple)}
+.part-focus{font-size:.72rem;font-weight:500;letter-spacing:.03em;text-transform:none;color:var(--muted);font-family:'Barlow',sans-serif}
+.part-divider{border:none;border-top:2px dashed var(--border);margin:24px 0}
+
+/* ── DAY TABS ── */
+.day-tabs{display:flex;gap:8px;margin:14px 0;flex-wrap:wrap}
+.day-tab{padding:7px 14px;border-radius:6px;background:var(--bg3);border:1px solid var(--border);color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;transition:all .15s}
+.day-tab.on{background:var(--gbg);border-color:var(--green);color:var(--green)}
+.pre-panel{display:none}
+.pre-panel.active{display:block}
+
+/* ── WEEKEND FORK TABS ── */
+.fork-tabs{display:flex;gap:8px;margin:14px 0;flex-wrap:wrap}
+.fork-tab{padding:7px 14px;border-radius:6px;background:var(--bg3);border:1px solid var(--border);color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;transition:all .15s}
+.fork-tab.partner-on{background:var(--parbg);border-color:var(--partner);color:var(--partner)}
+.fork-tab.solo-on   {background:var(--pbg);border-color:var(--purple);color:var(--purple)}
+.fork-panel{display:none}
+.fork-panel.active{display:block}
+
+/* ── SUB-HEADINGS ── */
+.sub-head{font-family:'Barlow Condensed',sans-serif;font-size:.9rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:18px 0 10px}
+
+/* ── EXERCISE TABLES ── */
+.ex-table{border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.ex-item{border-top:1px solid var(--border)}
+.ex-item:first-child{border-top:none}
+.ex-item:nth-child(even) .ex-row{background:var(--bg3)}
+.ex-item:nth-child(even) .ex-desc{background:var(--bg3)}
+/* full 5-col grid for plyometrics */
+.ex-row{display:grid;grid-template-columns:1fr 56px 90px 52px 82px;gap:4px;align-items:center;padding:9px 12px}
+/* 2-col for most GK exercises */
+.bw-row{display:grid !important;grid-template-columns:1fr 140px !important}
+.ex-name{font-weight:600;font-size:.85rem;color:var(--text);display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.ex-cell{display:flex;flex-direction:column;align-items:center;font-size:.83rem;color:var(--text)}
+.ex-lbl{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:1px}
+.vid-toggle{background:var(--bg3);border:1px solid var(--border);border-radius:4px;color:var(--muted);font-size:.7rem;font-weight:600;padding:4px 7px;cursor:pointer;white-space:nowrap;transition:all .15s}
+.vid-toggle:hover,.vid-toggle.on{background:var(--bbg);border-color:var(--blue);color:var(--blue)}
+.ex-desc{padding:0 12px 10px;border-top:1px dashed var(--border)}
+.ex-repdef{background:var(--bg3);border-radius:6px;padding:7px 10px;font-size:.81rem;margin-bottom:6px}
+.ex-repdef-lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.68rem;color:var(--green);letter-spacing:.08em;display:block;margin-bottom:2px}
+.ex-cue{font-size:.78rem;color:var(--muted);font-style:italic}
+.ex-vid-panel{display:none;padding:0 12px 12px}
+.ex-vid-panel.on{display:block}
+.vid-frame-wrap{position:relative;padding-top:56.25%;border-radius:8px;overflow:hidden;background:#000}
+.vid-frame-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+
+/* partner-tinted exercise items */
+.partner-table .ex-item:nth-child(even) .ex-row{background:#1f1510}
+.partner-table .ex-item:nth-child(even) .ex-desc{background:#1f1510}
+.partner-item .ex-repdef-lbl{color:var(--partner) !important}
+
+/* ── BLOCK CARDS ── */
+.block-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px;margin:18px 0}
+.block-title{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--green);margin-bottom:6px}
+.block-note{font-size:.79rem;color:var(--muted);margin-bottom:11px;font-style:italic}
+
+/* ── PHASE CARDS ── */
+.phase-card{border-radius:10px;padding:16px;margin:14px 0}
+.phase-build  {background:#0d1a2e;border:1px solid var(--blue)}
+.phase-peak   {background:var(--gbg);border:1px solid var(--green)}
+.phase-taper1 {background:var(--abg);border:1px solid var(--amber)}
+.phase-comp   {background:var(--pbg);border:1px solid var(--purple)}
+.phase-top{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px;flex-wrap:wrap;gap:6px}
+.phase-label{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.phase-weeks{font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;color:var(--muted);letter-spacing:.05em}
+.phase-focus{font-size:.84rem;color:var(--text);margin-bottom:10px;font-style:italic}
+.phase-blocks{display:flex;flex-direction:column;gap:5px;margin-bottom:10px}
+.phase-block-row{display:grid;grid-template-columns:90px 1fr;gap:8px;font-size:.8rem}
+.phase-block-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.04em;color:var(--muted);text-transform:uppercase;font-size:.72rem;padding-top:1px}
+.phase-block-detail{color:var(--text)}
+.phase-highlight{background:rgba(255,255,255,.04);border-radius:6px;padding:8px 10px;font-size:.79rem;color:var(--amber);border-left:3px solid var(--amber)}
+
+/* ── TRACKING ── */
+.track-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:10px}
+.track-table th{background:var(--bg3);color:var(--muted);font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:8px 12px;text-align:left;border-bottom:1px solid var(--border)}
+.track-table td{padding:10px 12px;border-bottom:1px solid var(--border)}
+.track-table tr:last-child td{border-bottom:none}
+.track-table tr:nth-child(even) td{background:var(--bg3)}
+.track-input{font-size:.8rem;color:var(--muted);font-style:italic}
+
+.bench{width:100%;border-collapse:collapse;font-size:.87rem;margin-top:10px}
+.bench th{background:var(--bg3);color:var(--muted);font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:8px 12px;text-align:left;border-bottom:1px solid var(--border)}
+.bench td{padding:10px 12px;border-bottom:1px solid var(--border)}
+.bench tr:last-child td{border-bottom:none}
+.bench tr:nth-child(even) td{background:var(--bg3)}
+.tgt{color:var(--green);font-weight:600}
+
+/* ── CHECKLIST ── */
+.checklist{list-style:none;padding:0;margin:8px 0}
+.checklist li{padding:6px 0;border-bottom:1px solid var(--border);font-size:.84rem;display:flex;gap:8px;align-items:flex-start}
+.checklist li:last-child{border-bottom:none}
+.check-box{font-size:.8rem;color:var(--green);flex-shrink:0;margin-top:2px}
+
+@media(min-width:560px){.sec{padding:20px 24px 60px}.hdr-title{font-size:2.6rem}}
+@media(max-width:460px){
+  .ex-row{grid-template-columns:1fr 48px 80px 44px 72px;gap:2px;padding:8px 10px}
+  .ex-name{font-size:.8rem}
+  .bw-row{grid-template-columns:1fr 110px !important}
+  .phase-block-row{grid-template-columns:70px 1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-emoji">🧤</div>
+  <div class="hdr-title">Eli's Plan</div>
+  <div class="hdr-sub">Goalkeeper · Athletic Development · Gap Training</div>
+  <span class="hdr-tag">Age 15 · Goalkeeper · Varsity / ECNL RL Target</span>
+</header>
+
+<nav class="nav">
+  <div class="nav-tab on"  data-sec="schedule">Schedule</div>
+  <div class="nav-tab"     data-sec="pre">Pre-Practice</div>
+  <div class="nav-tab"     data-sec="weekend">Weekend</div>
+  <div class="nav-tab"     data-sec="phases">Phases</div>
+  <div class="nav-tab"     data-sec="goals">Goals</div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════
+     SCHEDULE
+═══════════════════════════════════════════════ -->
+<section class="sec on" id="schedule">
+  <h2 class="sec-title">Weekly Schedule</h2>
+  <p class="sec-intro">Your week is already full. This plan adds <strong>two short pre-practice windows</strong> (Mon + Wed) and one <strong>opportunistic weekend session</strong> when a field window opens. Thursday GK coaching is part of the system — see the Phases tab for weekly coach focus points.</p>
+
+  <table class="sched">
+    <thead><tr><th>Day</th><th>Activity</th><th>Supplemental Training</th></tr></thead>
+    <tbody>
+      <tr class="t-pre"><td class="day-cell">Monday</td><td>Team Practice 5–6:30pm</td><td>🔵 Pre-Practice — 20–30 min BEFORE · Footwork + Plyometrics focus</td></tr>
+      <tr class="t-game"><td class="day-cell">Tuesday</td><td>Varsity Game</td><td>Game day — no supplemental work</td></tr>
+      <tr class="t-pre"><td class="day-cell">Wednesday</td><td>Team Practice 5–6:30pm</td><td>🔵 Pre-Practice — 20–30 min BEFORE · Dive Mechanics + Ball Handling focus</td></tr>
+      <tr class="t-gk"><td class="day-cell">Thursday</td><td>Team Practice 5–6:30pm → GK Training 8:15–9pm</td><td>🟣 Double session — NO supplemental. GK coach handles technical work tonight.</td></tr>
+      <tr class="t-game"><td class="day-cell">Friday</td><td>Varsity Game</td><td>Game day — no supplemental work</td></tr>
+      <tr class="t-weekend"><td class="day-cell">Sat / Sun</td><td>Sibling games + reffing</td><td>🟠 Opportunistic — 45–60 min if a window opens. Open field. Goal kicks priority.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout blue" style="margin-top:18px">
+    ⚠️ <strong>Two training environments — very different rules.</strong><br>
+    <strong>Pre-practice (Mon/Wed)</strong> = confined sideline space, ~5×10 yards. Girls' teams are on the main field. You have grass, cones, and a ball — no goals, no kicking at distance, no retrieval runs.<br>
+    <strong>Weekend</strong> = open field with distance. This is the ONLY session where goal kicks, full distribution, and extension diving with retrieval happen.
+  </div>
+
+  <div class="callout purple" style="margin-top:8px">
+    🏟️ <strong>Thursday GK Training with your coach (8:15–9pm)</strong> is built into this plan. You do NOT need to prepare for it separately. See the <strong>Phases</strong> tab each week for one specific focus point to bring to your coach — goal-kick technique feedback, extension dive progressions, 1v1 scenarios, etc.
+  </div>
+
+  <div class="callout amber" style="margin-top:8px">
+    📈 <strong>Load Check.</strong> Your current weekly load (~9.25 hrs) with supplemental added = ~11.0–11.25 hrs. Safe ceiling for age 15 is 15 hrs/week. You have headroom — but monitor for shoulder/wrist soreness after diving, hip/groin tightness, or reduced energy on Thursday double-session days. <strong>If Thursday feels heavy, the first thing to drop is Wednesday pre-practice — move it to a 10-min mobility-only session.</strong>
+  </div>
+
+  <div class="block-card" style="margin-top:18px">
+    <div class="block-title">The 4 Gaps This Plan Targets</div>
+    <div class="block-note">Every session in this plan traces back to one of these four areas.</div>
+    <div style="display:flex;flex-direction:column;gap:10px;font-size:.85rem">
+      <div><strong style="color:var(--blue)">1 · Getting Down Quickly</strong> <span style="color:var(--muted)">— Wider stance, collapse dive mechanics, bottom-hand technique. Your 5'7" frame is actually a biomechanical advantage for low dives.</span></div>
+      <div><strong style="color:var(--green)">2 · Extension Range</strong> <span style="color:var(--muted)">— Power step dive mechanics + lateral plyometric power. Positioning intelligence compensates for height on shots beyond reach.</span></div>
+      <div><strong style="color:var(--amber)">3 · 1v1 Situations</strong> <span style="color:var(--muted)">— Distance-based decision framework (passive set / close down / spread / smother). The most common youth GK mistake is staying back — train the decision first, then the technique.</span></div>
+      <div><strong style="color:var(--partner)">4 · Goal Kick Technique</strong> <span style="color:var(--muted)">— Punt and goal kick are biomechanically different. Ankle lock, plant foot, approach angle — trained in isolation before integrating. Weekend sessions only.</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     PRE-PRACTICE
+═══════════════════════════════════════════════ -->
+<section class="sec" id="pre">
+  <h2 class="sec-title">Pre-Practice Routine</h2>
+  <p class="sec-intro">Arrive early · Work on the sideline/perimeter while girls' teams are on the main field · Solo — no partner needed · Monday and Wednesday have different exercise emphasis</p>
+
+  <div class="callout amber">
+    ⚠️ <strong>Confined space — every exercise in this session fits in a 5×10 yard area.</strong> No kicking at distance. No goal required. No ball retrieval runs. If an exercise doesn't fit in your sideline strip, it doesn't belong in this session.
+  </div>
+
+  <div class="day-tabs">
+    <div class="day-tab on" data-target="pre-mon">Monday <span style="opacity:.6;font-size:.72em">Footwork + Plyo</span></div>
+    <div class="day-tab"    data-target="pre-wed">Wednesday <span style="opacity:.6;font-size:.72em">Dive + Ball Handling</span></div>
+  </div>
+
+  <!-- ─── MONDAY ─── -->
+  <div class="pre-panel active" data-day="pre-mon">
+
+    <div class="part-header gk-header">🧤 FIFA 11+ Shoulder Warm-Up · 5 min <span class="part-focus">Every pre-practice session, every time</span></div>
+    <div class="callout green">✅ This warm-up opens every supplemental session. Never skip it. I, Y, T positions activate rotator cuff; push-up variations prime the shoulder for landing load.</div>
+    <div class="ex-table">
+      <div class="ex-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">I-Position Raise</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>10 reps</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Stand, arms at sides. Raise both arms straight in front to shoulder height (thumbs up), hold 1 second at top, lower slowly. This is the I-shape.</div>
+          <div class="ex-cue">💡 Squeeze your shoulder blades together slightly as you raise. This warms up the posterior rotator cuff — exactly what takes the load when you dive and land on one arm.</div>
+        </div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">Y-Position Raise</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>10 reps</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Same starting position. Raise arms to a Y shape — 45 degrees out from straight ahead, thumbs up, to shoulder height. Hold 1 sec, lower slowly.</div>
+          <div class="ex-cue">💡 Keep your chest up — don't let your upper back round forward. The Y hits the lower trapezius, which stabilizes your shoulder during full-extension dives.</div>
+        </div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">T-Position Raise</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>10 reps</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Raise arms straight out to the sides — pure T shape, thumbs up, to shoulder height. Hold 1 sec, lower slowly.</div>
+          <div class="ex-cue">💡 Slight external rotation (thumbs up, not down) is the key. Thumbs-down internally rotates the shoulder and reduces subacromial space — that's how you get impingement over a season.</div>
+        </div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">Push-Up with Plus</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>8 reps</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Standard push-up. At the top of each rep, push your shoulder blades apart an extra inch — "plus" them forward. Pause 1 sec, then lower.</div>
+          <div class="ex-cue">💡 The "plus" at the top is the serratus anterior firing. That muscle is a GK's shoulder armor — it keeps your scapula against your ribs during impact. Don't skip the plus.</div>
+        </div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">Diagonal Arm Pattern</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>8 each side</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Standing. Sweep one arm from low across your body (near opposite hip) diagonally up to high reach on the same side — like drawing a sword and raising it overhead. Slow and controlled. 8 reps each arm.</div>
+          <div class="ex-cue">💡 This mimics the full-extension dive reach pattern. Feel the stretch across your chest and lat at the top. Move with control — this is prep, not speed.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="part-divider"></div>
+    <div class="part-header gk-header">👟 Footwork &amp; Set Position · 5 min <span class="part-focus">Wider stance + shuffle precision</span></div>
+    <div class="callout blue">📐 <strong>Stance width target: ~64 cm</strong> (roughly 75% of your leg length). This is significantly wider than shoulder-width. A single session of drilling this has been shown to add 42 cm of goal coverage on low saves. It will feel awkward at first — that's correct.</div>
+    <div class="ex-table">
+      <div class="ex-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">Wide Stance Drill</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>2 min</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Place two cones approximately 64 cm apart (use your shoe as a rough ruler — about 2.5 shoe-lengths). Set your feet just outside the cones in your GK ready position. Hold the stance for 3 seconds while actively feeling your weight distribution. Shuffle 3 steps to the right, stop, reset feet at the correct wide width. Shuffle 3 steps back left, reset. Continue for 2 min.</div>
+          <div class="ex-cue">💡 Your instinct will be to narrow your stance when you shuffle — fight it. Every time you stop, check: are your feet still outside the cones? Weight should be on the balls of your feet, knees bent, shoulders over toes. If your feet are inside the cones, widen them before the next shuffle.</div>
+        </div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">Shuffle-Set-Shuffle</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>2 sets × 6 reps</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Set 3 cones in a line, ~2 yards apart. Start at the left cone. Shuffle right to middle cone — stop and achieve a full correct set position (feet wide, weight forward, hands up). Then shuffle right to the far cone — set position. Shuffle back left to middle — set. Shuffle all the way to start — set. That's 1 rep. 6 reps each set.</div>
+          <div class="ex-cue">💡 The "set" is not a pause — it's an active ready state. Hips low, hands between waist and chest, eyes forward. You're not resting between shuffles; you're arriving in the position you'd be in when a shot is released. The stop should be sharp, not a drift.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="part-divider"></div>
+    <div class="part-header plyo-header">⚡ GK Plyometrics · 8 min <span class="part-focus">Lateral power — most GK-specific plyo category</span></div>
+    <div class="callout green">📊 <strong>Volume: Week 1–3 = 60–80 total foot contacts · Week 4–6 = 100–120 contacts · Week 7–8 = drop 1 set per exercise</strong> · 48 hrs minimum between plyo sessions (Mon → Wed ✓) · Land softly — ground contact quality matters more than height</div>
+    <div class="ex-table">
+      <div class="ex-item">
+        <div class="ex-row">
+          <span class="ex-name">Lateral Bounds / Skater Jumps</span>
+          <span class="ex-cell"><span class="ex-lbl">Sets</span>3</span>
+          <span class="ex-cell"><span class="ex-lbl">Reps</span>5 each side</span>
+          <span class="ex-cell"><span class="ex-lbl">Rest</span>30s</span>
+          <button class="vid-toggle">▶ Video</button>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Push off hard off one leg to the side, land on the opposite single leg, stick the landing for 1 full second before pushing back. Like a speed skater. Cover as much lateral ground as possible each bound.</div>
+          <div class="ex-cue">💡 The "stick" landing is non-negotiable — it trains the deceleration mechanics that control your dive. If you can't stick it (wobble, step out), reduce the distance. 1-second freeze = one rep done right. This is the single most GK-specific plyometric exercise in the plan.</div>
+        </div>
+        <div class="ex-vid-panel"><div class="vid-frame-wrap">
+          <iframe src="https://www.youtube.com/embed/pAplQXCDCuI?modestbranding=1&rel=0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen loading="lazy"></iframe></div></div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-row">
+          <span class="ex-name">Pogo Jumps / Ankle Bounces</span>
+          <span class="ex-cell"><span class="ex-lbl">Sets</span>2</span>
+          <span class="ex-cell"><span class="ex-lbl">Reps</span>10</span>
+          <span class="ex-cell"><span class="ex-lbl">Rest</span>20s</span>
+          <button class="vid-toggle">▶ Video</button>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Both feet together, jump straight up using only your ankle/calf — minimal knee bend, minimal ground contact time. Like bouncing on a pogo stick. 10 consecutive reps as fast as possible off the ground.</div>
+          <div class="ex-cue">💡 Ground contact should feel like touching a hot stove — quick and light. If you're bending your knees significantly, you've slowed it down. This trains ankle stiffness and the elastic energy return you need for a split step.</div>
+        </div>
+        <div class="ex-vid-panel"><div class="vid-frame-wrap">
+          <iframe src="https://www.youtube.com/embed/Zb8PkPMi5I0?modestbranding=1&rel=0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen loading="lazy"></iframe></div></div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-row">
+          <span class="ex-name">Countermovement Jumps (CMJ)</span>
+          <span class="ex-cell"><span class="ex-lbl">Sets</span>3</span>
+          <span class="ex-cell"><span class="ex-lbl">Reps</span>4</span>
+          <span class="ex-cell"><span class="ex-lbl">Rest</span>30s</span>
+          <button class="vid-toggle">▶ Video</button>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Stand tall. Quickly drop into a quarter squat (dip phase), then immediately explode upward as high as possible — arms drive up to help. Land softly, feet shoulder-width, absorb through ankles/knees/hips. Full stop before next rep.</div>
+          <div class="ex-cue">💡 The dip should be fast — it's a trigger, not a slow squat. The faster the dip-to-jump transition, the more elastic energy you use. Max height every rep. Soft landing every rep. This is your vertical leap for high-ball claims.</div>
+        </div>
+        <div class="ex-vid-panel"><div class="vid-frame-wrap">
+          <iframe src="https://www.youtube.com/embed/4L3V7kZBkEY?modestbranding=1&rel=0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen loading="lazy"></iframe></div></div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-row">
+          <span class="ex-name">Single-Leg Lateral Hops</span>
+          <span class="ex-cell"><span class="ex-lbl">Sets</span>2</span>
+          <span class="ex-cell"><span class="ex-lbl">Reps</span>4 each side</span>
+          <span class="ex-cell"><span class="ex-lbl">Rest</span>20s</span>
+          <span></span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Balance on one foot beside a cone or a crack/line on the ground. Hop laterally over it and land on the same foot. Immediately hop back. That's 1 rep. 4 reps = 4 round trips. Keep it quick but controlled.</div>
+          <div class="ex-cue">💡 Land with a slight knee bend — "soft landing" is the goal. This is unilateral lateral power, directly training the push-off leg for collapse dives. If you're losing balance on landing, slow down. Balance before speed.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="part-divider"></div>
+    <div class="part-header dive-header">🤸 Collapse Dive Progression · 7 min <span class="part-focus">Ball contacts ground first — always</span></div>
+    <div class="callout amber">🌿 <strong>You need ~3 yards of soft grass width for diving reps.</strong> Grass perimeter or the edge of the field sideline works. If the turf is rock-hard or the area is too narrow, do the kneeling-only version and skip standing collapse today.</div>
+    <div class="ex-table">
+      <div class="ex-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">Kneeling Collapse Dive</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>8 reps each side</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Start on both knees, upright. Place a ball 1 yard to your right side. Fall sideways to your right — reach the bottom hand (right hand) behind and slightly under the ball, top hand (left hand) seals on top. Ball is the FIRST thing to contact the ground. Recover, reset on knees. 8 reps each side. Roll the ball back each time.</div>
+          <div class="ex-cue">💡 This drill is about hand positioning and ball contact sequence — not speed. Bottom hand gets behind the ball like you're scooping it. Top hand closes on top. If your hip or elbow hits the ground before the ball, that's the mistake. Reset and think "ball first" before each rep.</div>
+        </div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">Crouching Collapse Dive</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>8 reps each side</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Start in a deep squat/crouch position. Ball placed 1 yard to the side. Same technique — fall sideways, sweep the near-side leg out, bottom hand to ball, top hand seals. More lateral distance than the kneeling version.</div>
+          <div class="ex-cue">💡 The near-side leg sweep is the new element here. Sweep it out (not back), which transfers your weight horizontally. Don't try to stand first — you're collapsing from the crouch, not diving from standing. If you feel yourself sitting back, your hips are too high.</div>
+        </div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">Standing Collapse Dive</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>8 reps each side</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Full GK ready position (wide stance, knees bent). Self-roll the ball gently 1–1.5 yards to one side. Execute the collapse dive: sweep near leg, lateral weight transfer, bottom hand behind ball, top hand seals. Ball contacts ground first. Return to set position between reps.</div>
+          <div class="ex-cue">💡 Self-rolling the ball teaches you to react to a moving target, not a stationary one. Roll it gently — this is technique training, not reaction speed training. Check three things every rep: (1) Did ball hit ground before your hip? (2) Is bottom hand BEHIND the ball (not on top)? (3) Did you maintain your wide stance in the set position before the dive?</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="part-divider"></div>
+    <div class="part-header gk-header">🛡️ Injury Prevention Prehab · 5 min <span class="part-focus">Wrists + hips — close every pre-practice session</span></div>
+    <div class="ex-table">
+      <div class="ex-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">Wrist Circles + Finger Extensions</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>1 min</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> 10 slow wrist circles each direction, then splay your fingers wide and hold 3 seconds, then make a fist and hold 3 seconds. Repeat 5 times. Finish with 10 ball squeezes if you have a ball handy (squeeze and hold 3 sec each).</div>
+          <div class="ex-cue">💡 GK wrists and fingers take impact every time you dive. This 60-second prehab routine is small protection against cumulative overload. If your wrists or fingers are sore from the previous session, this is also a red flag to mention to your coach.</div>
+        </div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">90/90 Hip Switches</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>8 reps</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Sit on the ground with both legs in a 90/90 position (front leg bent 90° forward, back leg bent 90° to the side). Slowly rotate your hips to switch — front leg goes back, back leg comes forward. That's 1 rep. Slow and controlled, hands light on the ground for support.</div>
+          <div class="ex-cue">💡 Hip flexor tightness is the #1 groin/hip injury risk for GKs who dive frequently — the lateral weight transfer loads the hip hard. These switches open that range in both directions. If one side feels much tighter, that's the side to spend more time on.</div>
+        </div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">Lateral Leg Swings</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>10 each side</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Stand on one leg, hold a cone or wall for balance. Swing the free leg out to the side and across your body — gradually increasing range each swing. 10 swings, then switch legs. Keep the movement flowing and relaxed.</div>
+          <div class="ex-cue">💡 Let gravity do the work — don't force the range. The adductors (inner thigh) take eccentric load every time you dive, especially the wide-stance collapse. Loose, warm adductors = safer diving and better lateral range.</div>
+        </div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">Hip Flexor Stretch</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>30 sec each side</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Lunge forward on one leg, back knee on the ground. Shift your hips forward until you feel a stretch in the front of your back hip. Hold 30 seconds, then switch. Optional: add a slight rotation toward the front knee to increase the stretch.</div>
+          <div class="ex-cue">💡 End every pre-practice session with this. You're about to go into team practice and a 90-minute game load. Tight hip flexors going into team practice = reduced sprint mechanics, reduced push-off range. This is prep, not just stretching.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="block-card" style="margin-top:18px">
+      <div class="block-title">Monday Session Checklist</div>
+      <ul class="checklist">
+        <li><span class="check-box">☐</span> FIFA 11+ Shoulder warm-up complete (5 min)</li>
+        <li><span class="check-box">☐</span> Wide stance drill — checked feet at correct width every set</li>
+        <li><span class="check-box">☐</span> Shuffle-Set-Shuffle — hips low at every set position</li>
+        <li><span class="check-box">☐</span> Lateral bounds — stuck landing 1 second each rep</li>
+        <li><span class="check-box">☐</span> Pogo jumps — minimal ground contact, quick off the floor</li>
+        <li><span class="check-box">☐</span> CMJs — max height, soft landing</li>
+        <li><span class="check-box">☐</span> Collapse dives — ball contacted ground before hip, every rep</li>
+        <li><span class="check-box">☐</span> Prehab complete — wrists + hips done</li>
+        <li><span class="check-box">☐</span> Any soreness to note? (shoulder / wrist / hip)</li>
+      </ul>
+    </div>
+
+  </div><!-- end pre-mon -->
+
+  <!-- ─── WEDNESDAY ─── -->
+  <div class="pre-panel" data-day="pre-wed">
+
+    <div class="part-header gk-header">🧤 FIFA 11+ Shoulder Warm-Up · 5 min <span class="part-focus">Every pre-practice session, every time</span></div>
+    <div class="callout green">✅ Same warm-up as Monday — I, Y, T raises → Push-Up with Plus → Diagonal arm pattern. See Monday tab for full descriptions. Never skip this regardless of how little time you have.</div>
+
+    <div class="part-divider"></div>
+    <div class="part-header gk-header">👟 Footwork &amp; Set Position · 5 min <span class="part-focus">Footwork patterns + split step timing</span></div>
+    <div class="ex-table">
+      <div class="ex-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">Diamond Footwork</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>2 sets</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Place 4 cones in a diamond shape, ~3 yards between each point (fits in ~5-yard space when compressed slightly). Start at the bottom cone. Shuffle laterally to right cone, set position. Shuffle forward-diagonally to top cone, set. Shuffle laterally to left cone, set. Shuffle back to start, set. That's 1 rep. 4 reps each set. Then reverse direction.</div>
+          <div class="ex-cue">💡 The point of this drill is the set position at each cone — not the shuffle speed. Every stop should be crisp: feet wide, weight forward, hips down. You're training the GK shuffle pattern that covers the arc of your post-to-post movement.</div>
+        </div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">Split Step Timing Drill</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>10 reps</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Set a ball on the ground 2 yards to your right side. Stand in set position facing forward. Use your phone timer on a 10-second countdown (or count "1-2-NOW" aloud). The moment you hear the beep or say "NOW" — execute a split step (small jump, land in wide stance) and immediately dive to the ball, using your collapse technique. Reset and repeat 10 times, alternating which side the ball is on.</div>
+          <div class="ex-cue">💡 The split step should happen slightly BEFORE "NOW" — you initiate the jump based on the anticipated signal, not in reaction to it. Research shows dive speed is 3-4% faster when the split step initiates during knee flexion of the forward motion. The split loads your legs; the dive fires from that loaded position. If you're flat-footed when the signal comes, you're already late.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="part-divider"></div>
+    <div class="part-header gk-header">🙌 Ball Handling · 5 min <span class="part-focus">Hand shape + reaction + catching mechanics</span></div>
+    <div class="callout blue">✅ All ball handling fits in a standing footprint. You only need the ball and yourself.</div>
+    <div class="ex-table">
+      <div class="ex-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">W-Shape Hand Drill</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>15 catches</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Hold the ball at arm's length, then self-toss it to chest height — not too hard. Catch it with a W-hand shape: thumbs pointing toward each other behind the ball, fingers spread wide on the side of the ball, palms not touching. Catch, reset, toss again. 15 catches.</div>
+          <div class="ex-cue">💡 After each catch, look at your hands before resetting — did your thumbs end up pointing together or apart? Apart = wrong (ball goes through). Together = W-shape = correct. Soft hands absorb the ball; stiff hands deflect it. This is muscle memory work, not a conditioning drill.</div>
+        </div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">Quick Hands Ground Pick-Up</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>10 each side</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Place a ball on the ground 1 yard to your right. From set position, step laterally, drop down into a low scoop: right hand behind the ball, left hand on top — "baseball scoop" grip. Pick it up, bring it to your chest, return to set position. That's 1 rep. 10 reps each side.</div>
+          <div class="ex-cue">💡 The hand behind the ball (bottom hand) is the primary save hand — it stops the ball from going past. The top hand is the safety. The sequence is always: bottom hand makes contact first, top hand seals. A ball that squirts under your bottom hand means your hand was on TOP of the ball, not behind it.</div>
+        </div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">Reaction Catch</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>10 reps each variation</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Variation 1 — Hold ball at arm's length in front of you, release it, catch before second bounce. Variation 2 — Hold ball behind your back over one shoulder, release it, spin and catch before second bounce. Alternate between variations, 10 reps each. Drop to your dominant hand side first, then non-dominant.</div>
+          <div class="ex-cue">💡 This drill is about reaction time — catching before the second bounce forces a genuine quick response, not a slow reach-down. Variation 2 trains your peripheral awareness and your spin-to-the-ground recovery after facing forward. This simulates a deflected shot rolling behind you.</div>
+        </div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">High Ball Claim — Vertical</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>10 reps</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Self-toss ball above your head. Jump off two feet, catch the ball at your highest point with W-hand shape, bring it to your chest, land on both feet. That's 1 rep. 10 reps. This is a stationary vertical claim — no approach run needed, fits in confined space.</div>
+          <div class="ex-cue">💡 Catch at the TOP of your jump — not on the way up, not on the way down. At the top, you have a brief moment of near-zero velocity. Catching then means you can absorb the ball cleanly. Catching on the way down adds momentum that drives the ball into your chest awkwardly.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="part-divider"></div>
+    <div class="part-header plyo-header">⚡ GK Plyometrics (Reduced) · 5 min <span class="part-focus">Different selection from Monday — avoid identical sessions</span></div>
+    <div class="callout green">📊 Wednesday plyo volume is intentionally lower than Monday — you've had team practice and games mid-week. These are movement quality reps, not high-volume conditioning.</div>
+    <div class="ex-table">
+      <div class="ex-item">
+        <div class="ex-row">
+          <span class="ex-name">Countermovement Jumps (CMJ)</span>
+          <span class="ex-cell"><span class="ex-lbl">Sets</span>2</span>
+          <span class="ex-cell"><span class="ex-lbl">Reps</span>4</span>
+          <span class="ex-cell"><span class="ex-lbl">Rest</span>30s</span>
+          <span></span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Same as Monday — quick dip, explosive upward drive, max height, soft landing. Full stop before next rep.</div>
+          <div class="ex-cue">💡 Wednesday's CMJs are your quality check: if Monday's felt easy and snappy, Wednesday should feel the same or better. If they feel heavy and your jump height is noticeably lower, that's a fatigue signal — do 1 set and move on.</div>
+        </div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-row">
+          <span class="ex-name">Single-Leg Lateral Hops</span>
+          <span class="ex-cell"><span class="ex-lbl">Sets</span>2</span>
+          <span class="ex-cell"><span class="ex-lbl">Reps</span>4 each side</span>
+          <span class="ex-cell"><span class="ex-lbl">Rest</span>20s</span>
+          <span></span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Same as Monday — single-leg lateral hop over a cone/line, land and stick 1 sec, hop back. 4 round trips each leg.</div>
+          <div class="ex-cue">💡 Wednesday version: focus on the landing mechanics more than the hop distance. Land with a soft knee, control your balance completely before hopping back. Today is about movement quality.</div>
+        </div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-row">
+          <span class="ex-name">Tuck Jumps <span class="env-badge env-confined" style="font-size:.58rem">Phase 2+ only</span></span>
+          <span class="ex-cell"><span class="ex-lbl">Sets</span>2</span>
+          <span class="ex-cell"><span class="ex-lbl">Reps</span>4</span>
+          <span class="ex-cell"><span class="ex-lbl">Rest</span>30s</span>
+          <span></span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Jump and bring both knees up to your chest at the peak. Land on balls of feet, absorb softly. Full stop before next rep. Do NOT add this before Week 4.</div>
+          <div class="ex-cue">💡 Introduce this in Phase 2 once your lower body is adapted to the Monday plyometrics. The knee drive trains the explosive knee-up mechanics you need for high-ball claiming under pressure. Not appropriate in Phase 1 — the landing load is higher than other plyo drills here.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="part-divider"></div>
+    <div class="part-header dive-header">🤸 1v1 Body Shape Practice · 5 min <span class="part-focus">K-block · Spread · Smother — decision BEFORE technique</span></div>
+    <div class="callout blue">📏 <strong>Distance-based 1v1 framework.</strong> Research on 323 EPL + World Cup 1v1s found 4 distinct techniques. The most common youth GK strategy (staying back and reacting) is also the LEAST effective. You have ~300–320ms of decision time — enough to commit early if you've trained the decision.</div>
+    <div class="block-card" style="margin:8px 0 14px">
+      <div class="block-title">1v1 Decision Framework</div>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:.83rem">
+        <div style="display:grid;grid-template-columns:110px 1fr;gap:8px"><strong style="color:var(--muted)">Beyond 8 yds</strong><span>Passive Set — standard ready position, read the shot</span></div>
+        <div style="display:grid;grid-template-columns:110px 1fr;gap:8px"><strong style="color:var(--blue)">Ball in transit</strong><span>Aggressive Set — close down quickly while ball is moving or attacker's touch is loose. Set feet the moment they regain control</span></div>
+        <div style="display:grid;grid-template-columns:110px 1fr;gap:8px"><strong style="color:var(--amber)">4–7 yds, central</strong><span>K-Block / Spread — body as wide as possible. 10% more likely to save than passive set at this range</span></div>
+        <div style="display:grid;grid-template-columns:110px 1fr;gap:8px"><strong style="color:var(--partner)">Loose ball</strong><span>Smother — very low, diving at the feet. Only for genuinely loose balls</span></div>
+        <div style="background:var(--abg);border:1px solid var(--amber);border-radius:6px;padding:7px 10px;margin-top:4px;color:#e6d4a0">⚠️ <strong>Watch the kicking foot specifically</strong> — not the ball, not the hips. The kicking foot angle tells you shot direction 40–60ms before the ball leaves the foot.</div>
+      </div>
+    </div>
+    <div class="ex-table">
+      <div class="ex-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">Body Shape Station Drill</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>3 reps × 3 positions</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Set 2 cones 3 yards apart as a practice "goal." Practice each of the three positions at two distances: 5 yards from the cones and 3 yards from the cones. K-Block: drop to one knee with arms wide, filling vertical space. Spread: stand with feet very wide, arms out to sides, lean slightly forward. Smother: very low, body spread flat toward the ball. Hold each position for 2 full seconds. 3 reps of each position at each distance.</div>
+          <div class="ex-cue">💡 This is stationary positioning practice — not a reaction drill. The point is to feel each position in your body, so that when you need it in a live situation, your muscles already know the shape. Two seconds at each position means you're actually HOLDING the correct shape, not just approximating it.</div>
+        </div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">Distance Call Drill</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>10 reps</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Stand in set position. Starting from 15 yards back (use cones or a mental marker), walk slowly toward your 2-cone "goal." As you walk in, call out the technique you'd use based on your current distance: "SET" when you'd be in passive set (beyond 8 yards), "CLOSING" when you'd be actively closing down (8–5 yards), "SPREAD" when you're in close central range (under 5 yards). Do this 10 times at different starting approaches.</div>
+          <div class="ex-cue">💡 The verbalization matters — saying "CLOSING" out loud forces you to commit to the decision, which is the whole problem most youth GKs have in live 1v1s. You KNOW what to do, but you delay the decision. This drill trains the decision reflex, not the physical movement.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="part-divider"></div>
+    <div class="part-header gk-header">🛡️ Core + Prehab · 5 min <span class="part-focus">Stability base for diving mechanics</span></div>
+    <div class="ex-table">
+      <div class="ex-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">Plank Hold</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>2 × 30 sec</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Forearm plank — elbows under shoulders, body in a straight line from head to heels. Hold 30 seconds. Rest 15 sec. Repeat. Do NOT let hips sag or pike up.</div>
+          <div class="ex-cue">💡 Your core is the transfer mechanism between your legs (push-off) and your arms (catch). A weak core loses energy in that chain — your dive feels sluggish even if your legs are fast. Squeeze your glutes and abs simultaneously. If your hips are sagging, drop your knees instead of letting form break.</div>
+        </div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">Side Plank — Hip Abductor Hold</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>20 sec each side</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Side plank position — one elbow on the ground, feet stacked. Lift your hips off the ground, hold 20 seconds. Hips should be in a straight line — not sagging, not piked. Switch sides.</div>
+          <div class="ex-cue">💡 The side plank specifically loads your hip abductors — the gluteus medius and minimus. These are the muscles that control your landing stability on single-leg collapse dives. Weak hip abductors = wobbly landings. This is two minutes of direct hip stability training.</div>
+        </div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">90/90 Hip Switches + Hip Flexor Stretch</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>5 min total</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Same as Monday prehab: 8 reps of 90/90 hip switches, then 30 seconds hip flexor stretch each side. See Monday tab for full descriptions.</div>
+          <div class="ex-cue">💡 Close every pre-practice session the same way. The hip mobility work before team practice has a direct carryover to your sprint and change-of-direction quality in the session that follows. It's not just prehab — it's preparation.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="block-card" style="margin-top:18px">
+      <div class="block-title">Wednesday Session Checklist</div>
+      <ul class="checklist">
+        <li><span class="check-box">☐</span> FIFA 11+ Shoulder warm-up complete (5 min)</li>
+        <li><span class="check-box">☐</span> Diamond footwork — crisp set position at each cone</li>
+        <li><span class="check-box">☐</span> Split step timing — initiated before the signal, not after</li>
+        <li><span class="check-box">☐</span> W-shape hands — thumbs together behind ball every catch</li>
+        <li><span class="check-box">☐</span> Ground pick-up — bottom hand behind ball, top hand seals</li>
+        <li><span class="check-box">☐</span> 1v1 body shape — held each position 2 full seconds</li>
+        <li><span class="check-box">☐</span> Distance call drill — verbalized the technique each time</li>
+        <li><span class="check-box">☐</span> Plank + side plank — no form breakdown</li>
+        <li><span class="check-box">☐</span> Hip prehab complete</li>
+      </ul>
+    </div>
+
+  </div><!-- end pre-wed -->
+
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     WEEKEND SESSION
+═══════════════════════════════════════════════ -->
+<section class="sec" id="weekend">
+  <h2 class="sec-title">Weekend Session</h2>
+  <p class="sec-intro">~45–60 min · Open field required · Opportunistic — when a window opens between sibling games or after reffing · If no window opens, the goal kick and distribution work waits until next week. That's fine.</p>
+
+  <div class="callout partner-note" style="margin-top:0">
+    🟠 <strong>This is the only session where goal kicks, distribution, and full extension diving happen.</strong> These exercises require 30+ yards of clear space and cannot be done in confined pre-practice conditions. If you show up to a park with 20 minutes before a sibling's game starts and can only do goal kicks — do goal kicks. That's the priority.
+  </div>
+
+  <div class="callout green">
+    📋 <strong>Session structure:</strong> Goal Kick Technique (15 min, 15–20 kicks) → Distribution Practice (10 min) → Partner Block if Dad is available / Solo Block if alone → Cool-down. Total 45–60 min. <strong>If time is short, goal kicks and distribution first — always.</strong>
+  </div>
+
+  <!-- ── SHARED OPENING BLOCKS ── -->
+  <div class="part-header wknd-header">🥅 Block 1 — Goal Kick Technique · 15 min <span class="part-focus">Open field · 15–20 kicks per session · Quality over quantity</span></div>
+
+  <div class="callout amber">
+    ⚠️ <strong>Punt ≠ Goal kick.</strong> Your punt is already strong (height, distance, placement). Your goal kick lacks all three. This is almost certainly a technique-transfer problem — specifically: ankle lock, plant foot placement, and approach angle. <strong>Train only ONE element per week for the first 3 weeks.</strong> Integration comes later.
+  </div>
+
+  <div class="block-card">
+    <div class="block-title">Goal Kick Technique — Key Elements</div>
+    <div style="display:flex;flex-direction:column;gap:8px;font-size:.83rem">
+      <div style="display:grid;grid-template-columns:110px 1fr;gap:8px"><strong style="color:var(--blue)">Approach Angle</strong><span>30–45° from kick direction. Elite GKs average ~43.8°. Too straight-on = no hip rotation. Too wide = off-balance contact.</span></div>
+      <div style="display:grid;grid-template-columns:110px 1fr;gap:8px"><strong style="color:var(--green)">Plant Foot</strong><span>5–10 cm beside the ball, level with ball, toes pointing at target. Too far back = scoop (thin contact). Too close = foot collision.</span></div>
+      <div style="display:grid;grid-template-columns:110px 1fr;gap:8px"><strong style="color:var(--amber)">Strike Point</strong><span>Instep (laces/metatarsal area) contacts JUST BELOW the ball's midline — NOT underneath. Underneath = high ball, no distance.</span></div>
+      <div style="display:grid;grid-template-columns:110px 1fr;gap:8px"><strong style="color:var(--partner)">Ankle Lock</strong><span>Firmly plantarflexed (toe pointed) and RIGID through impact. Most likely failure point since punting is more forgiving of a loose ankle.</span></div>
+      <div style="display:grid;grid-template-columns:110px 1fr;gap:8px"><strong style="color:var(--purple)">Follow-Through</strong><span>Land several steps ahead of where the ball sat. Full proximal-to-distal chain: pelvis → hip → thigh → shank → foot.</span></div>
+    </div>
+    <div style="background:var(--gbg);border:1px solid var(--green);border-radius:6px;padding:8px 10px;margin-top:10px;font-size:.8rem;color:#a0d4b0">
+      📅 <strong>Weekly progression:</strong> Week 1 = ankle lock only · Week 2 = plant foot only · Week 3 = approach angle only · Week 4+ = integration. Expected improvement: Weeks 1–3 cleaner contact, Weeks 4–6 noticeable height/accuracy, Week 8+ measurable distance gains of 5–10 yards.
+    </div>
+  </div>
+
+  <div class="ex-table">
+    <div class="ex-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Ankle Lock Isolation <span class="env-badge env-confined">Confined OK</span></span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>15 reps · Week 1</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Hold ball at waist height. Lock your ankle hard (toe pointed, rigid — like you're wearing a cast). Drop the ball onto your instep. If ankle is locked correctly, ball bounces cleanly upward 2–3 feet. If ball squirts sideways or goes at an angle, ankle was loose. 15 reps. This is the one goal kick drill that can be done in confined space if needed.</div>
+        <div class="ex-cue">💡 "Rigid as a board" — before each drop, consciously clench your ankle into the locked position. The loose ankle is the #1 reason your goal kicks lack height and distance. A locked ankle transfers the full kinetic chain. A loose ankle absorbs energy and deflects the ball sideways. If the ball bounces back straight up: you did it right.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Plant Foot Placement Drill</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>10 reps · Week 2</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Place a small marker (coin, piece of tape) where your plant foot should land: 5–10 cm to the side of the ball, roughly level with it. Full approach run to the ball — but DO NOT kick. Just practice hitting the plant foot marker perfectly. No kick, just the approach and plant. 10 reps. Then add the kick for 5 more reps.</div>
+        <div class="ex-cue">💡 Plant foot too far back = you scoop underneath the ball (it pops up short). Plant foot level or slightly ahead = you strike the equatorial midline and drive through. The marker forces you to be precise. After 10 no-kick reps, your plant foot should land on that spot automatically.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Short-Distance Goal Kicks — 15–20 yards</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>10–15 kicks</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> From a standing start or short approach, kick the ball to a target cone at 15–20 yards. Focus on clean contact and getting the ball airborne with the correct low-to-high trajectory. Don't measure distance — measure trajectory. Ball should leave the ground at a 40–50° angle, not near-vertical and not flat.</div>
+        <div class="ex-cue">💡 A flat kick (ball barely leaves the ground) = striking too high on the ball. A near-vertical kick (ball pops up straight) = striking too low (underneath). Target the midline-minus zone. Once you're getting clean contact at 15 yards with good trajectory, add 5 yards.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Progressive Distance Goal Kicks</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>10–15 kicks · Week 4+</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> When at a park with a regulation goal: full goal kicks from the 6-yard box to midfield-distance targets. Use cones or existing field markings. Add 5 yards of distance target each week once technique is clean at shorter range. 10–15 kicks maximum per session — quality over volume.</div>
+        <div class="ex-cue">💡 Don't add distance until the short kicks are consistently airborne with good trajectory. More force applied to a bad technique just makes a worse kick go further wrong. Earn the distance with clean mechanics first.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="part-divider"></div>
+  <div class="part-header wknd-header">📤 Block 2 — Distribution Practice · 10 min <span class="part-focus">Throws + driven passes + punt maintenance</span></div>
+  <div class="callout green">✅ Your punts are excellent — don't over-train them. This block is maintenance for punting and development for throws and driven passes. 10 minutes, well-placed targets, track accuracy mentally.</div>
+  <div class="ex-table">
+    <div class="ex-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Overarm Throw Accuracy</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>15 throws</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Place 3 cones at 15, 20, and 25 yards. 5 throws to each cone target. Overarm throw (like a quarterback) — step into the throw with your opposite foot, arm follows through toward target. Track how many hit within 2 yards of each cone.</div>
+        <div class="ex-cue">💡 Throw accuracy matters at ECNL level — a misdirected throw to feet instead of into stride creates unnecessary pressure. Step into it. Wrist snap at release, fingers rolling over the top of the ball. If you're consistently missing left or right, check your release point (too early = push left, too late = pull right for right-handed throwers).</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Driven Pass to Target</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>10 each foot</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Ground-rolling driven passes to a cone at 20–30 yards. Focus on weight and accuracy — the ball should reach the cone with good pace, not dribbling to a stop 5 yards short. 10 with dominant foot, 10 with non-dominant.</div>
+        <div class="ex-cue">💡 GKs are increasingly expected to play out from the back at ECNL level. A driven pass that's accurate AND well-weighted bypasses the press and puts teammates into space. Non-dominant foot distribution is a visible differentiator in tryouts — coaches notice when a GK only goes one way.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Punt Maintenance</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>10 punts</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> 10 punts to a target zone at 35–40 yards. Focus on landing placement — inside a 5-yard zone, not just distance. Note: this is the last block of the distribution section, not the first. Your punts are already good. Maintain what's working.</div>
+        <div class="ex-cue">💡 Don't change your punt technique. If it's working — height, distance, placement — don't tinker with it. These 10 punts are a touch/rhythm session. The only thing to focus on is placement accuracy to a specific zone, since that's the ECNL-level expectation.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="part-divider"></div>
+
+  <!-- ── FORK TOGGLE ── -->
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px;margin-top:6px">
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:.9rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--text);margin-bottom:6px">Block 3 — Select Your Mode</div>
+    <div style="font-size:.79rem;color:var(--muted);margin-bottom:12px">Is Dad available to serve balls? Choose the block below. The content is completely different — make sure you're in the right one.</div>
+    <div class="fork-tabs">
+      <div class="fork-tab partner-on" data-fork="partner">🟠 Partner Day — Dad is Here</div>
+      <div class="fork-tab"            data-fork="solo">🟣 Solo Day — Training Alone</div>
+    </div>
+  </div>
+
+  <!-- PARTNER BLOCK -->
+  <div class="fork-panel active" data-fork="partner">
+    <div class="part-header partner-header">🟠 Partner Block — Dad Available · 20–25 min <span class="part-focus">Requires a server for all exercises in this block</span></div>
+    <div class="partner-note">🤝 <strong>All exercises in this block require an active server.</strong> Dad serves the ball — Eli reads, reacts, and executes. If Dad leaves early, switch to the Solo Block for remaining exercises.</div>
+    <div class="ex-table partner-table">
+      <div class="ex-item partner-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">Extension Dive — Served Balls</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>6 each side</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Eli stands in set position. Dad serves (rolls or underarm throws) the ball 1.5–2.5 yards beyond Eli's comfortable collapse range — to the side, at varying heights from ground to waist. Eli executes a power-step dive: load the near foot, explosive push-off to become airborne, reach and catch or deflect. 6 reps each side. Dad varies placement each rep.</div>
+          <div class="ex-cue">💡 The power step starts from the near foot — it's a sideways explosive push, not a step then jump. Your contralateral leg (opposite to dive direction) provides dominant drive. After the dive, don't rush up — reset fully, check your set position width, then signal Dad for the next serve.</div>
+        </div>
+      </div>
+      <div class="ex-item partner-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">Reaction Saves — Low + Mid Height</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>10 serves total</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Eli faces the goal (or a target cone). Dad stands 8–10 yards away with multiple balls. Eli assumes set position. Dad drives or rolls a ball at any angle — low corners, mid-height to sides. Eli reads and executes (collapse dive or power step based on distance). No pattern — Dad varies placement deliberately. 10 serves.</div>
+          <div class="ex-cue">💡 Watch Dad's shoulder and arm position — not his eyes, not his body. The serve angle tells you direction 50ms before the ball is released, just like a kicking foot tells you shot direction before contact. React to the cue, not the ball. This is the closest approximation to in-game shot-stopping you can get without a goal.</div>
+        </div>
+      </div>
+      <div class="ex-item partner-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">1v1 Decision Walk-Through</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>10 reps</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Phase 1 (Weeks 1–3) — Distance recognition only. Dad dribbles slowly from 15 yards in. Eli calls the technique: "SET" (beyond 8 yds), "CLOSING" (8–5 yds), "SPREAD" (under 5 central). No diving — just verbalized decision practice. Phase 2+ (Weeks 4+) — Live 1v1. Dad receives ball at 12 yards, takes a touch, Eli reads and executes appropriate technique. Full speed. 6–8 reps.</div>
+          <div class="ex-cue">💡 Phase 1: say the technique out loud, every time. Phase 2+: your closing window is when the ball is in transit — that's when you move. The moment Dad's foot makes contact with the ball for the touch, you close. The moment he regains control, you set. Don't commit BEFORE he touches it. Don't wait until he's shooting to decide.</div>
+        </div>
+      </div>
+      <div class="ex-item partner-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">High Ball Claim — With Server</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>6 reps</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Dad throws the ball high into the air (lofted, 10–15 yards above ground at peak). Eli takes a 2–3 step approach, times the jump, catches the ball at the highest point with W-hand shape, brings to chest, lands on two feet. 6 reps. Vary the serve height and direction slightly each rep.</div>
+          <div class="ex-cue">💡 Timing is everything — the approach steps set your jump timing. Two aggressive steps, then explosive jump. Catch it at the TOP of your arc. Call "KEEPER" on every rep — this is a habit to build. In a game, claiming a high ball without calling it is a collision waiting to happen.</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- end partner block -->
+
+  <!-- SOLO BLOCK -->
+  <div class="fork-panel" data-fork="solo">
+    <div class="part-header solo-header">🟣 Solo Block — Training Alone · 20–25 min <span class="part-focus">Use this block when Dad isn't available</span></div>
+    <div class="callout purple">🟣 <strong>Solo block</strong> — swap this in for the Partner Block above when training alone. All exercises self-serve or self-directed.</div>
+    <div class="ex-table">
+      <div class="ex-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">Extension Dive — Self-Serve</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>6 each side</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Self-toss the ball upward and to the side at increasing distance — start at 1.5 yards and progress to 2.5+ yards as the session goes on. Execute the power step dive: load near foot, explosive push-off, reach and catch (or deflect to ground). Get up, retrieve ball, reset. 6 reps each side.</div>
+          <div class="ex-cue">💡 Solo extension dives are harder to make realistic — the self-toss gives you pre-knowledge of direction. Fight that. Toss to varying heights (knee-high one rep, waist-high the next, shoulder-high the next). Make yourself react to the actual ball flight, not where you already know you threw it.</div>
+        </div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">Power Step from Knees — Self-Serve</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>6 each side</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Start kneeling, place ball 1.5 yards to your side — just beyond collapse range from your knees. Load your near-side leg, explosively push laterally to reach and save the ball. This is the foundational movement for the full power step dive. 6 reps each side.</div>
+          <div class="ex-cue">💡 From your knees, the near-side leg load is more isolated — you can really feel the drive mechanism. This is a good technical rehearsal for the movement pattern before standing power step dives. Focus on the explosive push quality, not how far you get.</div>
+        </div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">Additional Goal Kicks — Accuracy Focus</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>10 kicks</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Add 10 more goal kicks with accuracy as the primary metric. Set a 3-yard wide target zone at 20–25 yards. Count how many land in the zone. This is in addition to Block 1's 15 kicks. Don't exceed 25 total kicks in a session.</div>
+          <div class="ex-cue">💡 On solo days, goal kicks are the highest-value activity because they can only be done on open field. Use the extra time from not having a partner to get more quality reps on your biggest technical gap. Track your zone accuracy across sessions — it should improve noticeably by Week 4.</div>
+        </div>
+      </div>
+      <div class="ex-item">
+        <div class="ex-row bw-row">
+          <span class="ex-name">1v1 Body Shape Slow Walk — Solo Version</span>
+          <span class="ex-cell"><span class="ex-lbl">Duration</span>10 reps</span>
+        </div>
+        <div class="ex-desc">
+          <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Imagine an attacker coming in. Dribble a ball yourself from 15 yards — yes, you're acting as both the attacker and the GK. Walk it in slowly. As you reach each distance threshold, stop, drop the ball, and step into the GK body shape: SET position at 8+ yards, CLOSING stance at 8–5 yards, SPREAD/K-block at under 5 yards. 10 reps, varying speed of approach each time.</div>
+          <div class="ex-cue">💡 This is the solo version of the Distance Call drill from Wednesday's pre-practice. It reinforces the same decision-making pattern in an open field environment. Moving slowly gives you time to feel the body shape at each distance. Once you've done it slow, do 3 reps at half-speed to add some time pressure.</div>
+        </div>
+      </div>
+    </div>
+  </div><!-- end solo block -->
+
+  <!-- ── COOL-DOWN ── -->
+  <div class="part-divider"></div>
+  <div class="part-header gk-header">🌬️ Cool-Down · 5 min <span class="part-focus">Every weekend session</span></div>
+  <div class="ex-table">
+    <div class="ex-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Light Jogging + Walking</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>2 min</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Easy jogging around the field perimeter for 1 min, then slow walk for 1 min. Heart rate down, breathing normal.</div>
+        <div class="ex-cue">💡 Don't skip the cool-down after extension diving — your hip flexors and shoulder muscles are under repeated eccentric load during diving. A 2-minute walk costs nothing and accelerates recovery before your next session.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row bw-row">
+        <span class="ex-name">Full Shoulder + Hip Stretch</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>3 min</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Cross-body shoulder stretch (30 sec each arm). Overhead tricep/lat stretch (20 sec each side). Hip flexor lunge stretch (30 sec each side). Seated groin stretch (30 sec). Quad stretch standing (20 sec each side).</div>
+        <div class="ex-cue">💡 Weekend sessions involve the most physical load in this plan — extension diving, goal kicks, and potentially 1v1 scenarios all in one session. Your hips and shoulders have done real work. These 3 minutes are the recovery investment that keeps you available for Monday's pre-practice and Tuesday's game.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block-card" style="margin-top:18px">
+    <div class="block-title">Weekend Session Checklist</div>
+    <ul class="checklist">
+      <li><span class="check-box">☐</span> Goal kicks: 15+ reps, this week's technique focus executed correctly</li>
+      <li><span class="check-box">☐</span> Overarm throw accuracy — tracked zone hits</li>
+      <li><span class="check-box">☐</span> Driven passes — both feet attempted</li>
+      <li><span class="check-box">☐</span> Punt maintenance — 10 reps, placement to target zone</li>
+      <li><span class="check-box">☐</span> Partner OR Solo block complete</li>
+      <li><span class="check-box">☐</span> Cool-down: shoulder + hip stretches done</li>
+      <li><span class="check-box">☐</span> Note: any wrist/shoulder soreness after diving?</li>
+    </ul>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     PHASES
+═══════════════════════════════════════════════ -->
+<section class="sec" id="phases">
+  <h2 class="sec-title">8-Week Periodization</h2>
+  <p class="sec-intro">Each phase builds on the previous. See the "Coach Focus" note each week — bring that specific ask to Thursday GK training. The plan gives you the repetition; your coach gives you the technical feedback you can't get solo.</p>
+
+  <div class="phase-card phase-build">
+    <div class="phase-top">
+      <span class="phase-label" style="color:var(--blue)">Phase 1 — Foundation</span>
+      <span class="phase-weeks">Weeks 1–3</span>
+    </div>
+    <p class="phase-focus">Build the movement patterns correctly before adding intensity. Week 1 is deliberately light — establish baselines, not PRs.</p>
+    <div class="phase-blocks">
+      <div class="phase-block-row">
+        <span class="phase-block-name">Pre-Practice</span>
+        <span class="phase-block-detail">Week 1 = 20 min only. Progress to 25 min by Week 2, 30 min by Week 3. Low-to-moderate intensity (RPE 5–6). Wide stance drill and collapse dive mechanics are the priority — get these right now before layering on difficulty.</span>
+      </div>
+      <div class="phase-block-row">
+        <span class="phase-block-name">Plyometrics</span>
+        <span class="phase-block-detail">60–80 total foot contacts across Monday + Wednesday pre-practice (combined). Stick landings 1 second. Do NOT add tuck jumps yet. Foundation volume only.</span>
+      </div>
+      <div class="phase-block-row">
+        <span class="phase-block-name">Weekend</span>
+        <span class="phase-block-detail">Goal kick isolation: Week 1 = ankle lock drill only. Week 2 = plant foot placement drill only. Week 3 = approach angle. No integration yet. 15 kicks per session. Distribution maintenance as written.</span>
+      </div>
+      <div class="phase-block-row">
+        <span class="phase-block-name">1v1 Work</span>
+        <span class="phase-block-detail">Body shape practice only (pre-practice Wed). Distance call verbalization drills. No live 1v1 scenarios yet — learn the framework first.</span>
+      </div>
+      <div class="phase-block-row">
+        <span class="phase-block-name">Baseline Test</span>
+        <span class="phase-block-detail">At end of Week 1 (weekend session): measure lateral dive reach from standing, standing broad jump, T-test time. Record in Goals tab. This is a baseline, not a performance — go at 70%.</span>
+      </div>
+      <div class="phase-block-row">
+        <span class="phase-block-name">Coach Focus</span>
+        <span class="phase-block-detail">"I'm working on wider set position and collapse dive mechanics this week — can we reinforce that in our session? Specifically the near-side leg sweep and bottom-hand positioning."</span>
+      </div>
+    </div>
+    <div class="phase-highlight">Week 1 pre-practice is 20 minutes, intentionally. The goal is a successful first week, not a hard week. Build the habit of arriving early before building the intensity of the session.</div>
+  </div>
+
+  <div class="phase-card phase-peak">
+    <div class="phase-top">
+      <span class="phase-label" style="color:var(--green)">Phase 2 — Development</span>
+      <span class="phase-weeks">Weeks 4–6</span>
+    </div>
+    <p class="phase-focus">Push intensity and add complexity to movement patterns. Live 1v1 work starts. Extension diving with placement variation. Peak training load in Weeks 5–6.</p>
+    <div class="phase-blocks">
+      <div class="phase-block-row">
+        <span class="phase-block-name">Pre-Practice</span>
+        <span class="phase-block-detail">Full 25–30 min. RPE 7–8. Add reaction elements to footwork: self-cued direction changes (close eyes briefly, open and shuffle to a random cone), random cone touches. Wednesday: add tuck jumps to plyometric block.</span>
+      </div>
+      <div class="phase-block-row">
+        <span class="phase-block-name">Plyometrics</span>
+        <span class="phase-block-detail">Progress to 100–120 total foot contacts across Mon + Wed. Add tuck jumps on Wednesday (2 × 4). Maintain stick landing quality — if stick landings are getting sloppy, reduce volume before increasing it.</span>
+      </div>
+      <div class="phase-block-row">
+        <span class="phase-block-name">Weekend</span>
+        <span class="phase-block-detail">Goal kicks: Week 4 = integrate ankle lock + plant foot together. Week 5 = add approach angle. Week 6 = full technique integration at progressive distances (add 5 yards). Extension diving: increase placement variation and speed of serve.</span>
+      </div>
+      <div class="phase-block-row">
+        <span class="phase-block-name">1v1 Work</span>
+        <span class="phase-block-detail">Live 1v1 scenarios with Dad start in Week 4 (partner weekend only). Eli closes when ball is in transit, sets when Dad regains control, executes framework. 6–8 live reps. Phase 2 is when this becomes game-realistic.</span>
+      </div>
+      <div class="phase-block-row">
+        <span class="phase-block-name">Mid-Point Test</span>
+        <span class="phase-block-detail">At end of Week 4 (weekend session): re-test lateral dive reach, standing broad jump, T-test. Compare to baseline. You should see noticeable improvements in lateral reach by now from the plyometric adaptation.</span>
+      </div>
+      <div class="phase-block-row">
+        <span class="phase-block-name">Coach Focus</span>
+        <span class="phase-block-detail">"I'm working on 1v1 decision-making — can we include breakaway scenarios this week? Specifically practicing the close-down timing and which technique to use at different distances."</span>
+      </div>
+    </div>
+    <div class="phase-highlight">Weeks 5–6 are your peak training weeks. You may feel tired on Thursday double-session days — that's expected. If Wednesday pre-practice is affecting Thursday quality, drop Wednesday to mobility-only that week. Thursday GK coaching is higher priority than Wednesday supplemental.</div>
+  </div>
+
+  <div class="phase-card phase-taper1">
+    <div class="phase-top">
+      <span class="phase-label" style="color:var(--amber)">Phase 3 — Sharpening</span>
+      <span class="phase-weeks">Weeks 7–8</span>
+    </div>
+    <p class="phase-focus">Maintain intensity, reduce volume. Trust the work. Build confidence, not fitness — the fitness is already built.</p>
+    <div class="phase-blocks">
+      <div class="phase-block-row">
+        <span class="phase-block-name">Pre-Practice</span>
+        <span class="phase-block-detail">Reduce to 20 min. Cut 1 set from each plyometric exercise. Maintain RPE 8 intensity on the reps that remain. Full warm-up and prehab still included — don't cut corners on the bookends.</span>
+      </div>
+      <div class="phase-block-row">
+        <span class="phase-block-name">Plyometrics</span>
+        <span class="phase-block-detail">Monday only (drop Wednesday plyometrics entirely). Maintain intensity, 1 set per exercise only. Focus on quality over quantity — this is your last heavy plyometric week.</span>
+      </div>
+      <div class="phase-block-row">
+        <span class="phase-block-name">Weekend</span>
+        <span class="phase-block-detail">Simulate tryout demands: distribution circuit under time pressure, goal kicks to tight accuracy targets (2-yard zone), confidence-building drills with high success rate. High-success-rate reps, not maximum difficulty.</span>
+      </div>
+      <div class="phase-block-row">
+        <span class="phase-block-name">Final Test</span>
+        <span class="phase-block-detail">At end of Week 7: re-test lateral dive reach, broad jump, T-test. This is your final progress measure before the taper. The numbers should reflect 6 weeks of adaptation.</span>
+      </div>
+      <div class="phase-block-row">
+        <span class="phase-block-name">Coach Focus</span>
+        <span class="phase-block-detail">"Tryouts are in 2 weeks — can we simulate tryout-format drills? Specifically short high-volume shot-stopping, a 1v1 breakaway rep, and a few high-ball claims under pressure."</span>
+      </div>
+    </div>
+    <div class="phase-highlight">NO new exercises or techniques in Weeks 7 or 8. If something isn't working, your job is not to fix it in the last 2 weeks — your job is to trust the patterns you've built and execute what you know.</div>
+  </div>
+
+  <div class="phase-card phase-comp">
+    <div class="phase-top">
+      <span class="phase-label" style="color:var(--purple)">Phase 4 — Taper</span>
+      <span class="phase-weeks">Final 7–10 days before tryout</span>
+    </div>
+    <p class="phase-focus">100% frequency, ~90% intensity, ~50% volume. Feel sharp, not tired. The work is done — this phase is about arriving ready, not adding more.</p>
+    <div class="phase-blocks">
+      <div class="phase-block-row">
+        <span class="phase-block-name">Pre-Practice</span>
+        <span class="phase-block-detail">15 min only — FIFA 11+ Shoulder warm-up + footwork + light plyometrics (pogo jumps + 2 sets of lateral bounds only). No diving in pre-practice during taper.</span>
+      </div>
+      <div class="phase-block-row">
+        <span class="phase-block-name">Plyometrics</span>
+        <span class="phase-block-detail">Last plyo session: 7–10 days before tryout (coordinate with Thursday GK coach). After that, no plyometrics at all. This is not optional — plyometric fatigue accumulates and peaks 48–72 hours post-session.</span>
+      </div>
+      <div class="phase-block-row">
+        <span class="phase-block-name">Weekend</span>
+        <span class="phase-block-detail">Weekend before tryout: 20–30 min maximum. Goal kicks (10 reps, feel good) + light distribution only. No extension diving, no 1v1 intensity work. End the session feeling sharp, not depleted.</span>
+      </div>
+      <div class="phase-block-row">
+        <span class="phase-block-name">Final 48 hrs</span>
+        <span class="phase-block-detail">Light ball handling only — W-hand catches, reaction catches, a few self-serve high balls. Visualization. Mobility. Sleep. No new stimulus.</span>
+      </div>
+      <div class="phase-block-row">
+        <span class="phase-block-name">Coach Focus</span>
+        <span class="phase-block-detail">"Tryout is this week. Can we keep tonight's session clean and confidence-focused? I want to finish feeling good, not gassed." — Coordinate with GK coach to time the last heavy session 5–7 days before tryout.</span>
+      </div>
+    </div>
+    <div class="phase-highlight">The training is done. The adaptation happened in Weeks 3–6. The taper is how you make sure all that adaptation is available on tryout day. Showing up tired to a tryout wastes 8 weeks of work. Trust it.</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     GOALS
+═══════════════════════════════════════════════ -->
+<section class="sec" id="goals">
+  <h2 class="sec-title">Goal Benchmarks</h2>
+  <div class="callout blue">⏱ <strong>Test at the END of Week 1 to establish a baseline</strong> — this is not a performance test, it's a starting point. Re-test at end of Week 4 and end of Week 7. Use the results to track trajectory, not to judge current ability.</div>
+
+  <table class="bench">
+    <thead><tr><th>Metric</th><th>Tryout Target</th></tr></thead>
+    <tbody>
+      <tr><td>Lateral dive reach (from set position, both sides)</td><td class="tgt">Consistent improvement from baseline by Week 7</td></tr>
+      <tr><td>Standing broad jump</td><td class="tgt">Baseline Week 1 → +5–10% by Week 7</td></tr>
+      <tr><td>T-test time</td><td class="tgt">Baseline Week 1 → improve by Week 7</td></tr>
+      <tr><td>Goal kick height to 20 yards</td><td class="tgt">Consistently airborne, correct trajectory by Week 4</td></tr>
+      <tr><td>Goal kick accuracy (2-yard zone at 25 yards)</td><td class="tgt">6/10 in zone by Week 6</td></tr>
+      <tr><td>Collapse dive — ball contacts ground first</td><td class="tgt">Consistent every rep, both sides</td></tr>
+      <tr><td>Overarm throw accuracy (20-yard target)</td><td class="tgt">7/10 within 2 yards of cone</td></tr>
+      <tr><td>1v1 distance call (verbal)</td><td class="tgt">Correct technique name every rep, no hesitation</td></tr>
+    </tbody>
+  </table>
+
+  <div class="block-card" style="margin-top:18px">
+    <div class="block-title">8-Week Peaking Timeline</div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;font-size:.85rem">
+      <div><strong style="color:var(--blue)">Weeks 1–3</strong> <span style="color:var(--muted)">— Foundation. Stance habits rebuilding. Goal kick contact quality improving. No visible game impact yet — the changes are at the movement pattern level. This is normal.</span></div>
+      <div><strong style="color:var(--green)">Weeks 4–6</strong> <span style="color:var(--muted)">— Development peak. Lateral dive range noticeably wider. Goal kicks getting height and accuracy. Live 1v1 decision-making improving. Peak training load.</span></div>
+      <div><strong style="color:var(--amber)">Weeks 7–8</strong> <span style="color:var(--muted)">— Sharpening. Movement quality at its highest. Volume drops deliberately. Goal kicks approaching full technique integration. Feel sharp, not tired.</span></div>
+      <div><strong style="color:var(--purple)">Final 10 days</strong> <span style="color:var(--muted)">— Taper. Maintain frequency and intensity, cut volume to 50%. The work is done. Arrive to tryouts feeling fast, sharp, and confident.</span></div>
+    </div>
+  </div>
+
+  <div class="block-card" style="margin-top:18px">
+    <div class="block-title">Progress Tracking</div>
+    <p style="font-size:.79rem;color:var(--muted);margin-bottom:10px;font-style:italic">Test at END of Week 1 (baseline), Week 4, and Week 7. Week 1 is a baseline — don't try to perform, just measure.</p>
+    <table class="track-table">
+      <thead><tr><th>Metric</th><th>Week 1 Baseline</th><th>Week 4</th><th>Week 7</th></tr></thead>
+      <tbody>
+        <tr><td>Lateral dive reach — Left (measured)</td><td class="track-input">_______</td><td class="track-input">_______</td><td class="track-input">_______</td></tr>
+        <tr><td>Lateral dive reach — Right (measured)</td><td class="track-input">_______</td><td class="track-input">_______</td><td class="track-input">_______</td></tr>
+        <tr><td>Standing broad jump</td><td class="track-input">_______</td><td class="track-input">_______</td><td class="track-input">_______</td></tr>
+        <tr><td>T-test time</td><td class="track-input">_______</td><td class="track-input">_______</td><td class="track-input">_______</td></tr>
+        <tr><td>Goal kick — in-zone accuracy (x/10 at 25 yds)</td><td class="track-input">_______</td><td class="track-input">_______</td><td class="track-input">_______</td></tr>
+        <tr><td>Overarm throw accuracy (x/10 at 20 yds)</td><td class="track-input">_______</td><td class="track-input">_______</td><td class="track-input">_______</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="block-card" style="margin-top:18px">
+    <div class="block-title">Height &amp; Positioning Note</div>
+    <p style="font-size:.83rem;color:var(--text)">At 5'7", you're below average for GK at ECNL level — but you're 15 and still growing. The plan already accounts for this:</p>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px;font-size:.83rem">
+      <div>🟢 <strong style="color:var(--green)">Biomechanical advantage:</strong> Lower center of gravity accelerates lateral dive mechanics. The physics actually favor you on low saves.</div>
+      <div>🔵 <strong style="color:var(--blue)">Highest-leverage compensatory skill:</strong> Positioning intelligence. Come 1–2 yards off the line for close-range threats to narrow the visible target. Stay within 1–2 steps of the goal line for long-range threats. A well-positioned shorter GK covers more net than a poorly-positioned taller one.</div>
+      <div>🟣 <strong style="color:var(--purple)">Ask your Thursday coach:</strong> Positioning drills — specifically where to set your starting position based on ball location and distance. This is the highest-leverage compensatory skill you can develop in the next 8 weeks.</div>
+    </div>
+  </div>
+
+  <div class="callout amber" style="margin-top:18px">
+    🚨 <strong>Load monitoring — watch for these signals:</strong> Persistent shoulder or wrist soreness after diving sessions · Reduced willingness to dive fully (body protecting itself) · Hip or groin tightness that doesn't resolve after warm-up · Noticeably lower jump height or sluggish movement in pre-practice · Low energy on Thursday double-session days. <strong>If 2 or more of these appear in the same week → drop Wednesday pre-practice to 10-min mobility only and reassess.</strong>
+  </div>
+</section>
+
+<script>
+(function(){
+  // Nav tabs
+  document.querySelectorAll('.nav-tab').forEach(t=>{
+    t.addEventListener('click',()=>{
+      document.querySelectorAll('.nav-tab').forEach(x=>x.classList.remove('on'));
+      document.querySelectorAll('.sec').forEach(x=>x.classList.remove('on'));
+      t.classList.add('on');
+      document.getElementById(t.dataset.sec).classList.add('on');
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+  // Day tabs (pre-practice)
+  document.querySelectorAll('.day-tab').forEach(t=>{
+    t.addEventListener('click',()=>{
+      document.querySelectorAll('.day-tab').forEach(x=>x.classList.remove('on'));
+      document.querySelectorAll('.pre-panel').forEach(x=>x.classList.remove('active'));
+      t.classList.add('on');
+      document.querySelector('.pre-panel[data-day="'+t.dataset.target+'"]').classList.add('active');
+    });
+  });
+  // Fork tabs (weekend partner/solo)
+  document.querySelectorAll('.fork-tab').forEach(t=>{
+    t.addEventListener('click',()=>{
+      const fork = t.dataset.fork;
+      // Update tab states
+      document.querySelectorAll('.fork-tab').forEach(x=>{
+        x.classList.remove('partner-on','solo-on');
+      });
+      if(fork==='partner') t.classList.add('partner-on');
+      else t.classList.add('solo-on');
+      // Show correct panel
+      document.querySelectorAll('.fork-panel').forEach(x=>x.classList.remove('active'));
+      document.querySelector('.fork-panel[data-fork="'+fork+'"]').classList.add('active');
+    });
+  });
+  // Video toggles
+  document.querySelectorAll('.vid-toggle').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const panel=btn.closest('.ex-item').querySelector('.ex-vid-panel');
+      const open=panel.classList.toggle('on');
+      btn.classList.toggle('on',open);
+      btn.textContent=open?'✕ Close':'▶ Video';
+    });
+  });
+})();
+</script>
+</body>
+</html>
