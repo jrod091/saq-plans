@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Isaiah's Plan — Attacking Midfielder Training</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d1117;--bg2:#161b22;--bg3:#1c2128;--border:#30363d;
+  --text:#e6edf3;--muted:#8b949e;
+  --green:#3fb950;--gbg:#1a2e1a;
+  --blue:#58a6ff;--bbg:#1a2233;
+  --amber:#e3b341;--abg:#2e2010;
+  --purple:#a371f7;--pbg:#1a1028;
+  --partner:#f78166;--parbg:#2e1510;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;font-size:15px;line-height:1.6}
+.hdr{background:linear-gradient(135deg,#1a1a0a,#0d1117 70%);border-bottom:2px solid var(--amber);padding:22px 16px 18px;text-align:center}
+.hdr-emoji{font-size:2rem}
+.hdr-title{font-family:'Barlow Condensed',sans-serif;font-size:2.2rem;font-weight:800;letter-spacing:.04em;color:#fff;text-transform:uppercase}
+.hdr-sub{font-size:.82rem;color:var(--muted);margin-top:4px;letter-spacing:.08em;text-transform:uppercase}
+.hdr-tag{display:inline-block;margin-top:10px;background:var(--abg);border:1px solid var(--amber);color:var(--amber);font-size:.76rem;font-weight:600;padding:3px 12px;border-radius:20px;letter-spacing:.06em}
+.nav{position:sticky;top:0;z-index:100;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav-tab{flex:0 0 auto;padding:13px 17px;font-family:'Barlow Condensed',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;user-select:none}
+.nav-tab.on{color:var(--amber);border-bottom-color:var(--amber)}
+.nav-tab:hover:not(.on){color:var(--text)}
+.sec{display:none;padding:20px 16px 60px;max-width:800px;margin:0 auto}
+.sec.on{display:block}
+.sec-title{font-family:'Barlow Condensed',sans-serif;font-size:1.55rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#fff;margin:22px 0 6px;padding-bottom:8px;border-bottom:2px solid var(--amber)}
+.sec-intro{color:var(--muted);margin-bottom:18px;font-size:.87rem}
+.sched{width:100%;border-collapse:collapse;font-size:.87rem;margin-top:10px}
+.sched th{background:var(--bg3);color:var(--muted);font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:8px 12px;text-align:left;border-bottom:1px solid var(--border)}
+.sched td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
+.sched tr:last-child td{border-bottom:none}
+.day-cell{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.9rem;white-space:nowrap}
+.t-practice{border-left:3px solid var(--blue)}
+.t-game{border-left:3px solid var(--amber);background:var(--abg)}
+.t-friday{border-left:3px solid var(--green);background:var(--gbg)}
+.t-weekend{border-left:3px solid var(--partner);background:var(--parbg)}
+.callout{border-radius:8px;padding:10px 14px;font-size:.81rem;margin:12px 0}
+.amber{background:var(--abg);border:1px solid var(--amber);color:#e6d4a0}
+.green{background:var(--gbg);border:1px solid var(--green);color:#a0d4b0}
+.blue{background:var(--bbg);border:1px solid var(--blue);color:#a0c4f4}
+.purple{background:var(--pbg);border:1px solid var(--purple);color:#c8b0ee}
+.partner-note{background:var(--parbg);border:1px solid var(--partner);border-radius:8px;padding:10px 14px;font-size:.81rem;color:#f4b5a8;margin:10px 0}
+.part-header{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:10px 14px;border-radius:8px;margin:16px 0 10px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.spd-header{background:var(--abg);border:1px solid var(--amber);color:var(--amber)}
+.ball-header{background:var(--gbg);border:1px solid var(--green);color:var(--green)}
+.wf-header{background:var(--bbg);border:1px solid var(--blue);color:var(--blue)}
+.str-header{background:var(--pbg);border:1px solid var(--purple);color:var(--purple)}
+.eli-header{background:var(--parbg);border:1px solid var(--partner);color:var(--partner)}
+.part-focus{font-size:.72rem;font-weight:500;letter-spacing:.03em;text-transform:none;color:var(--muted);font-family:'Barlow',sans-serif}
+.part-divider{border:none;border-top:2px dashed var(--border);margin:24px 0}
+.ex-table{border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.ex-item{border-top:1px solid var(--border)}
+.ex-item:first-child{border-top:none}
+.ex-item:nth-child(even) .ex-row{background:var(--bg3)}
+.ex-item:nth-child(even) .ex-desc{background:var(--bg3)}
+.ex-row{display:grid;grid-template-columns:1fr 140px;gap:4px;align-items:center;padding:9px 12px}
+.ex-name{font-weight:600;font-size:.85rem;color:var(--text);display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.ex-cell{display:flex;flex-direction:column;align-items:center;font-size:.83rem;color:var(--text)}
+.ex-lbl{font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:1px}
+.ex-desc{padding:0 12px 10px;border-top:1px dashed var(--border)}
+.ex-repdef{background:var(--bg3);border-radius:6px;padding:7px 10px;font-size:.81rem;margin-bottom:6px}
+.ex-repdef-lbl{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.68rem;color:var(--amber);letter-spacing:.08em;display:block;margin-bottom:2px}
+.ex-cue{font-size:.78rem;color:var(--muted);font-style:italic}
+.partner-table .ex-item:nth-child(even) .ex-row{background:#1f1510}
+.partner-table .ex-item:nth-child(even) .ex-desc{background:#1f1510}
+.partner-item .ex-repdef-lbl{color:var(--partner) !important}
+.block-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:16px;margin:18px 0}
+.block-title{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--amber);margin-bottom:6px}
+.block-note{font-size:.79rem;color:var(--muted);margin-bottom:11px;font-style:italic}
+.phase-card{border-radius:10px;padding:16px;margin:14px 0}
+.phase-build{background:#0d1a2e;border:1px solid var(--blue)}
+.phase-peak{background:var(--gbg);border:1px solid var(--green)}
+.phase-taper1{background:var(--abg);border:1px solid var(--amber)}
+.phase-comp{background:var(--pbg);border:1px solid var(--purple)}
+.phase-top{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px;flex-wrap:wrap;gap:6px}
+.phase-label{font-family:'Barlow Condensed',sans-serif;font-size:1.05rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.phase-weeks{font-family:'Barlow Condensed',sans-serif;font-size:.8rem;font-weight:700;color:var(--muted);letter-spacing:.05em}
+.phase-focus{font-size:.84rem;color:var(--text);margin-bottom:10px;font-style:italic}
+.phase-blocks{display:flex;flex-direction:column;gap:5px;margin-bottom:10px}
+.phase-block-row{display:grid;grid-template-columns:90px 1fr;gap:8px;font-size:.8rem}
+.phase-block-name{font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.04em;color:var(--muted);text-transform:uppercase;font-size:.72rem;padding-top:1px}
+.phase-block-detail{color:var(--text)}
+.phase-highlight{background:rgba(255,255,255,.04);border-radius:6px;padding:8px 10px;font-size:.79rem;color:var(--amber);border-left:3px solid var(--amber)}
+.track-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:10px}
+.track-table th{background:var(--bg3);color:var(--muted);font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:8px 12px;text-align:left;border-bottom:1px solid var(--border)}
+.track-table td{padding:10px 12px;border-bottom:1px solid var(--border)}
+.track-table tr:last-child td{border-bottom:none}
+.track-table tr:nth-child(even) td{background:var(--bg3)}
+.track-input{font-size:.8rem;color:var(--muted);font-style:italic}
+.bench{width:100%;border-collapse:collapse;font-size:.87rem;margin-top:10px}
+.bench th{background:var(--bg3);color:var(--muted);font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:8px 12px;text-align:left;border-bottom:1px solid var(--border)}
+.bench td{padding:10px 12px;border-bottom:1px solid var(--border)}
+.bench tr:last-child td{border-bottom:none}
+.bench tr:nth-child(even) td{background:var(--bg3)}
+.tgt{color:var(--amber);font-weight:600}
+.checklist{list-style:none;padding:0;margin:8px 0}
+.checklist li{padding:6px 0;border-bottom:1px solid var(--border);font-size:.84rem;display:flex;gap:8px;align-items:flex-start}
+.checklist li:last-child{border-bottom:none}
+.check-box{font-size:.8rem;color:var(--amber);flex-shrink:0;margin-top:2px}
+.role-badge{display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.06em;padding:2px 7px;border-radius:10px;flex-shrink:0;vertical-align:middle;text-transform:uppercase;margin-left:4px}
+.role-isaiah{background:var(--abg);color:var(--amber);border:1px solid var(--amber)}
+.role-eli{background:var(--gbg);color:var(--green);border:1px solid var(--green)}
+@media(min-width:560px){.sec{padding:20px 24px 60px}.hdr-title{font-size:2.6rem}}
+@media(max-width:460px){.ex-row{grid-template-columns:1fr 110px;gap:2px;padding:8px 10px}.ex-name{font-size:.8rem}.phase-block-row{grid-template-columns:70px 1fr}}
+</style>
+</head>
+<body>
+<header class="hdr">
+  <div class="hdr-emoji">⚡</div>
+  <div class="hdr-title">Isaiah's Plan</div>
+  <div class="hdr-sub">Attacking Midfielder · Speed · Ball Mastery · Technical Development</div>
+  <span class="hdr-tag">Age 13 · Striker / Wing / Mid · Jr. High → Varsity Development</span>
+</header>
+<nav class="nav">
+  <div class="nav-tab on" data-sec="schedule">Schedule</div>
+  <div class="nav-tab" data-sec="friday">Friday Session</div>
+  <div class="nav-tab" data-sec="weekend">Weekend</div>
+  <div class="nav-tab" data-sec="phases">Phases</div>
+  <div class="nav-tab" data-sec="goals">Goals</div>
+</nav>
+
+<section class="sec on" id="schedule">
+  <h2 class="sec-title">Weekly Schedule</h2>
+  <p class="sec-intro">Two games and two practices fill the school week — and the team handles its own warm-ups. <strong>Friday</strong> is the dedicated training window: full field, full session, no time pressure. <strong>Weekends</strong> are opportunistic alongside Eli's session when a field window opens.</p>
+  <table class="sched">
+    <thead><tr><th>Day</th><th>Activity</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr class="t-game"><td class="day-cell">Monday</td><td>Game · 6:15pm</td><td>Team warm-up handles game prep. Play hard — no supplemental work.</td></tr>
+      <tr class="t-practice"><td class="day-cell">Tuesday</td><td>Practice · 5:00–6:30pm</td><td>Stays after school — no field access before practice. Just practice.</td></tr>
+      <tr class="t-practice"><td class="day-cell">Wednesday</td><td>Practice · 5:00–6:30pm</td><td>Same — no pre-practice field access. Just practice.</td></tr>
+      <tr class="t-game"><td class="day-cell">Thursday</td><td>Game · 6:15pm</td><td>Team warm-up handles game prep. Play hard — no supplemental work.</td></tr>
+      <tr class="t-friday"><td class="day-cell">Friday</td><td>🟢 Dedicated Training · 45–60 min</td><td>Open field, full session. Ball mastery + weak foot + speed + strength. See Friday tab.</td></tr>
+      <tr class="t-weekend"><td class="day-cell">Sat / Sun</td><td>Family soccer / siblings' games</td><td>🟠 Opportunistic 45–60 min when a field window opens. Syncs with Eli's session.</td></tr>
+    </tbody>
+  </table>
+  <div class="callout green" style="margin-top:18px">
+    🟢 <strong>Friday is the main event.</strong> It's a full standalone training session — full field access, no teammates arriving to cut it short, no game after it. This is where the deliberate development work happens each week.
+  </div>
+  <div class="callout amber" style="margin-top:8px">
+    🟠 <strong>Weekend sessions sync with Eli's plan.</strong> First ~25 minutes you each work independently on your own priority blocks (Isaiah: sprints + weak foot shooting / Eli: goal kicks + distribution). Then the last 20–25 min are a shared partner block — you attacking, Eli in goal — training both simultaneously. See the Weekend tab.
+  </div>
+  <div class="callout" style="background:var(--bg2);border:1px solid var(--border);font-size:.81rem;color:var(--muted);margin-top:8px">
+    📈 <strong>Load check.</strong> Two practices + two games ≈ 8–9 hrs/week. Friday (60 min) + weekend session (60 min) = ~10.5–11 hrs total. Safe ceiling for age 13 is 12–13 hrs. You have headroom — but if Friday leaves heavy legs heading into the weekend, trim the speed block first and keep ball mastery and weak foot.
+  </div>
+  <div class="block-card" style="margin-top:18px">
+    <div class="block-title">The 5 Gaps This Plan Targets</div>
+    <div class="block-note">Every session traces back to one of these five areas.</div>
+    <div style="display:flex;flex-direction:column;gap:10px;font-size:.85rem">
+      <div><strong style="color:var(--amber)">1 · Top-End Speed</strong> <span style="color:var(--muted)">— Acceleration mechanics, hip drive, arm action. The first 5–10 yards is the most game-impactful speed type for your position.</span></div>
+      <div><strong style="color:var(--green)">2 · Ball Mastery</strong> <span style="color:var(--muted)">— Close control moves under pressure, first touch to advantage, 1v1 skill sequences. Technical ceiling raises your ceiling in every other area.</span></div>
+      <div><strong style="color:var(--blue)">3 · Foot Speed + Footwork</strong> <span style="color:var(--muted)">— Lateral agility, change-of-direction mechanics, quick feet in tight spaces. Different from top-end speed — this is what beats defenders in 2 yards.</span></div>
+      <div><strong style="color:var(--purple)">4 · Strength On + Off Ball</strong> <span style="color:var(--muted)">— Shielding posture, low center of gravity, physical duels. Bodyweight only at 13 — body awareness and position, not raw power.</span></div>
+      <div><strong style="color:var(--partner)">5 · Weak Foot</strong> <span style="color:var(--muted)">— Passes, shots, and first touch with your non-dominant foot. Consistent dedicated reps compound fast. Most players never do this — it's the fastest route to differentiation at your level.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="friday">
+  <h2 class="sec-title">Friday Session</h2>
+  <p class="sec-intro">45–60 min · Open field · No game today, no practice before this, full weekend to recover. This is the primary development window of the week. Full session: warm-up → ball mastery → weak foot → speed + footwork → strength → cool-down.</p>
+  <div class="callout green">✅ <strong>Protect this session.</strong> Friday is the ideal day — legs recovered from Thursday's game, full time ahead. If a conflict comes up, this is the last thing to skip, not the first.</div>
+
+  <div class="part-header spd-header">🏃 Dynamic Warm-Up · 5 min <span class="part-focus">Every Friday — before any ball work</span></div>
+  <div class="ex-table">
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Jog + High Knees + Butt Kicks</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>2 min</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Easy jog 20 yds. High knees back (drive knee to hip height, quick arms). Butt kicks there (heels flick to glutes). Repeat once. Gradual increase in effort — activation, not conditioning.</div>
+        <div class="ex-cue">💡 Quick rhythmic reps wake up the fast-twitch system before you ask it to perform. Don't skip this even if you feel warm.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">A-Skips + B-Skips</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>2 lengths each</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> A-Skip: march/skip with high knee drive to 90°, push ball of opposite foot into ground. B-Skip: A-skip but extend lower leg forward at peak of knee drive, then punch it down. 2 lengths each (~20 yds).</div>
+        <div class="ex-cue">💡 A-skip trains knee drive. B-skip trains the pawback. Both are sprint mechanics done slowly so you can feel them — they directly carry over to the acceleration block later in this session.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Hip Flexor Lunge Walk + Rotation</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>1 min</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Walking lunges — step forward into a deep lunge, hold 1 sec at the bottom, rotate torso toward your front knee, stand up, step forward with the other foot. 10 yds forward and back. The rotation is the key component.</div>
+        <div class="ex-cue">💡 Opens hip flexors of the trailing leg — the push-off leg for sprints. Tight hip flexors are the most common limiter of acceleration range at your age.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="part-divider"></div>
+  <div class="part-header ball-header">⚽ Ball Mastery Circuit · 10 min <span class="part-focus">Both feet — quality first, speed second</span></div>
+  <div class="callout green">📊 <strong>Never shorten this block.</strong> If time is short on a given Friday, trim the speed block — not this one. Technical ceiling is the hardest thing to build and the most impactful at 13.</div>
+  <div class="ex-table">
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Sole Roll Figure-8</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>2 min</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> 2 cones 3 yds apart. Sole-roll ball in a figure-8 around both cones — alternate feet on each half of the loop. Continuous, fluid, increasing speed. After the first minute: look up while you do it.</div>
+        <div class="ex-cue">💡 Shielding skill + first-touch skill. Eyes up after minute 1 is non-negotiable — ball mastery that only works while staring at the ball isn't game-ready.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Inside-Outside Chop Zigzag</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>2 min</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> 4 cones 2 yds apart in a line. Zigzag through — inside chop at one cone, outside chop at the next, alternating. Both feet taking turns. Last 30 seconds: over-emphasize the outside chop only.</div>
+        <div class="ex-cue">💡 The outside chop creates the most space in 1v1 situations because defenders don't expect it. Over-emphasize it every session in the last 30 seconds.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">L-Turn Combination</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>10 reps each foot</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Approach cone at jog pace. Plant inside foot beside ball. Sole of other foot stops ball. Drag back. Push 90° with inside of plant foot. Burst 3 yards. 10 reps per foot, alternate exit direction each rep.</div>
+        <div class="ex-cue">💡 Every rep ends with a 3-yard burst — not a jog, an actual acceleration. The burst is the payoff of the turn. The move only works in games when followed by speed.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Cruyff Turn</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>8 reps each foot</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Approach cone as if about to cross or shoot. Wind up the action (fake). Drag ball behind standing foot with inside of shooting foot. Pivot 180°. Push into space with other foot. Accelerate. 8 reps each foot as the dragging foot.</div>
+        <div class="ex-cue">💡 Exaggerate the fake every single rep — lean into the cross motion before dragging. No convincing fake = no space from the turn. Build the habit of selling the fake even in solo practice.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Scissors / Step-Over</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>8 reps each foot</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Approach cone at jog. Step one foot over the ball in a circular arc (inside to outside). Push ball away with outside of the other foot and accelerate. 8 reps leading with each foot. Once clean: add a double-scissors before the push.</div>
+        <div class="ex-cue">💡 The step-over works through weight commitment — if your body doesn't shift toward the fake foot, the move doesn't sell. Commit your weight before pushing away.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="part-divider"></div>
+  <div class="part-header wf-header">🦶 Weak Foot Development · 10 min <span class="part-focus">Non-dominant foot only — all 10 minutes</span></div>
+  <div class="callout blue">📐 <strong>Ten dedicated weak foot minutes every Friday.</strong> Most players at your level use their dominant foot 95% of the time. Consistent weekly reps compound — but only if you resist switching to your strong foot when it gets difficult.</div>
+  <div class="ex-table">
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Wall Pass — Weak Foot Only</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>3 min</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> 4 yds from a wall or rebounder. Continuous weak foot passes — control the return, reset, pass again. Minute 1: aim at the wall. Minute 2: hit a target spot. Minute 3: increase pace, one-touch off the return if possible.</div>
+        <div class="ex-cue">💡 Ankle locked and toe down — same mechanics as your strong foot but your brain works harder to send the signal. The first 20 passes feel wrong. By rep 40 it clicks. Each week the click comes sooner.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Receive + Redirect — Weak Foot First Touch</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>20 reps</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Roll ball gently 2 yds ahead. Control with weak foot inside — redirect 45° into space. Push 1 yd that direction, jog to catch up, repeat in the other direction. 20 total. Progress to receiving from a wall rebound in Week 3.</div>
+        <div class="ex-cue">💡 First touch puts the ball where you want to go next, not just in front of you. The 45° redirect builds this habit. With your strong foot it's automatic. With your weak foot you have to think — and that thinking eventually becomes automatic too.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Weak Foot Drive — Distance Strikes</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>10 strikes · record ratio</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Ball stationary 10 yds from wall or target cone. Gentle approach angle. Drive with laces, weak foot only. 10 strikes. Count "clean" contacts (straight line, pace) vs "mishits" (side-spin, scoop, veer). Record clean/10 every Friday.</div>
+        <div class="ex-cue">💡 Track the ratio every week. Watching it climb from 4/10 to 8/10 over 8 weeks is the best motivation you'll find. A clean strike means tight ankle, firm foot, contact just below ball center.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Weak Foot L-Turn + Push</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>8 reps</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> L-turn mechanics — but now your weak foot is the dragging and pushing foot. Approach cone, sole-drag back with weak foot, push 90° with weak foot inside surface, burst away. 8 reps, alternating exit direction.</div>
+        <div class="ex-cue">💡 When you can execute the L-turn with either foot, you can receive and turn in any direction regardless of which foot the ball arrives on. That's genuine two-footedness in a game-realistic sense.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="part-divider"></div>
+  <div class="part-header spd-header">⚡ Speed + Footwork · 15 min <span class="part-focus">Agility timed every Friday · Acceleration mechanics</span></div>
+  <div class="callout amber">⚡ <strong>Record T-drill and Pro Agility every Friday.</strong> These are your primary speed benchmarks — improvement over 8 weeks will be clear and measurable. Full rest between every sprint rep.</div>
+  <div class="ex-table">
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">T-Drill ⏱</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>5 timed reps</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Start cone, top cone 10 yds ahead, side cones 5 yds each side. Sprint 10 yds, shuffle left 5 yds (touch), shuffle right 10 yds (touch), shuffle left to center, backpedal 10 yds to start. Time each rep. 5 reps, 30 sec rest. Record best.</div>
+        <div class="ex-cue">💡 Baseline 13yr soccer: 11–12 sec. Under 10.5 is excellent. 8-week goal: drop 0.5–1 sec from your baseline.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">5-10-5 Pro Agility ⏱</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>5 timed reps</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> 3 cones 5 yds apart. Start center. Sprint 5 yds right (touch), sprint 10 yds left (touch), sprint 5 yds back through center. 5 reps, alternate starting direction, 30 sec rest. Record best.</div>
+        <div class="ex-cue">💡 Drive LOW into every cut — hips drop, not rise. A good cut sounds sharp on turf, not a skid. That's the mechanics difference between a trained and untrained change of direction.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Falling Starts</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>6 × 10 yds</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Stand tall, feet together. Let your body fall forward past the tipping point. Catch with explosive first step. Drive arms hard from rep 1. Sprint 10 yds full effort. Walk back. 6 reps, 30 sec rest each.</div>
+        <div class="ex-cue">💡 The fall forces correct forward lean before your foot leaves the ground. Most players start too upright. Alternate which foot catches the fall each rep.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Reaction Starts — Visual Cue</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>6 × 10 yds</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Stand in athletic position. Drop phone or ball from waist height — sprint 10 yds the instant it hits the ground. Vary starting position each rep: facing forward, facing sideways, facing away from sprint direction. 6 reps, 20 sec rest.</div>
+        <div class="ex-cue">💡 Facing-away reps are hardest and most game-realistic. Most sprints in a real game start from a non-ideal body position — pivot, open hips, accelerate. This is the specific reaction you're training.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Quick Feet Cone Touch ⏱</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>3 × 10 sec · count</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> 5 cones 1 yd apart. Alternate toe-touches as fast as possible — left on 1, right on 2, etc. 10 sec flat-out, 15 sec rest. 3 sets. Count touches per set. Record best.</div>
+        <div class="ex-cue">💡 Stay on toes the entire time. Heels touching = you've slowed down. Arms drive to match feet — this is often the cue that unlocks a faster set.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Box Drill — With Ball</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>3 each direction</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> 4 cones in a 5-yd square. Sprint to top-left, shuffle to top-right, backpedal to bottom-right, shuffle to start — ball at feet through every movement. 3 clockwise, 3 counter-clockwise.</div>
+        <div class="ex-cue">💡 Tight control = faster movement. Sloppy touches slow you down — this is the drill that transfers most directly to close-quarter game situations under ball pressure.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="part-divider"></div>
+  <div class="part-header str-header">💪 Strength + Shielding · 5 min <span class="part-focus">Body position · Low CoG · On-ball physicality</span></div>
+  <div class="callout purple">🛡️ At 13, strength training means <em>body awareness</em> — not weight rooms. These exercises teach the posture and position that make you hard to dispossess. More coachable than raw power and pays off immediately in games.</div>
+  <div class="ex-table">
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Shield Stance Holds</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>5 × 10 sec</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Ball pinned under sole of foot. Wide low stance: feet shoulder-width+, knees ~90°, chest forward, arms out. Hold 10 sec. 5 holds, alternate feet. Feel even weight distribution across both feet.</div>
+        <div class="ex-cue">💡 This is the position you hold with a defender pressing from behind. If you're falling easily, your weight is too high — drop your hips lower.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Push-Up Max Reps</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>2 × to failure</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Standard push-ups to failure — chest to ground, body straight, elbows 45° from body. 2 sets. Record max reps every Friday. Rest 30 sec between sets.</div>
+        <div class="ex-cue">💡 Track this number weekly. Upper body strength is what wins shoulder duels. Every 5 extra push-ups = noticeably harder shoulder barge in games.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Single-Leg Squat Hold</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>5 × 10 sec each leg</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Stand on one leg, lower into a quarter squat. Hold 10 sec, knee tracking over toes (not caving inward). 5 holds each leg.</div>
+        <div class="ex-cue">💡 Sprinting and cutting are single-leg movements. If knee caves inward, your hip abductors are weak — and that shows up as wobbling after cuts and increased injury risk.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="part-divider"></div>
+  <div class="part-header ball-header">🌬️ Cool-Down · 5 min <span class="part-focus">Every Friday — especially after speed work</span></div>
+  <div class="ex-table">
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Light Jog + Walking</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>2 min</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Easy jog 1 min, walk 1 min. Heart rate down, breathing relaxed before stretching.</div>
+        <div class="ex-cue">💡 Sprint work creates lactate. An easy 2-min cool-down clears it faster and reduces next-day soreness going into the weekend.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Hip Flexor + Hamstring + Quad</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>3 min</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Hip flexor lunge (30 sec each side). Hamstring stretch — foot on cone, lean forward (20 sec each side). Standing quad pull (20 sec each side). Seated groin stretch (30 sec). Ankle circles 10 each foot.</div>
+        <div class="ex-cue">💡 Sprint work heavily loads hip flexors and hamstrings — the two most common strain sites for attackers. 3 minutes here is the minimum investment to keep you available for the weekend session.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block-card" style="margin-top:18px">
+    <div class="block-title">Friday Session Checklist</div>
+    <ul class="checklist">
+      <li><span class="check-box">☐</span> Dynamic warm-up done including A/B skips</li>
+      <li><span class="check-box">☐</span> Ball mastery: Cruyff fake convincing, not just a step · Eyes up on sole roll after 1 min</li>
+      <li><span class="check-box">☐</span> Weak foot wall passes: 3 full minutes, no switching to strong foot</li>
+      <li><span class="check-box">☐</span> Weak foot drive: _____ clean / 10 (record it)</li>
+      <li><span class="check-box">☐</span> T-Drill best: _____ sec · Pro Agility best: _____ sec (record both)</li>
+      <li><span class="check-box">☐</span> Quick feet best count: _____ / 10 sec (record it)</li>
+      <li><span class="check-box">☐</span> Push-up max: _____ reps (record it)</li>
+      <li><span class="check-box">☐</span> Cool-down: hip flexors + hamstrings stretched</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec" id="weekend">
+  <h2 class="sec-title">Weekend Session</h2>
+  <p class="sec-intro">~45–60 min · Open field · Opportunistic — syncs with Eli's session at the same field. First 25 min are parallel independent blocks. Last 20–25 min are a shared partner block training both players simultaneously.</p>
+  <div class="callout amber">⚡ <strong>Structure:</strong> Sprint Development (15 min, parallel with Eli's goal kicks) → Weak Foot Shooting (10 min, parallel with Eli's distribution) → Eli + Isaiah Partner Block (20–25 min, shared) → Cool-down.</div>
+  <div class="callout" style="background:var(--bg2);border:1px solid var(--partner);color:#f4b5a8;font-size:.81rem;border-radius:8px;padding:10px 14px;margin:10px 0">
+    🤝 <strong>Timing:</strong> While Isaiah runs sprints, Eli does his goal kick block — both need open field, both work independently. While Isaiah shoots weak foot, Eli does distribution. Then they come together. Neither waits for the other.
+  </div>
+
+  <div class="part-header spd-header">⚡ Block 1 — Sprint Development · 15 min <span class="part-focus">Parallel with Eli's Goal Kick Block</span></div>
+  <div class="callout amber">📊 Full rest between every rep. Quality at 95–100% beats volume at 80%.</div>
+  <div class="ex-table">
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Falling Start Accelerations</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>5 × 10 yds</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Fall-and-catch start, arms drive, 10 yds full effort. Full walk-back rest. 5 reps to open the session. Reps 4–5 should feel faster than rep 1 as you warm up.</div>
+        <div class="ex-cue">💡 If later reps feel worse, rest periods are too short. Resist the urge to rush through them.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Acceleration Builds — 20 yds</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>4 × 20 yds</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> First 7 yds = 60%, next 7 yds = 85%, last 6 yds = 100%. Gradual ramp trains your ability to keep accelerating past the initial burst. Full walk rest between reps.</div>
+        <div class="ex-cue">💡 Goal: still accelerating at yard 20, not just holding speed from yard 10. In a game, that's the difference between closing a gap and opening one further.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Flying 10s ⏱</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>3 timed reps</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> 10-yd jog run-up to reach full stride. Sprint absolute hardest for the next 10 yds. Time only the flying segment. Full rest. 3 timed reps. Record fastest.</div>
+        <div class="ex-cue">💡 True top-end speed measurement — you're already at full stride when the clock starts. Track this every weekend. It's your clearest speed benchmark.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Ball Sprint Integration</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>4 reps</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Dribble 70% for 10 yds. Push ball 3 yds ahead (knock it past a defender). Burst 100% to recover. Control. Jog back. 2 reps dominant foot push, 2 reps weak foot push.</div>
+        <div class="ex-cue">💡 The weak foot push reps are the key ones. When that's reliable, you become genuinely unpredictable — no defender knows which way the knock is coming.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="part-divider"></div>
+  <div class="part-header wf-header">🦶 Block 2 — Weak Foot Shooting · 10 min <span class="part-focus">Parallel with Eli's Distribution Block · At real goal</span></div>
+  <div class="callout blue">📐 <strong>The only time all week shooting at a real goal with your weak foot.</strong> Friday builds the mechanics. This block is the product. Aim for specific spots — not just "at goal."</div>
+  <div class="ex-table">
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Stationary Weak Foot Drives</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>10 shots · 12 yds · record on-target</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Ball stationary 12 yds from goal. 30° approach angle. Drive into bottom corners — 5 shots bottom-left, 5 shots bottom-right. Count on-target. Record every weekend session.</div>
+        <div class="ex-cue">💡 Bottom corners are hardest for keepers to save. Aim there, not at the middle. The on-target count is your weekly weak foot shooting data point.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Inside-Foot Placement — Weak Foot</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>10 shots · 10 yds</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Inside surface of weak foot only. 5 shots near post, 5 far post. 10 yds out. Accuracy over power — completely.</div>
+        <div class="ex-cue">💡 A well-placed side-foot to the far post at 10 yds is harder to save than a powerful mishit anywhere else. Build accuracy first.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Moving Weak Foot Finish</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>10 shots</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Dribble from 20 yds, cut to weak foot side, shoot on the move. Shoot from wherever you arrive — don't wait for a perfect setup. 10 reps, different approach angle each time.</div>
+        <div class="ex-cue">💡 Most game-realistic drill in the block. Game finishes happen from irregular positions. If quality drops significantly on the move vs stationary, that's your primary gap.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="part-divider"></div>
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px;margin-top:6px">
+    <div style="font-family:'Barlow Condensed',sans-serif;font-size:.9rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--text);margin-bottom:4px">Block 3 — Shared Partner Session</div>
+    <div style="font-size:.79rem;color:var(--muted);margin-bottom:10px">Both players training simultaneously. Roles listed per exercise.</div>
+    <div style="display:flex;gap:10px;font-size:.8rem;margin-bottom:4px;flex-wrap:wrap">
+      <div style="background:var(--abg);border:1px solid var(--amber);border-radius:6px;padding:6px 10px;color:#e6d4a0"><strong>⚡ Isaiah</strong> — Attacker · Winger · Server</div>
+      <div style="background:var(--gbg);border:1px solid var(--green);border-radius:6px;padding:6px 10px;color:#a0d4b0"><strong>🧤 Eli</strong> — Goalkeeper · Defender · Distributor</div>
+    </div>
+  </div>
+
+  <div class="part-header eli-header">🤝 Block 3 — Eli + Isaiah · 20–25 min <span class="part-focus">Both players training simultaneously</span></div>
+  <div class="partner-note">🤝 <strong>Requires both players.</strong> If Eli is unavailable, use the Solo Finishing Block below. Every exercise gives both players genuine training value — mutual work, not one helping the other.</div>
+  <div class="ex-table partner-table">
+    <div class="ex-item partner-item">
+      <div class="ex-row">
+        <span class="ex-name">Isaiah Serves → Eli Extension Dives <span class="role-badge role-isaiah">Isaiah Serves</span><span class="role-badge role-eli">Eli Saves</span></span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>6 each side</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Isaiah stands 8–10 yds from Eli and rolls or underarm-throws balls just beyond Eli's collapse range. Eli executes power-step extension dives. Isaiah varies height and pace each serve (rolling, mid-height, shoulder-high) — aim for a specific spot on each serve. 6 each side.</div>
+        <div class="ex-cue">💡 <strong>Isaiah:</strong> Serve accuracy trains your throw-in precision. Vary height to give Eli a full range of dives. <strong>Eli:</strong> Watch Isaiah's arm angle for the direction cue, not the ball.</div>
+      </div>
+    </div>
+    <div class="ex-item partner-item">
+      <div class="ex-row">
+        <span class="ex-name">1v1 Full Speed — Isaiah Attacks <span class="role-badge role-isaiah">Isaiah Attacks</span><span class="role-badge role-eli">Eli Defends</span></span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>8 reps</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Isaiah starts 12 yds from goal with the ball. Eli in goal. Isaiah attacks at game speed. Eli uses his 1v1 framework. Full rest between reps. Isaiah must use a different ball mastery move each rep — no pure-pace runs allowed.</div>
+        <div class="ex-cue">💡 <strong>Isaiah:</strong> One skill move per rep, no exceptions. Rotate Cruyff, L-turn, outside chop, scissors. Pure speed isn't training. <strong>Eli:</strong> Call your technique name before executing.</div>
+      </div>
+    </div>
+    <div class="ex-item partner-item">
+      <div class="ex-row">
+        <span class="ex-name">Eli Rolls → Isaiah Weak Foot Finish <span class="role-badge role-eli">Eli Rolls</span><span class="role-badge role-isaiah">Isaiah Shoots</span></span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>10 reps × 2 sets</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Set A: Eli rolls to Isaiah's weak foot side from goal (15 yds out). Isaiah controls on weak foot, one touch, shoots weak foot only. 10 reps. Set B: Eli rolls to strong side — Isaiah must transfer and finish with weak foot. 10 reps.</div>
+        <div class="ex-cue">💡 <strong>Isaiah:</strong> Set B (strong-side receive, weak-foot finish) simulates a cross from the "wrong" side — finish to the far post. Hardest and most valuable weak foot drill in the plan. <strong>Eli:</strong> Vary roll pace to make Isaiah adjust control.</div>
+      </div>
+    </div>
+    <div class="ex-item partner-item">
+      <div class="ex-row">
+        <span class="ex-name">Eli Punts → Isaiah First Touch + Turn <span class="role-badge role-eli">Eli Serves</span><span class="role-badge role-isaiah">Isaiah Controls</span></span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>8 reps</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Eli punts or throws high ball for Isaiah 15–20 yds out. Isaiah controls (chest, thigh, or foot) directing it 2–3 yds into space. Second touch: drive and shoot. 8 reps, Eli varies height slightly each rep.</div>
+        <div class="ex-cue">💡 <strong>Isaiah:</strong> First touch dead at your feet lets a defender close. First touch into space keeps you free. <strong>Eli:</strong> This is your punt maintenance work — same quality you'd use in a game. Isaiah's first touch is your placement accuracy test.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="part-divider"></div>
+  <div class="part-header str-header">🟣 Solo Finishing Block · 20 min <span class="part-focus">Use when Eli is unavailable</span></div>
+  <div class="callout purple">🟣 <strong>Solo option</strong> — swap in for the Eli Partner Block when training alone after sprint and weak foot blocks.</div>
+  <div class="ex-table">
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Combination Finishing — Self Serve</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>10 reps varied</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Roll ball 5 yds to yourself, sprint onto it, one touch to set, finish. Vary: driven, placed inside, weak foot, outside foot, on the move. Name the finish type before each rep.</div>
+        <div class="ex-cue">💡 Deliberate variety beats random repetition. Naming the finish type before each rep makes it intentional.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Skill Move + Finish Sequence</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>10 reps</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Start 25 yds from goal. Dribble, execute one ball mastery move at a cone "defender" 12 yds out, finish. Different move each rep — Cruyff, L-turn, inside chop, outside chop, scissors. Never same move twice in a row.</div>
+        <div class="ex-cue">💡 Commit to the move as if the cone is real. A half-committed Cruyff against a cone becomes a half-committed Cruyff in a game.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Extra Weak Foot Shots</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>10 shots</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> 10 additional weak foot shots — 5 from 10 yds, 5 from 15 yds. Solo days get extra weak foot volume in place of the partner block.</div>
+        <div class="ex-cue">💡 Solo days are actually excellent weak foot volume days. Use the extra time intentionally.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="part-divider"></div>
+  <div class="part-header ball-header">🌬️ Cool-Down · 5 min <span class="part-focus">Every weekend session</span></div>
+  <div class="ex-table">
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Light Jog + Walking</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>2 min</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Easy jog 1 min, walk 1 min.</div>
+        <div class="ex-cue">💡 Sprint work creates lactate. An easy 2-min cool-down clears it faster and reduces next-day soreness.</div>
+      </div>
+    </div>
+    <div class="ex-item">
+      <div class="ex-row">
+        <span class="ex-name">Hip Flexor + Hamstring + Quad</span>
+        <span class="ex-cell"><span class="ex-lbl">Duration</span>3 min</span>
+      </div>
+      <div class="ex-desc">
+        <div class="ex-repdef"><span class="ex-repdef-lbl">WHAT =</span> Hip flexor lunge (30 sec each side). Hamstring stretch — foot on cone, lean forward (20 sec each side). Quad pull (20 sec each side). Seated groin (30 sec). Ankle circles 10 each foot.</div>
+        <div class="ex-cue">💡 Sprint work loads hip flexors and hamstrings. 3 minutes here prevents the soreness that could cost you availability in the week's games.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block-card" style="margin-top:18px">
+    <div class="block-title">Weekend Session Checklist</div>
+    <ul class="checklist">
+      <li><span class="check-box">☐</span> Sprint block: 5 falling starts + 4 builds + 3 flying 10s + 4 ball sprints</li>
+      <li><span class="check-box">☐</span> Flying 10 fastest: _____ sec (record it)</li>
+      <li><span class="check-box">☐</span> Weak foot shots on target: _____ / 10 (record it)</li>
+      <li><span class="check-box">☐</span> Partner block with Eli OR solo finishing block complete</li>
+      <li><span class="check-box">☐</span> 1v1 vs Eli: different skill move every rep</li>
+      <li><span class="check-box">☐</span> Cool-down done</li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec" id="phases">
+  <h2 class="sec-title">8-Week Training Structure</h2>
+  <p class="sec-intro">No imminent tryout for Isaiah — the 8 weeks is a focused development block. Phase 4 is a forward maintenance plan, not a taper. The 8-week template is designed to repeat.</p>
+
+  <div class="phase-card phase-build">
+    <div class="phase-top"><span class="phase-label" style="color:var(--blue)">Phase 1 — Foundation</span><span class="phase-weeks">Weeks 1–3</span></div>
+    <p class="phase-focus">Build technical habits before adding intensity. Learn what correct feels like — falling-forward in sprints, ankle lock in weak foot strikes, eyes-up in ball mastery. Establish baselines.</p>
+    <div class="phase-blocks">
+      <div class="phase-block-row"><span class="phase-block-name">Friday</span><span class="phase-block-detail">Week 1: RPE 5–6. Ball mastery at controlled speed — technique first, pace later. Speed block: falling starts and box drill only, skip reaction starts. Week 3: all blocks at full structure. 45 min max until Week 2.</span></div>
+      <div class="phase-block-row"><span class="phase-block-name">Weak Foot</span><span class="phase-block-detail">Wall passes and stationary shots only. Count clean contacts vs mishits every Friday and weekend. Measure honestly — you need a real starting number.</span></div>
+      <div class="phase-block-row"><span class="phase-block-name">Weekend</span><span class="phase-block-detail">Falling starts and 20-yd builds only — no flying 10s yet. Eli partner block at 70% speed (introduction, not competition). Verbalize what GK technique Eli is using so Isaiah can practice reading it.</span></div>
+      <div class="phase-block-row"><span class="phase-block-name">Baseline Test</span><span class="phase-block-detail">End of Week 1 (Friday or weekend): T-test, pro agility, flying 10, broad jump, weak foot clean-contact ratio. Starting numbers — not judgments, measurements.</span></div>
+    </div>
+    <div class="phase-highlight">Week 1 should feel manageable. Build the habit of showing up on Friday before building the intensity of the session.</div>
+  </div>
+
+  <div class="phase-card phase-peak">
+    <div class="phase-top"><span class="phase-label" style="color:var(--green)">Phase 2 — Development</span><span class="phase-weeks">Weeks 4–6</span></div>
+    <p class="phase-focus">Push intensity, add complexity. Reaction starts in. Flying 10s timed. 1v1s go full speed. Weak foot shifts from mechanics to application. Peak load weeks 5–6.</p>
+    <div class="phase-blocks">
+      <div class="phase-block-row"><span class="phase-block-name">Friday</span><span class="phase-block-detail">RPE 7–8 throughout. Full speed block including reaction starts. Ball mastery: add directional constraints — "only L-turns exiting left" — to force weak-side decisions. T-test and pro agility times should be dropping.</span></div>
+      <div class="phase-block-row"><span class="phase-block-name">Weak Foot</span><span class="phase-block-detail">Shift to moving weak foot work. Weak foot L-turn introduced. In games: target 3 weak foot passes per game, tracked mentally. No pressure — just count.</span></div>
+      <div class="phase-block-row"><span class="phase-block-name">Weekend</span><span class="phase-block-detail">Introduce flying 10s — time and record. Ball sprint integration adds weak foot push reps. Eli 1v1s full speed, skill move required every rep.</span></div>
+      <div class="phase-block-row"><span class="phase-block-name">Mid-Point</span><span class="phase-block-detail">End of Week 4: re-test T-test, pro agility, flying 10, weak foot ratio. Agility adaptation is the fastest to show — you should see clear movement by now.</span></div>
+    </div>
+    <div class="phase-highlight">Weeks 5–6 are peak load. If Friday leaves heavy legs heading into a game week, trim the speed block that Friday — keep ball mastery and weak foot in full.</div>
+  </div>
+
+  <div class="phase-card phase-taper1">
+    <div class="phase-top"><span class="phase-label" style="color:var(--amber)">Phase 3 — Consolidation</span><span class="phase-weeks">Weeks 7–8</span></div>
+    <p class="phase-focus">Reduce volume, maintain intensity. Trust the patterns. Apply new skills deliberately in games — count weak foot passes, 1v1 wins, times a ball mastery move worked under real pressure.</p>
+    <div class="phase-blocks">
+      <div class="phase-block-row"><span class="phase-block-name">Friday</span><span class="phase-block-detail">Cut 1 set from each speed exercise. Maintain full ball mastery and weak foot blocks — these are never shortened. RPE 8 on the reps that remain.</span></div>
+      <div class="phase-block-row"><span class="phase-block-name">Weekend</span><span class="phase-block-detail">Flying 10s for final benchmark (Week 7). Full 1v1 intensity. Feel sharp, not depleted.</span></div>
+      <div class="phase-block-row"><span class="phase-block-name">Final Test</span><span class="phase-block-detail">End of Week 7: T-test, pro agility, flying 10, broad jump, weak foot ratio. Compare to Week 1 — this is the evidence of 8 weeks of work.</span></div>
+      <div class="phase-block-row"><span class="phase-block-name">Game Focus</span><span class="phase-block-detail">Pick ONE intention per game: "only skill moves to beat defenders — no pure pace" or "every weak foot attempt I complete." Single focus per match compounds faster than general effort.</span></div>
+    </div>
+    <div class="phase-highlight">Weeks 7–8 should feel like the new normal — habits built. Trust them.</div>
+  </div>
+
+  <div class="phase-card phase-comp">
+    <div class="phase-top"><span class="phase-label" style="color:var(--purple)">Phase 4 — Maintenance + Repeat</span><span class="phase-weeks">Ongoing · Summer + Next Season</span></div>
+    <p class="phase-focus">Unlike his siblings' taper, Phase 4 is a forward plan. The 8-week block is a template to repeat. Friday sessions continue through summer.</p>
+    <div class="phase-blocks">
+      <div class="phase-block-row"><span class="phase-block-name">Summer</span><span class="phase-block-detail">Keep the Friday habit through summer — park or open field, full session. 2 sessions/week if possible (Friday + one weekend). Partner blocks with Eli or Silas when schedules align. The habit of showing up is the most transferable skill from this program.</span></div>
+      <div class="phase-block-row"><span class="phase-block-name">Weak Foot</span><span class="phase-block-detail">Target for next fall (8th grade): 8/10 clean contacts. Weak foot passes in games feel like a choice, not a last resort. Math: 3 weak foot blocks/week × 40 weeks ≈ 12,000 weak foot touches. That's what closes the gap permanently.</span></div>
+      <div class="phase-block-row"><span class="phase-block-name">Next Block</span><span class="phase-block-detail">After 2 weeks lighter, reset to Phase 1 with new baselines. Second cycle starts with noticeably better scores than this cycle's Week 1. Each cycle builds on the last.</span></div>
+      <div class="phase-block-row"><span class="phase-block-name">Varsity Path</span><span class="phase-block-detail">7th grade now. Varsity typically 10th grade (age 15–16). The players who make it at 16 started doing this quiet work at 13. The majority of his competition will not.</span></div>
+    </div>
+    <div class="phase-highlight">The goal isn't this season — it's having options in 3 years.</div>
+  </div>
+</section>
+
+<section class="sec" id="goals">
+  <h2 class="sec-title">Goal Benchmarks</h2>
+  <div class="callout blue">⏱ <strong>Baseline test at the END of Week 1 (Friday or weekend).</strong> Starting measurements only — not assessments. Re-test at Week 4 and Week 7.</div>
+  <table class="bench">
+    <thead><tr><th>Metric</th><th>How to Measure</th><th>8-Week Target</th></tr></thead>
+    <tbody>
+      <tr><td>T-Test time</td><td>Best of 5 timed reps (Friday)</td><td class="tgt">–0.5 to 1.0 sec from baseline</td></tr>
+      <tr><td>5-10-5 Pro Agility</td><td>Best of 5 timed reps (Friday)</td><td class="tgt">–0.3 to 0.5 sec from baseline</td></tr>
+      <tr><td>Standing broad jump</td><td>Two-foot takeoff, toes to landing heel</td><td class="tgt">+5–8% from baseline by Week 7</td></tr>
+      <tr><td>Flying 10 time</td><td>10-yd run-up, time next 10 yds (weekend)</td><td class="tgt">Measurable drop from baseline by Week 7</td></tr>
+      <tr><td>Weak foot clean contacts</td><td>Ball dropped onto instep — bounce vs veer (Friday)</td><td class="tgt">8/10 clean by Week 6</td></tr>
+      <tr><td>Weak foot on-target shots</td><td>10 stationary shots from 12 yds at goal (weekend)</td><td class="tgt">7/10 on-target by Week 6</td></tr>
+      <tr><td>Quick feet touches / 10 sec</td><td>5-cone touch drill best count (Friday)</td><td class="tgt">+20% from baseline by Week 7</td></tr>
+      <tr><td>Push-up max reps</td><td>AMRAP per set (Friday)</td><td class="tgt">Increasing trend week over week</td></tr>
+    </tbody>
+  </table>
+
+  <div class="block-card" style="margin-top:18px">
+    <div class="block-title">Progress Tracking</div>
+    <table class="track-table">
+      <thead><tr><th>Metric</th><th>Week 1 Baseline</th><th>Week 4</th><th>Week 7</th></tr></thead>
+      <tbody>
+        <tr><td>T-Test best time (sec)</td><td class="track-input">_______</td><td class="track-input">_______</td><td class="track-input">_______</td></tr>
+        <tr><td>Pro Agility best time (sec)</td><td class="track-input">_______</td><td class="track-input">_______</td><td class="track-input">_______</td></tr>
+        <tr><td>Standing broad jump</td><td class="track-input">_______</td><td class="track-input">_______</td><td class="track-input">_______</td></tr>
+        <tr><td>Flying 10 best time (sec)</td><td class="track-input">_______</td><td class="track-input">_______</td><td class="track-input">_______</td></tr>
+        <tr><td>Weak foot clean contacts (x/10)</td><td class="track-input">_______</td><td class="track-input">_______</td><td class="track-input">_______</td></tr>
+        <tr><td>Weak foot on-target shots (x/10)</td><td class="track-input">_______</td><td class="track-input">_______</td><td class="track-input">_______</td></tr>
+        <tr><td>Quick feet touches / 10 sec</td><td class="track-input">_______</td><td class="track-input">_______</td><td class="track-input">_______</td></tr>
+        <tr><td>Push-up max reps</td><td class="track-input">_______</td><td class="track-input">_______</td><td class="track-input">_______</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="block-card" style="margin-top:18px">
+    <div class="block-title">5 Gap Readiness Checklist</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px;font-size:.84rem">
+      <div style="background:var(--abg);border:1px solid var(--amber);border-radius:6px;padding:8px 10px;color:#e6d4a0">⚡ <strong>Top-End Speed:</strong> Flying 10 time dropping · Falling start mechanics clean · Still accelerating at yard 20</div>
+      <div style="background:var(--gbg);border:1px solid var(--green);border-radius:6px;padding:8px 10px;color:#a0d4b0">⚽ <strong>Ball Mastery:</strong> Cruyff fake convincing at pace · L-turn, outside chop, scissors executable in live 1v1 · Eyes up after 30 sec of any drill</div>
+      <div style="background:var(--bbg);border:1px solid var(--blue);border-radius:6px;padding:8px 10px;color:#a0c4f4">🔀 <strong>Foot Speed:</strong> T-test and pro agility times declining · Quick feet count increasing · Cuts sound sharp, not a skid</div>
+      <div style="background:var(--pbg);border:1px solid var(--purple);border-radius:6px;padding:8px 10px;color:#c8b0ee">💪 <strong>Strength:</strong> Push-up max increasing · Shield stance holds under contact · Low CoG when receiving under pressure</div>
+      <div style="background:var(--parbg);border:1px solid var(--partner);border-radius:6px;padding:8px 10px;color:#f4b5a8">🦶 <strong>Weak Foot:</strong> Clean contact 8/10 by Week 6 · On-target shots 7/10 by Week 6 · 3+ weak foot passes attempted per game by Week 5</div>
+    </div>
+  </div>
+
+  <div class="callout amber" style="margin-top:18px">
+    🚨 <strong>Load monitoring:</strong> Persistent hip flexor tightness after games · Declining sprint effort in games · Heavy legs on Friday despite a normal week · Low general energy. If 2+ appear → trim Friday speed block, keep ball mastery and weak foot in full.
+  </div>
+
+  <div class="block-card" style="margin-top:18px">
+    <div class="block-title">Long-Term Development Note</div>
+    <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px;font-size:.83rem">
+      <div>🔵 <strong style="color:var(--blue)">Age 13 now (7th grade):</strong> Weak foot work started now gives 3 years to compound — the single most impactful decision at this stage.</div>
+      <div>🟢 <strong style="color:var(--green)">Age 14 (8th grade):</strong> Foundation solid. Two-footedness should be visible to coaches. Technical game reads improve rapidly here.</div>
+      <div>🟡 <strong style="color:var(--amber)">Age 15 (9th grade):</strong> Physical development accelerates. The technical work done at 13–14 pays off enormously at game speed at 15.</div>
+      <div>🟣 <strong style="color:var(--purple)">Age 16 (10th grade):</strong> Varsity target. Players who make it at 16 started deliberate work at 13. Most of his competition will not.</div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  document.querySelectorAll('.nav-tab').forEach(t=>{
+    t.addEventListener('click',()=>{
+      document.querySelectorAll('.nav-tab').forEach(x=>x.classList.remove('on'));
+      document.querySelectorAll('.sec').forEach(x=>x.classList.remove('on'));
+      t.classList.add('on');
+      document.getElementById(t.dataset.sec).classList.add('on');
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+})();
+</script>
+</body>
+</html>

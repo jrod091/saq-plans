@@ -15,6 +15,8 @@
   --muted:  #8b949e;
   --green:  #3fb950;
   --gbg:    #1a2e1a;
+  --amber:  #e3b341;
+  --abg:    #2e2010;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { height: 100%; }
@@ -118,14 +120,33 @@ body {
 <div class="header">
   <div class="header-emoji">🏃</div>
   <div class="header-title">Family Training Plans</div>
-  <div class="header-sub">Speed · Agility · Quickness · GK</div>
+  <div class="header-sub">Speed · Agility · Quickness · GK · General Development</div>
 </div>
 <div class="cards">
   <div class="card">
     <div class="card-header">
+      <div class="card-emoji">⚡</div>
+      <div class="card-name">Isaiah's Plan</div>
+      <div class="card-pos">Striker / Wing / Mid · Age 13 · General Development</div>
+    </div>
+    <div class="card-links">
+      <a class="btn btn-primary" href="isaiah.html" style="background:var(--abg);border-color:var(--amber);color:var(--amber)">
+        <span class="btn-icon">📱</span>
+        <span class="btn-text">Training Plan<small>Interactive · Tue/Wed Pre-Practice + Weekend · Eli Partnership</small></span>
+        <span class="btn-arrow">›</span>
+      </a>
+      <a class="btn btn-secondary" href="isaiah-print.html">
+        <span class="btn-icon">🖨</span>
+        <span class="btn-text">Printable Version<small>PDF-ready · All sections visible</small></span>
+        <span class="btn-arrow">›</span>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
       <div class="card-emoji">🧤</div>
       <div class="card-name">Eli's Plan</div>
-      <div class="card-pos">Goalkeeper · Age 15 · Varsity / ECNL RL Target</div>
+      <div class="card-pos">Goalkeeper · Age 15 · Goalkeeper Development</div>
     </div>
     <div class="card-links">
       <a class="btn btn-primary" href="eli.html">
@@ -179,6 +200,6 @@ body {
     </div>
   </div>
 </div>
-<div class="footer">FAMILY TRAINING PLANS · SAQ + GK</div>
+<div class="footer">FAMILY TRAINING PLANS · SAQ + GK + VARSITY DEVELOPMENT</div>
 </body>
 </html>
