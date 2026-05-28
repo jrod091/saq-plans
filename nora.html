@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nora · 8-Week Summer Training</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-primary: #0a0a0a;
+    --bg-elevated: #141414;
+    --bg-card: #1a1a1a;
+    --bg-card-hover: #222;
+    --border: #262626;
+    --border-bright: #3a3a3a;
+    --text-primary: #f5f5f5;
+    --text-secondary: #a8a8a8;
+    --text-muted: #6b6b6b;
+    --text-dim: #4a4a4a;
+    --accent: #ec5a91;
+    --accent-bg: rgba(236, 90, 145, 0.10);
+    --accent-bg-strong: rgba(236, 90, 145, 0.20);
+    --font-display: 'Barlow Condensed', 'Oswald', sans-serif;
+    --font-body: 'Barlow', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 72px 0; border-top: 1px solid var(--border); }
+  section:first-of-type { border-top: none; }
+
+  h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.01em; line-height: 1.05; }
+  h1 { font-size: clamp(56px, 11vw, 144px); font-weight: 800; letter-spacing: -0.04em; color: var(--accent); }
+  h2 { font-size: clamp(32px, 4vw, 52px); margin-bottom: 8px; }
+  h3 { font-size: clamp(22px, 2.6vw, 30px); }
+  h4 { font-size: 19px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .eyebrow {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+  }
+  .lead { font-size: 18px; color: var(--text-secondary); max-width: 64ch; line-height: 1.6; }
+  .mono { font-family: var(--font-mono); }
+  small { font-size: 13px; color: var(--text-muted); }
+
+  /* Nav */
+  nav.top {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(10, 10, 10, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav.top .inner {
+    max-width: 1160px; margin: 0 auto; padding: 14px 24px;
+    display: flex; justify-content: space-between; align-items: center; gap: 24px;
+  }
+  nav.top .brand {
+    font-family: var(--font-display); font-weight: 700; font-size: 17px;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  nav.top .brand span { color: var(--accent); }
+  nav.top .links { display: flex; gap: 22px; flex-wrap: wrap; }
+  nav.top a {
+    color: var(--text-secondary); text-decoration: none;
+    font-family: var(--font-display); font-weight: 500; font-size: 13px;
+    text-transform: uppercase; letter-spacing: 0.1em; transition: color 0.2s;
+  }
+  nav.top a:hover { color: var(--accent); }
+  @media (max-width: 720px) { nav.top .links { display: none; } }
+
+  /* Hero */
+  .hero { padding: 80px 0 60px; position: relative; overflow: hidden; }
+  .hero::before {
+    content: ''; position: absolute; top: 0; right: -20%;
+    width: 70%; height: 100%;
+    background: radial-gradient(circle at center, var(--accent-bg-strong), transparent 60%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; align-items: end;
+  }
+  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+  .hero-meta {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 28px 32px;
+    border-radius: 0 4px 4px 0;
+  }
+  .hero-meta .row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 12px 0; border-bottom: 1px dashed var(--border);
+  }
+  .hero-meta .row:last-child { border-bottom: none; }
+  .hero-meta .label {
+    font-family: var(--font-display); font-size: 12px;
+    text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-muted);
+  }
+  .hero-meta .val { font-family: var(--font-mono); font-size: 14px; color: var(--text-primary); font-weight: 500; }
+
+  .position-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent-bg);
+    color: var(--accent);
+    padding: 8px 14px;
+    font-family: var(--font-display); font-weight: 600; font-size: 14px;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    border: 1px solid var(--accent);
+    border-radius: 99px;
+    margin-bottom: 24px;
+  }
+  .position-tag::before {
+    content: ''; width: 6px; height: 6px; background: var(--accent); border-radius: 50%;
+  }
+
+  /* Focus themes */
+  .themes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-top: 40px;
+  }
+  .theme-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 28px;
+    transition: border-color 0.2s;
+  }
+  .theme-card:hover { border-color: var(--accent); }
+  .theme-card .num {
+    font-family: var(--font-mono); font-size: 12px;
+    color: var(--accent); margin-bottom: 8px;
+    letter-spacing: 0.08em;
+  }
+  .theme-card h4 { color: var(--text-primary); margin-bottom: 12px; font-size: 22px; text-transform: none; letter-spacing: 0; }
+  .theme-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+  /* Modifications table */
+  .mod-table {
+    margin-top: 40px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .mod-row {
+    display: grid;
+    grid-template-columns: 140px 1fr 1fr;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .mod-row:last-child { border-bottom: none; }
+  .mod-row.header {
+    background: var(--bg-elevated);
+    font-family: var(--font-display);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text-muted);
+  }
+  .mod-row > div {
+    padding: 18px 22px;
+    border-right: 1px solid var(--border);
+  }
+  .mod-row > div:last-child { border-right: none; }
+  .mod-row .day {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 19px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .mod-row .day-sub {
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-muted);
+    text-transform: none;
+    letter-spacing: 0;
+    margin-top: 2px;
+  }
+  .mod-row .what {
+    font-size: 14px;
+    color: var(--text-primary);
+  }
+  .mod-row .cue {
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+  @media (max-width: 720px) {
+    .mod-row { grid-template-columns: 1fr; }
+    .mod-row > div { border-right: none; border-bottom: 1px dashed var(--border); }
+    .mod-row > div:last-child { border-bottom: none; }
+  }
+
+  /* Drill library */
+  .drill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+    margin-top: 40px;
+  }
+  .drill-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px 28px;
+    position: relative;
+    overflow: hidden;
+  }
+  .drill-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 100%; height: 2px; background: var(--accent);
+  }
+  .drill-card .tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+  .drill-card h4 {
+    font-size: 19px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+  }
+  .drill-card .desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-bottom: 14px;
+  }
+  .drill-card .spec {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+    padding-top: 14px;
+    border-top: 1px dashed var(--border);
+  }
+
+  /* Tracker / interactive */
+  .tracker {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 32px;
+    margin-top: 32px;
+  }
+  .tracker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+  }
+  .week-cell {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 18px;
+    text-align: center;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .week-cell .wk {
+    font-family: var(--font-display);
+    font-size: 13px;
+    color: var(--text-muted);
+    letter-spacing: 0.12em;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .week-cell input {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--border-bright);
+    color: var(--accent);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 30px;
+    text-align: center;
+    width: 100%;
+    padding: 4px 0;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .week-cell input:focus { border-color: var(--accent); }
+  .week-cell input::placeholder { color: var(--text-dim); }
+
+  /* Benchmark cards */
+  .bench-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .bench-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px;
+  }
+  .bench-card h4 {
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+  .bench-card .target {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .bench-grid input.bench-input {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    font-size: 14px;
+    padding: 10px 14px;
+    width: 100%;
+    margin-bottom: 8px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .bench-grid input.bench-input:focus { border-color: var(--accent); }
+  .bench-grid label {
+    font-family: var(--font-display);
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* Section intro */
+  .section-intro { max-width: 70ch; margin-bottom: 8px; }
+
+  /* Quote-style coaching note */
+  .coach-note {
+    background: var(--accent-bg);
+    border-left: 3px solid var(--accent);
+    padding: 24px 28px;
+    margin: 40px 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .coach-note .label {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .coach-note p {
+    font-size: 16px;
+    color: var(--text-primary);
+    line-height: 1.6;
+  }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 0;
+    margin-top: 40px;
+  }
+  footer .container {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+  }
+  footer .brand {
+    font-family: var(--font-display); font-weight: 700; font-size: 16px;
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  footer .meta-line { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  @media (max-width: 720px) {
+    section { padding: 56px 0; }
+    .hero { padding: 56px 0 40px; }
+    .hero-meta { padding: 22px 24px; }
+    .tracker { padding: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="inner">
+    <div class="brand"><span>Nora</span> · Summer '26</div>
+    <div class="links">
+      <a href="master.html">Master</a>
+      <a href="#themes">Themes</a>
+      <a href="#mods">Modifications</a>
+      <a href="#drills">Drills</a>
+      <a href="#tracker">Tracker</a>
+      <a href="#benchmarks">Benchmarks</a>
+      <a href="#offfield">Off the Field</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="position-tag">Winger · CMF</div>
+    <h1>Nora.</h1>
+
+    <div class="hero-grid" style="margin-top: 32px;">
+      <div>
+        <p class="lead">10 years old, pre-ECNL, right-foot dominant. A serious young player building elite movement habits early — posture, rhythm, weak-foot confidence, scanning, and aggressive 1v1 actions. Volume is controlled by age. Standards are held to the same high bar as the older kids.</p>
+      </div>
+      <div class="hero-meta">
+        <div class="row"><span class="label">Age</span><span class="val">10</span></div>
+        <div class="row"><span class="label">Level</span><span class="val">Pre-ECNL</span></div>
+        <div class="row"><span class="label">Position</span><span class="val">Winger / CMF</span></div>
+        <div class="row"><span class="label">Strong foot</span><span class="val">Right</span></div>
+        <div class="row"><span class="label">Weak foot</span><span class="val">Left · across every session</span></div>
+        <div class="row"><span class="label">Plyo ceiling</span><span class="val">60 contacts</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- THEMES -->
+<section id="themes">
+  <div class="container">
+    <div class="section-intro">
+      <div class="eyebrow">Focus Themes</div>
+      <h2>The four things that matter</h2>
+      <p class="lead">These are the threads running through every session — what you're trying to develop with each rep, not just complete.</p>
+    </div>
+
+    <div class="themes-grid">
+      <div class="theme-card">
+        <div class="num">01</div>
+        <h4>Cutting inside off the right</h4>
+        <p>Your winger threat changes by side. On the left wing, the in-cut onto your right foot is the dangerous move — set the defender up wide, then explode inside on the diagonal for the shot or through ball. On the right wing, drive the line for the cutback, with the left foot threatening inside to keep the defender honest.</p>
+      </div>
+      <div class="theme-card">
+        <div class="num">02</div>
+        <h4>Left foot mastery</h4>
+        <p>Left-foot work runs through the whole session — not just a single block. Some lives in ball mastery; the rest is built into passing patterns, 1v1s, crossing, and finishing. Slowly closing the gap with the right. Track juggling PRs weekly.</p>
+      </div>
+      <div class="theme-card">
+        <div class="num">03</div>
+        <h4>Scan-receive-turn for CMF</h4>
+        <p>When you drop into CMF, the move is: head up before the ball arrives, open body shape, first touch into space. Make the second pass before the first defender arrives.</p>
+      </div>
+      <div class="theme-card">
+        <div class="num">04</div>
+        <h4>Sprint posture &amp; arm action</h4>
+        <p>Foundational running mechanics — tall posture, knee drive, opposite arm. At 10, this is the highest-leverage technical skill to lock in before adolescent growth spurts.</p>
+      </div>
+    </div>
+
+    <div class="coach-note">
+      <div class="label">Training rationale</div>
+      <p>At your age, low-intensity plyometrics — jump rope, ladder hops, line jumps — can develop speed and jumping qualities without the joint load of higher-volume work. Sixty foot contacts per session is the ceiling, and the quality of every single landing matters more than the count.</p>
+    </div>
+
+    <div class="coach-note">
+      <div class="label">Winger actions · by side</div>
+      <p>Your job changes depending on which flank you're on and where you are. Know the menu for each position so your decisions are instant — as a right-footed player, the two wings ask for different things.</p>
+      <p style="font-family: var(--font-mono); font-size: 14px; line-height: 1.9;">
+        <span style="color: var(--accent);">RIGHT WING</span> · drive the line, cutback · use the left foot to threaten inside and keep the defender honest<br>
+        <span style="color: var(--accent);">LEFT WING</span> · cut inside onto your right foot · shoot, slip a pass, or combine<br>
+        <span style="color: var(--accent);">CENTRAL MID</span> · scan before receiving · take the half-turn · switch play or play forward
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- MODIFICATIONS -->
+<section id="mods">
+  <div class="container">
+    <div class="section-intro">
+      <div class="eyebrow">Your Daily Modifications</div>
+      <h2>How your sessions differ</h2>
+      <p class="lead">Quick reference for what changes for you in the family session — volume, complexity, and emphasis. Read this before the session, then run the master plan.</p>
+    </div>
+
+    <div class="mod-table">
+      <div class="mod-row header">
+        <div>Day</div>
+        <div>Your volume</div>
+        <div>Your focus cue</div>
+      </div>
+      <div class="mod-row">
+        <div><div class="day">Mon</div><div class="day-sub">Power day</div></div>
+        <div class="what">2 ladder patterns/set · 60s rest · 30 plyo contacts · 4 × 10yd sprints</div>
+        <div class="cue">Quality of posture &gt; quantity. Stick every landing.</div>
+      </div>
+      <div class="mod-row">
+        <div><div class="day">Tue</div><div class="day-sub">Skills day</div></div>
+        <div class="what">3 ladder patterns slow tempo · extended ball mastery · left-foot juggling PR</div>
+        <div class="cue">Today is technique day. Slow on purpose.</div>
+      </div>
+      <div class="mod-row">
+        <div><div class="day">Wed</div><div class="day-sub">Recovery</div></div>
+        <div class="what">Jump rope · free juggling · mobility flow</div>
+        <div class="cue">Low output, high focus. Every touch clean, every rep deliberate.</div>
+      </div>
+      <div class="mod-row">
+        <div><div class="day">Thu</div><div class="day-sub">Agility</div></div>
+        <div class="what">3 reps each side · 3yd shuttle distance · cuts with both feet</div>
+        <div class="cue">Plant the outside foot · low hips · eyes up.</div>
+      </div>
+      <div class="mod-row">
+        <div><div class="day">Fri</div><div class="day-sub">Soccer speed + transition</div></div>
+        <div class="what">5-10yd reaction starts · race-to-gate · first-touch burst · transition run with scan · double-leg bounds only if landing quality is clean</div>
+        <div class="cue">First step is everything. Sharp, reactive, soccer-speed — not track-speed.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POSITION DRILLS -->
+<section id="drills">
+  <div class="container">
+    <div class="section-intro">
+      <div class="eyebrow">Position Drill Library</div>
+      <h2>Drills that are uniquely yours</h2>
+      <p class="lead">Position-specific drills layered on top of the family session — winger and CMF technical work that develops your two-position skill set.</p>
+    </div>
+
+    <div class="drill-grid">
+      <div class="drill-card">
+        <div class="tag">WINGER · IN-CUT</div>
+        <h4>Cut-inside finish</h4>
+        <div class="desc">Start wide on the left. Dribble inside on the diagonal, sell the outside lane, cut inside onto the right foot, and finish across the keeper. Progression: repeat from the right wing by driving the line first, then using a cutback or left-foot inside threat so defenders can't overplay the outside route.</div>
+        <div class="spec">3 sets · 6 reps · alternate flanks · 45s rest</div>
+      </div>
+
+      <div class="drill-card">
+        <div class="tag">WINGER · 1V1</div>
+        <h4>Wide channel beat</h4>
+        <div class="desc">5yd × 15yd channel. Beat the defender either outside (down the line) or inside (cut to shot). Read the defender's hips — if they over-commit, take the opposite. End every rep with a cross or shot.</div>
+        <div class="spec">3 sets · 4 reps each side · 60s rest</div>
+      </div>
+
+      <div class="drill-card">
+        <div class="tag">CMF · RECEIVE-TURN</div>
+        <h4>Pre-scan + half-turn</h4>
+        <div class="desc">Server plays into your feet. Before the ball arrives, scan over your shoulder once. First touch opens your body to the play. Second touch passes to a target. Done at speed, this becomes automatic.</div>
+        <div class="spec">3 × 10 reps · both shoulders · server alternates direction</div>
+      </div>
+
+      <div class="drill-card">
+        <div class="tag">CMF · THROUGH BALL</div>
+        <h4>Weight + disguise</h4>
+        <div class="desc">From central position, play a through ball to a runner timing their move. Practice the weight (too soft = intercepted, too hard = past the runner) and the disguise (eyes elsewhere, look at the runner late).</div>
+        <div class="spec">10 reps each foot · alternate runners</div>
+      </div>
+
+      <div class="drill-card">
+        <div class="tag">WINGER · CROSS</div>
+        <h4>Driven low cross</h4>
+        <div class="desc">Drive to the byline, plant, low driven cross with laces — across the face of the goal, between 6-yard box and penalty spot. Aim for a 3ft corridor. Both feet over the 8 weeks.</div>
+        <div class="spec">3 sets · 8 crosses · alternate flanks</div>
+      </div>
+
+      <div class="drill-card">
+        <div class="tag">LEFT FOOT · CORE WORK</div>
+        <h4>Left foot · woven through the session</h4>
+        <div class="desc">Left-foot reps appear everywhere, every session — not boxed into one block. Anchor reps: wall passes (3 × 20), short-range strikes (3 × 5 into a gate from 8yd), dribbling sequences with the left only. Then keep using it in patterns, 1v1s, and finishing. No right-foot rescue.</div>
+        <div class="spec">Across the full session · log juggling PR weekly</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRACKER -->
+<section id="tracker">
+  <div class="container">
+    <div class="section-intro">
+      <div class="eyebrow">Weak Foot Tracker</div>
+      <h2>Left foot juggling PR</h2>
+      <p class="lead">Tap each cell to log your best left-foot juggle count for the week. Watch the number climb — this is the single most visible weak-foot progress metric.</p>
+    </div>
+
+    <div class="tracker">
+      <div class="tracker-grid">
+        <div class="week-cell">
+          <div class="wk">Week 1</div>
+          <input type="number" placeholder="—" id="w1" oninput="saveTracker()">
+        </div>
+        <div class="week-cell">
+          <div class="wk">Week 2</div>
+          <input type="number" placeholder="—" id="w2" oninput="saveTracker()">
+        </div>
+        <div class="week-cell">
+          <div class="wk">Week 3</div>
+          <input type="number" placeholder="—" id="w3" oninput="saveTracker()">
+        </div>
+        <div class="week-cell">
+          <div class="wk">Week 4</div>
+          <input type="number" placeholder="—" id="w4" oninput="saveTracker()">
+        </div>
+        <div class="week-cell">
+          <div class="wk">Week 5</div>
+          <input type="number" placeholder="—" id="w5" oninput="saveTracker()">
+        </div>
+        <div class="week-cell">
+          <div class="wk">Week 6</div>
+          <input type="number" placeholder="—" id="w6" oninput="saveTracker()">
+        </div>
+        <div class="week-cell">
+          <div class="wk">Week 7</div>
+          <input type="number" placeholder="—" id="w7" oninput="saveTracker()">
+        </div>
+        <div class="week-cell">
+          <div class="wk">Week 8</div>
+          <input type="number" placeholder="—" id="w8" oninput="saveTracker()">
+        </div>
+      </div>
+      <div style="margin-top: 24px; padding-top: 20px; border-top: 1px dashed var(--border); font-family: var(--font-mono); font-size: 13px; color: var(--text-muted);">
+        Target progression: 10 → 25 by week 8 · log mid-week best, not the first attempt
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENCHMARKS -->
+<section id="benchmarks">
+  <div class="container">
+    <div class="section-intro">
+      <div class="eyebrow">Benchmarks</div>
+      <h2>Test, retest, see the progress</h2>
+      <p class="lead">Run these tests at the end of week 1 (baseline), week 4 (mid-program), and week 8 (final). Same conditions every time — same surface, same shoes, same warm-up. Numbers don't lie.</p>
+    </div>
+
+    <div class="bench-grid">
+      <div class="bench-card">
+        <h4>10yd sprint</h4>
+        <div class="target">From standing start · stopwatch · best of 3</div>
+        <label>Week 1 baseline</label>
+        <input class="bench-input" type="text" placeholder="0.00s">
+        <label>Week 4 mid</label>
+        <input class="bench-input" type="text" placeholder="0.00s">
+        <label>Week 8 final</label>
+        <input class="bench-input" type="text" placeholder="0.00s">
+      </div>
+
+      <div class="bench-card">
+        <h4>5-0-5 shuttle</h4>
+        <div class="target">5yd out · turn · 5yd back · stopwatch · best of 3 each side</div>
+        <label>W1 · right turn</label>
+        <input class="bench-input" type="text" placeholder="0.00s">
+        <label>W8 · right turn</label>
+        <input class="bench-input" type="text" placeholder="0.00s">
+        <label>W1 · left turn</label>
+        <input class="bench-input" type="text" placeholder="0.00s">
+        <label>W8 · left turn</label>
+        <input class="bench-input" type="text" placeholder="0.00s">
+      </div>
+
+      <div class="bench-card">
+        <h4>Vertical jump</h4>
+        <div class="target">Standing reach vs jumping reach · chalk mark · best of 3</div>
+        <label>Week 1</label>
+        <input class="bench-input" type="text" placeholder="inches">
+        <label>Week 4</label>
+        <input class="bench-input" type="text" placeholder="inches">
+        <label>Week 8</label>
+        <input class="bench-input" type="text" placeholder="inches">
+      </div>
+
+      <div class="bench-card">
+        <h4>30yd dribble</h4>
+        <div class="target">Dribble through 6 cones · 5ft apart · stopwatch · both feet</div>
+        <label>W1 baseline</label>
+        <input class="bench-input" type="text" placeholder="0.00s">
+        <label>W4 mid</label>
+        <input class="bench-input" type="text" placeholder="0.00s">
+        <label>W8 final</label>
+        <input class="bench-input" type="text" placeholder="0.00s">
+      </div>
+
+      <div class="bench-card">
+        <h4>Left-foot juggling PR</h4>
+        <div class="target">Consecutive left foot only · two attempts per test</div>
+        <label>W1 PR</label>
+        <input class="bench-input" type="text" placeholder="reps">
+        <label>W4 PR</label>
+        <input class="bench-input" type="text" placeholder="reps">
+        <label>W8 PR</label>
+        <input class="bench-input" type="text" placeholder="reps">
+      </div>
+
+      <div class="bench-card">
+        <h4>Wall passes / 60s</h4>
+        <div class="target">2 yards from wall · left foot only · how many in 60s?</div>
+        <label>Week 1</label>
+        <input class="bench-input" type="text" placeholder="count">
+        <label>Week 4</label>
+        <input class="bench-input" type="text" placeholder="count">
+        <label>Week 8</label>
+        <input class="bench-input" type="text" placeholder="count">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="offfield">
+  <div class="container">
+    <div class="section-intro">
+      <div class="eyebrow">Off the Field</div>
+      <h2>The other 23 hours</h2>
+      <p class="lead">The 60-minute session is only as good as what surrounds it. Your version of the off-field work, tuned to a serious 10-year-old.</p>
+    </div>
+    <div class="coach-note">
+      <div class="label">Your essentials</div>
+      <p style="font-family: var(--font-mono); font-size: 14px; line-height: 1.9;">
+        <span style="color: var(--accent);">SLEEP</span> · ~9-12 hrs, consistent times — the biggest lever you have, and it's free<br>
+        <span style="color: var(--accent);">REFUEL</span> · real food with carbs + protein within an hour of training, especially after the hard days<br>
+        <span style="color: var(--accent);">FILM</span> · ~15-20 min/week of your own games — look for width, depth, support, and when to dribble vs. release the ball. Skip 11v11 systems for now
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="brand"><span style="color: var(--accent);">Nora</span> · Rodriguez Family Training</div>
+    <div class="meta-line">← <a href="master.html">Back to master plan</a></div>
+  </div>
+</footer>
+
+<script>
+  // Simple local persistence so numbers stick on tablet reload
+  function saveTracker() {
+    const data = {};
+    document.querySelectorAll('.tracker input').forEach(i => data[i.id] = i.value);
+    try { localStorage.setItem('nora-tracker', JSON.stringify(data)); } catch(e) {}
+  }
+  function loadTracker() {
+    try {
+      const data = JSON.parse(localStorage.getItem('nora-tracker') || '{}');
+      Object.keys(data).forEach(k => {
+        const el = document.getElementById(k);
+        if (el) el.value = data[k];
+      });
+    } catch(e) {}
+  }
+  loadTracker();
+</script>
+
+</body>
+</html>

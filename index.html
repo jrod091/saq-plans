@@ -2,204 +2,2010 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>SAQ Training Plans</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rodriguez Family · 8-Week Summer Training</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:     #0d1117;
-  --bg2:    #161b22;
-  --border: #30363d;
-  --text:   #e6edf3;
-  --muted:  #8b949e;
-  --green:  #3fb950;
-  --gbg:    #1a2e1a;
-  --amber:  #e3b341;
-  --abg:    #2e2010;
-}
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { height: 100%; }
-body {
-  min-height: 100%;
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Barlow', sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 32px 16px 48px;
-}
-.header { text-align: center; margin-bottom: 40px; }
-.header-emoji { font-size: 2.8rem; line-height: 1; margin-bottom: 10px; }
-.header-title {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 2.4rem;
-  font-weight: 800;
-  letter-spacing: .04em;
-  text-transform: uppercase;
-  color: #fff;
-}
-.header-sub {
-  font-size: .88rem;
-  color: var(--muted);
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  margin-top: 6px;
-}
-.cards {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 100%;
-  max-width: 420px;
-}
-.card {
-  background: var(--bg2);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  overflow: hidden;
-}
-.card-header {
-  padding: 20px 20px 16px;
-  border-bottom: 1px solid var(--border);
-}
-.card-emoji { font-size: 1.8rem; line-height: 1; margin-bottom: 6px; }
-.card-name {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1.6rem;
-  font-weight: 800;
-  letter-spacing: .03em;
-  color: #fff;
-}
-.card-pos { font-size: .78rem; color: var(--muted); margin-top: 2px; }
-.card-links { padding: 12px; display: flex; flex-direction: column; gap: 8px; }
-.btn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 13px 16px;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: .9rem;
-  transition: opacity .15s;
-}
-.btn:hover { opacity: .85; }
-.btn-icon { font-size: 1.1rem; flex-shrink: 0; }
-.btn-text { flex: 1; }
-.btn-text small {
-  display: block;
-  font-size: .73rem;
-  font-weight: 400;
-  opacity: .7;
-  margin-top: 1px;
-}
-.btn-arrow { color: inherit; opacity: .5; font-size: .85rem; }
-.btn-primary {
-  background: var(--gbg);
-  border: 1px solid var(--green);
-  color: var(--green);
-}
-.btn-secondary {
-  background: #1c2128;
-  border: 1px solid var(--border);
-  color: var(--muted);
-}
-.footer {
-  margin-top: 48px;
-  font-size: .75rem;
-  color: var(--border);
-  text-align: center;
-  letter-spacing: .04em;
-}
+  :root {
+    --bg-primary: #0a0a0a;
+    --bg-elevated: #141414;
+    --bg-card: #1a1a1a;
+    --bg-card-hover: #222222;
+    --border: #262626;
+    --border-bright: #3a3a3a;
+    --text-primary: #f5f5f5;
+    --text-secondary: #a8a8a8;
+    --text-muted: #6b6b6b;
+    --text-dim: #4a4a4a;
+
+    --nora: #ec5a91;
+    --silas: #f4a623;
+    --isaiah: #1d9e75;
+    --eli: #378add;
+
+    --nora-bg: rgba(236, 90, 145, 0.10);
+    --silas-bg: rgba(244, 166, 35, 0.10);
+    --isaiah-bg: rgba(29, 158, 117, 0.12);
+    --eli-bg: rgba(55, 138, 221, 0.12);
+
+    --accent-hot: #d85a30;
+    --accent-cool: #5a8d9c;
+
+    --phase-foundation: #5a8d9c;
+    --phase-development: #7a8d50;
+    --phase-sharpening: #c9802d;
+    --phase-peak: #d85a30;
+
+    --font-display: 'Barlow Condensed', 'Oswald', sans-serif;
+    --font-body: 'Barlow', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg-primary); color: var(--text-primary); font-family: var(--font-body); font-weight: 400; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 80px 0; border-top: 1px solid var(--border); }
+  section:first-of-type { border-top: none; }
+
+  .display, h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.01em; line-height: 1.05; color: var(--text-primary); }
+  h1 { font-size: clamp(48px, 9vw, 120px); font-weight: 800; letter-spacing: -0.03em; }
+  h2 { font-size: clamp(36px, 5vw, 64px); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 8px; }
+  h3 { font-size: clamp(24px, 3vw, 36px); font-weight: 600; }
+  h4 { font-size: clamp(18px, 2vw, 22px); font-weight: 600; letter-spacing: 0; }
+
+  .eyebrow { font-family: var(--font-display); font-weight: 500; font-size: 13px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--text-muted); }
+  .lead { font-size: clamp(16px, 1.7vw, 19px); color: var(--text-secondary); max-width: 68ch; line-height: 1.6; }
+  .mono { font-family: var(--font-mono); font-size: 0.92em; }
+  small, .small { font-size: 13px; color: var(--text-muted); }
+
+  /* Nav */
+  nav.top { position: sticky; top: 0; z-index: 50; background: rgba(10, 10, 10, 0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  nav.top .inner { max-width: 1240px; margin: 0 auto; padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+  nav.top .brand { font-family: var(--font-display); font-weight: 700; font-size: 18px; letter-spacing: 0.05em; text-transform: uppercase; }
+  nav.top .links { display: flex; gap: 24px; flex-wrap: wrap; }
+  nav.top a { color: var(--text-secondary); text-decoration: none; font-family: var(--font-display); font-weight: 500; font-size: 14px; text-transform: uppercase; letter-spacing: 0.1em; transition: color 0.2s; }
+  nav.top a:hover { color: var(--text-primary); }
+  @media (max-width: 720px) { nav.top .links { display: none; } }
+
+  /* Hero */
+  .hero { padding: 100px 0 80px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: 0; right: -10%; width: 60%; height: 100%; background: radial-gradient(circle at center, rgba(216, 90, 48, 0.08), transparent 70%); pointer-events: none; }
+  .hero .eyebrow { margin-bottom: 24px; }
+  .hero h1 { margin-bottom: 32px; }
+  .hero .lead { margin-bottom: 48px; }
+
+  .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+  .meta-grid > div { background: var(--bg-elevated); padding: 20px 24px; }
+  .meta-grid .label { font-family: var(--font-display); font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: var(--text-muted); margin-bottom: 8px; }
+  .meta-grid .value { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--text-primary); }
+  .meta-grid .value small { font-family: var(--font-body); font-weight: 400; color: var(--text-secondary); font-size: 13px; margin-left: 4px; }
+
+  /* Player cards */
+  .player-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 48px; }
+  .player-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; padding: 32px; transition: transform 0.25s, border-color 0.25s; position: relative; overflow: hidden; }
+  .player-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: var(--accent); }
+  .player-card:hover { transform: translateY(-2px); border-color: var(--accent); }
+  .player-card .name { font-family: var(--font-display); font-size: 44px; font-weight: 800; line-height: 1; color: var(--accent); margin-bottom: 4px; }
+  .player-card .age-badge { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); margin-bottom: 20px; }
+  .player-card .position { font-family: var(--font-display); font-size: 16px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-primary); margin-bottom: 6px; font-weight: 600; }
+  .player-card .position small { color: var(--text-muted); font-weight: 400; letter-spacing: 0; text-transform: none; font-family: var(--font-body); font-size: 14px; }
+  .player-card .level { font-size: 13px; color: var(--text-secondary); margin-bottom: 20px; }
+  .player-card .focus-list { list-style: none; border-top: 1px solid var(--border); padding-top: 20px; }
+  .player-card .focus-list li { font-size: 14px; color: var(--text-secondary); padding: 5px 0; position: relative; padding-left: 16px; }
+  .player-card .focus-list li::before { content: ''; position: absolute; left: 0; top: 12px; width: 6px; height: 1px; background: var(--accent); }
+  .player-card.nora { --accent: var(--nora); }
+  .player-card.silas { --accent: var(--silas); }
+  .player-card.isaiah { --accent: var(--isaiah); }
+  .player-card.eli { --accent: var(--eli); }
+
+  /* Phase strip */
+  .phase-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; margin-top: 48px; }
+  .phase { background: var(--bg-elevated); padding: 32px 28px; position: relative; }
+  .phase .num { font-family: var(--font-display); font-size: 12px; color: var(--text-muted); letter-spacing: 0.18em; margin-bottom: 12px; }
+  .phase h3 { font-size: 26px; margin-bottom: 6px; }
+  .phase .weeks { font-family: var(--font-mono); font-size: 13px; color: var(--accent-hot); margin-bottom: 16px; }
+  .phase p { font-size: 14px; color: var(--text-secondary); line-height: 1.55; }
+  .phase-strip .phase:nth-child(1) .num { color: var(--phase-foundation); }
+  .phase-strip .phase:nth-child(1) .weeks { color: var(--phase-foundation); }
+  .phase-strip .phase:nth-child(2) .num { color: var(--phase-development); }
+  .phase-strip .phase:nth-child(2) .weeks { color: var(--phase-development); }
+  .phase-strip .phase:nth-child(3) .num { color: var(--phase-sharpening); }
+  .phase-strip .phase:nth-child(3) .weeks { color: var(--phase-sharpening); }
+  .phase-strip .phase:nth-child(4) .num { color: var(--phase-peak); }
+  .phase-strip .phase:nth-child(4) .weeks { color: var(--phase-peak); }
+  @media (max-width: 860px) { .phase-strip { grid-template-columns: 1fr 1fr; } }
+
+  /* Week selector */
+  .week-selector {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 6px;
+    margin-top: 40px;
+    padding: 12px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+  }
+  .week-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    padding: 14px 8px;
+    cursor: pointer;
+    font-family: var(--font-display);
+    border-radius: 3px;
+    transition: all 0.2s;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    --phase-color: var(--text-muted);
+  }
+  .week-btn .wnum {
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1;
+    color: var(--text-primary);
+  }
+  .week-btn .wphase {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .week-btn:hover { border-color: var(--phase-color); }
+  .week-btn:hover .wphase { color: var(--phase-color); }
+  .week-btn.active {
+    background: var(--bg-card);
+    border-color: var(--phase-color);
+    box-shadow: 0 0 0 1px var(--phase-color);
+  }
+  .week-btn.active .wnum { color: var(--phase-color); }
+  .week-btn.active .wphase { color: var(--phase-color); }
+  .week-btn[data-phase="foundation"] { --phase-color: var(--phase-foundation); }
+  .week-btn[data-phase="development"] { --phase-color: var(--phase-development); }
+  .week-btn[data-phase="sharpening"] { --phase-color: var(--phase-sharpening); }
+  .week-btn[data-phase="peak"] { --phase-color: var(--phase-peak); }
+
+  @media (max-width: 720px) {
+    .week-selector { grid-template-columns: repeat(4, 1fr); gap: 4px; }
+    .week-btn { padding: 10px 4px; }
+    .week-btn .wnum { font-size: 20px; }
+  }
+
+  /* Session header showing current selection */
+  .session-context {
+    margin-top: 32px;
+    padding: 18px 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--phase-active);
+    border-radius: 0 4px 4px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .session-context .breadcrumb {
+    font-family: var(--font-display);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+  }
+  .session-context .breadcrumb strong {
+    color: var(--phase-active);
+    font-weight: 700;
+  }
+  .session-context .phase-note {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  body[data-phase="foundation"] { --phase-active: var(--phase-foundation); }
+  body[data-phase="development"] { --phase-active: var(--phase-development); }
+  body[data-phase="sharpening"] { --phase-active: var(--phase-sharpening); }
+  body[data-phase="peak"] { --phase-active: var(--phase-peak); }
+
+  /* Day tabs */
+  .day-tabs { display: flex; flex-wrap: wrap; gap: 0; border-bottom: 1px solid var(--border); margin-top: 24px; }
+  .day-tab { background: transparent; border: none; color: var(--text-muted); font-family: var(--font-display); font-weight: 600; font-size: 17px; text-transform: uppercase; letter-spacing: 0.08em; padding: 18px 24px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color 0.2s, border-color 0.2s; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+  .day-tab .day-focus { font-family: var(--font-body); font-size: 11px; font-weight: 400; color: var(--text-muted); letter-spacing: 0.05em; text-transform: none; }
+  .day-tab:hover { color: var(--text-secondary); }
+  .day-tab.active { color: var(--text-primary); border-color: var(--phase-active); }
+  .day-tab.active .day-focus { color: var(--phase-active); }
+  .day-panel { display: none; padding-top: 32px; }
+  .day-panel.active { display: block; }
+
+  /* Session blocks */
+  .block { background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; padding: 28px 32px; margin-bottom: 16px; position: relative; }
+  .block-header { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+  .block-header h4 { text-transform: uppercase; letter-spacing: 0.04em; font-size: 20px; }
+  .block-header .meta { font-family: var(--font-mono); font-size: 13px; color: var(--text-muted); }
+  .block-intro { font-size: 15px; color: var(--text-secondary); margin-bottom: 20px; }
+  .drill { padding: 16px 0; border-top: 1px dashed var(--border); }
+  .drill:first-of-type { border-top: none; padding-top: 0; }
+  .drill-name { font-family: var(--font-display); font-weight: 600; font-size: 17px; color: var(--text-primary); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
+  .drill-cue { font-size: 14px; color: var(--text-secondary); margin-bottom: 10px; }
+  .drill-prescription { font-family: var(--font-mono); font-size: 13px; color: var(--text-primary); background: var(--bg-elevated); padding: 8px 14px; border-radius: 3px; display: inline-block; border-left: 2px solid var(--phase-active); margin-bottom: 12px; }
+
+  /* Week-only notes (orange highlight) */
+  .week-note {
+    display: block;
+    background: rgba(216, 90, 48, 0.08);
+    border-left: 2px solid var(--accent-hot);
+    padding: 10px 14px;
+    margin: 10px 0;
+    font-size: 13px;
+    color: var(--text-primary);
+    border-radius: 0 3px 3px 0;
+  }
+  .week-note .label {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent-hot);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* Modifications */
+  .mods { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px; margin-top: 12px; }
+  .mod { background: var(--bg-elevated); border-left: 3px solid var(--child); padding: 10px 14px; border-radius: 0 3px 3px 0; }
+  .mod .who { font-family: var(--font-display); font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--child); font-weight: 600; margin-bottom: 4px; }
+  .mod .what { font-family: var(--font-mono); font-size: 12px; color: var(--text-primary); line-height: 1.45; }
+  .mod.nora { --child: var(--nora); }
+  .mod.silas { --child: var(--silas); }
+  .mod.isaiah { --child: var(--isaiah); }
+  .mod.eli { --child: var(--eli); }
+
+  /* Synergy block */
+  .block.synergy { background: linear-gradient(135deg, rgba(216,90,48,0.05), rgba(55,138,221,0.03)); border-color: var(--border-bright); }
+  .block.synergy::before { content: 'Position synergy'; position: absolute; top: 12px; right: 16px; font-family: var(--font-display); font-size: 11px; text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent-hot); }
+  .synergy-pattern { background: var(--bg-elevated); padding: 16px 20px; border-radius: 4px; margin: 12px 0; border: 1px solid var(--border); }
+  .synergy-pattern .flow { font-family: var(--font-mono); font-size: 13px; line-height: 1.7; color: var(--text-secondary); }
+  .synergy-pattern .flow .player { color: var(--text-primary); font-weight: 600; }
+  .synergy-pattern .flow .arrow { color: var(--accent-hot); margin: 0 4px; }
+
+  /* Patterns library */
+  .patterns { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-top: 40px; }
+  .pattern-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; padding: 24px 28px; }
+  .pattern-card h4 { font-size: 18px; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .pattern-card .ptag { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); margin-bottom: 14px; }
+  .pattern-card .pflow { font-family: var(--font-mono); font-size: 12px; line-height: 1.7; color: var(--text-secondary); padding: 12px 0; border-top: 1px dashed var(--border); border-bottom: 1px dashed var(--border); margin-bottom: 14px; }
+  .pattern-card .pcue { font-size: 13px; color: var(--text-secondary); line-height: 1.55; }
+
+  /* Equipment */
+  .eq-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 32px; }
+  .eq-item { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 4px; padding: 16px 20px; }
+  .eq-item .name { font-family: var(--font-display); font-weight: 600; font-size: 16px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-primary); margin-bottom: 4px; }
+  .eq-item .note { font-size: 13px; color: var(--text-muted); }
+
+  /* Load tracking & safety callouts */
+  .load-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 40px;
+  }
+  .load-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 28px;
+    position: relative;
+  }
+  .load-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: var(--child-color, var(--accent-hot));
+  }
+  .load-card.nora { --child-color: var(--nora); }
+  .load-card.silas { --child-color: var(--silas); }
+  .load-card.isaiah { --child-color: var(--isaiah); }
+  .load-card.eli { --child-color: var(--eli); }
+  .load-card h4 {
+    color: var(--child-color);
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+  }
+  .load-card .ceiling {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+  .load-card .load-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border);
+    font-family: var(--font-mono);
+    font-size: 13px;
+  }
+  .load-card .load-row:last-child { border-bottom: none; }
+  .load-card .load-row .day-label { color: var(--text-secondary); }
+  .load-card .load-row .contacts { color: var(--text-primary); font-weight: 600; }
+
+  .count-rules {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px 28px;
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  @media (max-width: 720px) { .count-rules { grid-template-columns: 1fr; gap: 20px; } }
+  .count-rules h5 {
+    font-family: var(--font-display);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 12px;
+  }
+  .count-rules h5.counts { color: var(--phase-development); }
+  .count-rules h5.skips { color: var(--text-muted); }
+  .count-rules ul { list-style: none; }
+  .count-rules li { font-size: 13px; color: var(--text-secondary); padding: 4px 0; padding-left: 16px; position: relative; }
+  .count-rules li::before {
+    content: '+';
+    position: absolute; left: 0; top: 4px;
+    color: var(--phase-development);
+    font-family: var(--font-mono); font-weight: 700;
+  }
+  .count-rules .skips li::before { content: '–'; color: var(--text-muted); }
+
+  /* Intensity classification table */
+  .intensity-table {
+    margin-top: 32px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .intensity-row {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    border-bottom: 1px solid var(--border);
+  }
+  .intensity-row:last-child { border-bottom: none; }
+  .intensity-row > div { padding: 16px 22px; }
+  .intensity-row .tier {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-right: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--tier-color);
+  }
+  .intensity-row .tier::before {
+    content: '';
+    width: 10px; height: 10px; border-radius: 2px;
+    background: var(--tier-color);
+  }
+  .intensity-row .examples { font-size: 14px; color: var(--text-secondary); display: flex; align-items: center; }
+  .intensity-row.low { --tier-color: var(--phase-foundation); }
+  .intensity-row.medium { --tier-color: var(--phase-development); }
+  .intensity-row.high { --tier-color: var(--phase-sharpening); }
+  .intensity-row.veryhigh { --tier-color: var(--phase-peak); }
+  @media (max-width: 720px) {
+    .intensity-row { grid-template-columns: 1fr; }
+    .intensity-row .tier { border-right: none; border-bottom: 1px dashed var(--border); }
+  }
+
+  .gate-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--phase-development);
+    border-radius: 0 4px 4px 0;
+    padding: 28px 32px;
+    margin-top: 24px;
+  }
+  .gate-card.safety { border-left-color: var(--eli); }
+  .gate-card .label {
+    font-family: var(--font-display);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--phase-development);
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .gate-card.safety .label { color: var(--eli); }
+  .gate-card h4 {
+    color: var(--text-primary);
+    font-size: 22px;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-bottom: 12px;
+  }
+  .gate-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 12px; }
+  .gate-card ul { list-style: none; }
+  .gate-card li {
+    font-size: 14px;
+    color: var(--text-primary);
+    padding: 6px 0;
+    padding-left: 22px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .gate-card li::before {
+    content: '✓';
+    position: absolute; left: 0; top: 6px;
+    color: var(--phase-development);
+    font-weight: 700;
+  }
+  .gate-card.safety li::before { content: '!'; color: var(--eli); }
+
+  /* Off the field / holistic */
+  .pillar {
+    margin-top: 48px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+  }
+  .pillar:first-of-type { border-top: none; padding-top: 8px; }
+  .pillar-head {
+    display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .pillar-head .pnum {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 1;
+    color: var(--pillar-color, var(--accent-hot));
+  }
+  .pillar-head h3 { font-size: 30px; }
+  .pillar .pillar-lead { font-size: 15px; color: var(--text-secondary); max-width: 70ch; line-height: 1.6; margin-bottom: 24px; }
+  .pillar.recovery { --pillar-color: var(--phase-foundation); }
+  .pillar.gameiq { --pillar-color: var(--eli); }
+
+  .holo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .holo-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 24px 26px;
+    position: relative;
+    overflow: hidden;
+  }
+  .holo-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 100%; height: 2px; background: var(--pillar-color, var(--accent-hot));
+  }
+  .holo-card h4 {
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+  .holo-card .tagline {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--pillar-color, var(--accent-hot));
+    letter-spacing: 0.06em;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  .holo-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+  .holo-card ul { list-style: none; margin-top: 10px; }
+  .holo-card li {
+    font-size: 13px; color: var(--text-secondary);
+    padding: 5px 0 5px 16px; position: relative; line-height: 1.5;
+  }
+  .holo-card li::before {
+    content: ''; position: absolute; left: 0; top: 12px;
+    width: 6px; height: 1px; background: var(--pillar-color, var(--accent-hot));
+  }
+  .holo-card .by-child {
+    margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--border);
+    font-family: var(--font-mono); font-size: 12px; line-height: 1.85; color: var(--text-secondary);
+  }
+  .holo-card .by-child .who { font-weight: 600; }
+  .holo-card .by-child .nora { color: var(--nora); }
+  .holo-card .by-child .silas { color: var(--silas); }
+  .holo-card .by-child .isaiah { color: var(--isaiah); }
+  .holo-card .by-child .eli { color: var(--eli); }
+
+  /* Footer */
+  footer { border-top: 1px solid var(--border); padding: 48px 0; margin-top: 40px; }
+  footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  footer .brand { font-family: var(--font-display); font-weight: 700; font-size: 17px; text-transform: uppercase; letter-spacing: 0.08em; }
+  footer .meta-line { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); }
+
+  .section-intro { max-width: 70ch; margin-bottom: 8px; }
+  .section-intro .eyebrow { margin-bottom: 16px; }
+
+  @media print {
+    nav.top, .day-tabs, .week-selector { display: none; }
+    .day-panel { display: block !important; page-break-before: always; }
+    [data-weeks] { display: block !important; }
+    body { background: white; color: black; }
+    section { padding: 24px 0; border: none; }
+  }
+
+  @media (max-width: 720px) {
+    section { padding: 56px 0; }
+    .hero { padding: 64px 0 56px; }
+    .block { padding: 20px 22px; }
+    .day-tab { padding: 14px 16px; font-size: 15px; }
+    .player-card { padding: 24px; }
+    .player-card .name { font-size: 36px; }
+  }
 </style>
 </head>
-<body>
-<div class="header">
-  <div class="header-emoji">🏃</div>
-  <div class="header-title">Family Training Plans</div>
-  <div class="header-sub">Speed · Agility · Quickness · GK · General Development</div>
-</div>
-<div class="cards">
-  <div class="card">
-    <div class="card-header">
-      <div class="card-emoji">⚡</div>
-      <div class="card-name">Isaiah's Plan</div>
-      <div class="card-pos">Striker / Wing / Mid · Age 13 · General Development</div>
-    </div>
-    <div class="card-links">
-      <a class="btn btn-primary" href="isaiah.html" style="background:var(--abg);border-color:var(--amber);color:var(--amber)">
-        <span class="btn-icon">📱</span>
-        <span class="btn-text">Training Plan<small>Interactive · Tue/Wed Pre-Practice + Weekend · Eli Partnership</small></span>
-        <span class="btn-arrow">›</span>
-      </a>
-      <a class="btn btn-secondary" href="isaiah-print.html">
-        <span class="btn-icon">🖨</span>
-        <span class="btn-text">Printable Version<small>PDF-ready · All sections visible</small></span>
-        <span class="btn-arrow">›</span>
-      </a>
+<body data-phase="foundation">
+
+<nav class="top">
+  <div class="inner">
+    <div class="brand">Rodriguez · Summer '26</div>
+    <div class="links">
+      <a href="#family">Family</a>
+      <a href="#plan">Plan</a>
+      <a href="#sessions">Sessions</a>
+      <a href="#patterns">Synergy</a>
+      <a href="#load-safety">Load &amp; Safety</a>
+      <a href="#holistic">Off the Field</a>
     </div>
   </div>
-  <div class="card">
-    <div class="card-header">
-      <div class="card-emoji">🧤</div>
-      <div class="card-name">Eli's Plan</div>
-      <div class="card-pos">Goalkeeper · Age 15 · Goalkeeper Development</div>
-    </div>
-    <div class="card-links">
-      <a class="btn btn-primary" href="eli.html">
-        <span class="btn-icon">📱</span>
-        <span class="btn-text">GK Training Plan<small>Interactive · Mon/Wed Pre-Practice + Weekend Session</small></span>
-        <span class="btn-arrow">›</span>
-      </a>
-      <a class="btn btn-secondary" href="eli-print.html">
-        <span class="btn-icon">🖨</span>
-        <span class="btn-text">Printable Version<small>PDF-ready · All sections visible</small></span>
-        <span class="btn-arrow">›</span>
-      </a>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div class="eyebrow">8-Week Summer Program · 5 Days × 60 Minutes</div>
+    <h1>One session.<br>Four players.<br>Every day.</h1>
+    <p class="lead">A coordinated family training block built on the high-low approach used by elite youth academies. Same warm-up, same SAQ block, same finisher — but every drill carries position-tagged modifications so Nora, Silas, Isaiah, and Eli each get their own program inside one shared session.</p>
+
+    <div class="meta-grid" style="margin-top: 48px;">
+      <div><div class="label">Duration</div><div class="value">8<small>weeks</small></div></div>
+      <div><div class="label">Frequency</div><div class="value">5<small>per week</small></div></div>
+      <div><div class="label">Session</div><div class="value">60<small>min</small></div></div>
+      <div><div class="label">Total sessions</div><div class="value">40</div></div>
+      <div><div class="label">Players</div><div class="value">4</div></div>
     </div>
   </div>
-  <div class="card">
-    <div class="card-header">
-      <div class="card-emoji">⚡</div>
-      <div class="card-name">Nora's Plan</div>
-      <div class="card-pos">Attacking Mid / Winger · Age 9</div>
+</header>
+
+<section id="family">
+  <div class="container">
+    <div class="section-intro">
+      <div class="eyebrow">The Family</div>
+      <h2>Who's on the field</h2>
+      <p class="lead">Each child has a position profile, dominant foot, and a development theme for this block. Their accent color appears throughout the daily sessions wherever a drill needs a modification for them.</p>
     </div>
-    <div class="card-links">
-      <a class="btn btn-primary" href="daughter.html">
-        <span class="btn-icon">📱</span>
-        <span class="btn-text">Training Plan<small>Interactive · With videos</small></span>
-        <span class="btn-arrow">›</span>
-      </a>
-      <a class="btn btn-secondary" href="daughter-print.html">
-        <span class="btn-icon">🖨</span>
-        <span class="btn-text">Printable Version<small>PDF-ready · No videos</small></span>
-        <span class="btn-arrow">›</span>
-      </a>
+
+    <div class="player-grid">
+      <div class="player-card nora">
+        <div class="name">Nora</div>
+        <div class="age-badge">10 · PRE-ECNL · RIGHT FOOT</div>
+        <div class="position">Winger <small>+ CMF</small></div>
+        <div class="level">Serious development of foundational habits. Volume controlled by age; technical standards held to the same bar as the older kids.</div>
+        <ul class="focus-list">
+          <li>Cutting inside off the right foot for shots</li>
+          <li>Left foot mastery (15 min per session)</li>
+          <li>Receive-turn-pass mechanics for CMF</li>
+          <li>Acceleration mechanics, posture, arm action</li>
+        </ul>
+      </div>
+      <div class="player-card silas">
+        <div class="name">Silas</div>
+        <div class="age-badge">11 · PRE-ECNL · LEFT FOOT</div>
+        <div class="position">Winger <small>+ Striker</small></div>
+        <div class="level">Lean into the left-dominant advantage. Build right foot to make him unpredictable in both half-spaces.</div>
+        <ul class="focus-list">
+          <li>Beating defenders down the line with strong left</li>
+          <li>Right foot strikes from cuts inside</li>
+          <li>Striker movement and finishing from crosses</li>
+          <li>Multi-directional plyometrics at moderate volume</li>
+        </ul>
+      </div>
+      <div class="player-card isaiah">
+        <div class="name">Isaiah</div>
+        <div class="age-badge">13 · REC + SCHOOL · RIGHT FOOT</div>
+        <div class="position">Striker <small>+ CMF</small></div>
+        <div class="level">At the age where combined plyo + COD work can drive meaningful explosive development. Spine of his program.</div>
+        <ul class="focus-list">
+          <li>Movement to lose markers, runs behind the line</li>
+          <li>Finishing under pressure, first-time strikes</li>
+          <li>CMF receiving between lines, through balls</li>
+          <li>Bounds, depth drops, sprint mechanics</li>
+        </ul>
+      </div>
+      <div class="player-card eli">
+        <div class="name">Eli</div>
+        <div class="age-badge">15 · ECNL RL + VARSITY · RIGHT FOOT</div>
+        <div class="position">Goalkeeper</div>
+        <div class="level">Post-pubescent age — full progressive plyometric and position-specific strength menu unlocks. Reactive work is the centerpiece.</div>
+        <ul class="focus-list">
+          <li>Footwork: set positions, shuffles, crossovers</li>
+          <li>Diving progression: collapse → step-save → power</li>
+          <li>Distribution with both feet (heavy left emphasis)</li>
+          <li>Daily 10-min hip/shoulder/spine mobility</li>
+        </ul>
+      </div>
     </div>
   </div>
-  <div class="card">
-    <div class="card-header">
-      <div class="card-emoji">🔥</div>
-      <div class="card-name">Silas' Plan</div>
-      <div class="card-pos">Winger / Striker · Age 11</div>
+</section>
+
+<section id="plan">
+  <div class="container">
+    <div class="section-intro">
+      <div class="eyebrow">The Plan</div>
+      <h2>Eight weeks, four phases</h2>
+      <p class="lead">Each two-week phase has a clear job. Volume rises through weeks 1-4, intensity peaks in weeks 5-6, and weeks 7-8 detune slightly toward game-realistic, sharp, short work.</p>
     </div>
-    <div class="card-links">
-      <a class="btn btn-primary" href="son.html">
-        <span class="btn-icon">📱</span>
-        <span class="btn-text">Training Plan<small>Interactive · With videos</small></span>
-        <span class="btn-arrow">›</span>
-      </a>
-      <a class="btn btn-secondary" href="son-print.html">
-        <span class="btn-icon">🖨</span>
-        <span class="btn-text">Printable Version<small>PDF-ready · No videos</small></span>
-        <span class="btn-arrow">›</span>
-      </a>
+
+    <div class="phase-strip">
+      <div class="phase">
+        <div class="num">PHASE 01</div>
+        <h3>Foundation</h3>
+        <div class="weeks">WEEKS 1-2</div>
+        <p>Movement quality before load. Mechanics, mobility, low-intensity ladder and footwork patterns. Reintroduce weak-foot ball mastery. Establish session rhythm.</p>
+      </div>
+      <div class="phase">
+        <div class="num">PHASE 02</div>
+        <h3>Development</h3>
+        <div class="weeks">WEEKS 3-4</div>
+        <p>Volume and tempo rise. Harder plyometrics, longer COD sequences, more position-specific reps. Combine ball work with movement load.</p>
+      </div>
+      <div class="phase">
+        <div class="num">PHASE 03</div>
+        <h3>Sharpening</h3>
+        <div class="weeks">WEEKS 5-6</div>
+        <p>Reactive decision-making takes over. Visual and auditory triggers. 1v1s under pressure. Synergy patterns become opposed and competitive.</p>
+      </div>
+      <div class="phase">
+        <div class="num">PHASE 04</div>
+        <h3>Peak</h3>
+        <div class="weeks">WEEKS 7-8</div>
+        <p>Integration. Short, sharp, game-speed work. Volume drops, intensity stays high, rest increases. Match-realistic scenarios end every session.</p>
+      </div>
     </div>
   </div>
-</div>
-<div class="footer">FAMILY TRAINING PLANS · SAQ + GK + VARSITY DEVELOPMENT</div>
+</section>
+
+<section id="sessions">
+  <div class="container">
+    <div class="section-intro">
+      <div class="eyebrow">Daily Sessions</div>
+      <h2>The 60-minute blueprint</h2>
+      <p class="lead">Pick a week, then a day. Every session is built SAQ-first — 8 min warm-up, 16 min athletic development (the engine of the day), 12 min ball mastery, 19 min position synergy, 5 min core/mobility finisher. Weak-foot development isn't confined to the ball-mastery block — it's woven through passing patterns, 1v1s, crossing, finishing, distribution, and the synergy work. Volume, complexity, and decision-load progress across the 8 weeks.</p>
+    </div>
+
+    <!-- WEEK SELECTOR -->
+    <div class="week-selector" role="tablist">
+      <button class="week-btn active" data-week="1" data-phase="foundation"><span class="wnum">1</span><span class="wphase">Foundation</span></button>
+      <button class="week-btn" data-week="2" data-phase="foundation"><span class="wnum">2</span><span class="wphase">Foundation</span></button>
+      <button class="week-btn" data-week="3" data-phase="development"><span class="wnum">3</span><span class="wphase">Development</span></button>
+      <button class="week-btn" data-week="4" data-phase="development"><span class="wnum">4</span><span class="wphase">Development</span></button>
+      <button class="week-btn" data-week="5" data-phase="sharpening"><span class="wnum">5</span><span class="wphase">Sharpening</span></button>
+      <button class="week-btn" data-week="6" data-phase="sharpening"><span class="wnum">6</span><span class="wphase">Sharpening</span></button>
+      <button class="week-btn" data-week="7" data-phase="peak"><span class="wnum">7</span><span class="wphase">Peak</span></button>
+      <button class="week-btn" data-week="8" data-phase="peak"><span class="wnum">8</span><span class="wphase">Peak</span></button>
+    </div>
+
+    <!-- SESSION CONTEXT -->
+    <div class="session-context">
+      <div class="breadcrumb">Week <strong id="ctx-week">1</strong> · <strong id="ctx-phase">Foundation</strong> · <strong id="ctx-focus">Establish</strong></div>
+      <div class="phase-note" id="ctx-note">Teach every drill, every cue, every setup. Quality over quantity.</div>
+    </div>
+
+    <!-- DAY TABS -->
+    <div class="day-tabs" role="tablist">
+      <button class="day-tab active" data-day="mon">Mon<span class="day-focus">Power</span></button>
+      <button class="day-tab" data-day="tue">Tue<span class="day-focus">Skills</span></button>
+      <button class="day-tab" data-day="wed">Wed<span class="day-focus">Recovery</span></button>
+      <button class="day-tab" data-day="thu">Thu<span class="day-focus">Agility</span></button>
+      <button class="day-tab" data-day="fri">Fri<span class="day-focus">Soccer speed</span></button>
+    </div>
+
+    <!-- ============== MONDAY ============== -->
+    <div class="day-panel active" id="mon">
+
+      <!-- Block 1: Warm-up -->
+      <div class="block">
+        <div class="block-header">
+          <h4>1 · Dynamic warm-up</h4>
+          <div class="meta">8 min · all together</div>
+        </div>
+        <div class="block-intro">Wake up the CNS. Same pattern every Monday — repetition builds rhythm and lets the kids start without coaching.</div>
+
+        <div class="drill">
+          <div class="drill-name">RAMP circuit</div>
+          <div class="drill-cue">Two laps of: high knees → A-skip → B-skip → carioca → lateral shuffle → backpedal → 50% straight-line build-up.</div>
+          <div class="drill-prescription">2 × 20yd each pattern · walk back recovery</div>
+          <div class="week-note" data-weeks="5,6,7,8"><span class="label">Phase add-on</span>Add a directional change call on the last build-up — coach yells "left!" or "right!" mid-rep.</div>
+        </div>
+
+        <div class="drill">
+          <div class="drill-name">Band activation</div>
+          <div class="drill-cue">Ankle/knee bands on. Lateral walks, monster walks, glute bridges. Eli adds adductor and shoulder external rotation work.</div>
+          <div class="drill-prescription">2 × 10 each direction · 20s isometric hold on bridge</div>
+        </div>
+      </div>
+
+      <!-- Block 2: SAQ -->
+      <div class="block">
+        <div class="block-header">
+          <h4>2 · Speed &amp; power SAQ</h4>
+          <div class="meta">16 min · highest CNS demand of the week</div>
+        </div>
+        <div class="block-intro">The week's heaviest CNS block. Built in three layers: ladder primer (rhythm + coordination), landing/plyo (force absorption and production), then varied-position acceleration starts (the actual speed work). Ladder is the warm-up to the engine — not the engine itself.</div>
+
+        <div class="drill">
+          <div class="drill-name">Ladder · vertical pattern series</div>
+          <div class="drill-cue">In-in-out-out, then icky shuffle, then lateral 2-in. Eyes up, arms active, light quiet contacts. Stay tall. Quick off the ground. Each pattern down + back is one rep.</div>
+
+          <div class="drill-prescription" data-weeks="1,2">3 sets · 30s work / 30s rest · choreographed tempo</div>
+          <div class="drill-prescription" data-weeks="3,4">4 sets · 30s work / 30s rest · build to fast tempo</div>
+          <div class="drill-prescription" data-weeks="5,6">3 sets · 25s work / 35s rest · pattern called mid-rep</div>
+          <div class="drill-prescription" data-weeks="7,8">3 sets · 25s work / 45s rest · max quality only</div>
+
+          <div class="mods" data-weeks="1,2">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">2 patterns/set · 60s rest</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">3 patterns/set · 45s rest</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">3 patterns/set · 30s rest</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">3 patterns/set · 30s rest</div></div>
+          </div>
+          <div class="mods" data-weeks="3,4">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">3 patterns/set · 50s rest</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">4 patterns/set · 40s rest</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">4 patterns/set + reactive call</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">4 patterns/set + reactive call</div></div>
+          </div>
+          <div class="mods" data-weeks="5,6">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">3 patterns/set · directional cue</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">3 patterns/set · color/directional cue</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">3 patterns/set · reactive every rep</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">3 patterns/set · GK set-position exit on every rep</div></div>
+          </div>
+          <div class="mods" data-weeks="7,8">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">2 patterns/set · 60s rest · max effort</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">3 patterns/set · 45s rest · sharpest tempo</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">3 patterns/set · 45s rest · max effort</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">3 patterns/set · 45s rest · game-tempo footwork</div></div>
+          </div>
+        </div>
+
+        <div class="drill">
+          <div class="drill-name">Pogo &amp; broad jump ladder</div>
+          <div class="drill-cue">5 pogo hops in place — tall body, ribs stacked, spring through the ankle, slight knee bend. Into a broad jump, stick the landing for 2 seconds. Quiet, light contacts. Do not stomp.</div>
+
+          <div class="drill-prescription" data-weeks="1,2">Foot contacts: Nora 30 · Silas 50 · Isaiah 80 · Eli 100</div>
+          <div class="drill-prescription" data-weeks="3,4">Foot contacts: Nora 40 · Silas 65 · Isaiah 110 · Eli 130 · add lateral broad jumps</div>
+          <div class="drill-prescription" data-weeks="5,6">Foot contacts: Nora 35 · Silas 55 · Isaiah 95 · Eli 110 · add reactive box step</div>
+          <div class="drill-prescription" data-weeks="7,8">Foot contacts: Nora 25 · Silas 40 · Isaiah 75 · Eli 90 · longest rest · sharpest landings</div>
+
+          <div class="week-note" data-weeks="4"><span class="label">Week 4 add — only if readiness gates pass</span>Isaiah and Eli <em>may</em> introduce depth jumps from a 12-inch box. Five total reps at the end of the block. If any readiness gate fails (see Load &amp; Safety), replace with snap-down landings or broad-jump sticks instead — no exceptions.</div>
+          <div class="week-note" data-weeks="6"><span class="label">Week 6 add</span>Score the landings — sloppy stick = -1 rep penalty.</div>
+
+          <div class="mods" data-weeks="1,2">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">Pogo only · no broad jump yet</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">Pogo + small broad jump</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">Pogo + broad + stick</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">Add vertical jump for height — diving prep</div></div>
+          </div>
+          <div class="mods" data-weeks="3,4">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">Pogo + small broad jump now</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">Pogo + broad + stick · full version</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">Depth jump 12in box (W4) — only if gates pass, else broad-jump stick</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">Depth jump 12-15in + lateral broad — only if gates pass</div></div>
+          </div>
+          <div class="mods" data-weeks="5,6">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">Pogo + broad · reactive call on jump</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">Pogo + broad · direction called mid-jump</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">Depth jump 15in + reactive cut — only if gates pass · very-high tier, keep low</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">Depth jump 15in + dive-direction call — gates + safe surface required</div></div>
+          </div>
+          <div class="mods" data-weeks="7,8">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">Pogo + broad · 3 quality reps only</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">Pogo + broad + stick · max distance attempt</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">Depth jump progression · 12in start, up to 18in only if earned · max intent, clean landing · long rest · single digits · only if gates pass</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">Depth-to-dive sim · only if gates pass · safe surface · single-digit reps · never fatigued · no max amplitude if form drops</div></div>
+          </div>
+        </div>
+
+        <div class="drill">
+          <div class="drill-name">Acceleration starts · varied positions</div>
+          <div class="drill-cue">Drive the back leg, push the ground away, lean from the ankle, arms long and active. Walk back recovery only — never jog back on speed day. Each phase adds a new start position so the body learns to accelerate from any shape.</div>
+
+          <div class="drill-prescription" data-weeks="1,2">5 reps · standing start (3) + 3-point start (2) · 45s recovery · learn the mechanics</div>
+          <div class="drill-prescription" data-weeks="3,4">6 reps · standing + 3-point + knee start + push-up start · 60s recovery · vary every rep</div>
+          <div class="drill-prescription" data-weeks="5,6">6 reps · falling start + band-resisted first step + reactive start (visual/auditory cue) · 75s recovery</div>
+          <div class="drill-prescription" data-weeks="7,8">5 reps · race-to-gate format (siblings paired) · PR attempts · 2 min recovery</div>
+
+          <div class="mods" data-weeks="1,2">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">4 reps · focus on posture</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">5 reps · push from back foot</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">5 reps · drive low for 5yd</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">5 reps · explosive 5yd only · GK-relevant</div></div>
+          </div>
+          <div class="mods" data-weeks="3,4">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">5 reps · clean posture every rep</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">6 reps · drive low + extend</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">6 reps · add 1 × 15yd at the end</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">6 reps · 5yd reactive starts</div></div>
+          </div>
+          <div class="mods" data-weeks="5,6">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">4 reps · visual cue start</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">5 reps · auditory cue · sprint to direction</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">5 reps · visual + auditory trigger</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">5 reps · GK-specific reactive (ball drop trigger)</div></div>
+          </div>
+          <div class="mods" data-weeks="7,8">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">3 reps · sharpest of season</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">4 reps · PR attempts</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">4 reps · max-effort reactive</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">4 reps · 5yd reactive + dive at end</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Block 3: Ball mastery -->
+      <div class="block">
+        <div class="block-header">
+          <h4>3 · Ball mastery</h4>
+          <div class="meta">12 min · 50% weak foot</div>
+        </div>
+        <div class="block-intro">Field players work in parallel on touch sequences. Eli runs a parallel handling block — same duration, different content.</div>
+
+        <div class="drill">
+          <div class="drill-name">Wall touches · weak foot</div>
+          <div class="drill-cue">Inside-foot one-touch returns. Knee over the ball, ankle locked, hips square. Count out loud — first miss restarts the rep.</div>
+          <div class="drill-prescription" data-weeks="1,2">3 × 30 consecutive · then switch foot for 1 × 30</div>
+          <div class="drill-prescription" data-weeks="3,4">3 × 40 consecutive · then 1 × 40 strong foot</div>
+          <div class="drill-prescription" data-weeks="5,6">3 × 50 with one-touch reset (count restarts on miss)</div>
+          <div class="drill-prescription" data-weeks="7,8">PR attempts · 3 sets · log best each session</div>
+        </div>
+
+        <div class="drill">
+          <div class="drill-name">Cone manipulation · 8 touches</div>
+          <div class="drill-cue">Inside-inside-outside-outside, both directions. Toe up, ball close to laces, head up between touches.</div>
+          <div class="drill-prescription" data-weeks="1,2">4 sets each side · slow tempo · 20s rest</div>
+          <div class="drill-prescription" data-weeks="3,4">4 sets each side · build to fast tempo · 20s rest</div>
+          <div class="drill-prescription" data-weeks="5,6">4 sets each side · timed (under 30s per set)</div>
+          <div class="drill-prescription" data-weeks="7,8">3 sets each side · max speed clean · 30s rest</div>
+        </div>
+
+        <div class="drill">
+          <div class="drill-name">Eli · GK handling block (parallel)</div>
+          <div class="drill-cue">Basket catches (chest-high underhand) → diamond catches (overhead) → W-grip drives (chest-driven on contact). Server kneels 6yd away. Smooth not snappy on collection.</div>
+          <div class="drill-prescription" data-weeks="1,2">3 × 10 each technique · static server</div>
+          <div class="drill-prescription" data-weeks="3,4">3 × 12 each technique · server adds short footwork before catch</div>
+          <div class="drill-prescription" data-weeks="5,6">3 × 10 each technique · verbal direction call mid-throw</div>
+          <div class="drill-prescription" data-weeks="7,8">3 × 8 each technique · reaction ball mixed in</div>
+        </div>
+      </div>
+
+      <!-- Block 4: Synergy -->
+      <div class="block synergy">
+        <div class="block-header">
+          <h4>4 · Position synergy · Crosses &amp; finishes</h4>
+          <div class="meta">20 min · everyone in their real position</div>
+        </div>
+        <div class="block-intro">Monday's signature drill — every player gets game-realistic reps simultaneously. Wingers serve, striker attacks, keeper saves.</div>
+
+        <div class="synergy-pattern">
+          <div class="flow">
+            <span class="player">Nora</span> from RIGHT wing dribbles to byline <span class="arrow">→</span> low driven cross <span class="arrow">→</span> <span class="player">Isaiah</span> attacks near post <span class="arrow">→</span> <span class="player">Eli</span> shot-stops or claims
+          </div>
+        </div>
+        <div class="synergy-pattern">
+          <div class="flow">
+            <span class="player">Silas</span> from LEFT wing cuts inside <span class="arrow">→</span> right-foot curling cross to far post <span class="arrow">→</span> <span class="player">Isaiah</span> attacks far post <span class="arrow">→</span> <span class="player">Eli</span> covers far post
+          </div>
+        </div>
+        <div class="synergy-pattern">
+          <div class="flow">
+            <span class="player">Silas</span> down the line on LEFT <span class="arrow">→</span> left-foot whipped cross <span class="arrow">→</span> <span class="player">Nora</span> arriving as second striker, near post <span class="arrow">→</span> <span class="player">Eli</span> reads early
+          </div>
+        </div>
+
+        <div class="drill" style="margin-top: 8px;">
+          <div class="drill-prescription" data-weeks="1,2">3 sets of 6 reps · walked through · no defenders · 20s between · 90s between sets</div>
+          <div class="drill-prescription" data-weeks="3,4">3 sets of 6 reps · full speed · passive defender on attacker · 20s between</div>
+          <div class="drill-prescription" data-weeks="5,6">3 sets of 6 reps · live defender · winner-stays format · scoring</div>
+          <div class="drill-prescription" data-weeks="7,8">3 sets of 5 reps · full match scenario · 8s time pressure per rep</div>
+
+          <div class="week-note" data-weeks="6"><span class="label">Week 6 add</span>Attacker scores +2 if finished; keeper scores +1 if saved or claimed. Family scoreboard.</div>
+          <div class="week-note" data-weeks="8"><span class="label">Week 8</span>Add a 2v2 + GK mini-game at the end of the block. 4 minutes total. Position freedom — score the most goals.</div>
+
+          <div class="mods" data-weeks="1,2">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">Cross quality + cutting-in dribble</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">Both flanks · cross with strong + weak foot</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">Movement to lose, near vs far post timing</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">Set position, near-post coverage, claim vs punch</div></div>
+          </div>
+          <div class="mods" data-weeks="3,4">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">Beat passive defender · sharper cross</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">Both flanks at full speed · alternate finish + cross</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">Lose marker before ball arrives · 1-touch finish</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">Decide claim vs punch · communicate every call</div></div>
+          </div>
+          <div class="mods" data-weeks="5,6">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">Beat live defender 1v1 before cross</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">Live 1v1 either flank · scoring drives intensity</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">Finish under live pressure · score 5/8 to advance</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">Full live decision-making · keep clean sheet streak</div></div>
+          </div>
+          <div class="mods" data-weeks="7,8">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">Game-realistic · time pressure · positional discipline</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">Match-speed both flanks · 1-touch or cross only</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">8-second rep · finish in fewest touches possible</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">Match-realistic distribution after every save</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Block 5: Core -->
+      <div class="block">
+        <div class="block-header">
+          <h4>5 · Core &amp; isometric finisher</h4>
+          <div class="meta">5 min · all together</div>
+        </div>
+        <div class="drill">
+          <div class="drill-name">Pillar circuit</div>
+          <div class="drill-cue">Plank → side plank L → side plank R → glute bridge isometric → dead bug. Breathe through every hold — no breath-holding.</div>
+          <div class="drill-prescription" data-weeks="1,2">Hold times: Nora 20s · Silas 25s · Isaiah 30s · Eli 40s · 1 round</div>
+          <div class="drill-prescription" data-weeks="3,4">Hold times: Nora 25s · Silas 30s · Isaiah 35s · Eli 45s · 1-2 rounds</div>
+          <div class="drill-prescription" data-weeks="5,6">Hold times: Nora 30s · Silas 35s · Isaiah 40s · Eli 50s · 2 rounds · add anti-rotation</div>
+          <div class="drill-prescription" data-weeks="7,8">Quality round · perfect form · same hold times · 1 round</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============== TUESDAY ============== -->
+    <div class="day-panel" id="tue">
+
+      <div class="block">
+        <div class="block-header"><h4>1 · Dynamic warm-up</h4><div class="meta">8 min · mobility-weighted</div></div>
+        <div class="block-intro">Lower CNS load today — warm-up has extra mobility, especially for Eli's hips and shoulders.</div>
+
+        <div class="drill">
+          <div class="drill-name">World's greatest stretch flow</div>
+          <div class="drill-cue">Lunge → thoracic rotation → hamstring sweep → step through. Slow tempo. Eli holds the rotation reach 5 extra seconds per side.</div>
+          <div class="drill-prescription">2 rounds each side</div>
+        </div>
+        <div class="drill">
+          <div class="drill-name">Eli mobility block</div>
+          <div class="drill-cue">Hip 90/90 transitions, thread-the-needle, sleeper stretch, scapular CARs. Daily mobility checkpoint — this is where the 10-min daily quota lives.</div>
+          <div class="drill-prescription">10 min · slow controlled tempo</div>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-header"><h4>2 · Footwork SAQ</h4><div class="meta">16 min · low CNS · ladder + coordination day</div></div>
+        <div class="block-intro">Tuesday is the main coordination day. Ladder lives here — for foot placement, rhythm, body control. Then the patterns connect into ball action so the ladder doesn't stay isolated.</div>
+
+        <div class="drill">
+          <div class="drill-name">Ladder · precision patterns</div>
+          <div class="drill-cue">Two-in-each, lateral two-in, scissors, hopscotch. Slow then fast. Foot lands once per square — never touch a rung. Quiet contacts. Stay tall.</div>
+          <div class="drill-prescription" data-weeks="1,2">4 patterns · 3 sets each · 20s rest · learn the patterns</div>
+          <div class="drill-prescription" data-weeks="3,4">5 patterns · 3 sets each · alternate lead foot · 20s rest</div>
+          <div class="drill-prescription" data-weeks="5,6">5 patterns · 3 sets each · pattern called by coach (no plan)</div>
+          <div class="drill-prescription" data-weeks="7,8">4 patterns · 3 sets each · max speed clean · 30s rest</div>
+
+          <div class="mods" data-weeks="1,2">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">3 patterns · slow tempo focus</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">4 patterns · alternate lead foot</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">4 patterns · build to fast tempo</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">4 patterns · GK shuffle stance after each ladder exit</div></div>
+          </div>
+          <div class="mods" data-weeks="3,4">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">4 patterns · faster tempo</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">5 patterns · both lead feet</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">5 patterns · max tempo</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">5 patterns + set position catch after each</div></div>
+          </div>
+          <div class="mods" data-weeks="5,6">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">Called patterns · respond to coach voice</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">Called patterns · both feet · respond fast</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">Called patterns + ball touch after exit</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">Called patterns + diving direction call after</div></div>
+          </div>
+          <div class="mods" data-weeks="7,8">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">3 patterns · clean and fast</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">4 patterns · game-tempo</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">4 patterns · sharpest of program</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">4 patterns + handling sequence at exit</div></div>
+          </div>
+        </div>
+
+        <div class="drill">
+          <div class="drill-name">Mini-hurdle weave</div>
+          <div class="drill-cue">5 hurdles, 18 inches apart. Lateral two-foot in/out, then single-leg hops down + back. Quiet landings.</div>
+          <div class="drill-prescription" data-weeks="1,2">3 sets each pattern · 30s rest · two-foot only</div>
+          <div class="drill-prescription" data-weeks="3,4">3 sets each pattern · add single-leg hops (high tier — only if single-leg landings are stable)</div>
+          <div class="drill-prescription" data-weeks="5,6">3 sets each pattern · single-leg + lateral progression (high tier — gate by landing quality)</div>
+          <div class="drill-prescription" data-weeks="7,8">2 sets each pattern · max quality · long rest</div>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-header"><h4>3 · Extended ball mastery</h4><div class="meta">12 min · the long mastery block of the week</div></div>
+        <div class="block-intro">Tuesday is the high-volume touch day. More reps, more variations, more weak-foot. Eli runs parallel footwork-with-ball.</div>
+
+        <div class="drill">
+          <div class="drill-name">Sole rolls &amp; toe taps</div>
+          <div class="drill-cue">30s toe taps → 30s sole rolls forward/back → 30s sole roll lateral → 30s side-to-side V drag. Reset between blocks. Head up.</div>
+          <div class="drill-prescription" data-weeks="1,2,3,4">3 rounds · 15s rest</div>
+          <div class="drill-prescription" data-weeks="5,6,7,8">3 rounds · 15s rest · head fully up · scan during taps</div>
+        </div>
+
+        <div class="drill">
+          <div class="drill-name">Coerver moves · 1 per session</div>
+          <div class="drill-cue">Pick one move per session and master it. Week 1 = scissors. Week 2 = step-over. Week 3 = inside cut. Week 4 = elastico. Week 5+ = combine 2 moves.</div>
+          <div class="drill-prescription" data-weeks="1,2,3,4">20 each foot · slow → fast progression</div>
+          <div class="drill-prescription" data-weeks="5,6">15 each foot · combo (move + finish or move + pass)</div>
+          <div class="drill-prescription" data-weeks="7,8">10 each foot · used in 1v1 reps after</div>
+        </div>
+
+        <div class="drill">
+          <div class="drill-name">Juggling ladder</div>
+          <div class="drill-cue">Weak foot only, knee high. Count out loud. Two attempts at PB.</div>
+          <div class="drill-prescription">5 min · track best score in tracker</div>
+          <div class="mods">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">Left foot · target 10 → 25 by W8</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">Right foot · target 15 → 40 by W8</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">Left foot · target 20 → 50 by W8</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">Both feet alternating · target 30 → 60</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block synergy">
+        <div class="block-header"><h4>4 · Position synergy · 1v1 channels</h4><div class="meta">20 min · isolated technical battles</div></div>
+        <div class="block-intro">Tuesday's synergy is positional 1v1s — wingers vs each other, striker against keeper, decision-making under controlled pressure.</div>
+
+        <div class="synergy-pattern">
+          <div class="flow">
+            <span class="player">Nora</span> attacks RIGHT channel <span class="arrow">→</span> <span class="player">Silas</span> defends as full-back <span class="arrow">→</span> winner enters next cone gate to score
+          </div>
+        </div>
+        <div class="synergy-pattern">
+          <div class="flow">
+            <span class="player">Silas</span> attacks LEFT channel <span class="arrow">→</span> <span class="player">Nora</span> defends as full-back <span class="arrow">→</span> roles reverse every 2 reps
+          </div>
+        </div>
+        <div class="synergy-pattern">
+          <div class="flow">
+            <span class="player">Isaiah</span> breakaway 1v1 from 25yd <span class="arrow">→</span> <span class="player">Eli</span> reads, narrows angle, decides set vs spread
+          </div>
+        </div>
+
+        <div class="drill" style="margin-top: 8px;">
+          <div class="drill-prescription" data-weeks="1,2">3 sets of 6 reps · 20-25s work · 60s rest between sets · walked through</div>
+          <div class="drill-prescription" data-weeks="3,4">3 sets of 6 reps · full speed · alternating attacker/defender</div>
+          <div class="drill-prescription" data-weeks="5,6">3 sets of 6 reps · live competition · score gate to win the rep</div>
+          <div class="drill-prescription" data-weeks="7,8">3 sets of 5 reps · winner-stays · loser becomes defender for next rep</div>
+
+          <div class="week-note" data-weeks="6"><span class="label">Week 6 add</span>Tally wins per child per session. End-of-week champion gets to pick the family scrimmage format on Friday.</div>
+
+          <div class="mods" data-weeks="1,2">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">Cut inside off right foot, end with shot/cross</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">Beat down the line OR cut in — alternate</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">Disguise shot vs round · pick by Eli's first move</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">Patience · don't dive early · stay big</div></div>
+          </div>
+          <div class="mods" data-weeks="3,4">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">Read defender · cut or beat outside</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">Both moves at full speed · finish every rep</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">Force Eli's commit · finish low corner</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">Hold position longer · save with feet OK</div></div>
+          </div>
+          <div class="mods" data-weeks="5,6">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">Live · score for finish OR successful cross</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">Score for goal · -1 for losing ball</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">Score 6/10 in week to advance to W7+ difficulty</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">Each save = +1 · each goal conceded = -1</div></div>
+          </div>
+          <div class="mods" data-weeks="7,8">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">Winner-stays · build streaks</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">Winner-stays · use right-foot finish at least 50%</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">Winner-stays · finish in 2 touches max</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">Winner-stays · clean sheet streak target</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-header"><h4>5 · Mobility cooldown</h4><div class="meta">5 min · slow, deliberate</div></div>
+        <div class="drill">
+          <div class="drill-name">Couch stretch, pigeon, child's pose</div>
+          <div class="drill-cue">Hold each 45s per side. Eli adds figure-4 and overhead reach.</div>
+          <div class="drill-prescription">Slow nasal breathing throughout</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============== WEDNESDAY ============== -->
+    <div class="day-panel" id="wed">
+
+      <div class="block">
+        <div class="block-header"><h4>1 · Light warm-up</h4><div class="meta">8 min · easy</div></div>
+        <div class="block-intro">Low-impact technical rhythm day. Heart rate stays low — focus stays sharp. Clean touches, clean posture, no wasted reps.</div>
+        <div class="drill">
+          <div class="drill-name">Walking flow</div>
+          <div class="drill-cue">Walking knee hug → quad pull → ankle pull → leg cradle → walking lunge with reach. No tempo, no intensity.</div>
+          <div class="drill-prescription">1 × 25yd each pattern</div>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-header"><h4>2 · Easy SAQ &amp; coordination</h4><div class="meta">16 min · 50% effort ceiling · technical rhythm</div></div>
+        <div class="block-intro">Movement quality only. Low physical output, high technical focus.</div>
+        <div class="drill">
+          <div class="drill-name">Jump rope intervals</div>
+          <div class="drill-cue">Two-foot bounces, then alternating, then high-knees. Smooth not fast.</div>
+          <div class="drill-prescription" data-weeks="1,2,3,4">4 × 45s on / 30s off</div>
+          <div class="drill-prescription" data-weeks="5,6,7,8">4 × 45s on / 30s off · optional double-under attempts at the end (technical only, not a performance demand)</div>
+        </div>
+        <div class="drill">
+          <div class="drill-name">Ladder · single pattern of choice</div>
+          <div class="drill-cue">Pick whichever pattern feels best today. Two passes, focus on rhythm.</div>
+          <div class="drill-prescription">2 sets · 30s rest</div>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-header"><h4>3 · Free juggling &amp; weak foot</h4><div class="meta">12 min · refined touches</div></div>
+        <div class="block-intro">Low intensity, high focus. Juggle, freestyle, try new things — but every touch is deliberate. This is the day to refine.</div>
+        <div class="drill">
+          <div class="drill-name">Juggling games</div>
+          <div class="drill-cue">PB attempts, alternating-foot juggling, around-the-world tries. Family scoreboard if you want competition.</div>
+          <div class="drill-prescription">Open · 10 min</div>
+        </div>
+        <div class="drill">
+          <div class="drill-name">Eli · light handling</div>
+          <div class="drill-cue">Soft tosses from siblings — basket and diamond catches only. No diving today.</div>
+          <div class="drill-prescription">20-30 catches total · easy</div>
+        </div>
+
+        <div class="week-note" data-weeks="4"><span class="label">Week 4 · Mid-program test</span>Testing replaces normal Wednesday volume this week — don't stack it on top. After the warm-up and a brief technical touch block (while fresh, before any fatiguing work), run the retests: 10yd sprint, 5-0-5 each side, vertical jump, weak-foot juggling PR. Then finish with light touches and mobility. Log everyone's numbers against W1.</div>
+        <div class="week-note" data-weeks="8"><span class="label">Week 8 · Final test</span>Final benchmark test day — testing replaces normal volume, run while fresh after the warm-up. Same battery as W1 + W4, plus the 5-10-5 added in Phase 3. Document all numbers, then finish light. Celebrate the progress across the block.</div>
+      </div>
+
+      <div class="block synergy">
+        <div class="block-header"><h4>4 · Passing patterns · unopposed</h4><div class="meta">20 min · no pressure</div></div>
+        <div class="block-intro">Patterns built for rhythm and clean technique. No defenders. Connect through phases of play.</div>
+        <div class="synergy-pattern">
+          <div class="flow">
+            <span class="player">Eli</span> rolls out to <span class="player">Nora</span> (CMF) <span class="arrow">→</span> Nora switches to <span class="player">Silas</span> (LW) <span class="arrow">→</span> Silas combines with <span class="player">Isaiah</span> (ST) <span class="arrow">→</span> Isaiah lays off, finishes own rebound
+          </div>
+        </div>
+        <div class="synergy-pattern">
+          <div class="flow">
+            <span class="player">Eli</span> long throw to <span class="player">Isaiah</span> <span class="arrow">→</span> Isaiah back-post to <span class="player">Silas</span> arriving <span class="arrow">→</span> Silas plays in <span class="player">Nora</span> <span class="arrow">→</span> Nora finishes
+          </div>
+        </div>
+        <div class="drill" style="margin-top: 8px;">
+          <div class="drill-prescription">6 reps each pattern · slow → game tempo</div>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-header"><h4>5 · Long mobility</h4><div class="meta">5+ min · optional extend to 10</div></div>
+        <div class="drill">
+          <div class="drill-name">Full-body deload</div>
+          <div class="drill-cue">Cat-cow, thoracic openers, hip flow, calf wall stretch. Eli adds sleeper, doorway pec, banded shoulder dislocates.</div>
+          <div class="drill-prescription">Slow, breathe nasally</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============== THURSDAY ============== -->
+    <div class="day-panel" id="thu">
+
+      <div class="block">
+        <div class="block-header"><h4>1 · Dynamic warm-up · multi-directional</h4><div class="meta">8 min · all together</div></div>
+        <div class="block-intro">Same RAMP base as Monday, but with more lateral and rotational prep for today's COD focus.</div>
+        <div class="drill">
+          <div class="drill-name">RAMP + lateral</div>
+          <div class="drill-cue">Add lateral shuffle, crossover step, drop-step + sprint, T-pattern jog. Hips loose.</div>
+          <div class="drill-prescription">2 × 20yd each · then 3 × 15yd at 70%</div>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-header"><h4>2 · Agility &amp; change of direction</h4><div class="meta">16 min · high CNS · decel → COD → reaction</div></div>
+        <div class="block-intro">The COD signature day. Eccentric deceleration must be taught before hard cuts — deceleration stick work in W1-2, then 5-0-5 mechanics, then 5-10-5 progression from W5. Cuts are the focus.</div>
+
+        <div class="drill">
+          <div class="drill-name">Deceleration stick · teaching block</div>
+          <div class="drill-cue">Before you can cut hard, you have to STOP hard. Sprint 5yd → plant outside foot → stick the position for 2 seconds. Hips drop, chest up, knee tracks over toe. Same for lateral shuffle → stick, drop step → stick, 45-degree plant → hold. This block teaches the braking mechanics that make every cut safer and faster.</div>
+
+          <div class="drill-prescription" data-weeks="1,2">4 patterns · 3 reps each · 30s rest · the headline block this phase</div>
+          <div class="drill-prescription" data-weeks="3,4">4 patterns · 2 reps each · 30s rest · maintenance · refresh mechanics</div>
+          <div class="drill-prescription" data-weeks="5,6">3 patterns · 2 reps each · quick reset before 5-10-5 work</div>
+          <div class="drill-prescription" data-weeks="7,8">2 patterns · 2 reps · brief refresh only</div>
+        </div>
+
+        <div class="drill">
+          <div class="drill-name">5-0-5 shuttle</div>
+          <div class="drill-cue">5yd out, plant the outside foot, drive back 5yd. Low hips on the cut, eyes up, opposite arm drives.</div>
+          <div class="drill-prescription" data-weeks="1,2">4 reps each side · full recovery (60s) · learn the cut</div>
+          <div class="drill-prescription" data-weeks="3,4">5 reps each side · cuts off both feet · 60s rest</div>
+          <div class="drill-prescription" data-weeks="5,6">DRILL CHANGES → 5-10-5 shuttle this phase · 4 reps each direction · 90s rest · see 5-10-5 below</div>
+          <div class="drill-prescription" data-weeks="7,8">DRILL CHANGES → reactive 5-10-5 · 3 reps each direction · 2 min rest · see 5-10-5 below</div>
+
+          <div class="mods" data-weeks="1,2">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">3 reps each side · 3yd shuttle</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">4 reps each · 4yd shuttle</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">4 reps each · 5yd full</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">4 reps each + GK set-position on cut</div></div>
+          </div>
+          <div class="mods" data-weeks="3,4">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">4 reps each · 4yd · both cut feet</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">5 reps each · 4yd · weak-foot cut emphasis</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">5 reps each · 5yd · both cut feet</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">5 reps · 3yd shuttle · set/save at end</div></div>
+          </div>
+          <div class="mods" data-weeks="5,6">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">Drill switches to 5-10-5 — see below</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">Drill switches to 5-10-5 — see below</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">Drill switches to 5-10-5 — see below</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">Drill switches to 5-10-5 — see below</div></div>
+          </div>
+          <div class="mods" data-weeks="7,8">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">Drill switches to reactive 5-10-5 — see below</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">Drill switches to reactive 5-10-5 — see below</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">Drill switches to reactive 5-10-5 — see below</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">Drill switches to reactive 5-10-5 — see below</div></div>
+          </div>
+        </div>
+
+        <div class="drill" data-weeks="5,6,7,8">
+          <div class="drill-name">5-10-5 pro shuttle</div>
+          <div class="drill-cue">Stand at the middle line. Sprint 5yd right, plant outside foot, sprint 10yd left, plant outside foot, sprint 5yd back through start. Two hard cuts, multiple re-accelerations. This is the progression from 5-0-5 — more game-like repeated direction changes.</div>
+
+          <div class="drill-prescription" data-weeks="5,6">4 reps each starting direction · 90s rest · clean planting required</div>
+          <div class="drill-prescription" data-weeks="7,8">3 reps each starting direction · reactive start (coach calls direction) · 2 min rest · PR attempts</div>
+
+          <div class="mods" data-weeks="5,6">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">3 reps each · 3-6-3yd shuttle (scaled distances)</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">4 reps each · 5-10-5 full · alternate starting direction</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">4 reps each · 5-10-5 full · timed reps from W6</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">4 reps · 3-6-3yd lateral shuffle version · GK-relevant distance</div></div>
+          </div>
+          <div class="mods" data-weeks="7,8">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">3 reps · 3-6-3yd · PR attempt</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">3 reps · 5-10-5 · reactive start · PR</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">3 reps · 5-10-5 · reactive start · PR</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">3 reps · 3-6-3yd lateral · reactive · PR</div></div>
+          </div>
+        </div>
+
+        <div class="drill">
+          <div class="drill-name">T-drill</div>
+          <div class="drill-cue">Sprint up, shuffle right to cone, shuffle left through center to far cone, shuffle back, backpedal home. No crossover steps in the shuffle.</div>
+          <div class="drill-prescription" data-weeks="1,2">3 reps · 90s rest · slow-to-fast</div>
+          <div class="drill-prescription" data-weeks="3,4">3 reps · 90s rest · full speed</div>
+          <div class="drill-prescription" data-weeks="5,6">3 reps · directional call mid-drill (mirror opposite)</div>
+          <div class="drill-prescription" data-weeks="7,8">2 reps · PR attempts · 2 min rest</div>
+        </div>
+
+        <div class="drill">
+          <div class="drill-name">Reactive mirror</div>
+          <div class="drill-cue">Pair up. Leader moves laterally inside a 5yd box. Follower mirrors. Switch every 15s. Eli pairs with Isaiah for higher tempo.</div>
+          <div class="drill-prescription" data-weeks="1,2">4 × 20s on / 20s rest · easy tempo</div>
+          <div class="drill-prescription" data-weeks="3,4">4 × 20s on / 20s rest · game tempo</div>
+          <div class="drill-prescription" data-weeks="5,6">4 × 20s on / 20s rest · winner +1 point · first to 5 wins the set</div>
+          <div class="drill-prescription" data-weeks="7,8">3 × 25s on / 30s rest · highest quality of program</div>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-header"><h4>3 · Ball mastery · COD with ball</h4><div class="meta">12 min · combine touch with cuts</div></div>
+        <div class="block-intro">Today's mastery block adds the cuts learned in block 2 — but now with the ball. Same principles, harder execution.</div>
+        <div class="drill">
+          <div class="drill-name">Cone weave + cut</div>
+          <div class="drill-cue">5 cones, 5ft apart. Inside-outside weave, then cut at the end cone with outside foot, sprint 5yd out.</div>
+          <div class="drill-prescription" data-weeks="1,2">3 sets · 45s rest · learn the pattern</div>
+          <div class="drill-prescription" data-weeks="3,4">3 sets · alternate cut foot · 45s rest</div>
+          <div class="drill-prescription" data-weeks="5,6">3 sets · cut direction called late · 60s rest</div>
+          <div class="drill-prescription" data-weeks="7,8">2 sets · max speed · 2 min rest</div>
+        </div>
+        <div class="drill">
+          <div class="drill-name">L-drill with ball</div>
+          <div class="drill-cue">Dribble forward to cone 1, cut left to cone 2, drive 5yd to finish line. Use weak foot on the cut.</div>
+          <div class="drill-prescription" data-weeks="1,2">5 reps each direction · slow tempo</div>
+          <div class="drill-prescription" data-weeks="3,4">5 reps each direction · full speed</div>
+          <div class="drill-prescription" data-weeks="5,6">5 reps each · finish with a strike at the end</div>
+          <div class="drill-prescription" data-weeks="7,8">4 reps each · combine into the synergy block flow</div>
+        </div>
+        <div class="drill">
+          <div class="drill-name">Eli · footwork + handling</div>
+          <div class="drill-cue">Shuffle 3yd, set, catch (server tosses), shuffle 3yd opposite, set, catch. Power through legs into hands.</div>
+          <div class="drill-prescription" data-weeks="1,2">3 × 10 catches · static server</div>
+          <div class="drill-prescription" data-weeks="3,4">3 × 12 catches · server adds direction call</div>
+          <div class="drill-prescription" data-weeks="5,6">3 × 12 catches · reaction ball substituted 4 reps/set</div>
+          <div class="drill-prescription" data-weeks="7,8">3 × 10 catches · double-server reactive shots</div>
+        </div>
+      </div>
+
+      <div class="block synergy">
+        <div class="block-header"><h4>4 · Position synergy · Build-up &amp; combinations</h4><div class="meta">20 min · combination play</div></div>
+        <div class="block-intro">Thursday's synergy is the build-up flow — keeper to midfielder to wide to forward. Game phases connected.</div>
+
+        <div class="synergy-pattern">
+          <div class="flow">
+            <span class="player">Eli</span> distributes to <span class="player">Nora</span> (CMF, pre-scanned) <span class="arrow">→</span> Nora opens body, switches to <span class="player">Silas</span> wide left <span class="arrow">→</span> Silas drives + crosses <span class="arrow">→</span> <span class="player">Isaiah</span> attacks
+          </div>
+        </div>
+        <div class="synergy-pattern">
+          <div class="flow">
+            <span class="player">Isaiah</span> drops as CMF · receives from <span class="player">Eli</span> <span class="arrow">→</span> turns + plays <span class="player">Nora</span> running beyond <span class="arrow">→</span> Nora cuts back to <span class="player">Silas</span> arriving · finish
+          </div>
+        </div>
+        <div class="synergy-pattern">
+          <div class="flow">
+            Wall-pass triangle: <span class="player">Silas</span> + <span class="player">Nora</span> 1-2 down the left <span class="arrow">→</span> Silas crosses <span class="arrow">→</span> <span class="player">Isaiah</span> finishes vs <span class="player">Eli</span>
+          </div>
+        </div>
+
+        <div class="drill" style="margin-top: 8px;">
+          <div class="drill-prescription" data-weeks="1,2">3 patterns · 4 reps each · 60s between · 2 min between patterns · walked</div>
+          <div class="drill-prescription" data-weeks="3,4">3 patterns · 6 reps each · full speed · 60s between</div>
+          <div class="drill-prescription" data-weeks="5,6">3 patterns · 6 reps each · passive defender added · 60s between</div>
+          <div class="drill-prescription" data-weeks="7,8">3 patterns · 5 reps each · live defender · time pressure · 90s between</div>
+
+          <div class="mods" data-weeks="1,2">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">Scan before receiving · open body</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">First touch positive · learn cross technique</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">Timing of run · learn the arrival</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">Distribution accuracy · learn cross-coverage</div></div>
+          </div>
+          <div class="mods" data-weeks="3,4">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">Scan twice · weight of switch</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">Both feet cross · vary near/far post</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">Time the run · 1-touch finish</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">Pick distribution by Nora's position</div></div>
+          </div>
+          <div class="mods" data-weeks="5,6">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">Beat defender pressure before switch</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">Beat defender before crossing</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">Finish past defender in box</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">Live decisions · communicate every play</div></div>
+          </div>
+          <div class="mods" data-weeks="7,8">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">Match-realistic switch · disguise</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">Time-pressured cross · 4-second rep</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">Movement to lose · finish in 1-2 touches</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">Sweeper-keeper · come off line when appropriate</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-header"><h4>5 · Core &amp; finisher</h4><div class="meta">5 min · isometric focus</div></div>
+        <div class="drill">
+          <div class="drill-name">Anti-rotation circuit</div>
+          <div class="drill-cue">Pallof press (banded), bird-dog, side plank with reach. Anti-rotation strength = better cut stability.</div>
+          <div class="drill-prescription" data-weeks="1,2">2 rounds · 8 reps or 25s holds</div>
+          <div class="drill-prescription" data-weeks="3,4">2 rounds · 10 reps or 30s holds</div>
+          <div class="drill-prescription" data-weeks="5,6">2 rounds · 10 reps or 30s · add unstable surface for Isaiah/Eli</div>
+          <div class="drill-prescription" data-weeks="7,8">1 round · perfect form · slow tempo</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============== FRIDAY ============== -->
+    <div class="day-panel" id="fri">
+
+      <div class="block">
+        <div class="block-header"><h4>1 · Dynamic warm-up · sprint prep</h4><div class="meta">8 min · linear emphasis</div></div>
+        <div class="block-intro">Last high day of the week. Sprint mechanics get the warm-up focus.</div>
+        <div class="drill">
+          <div class="drill-name">Sprint prep series</div>
+          <div class="drill-cue">A-skip, B-skip, straight-leg bound, ankle hops, build-up runs. Light, springy, mechanics-forward.</div>
+          <div class="drill-prescription">2 × 20yd each · then 3 build-ups at 70/80/90%</div>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-header"><h4>2 · Small-space speed &amp; reaction</h4><div class="meta">16 min · 5-10yd bursts · reactive starts · soccer-speed</div></div>
+        <div class="block-intro">Friday is soccer-speed, not track-speed. Short bursts, varied start positions, reactive triggers, and chase races — the speeds you actually run in a game. Long recoveries between reps because quality matters more than quantity.</div>
+
+        <div class="drill">
+          <div class="drill-name">5yd burst starts · varied positions</div>
+          <div class="drill-cue">Explode out of multiple starting shapes. Standing, 3-point, knee, push-up, lateral, falling. The body learns to accelerate from any position — which is exactly what a game demands.</div>
+          <div class="drill-prescription" data-weeks="1,2">6 reps · standing (2) + 3-point (2) + knee (2) · 30s rest · teach mechanics</div>
+          <div class="drill-prescription" data-weeks="3,4">8 reps · cycle all positions (standing, 3-point, knee, push-up, lateral) · 30s rest · full speed</div>
+          <div class="drill-prescription" data-weeks="5,6">6 reps · all positions · coach calls position late · 45s rest</div>
+          <div class="drill-prescription" data-weeks="7,8">5 reps · race-to-gate paired with sibling · PR attempts · 60s rest</div>
+
+          <div class="mods" data-weeks="1,2">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">5 reps · standing + 3-point only · master posture first</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">6 reps · all positions · push hard out of each</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">6 reps · all positions · drive low first 5yd</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">6 reps · lateral start emphasis · GK-relevant first step</div></div>
+          </div>
+          <div class="mods" data-weeks="3,4">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">6 reps · add knee start · 4 positions total</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">8 reps · all 5 positions · vary every rep</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">8 reps · all positions + 2 falling starts</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">8 reps · lateral + crossover step starts</div></div>
+          </div>
+          <div class="mods" data-weeks="5,6">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">5 reps · reactive (visual cue from coach)</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">6 reps · reactive · alternate visual/auditory</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">6 reps · reactive · color/number cue</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">6 reps · reactive · ball-drop cue (GK-specific)</div></div>
+          </div>
+          <div class="mods" data-weeks="7,8">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">4 reps · race vs Silas to gate</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">5 reps · race vs Nora or Isaiah</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">5 reps · race vs Silas · PR attempts</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">5 reps · reactive start + dive simulation</div></div>
+          </div>
+        </div>
+
+        <div class="drill">
+          <div class="drill-name">Hip-turn-and-go</div>
+          <div class="drill-cue">Start facing 180° away from the gate. On cue, snap the hips, plant the inside foot, and explode 5-8yd. Trains the rotational acceleration that wingers and strikers need when receiving with a defender on their back.</div>
+          <div class="drill-prescription" data-weeks="1,2">4 reps each direction · 30s rest · teach the hip snap</div>
+          <div class="drill-prescription" data-weeks="3,4">5 reps each direction · 30s rest · full speed</div>
+          <div class="drill-prescription" data-weeks="5,6">4 reps each direction · coach calls direction late · 45s rest</div>
+          <div class="drill-prescription" data-weeks="7,8">3 reps each direction · reactive · finish with ball at end of sprint</div>
+        </div>
+
+        <div class="drill">
+          <div class="drill-name">Lateral shuffle → sprint &amp; backpedal → turn → sprint</div>
+          <div class="drill-cue">Two patterns. Shuffle 3yd laterally, plant, sprint 5yd. Then backpedal 3yd, hip-open turn, sprint 5yd. Trains the transition from defensive movement into attacking acceleration.</div>
+          <div class="drill-prescription" data-weeks="1,2">3 reps each pattern each side · 30s rest · teach mechanics</div>
+          <div class="drill-prescription" data-weeks="3,4">4 reps each pattern each side · full speed · 30s rest</div>
+          <div class="drill-prescription" data-weeks="5,6">3 reps each · coach calls which pattern late · 45s rest</div>
+          <div class="drill-prescription" data-weeks="7,8">3 reps each · feed into 1v1 gate transition (see synergy)</div>
+        </div>
+
+        <div class="drill">
+          <div class="drill-name">10yd chase race</div>
+          <div class="drill-cue">Siblings paired. Attacker has a 1yd head start. Chaser sprints to catch before the 10yd gate. Roles switch every rep. Sharpens both top-end soccer speed and competitive bite. Eli pairs with Isaiah for higher tempo.</div>
+          <div class="drill-prescription" data-weeks="1,2">3 reps each role · 60s rest · learn the chase pattern</div>
+          <div class="drill-prescription" data-weeks="3,4">4 reps each role · 60s rest · full speed</div>
+          <div class="drill-prescription" data-weeks="5,6">3 reps each role · reactive start (ball-drop) · 75s rest</div>
+          <div class="drill-prescription" data-weeks="7,8">3 reps each role · best-of-3 mini-tournament · 90s rest · winner-stays</div>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-header"><h4>3 · Ball mastery · receiving at speed</h4><div class="meta">12 min · first touch under pace</div></div>
+        <div class="block-intro">Friday mastery hits first touch — when you can run fast, can you still control? Receiving at velocity.</div>
+        <div class="drill">
+          <div class="drill-name">Sprint + receive</div>
+          <div class="drill-cue">Server stands 15yd away. Sprint toward server, receive a firm pass on the move, take one touch sideways into the open space, finish or pass back.</div>
+          <div class="drill-prescription" data-weeks="1,2">3 × 8 reps · alternate first-touch foot · learn the timing</div>
+          <div class="drill-prescription" data-weeks="3,4">3 × 8 reps · full speed · alternate touch foot</div>
+          <div class="drill-prescription" data-weeks="5,6">3 × 8 reps · server adds direction call mid-pass</div>
+          <div class="drill-prescription" data-weeks="7,8">2 × 10 reps · max quality · finish with shot</div>
+        </div>
+        <div class="drill">
+          <div class="drill-name">Wall + spin</div>
+          <div class="drill-cue">Wall pass, follow your pass, receive on the half-turn with back foot, finish on second touch.</div>
+          <div class="drill-prescription" data-weeks="1,2">3 × 10 each direction · slow</div>
+          <div class="drill-prescription" data-weeks="3,4">3 × 10 each direction · full speed</div>
+          <div class="drill-prescription" data-weeks="5,6">3 × 8 each direction · time pressure (under 30s)</div>
+          <div class="drill-prescription" data-weeks="7,8">2 × 10 each direction · sharpest execution</div>
+        </div>
+        <div class="drill">
+          <div class="drill-name">Eli · distribution under load</div>
+          <div class="drill-cue">After 5yd reactive sprint, set feet, distribute (drop kick, throw, side volley) to a target gate. Both feet.</div>
+          <div class="drill-prescription" data-weeks="1,2">3 × 10 reps · right + left · static targets</div>
+          <div class="drill-prescription" data-weeks="3,4">3 × 12 reps · right + left · moving targets (siblings)</div>
+          <div class="drill-prescription" data-weeks="5,6">3 × 10 reps · server adds time pressure (3 sec clock)</div>
+          <div class="drill-prescription" data-weeks="7,8">2 × 10 reps · counter-attack initiation context</div>
+        </div>
+      </div>
+
+      <div class="block synergy">
+        <div class="block-header"><h4>4 · Position synergy · Counter-attacks</h4><div class="meta">20 min · transition speed</div></div>
+        <div class="block-intro">Friday's signature — start in a defensive shape, transition to attack in seconds. This is where Eli initiates the play. Distances below are defaults — scale them to the space you have (a smaller yard still works).</div>
+
+        <div class="synergy-pattern">
+          <div class="flow">
+            <span class="player">Eli</span> claims a high cross <span class="arrow">→</span> immediate roll/throw to <span class="player">Nora</span> in transition <span class="arrow">→</span> Nora drives 10-20yd (space permitting) <span class="arrow">→</span> wide ball to <span class="player">Silas</span> <span class="arrow">→</span> cross to <span class="player">Isaiah</span> · 1-touch finish
+          </div>
+        </div>
+        <div class="synergy-pattern">
+          <div class="flow">
+            <span class="player">Eli</span> long drop-kick to <span class="player">Isaiah</span> (flick header) <span class="arrow">→</span> <span class="player">Nora</span> + <span class="player">Silas</span> sprinting beyond on either flank <span class="arrow">→</span> Isaiah finds one of them <span class="arrow">→</span> finish in 4 touches or fewer
+          </div>
+        </div>
+        <div class="synergy-pattern">
+          <div class="flow">
+            Reverse: <span class="player">Isaiah</span> shoots or plays forward from 15-25yd (space permitting) <span class="arrow">→</span> <span class="player">Eli</span> saves, parries wide <span class="arrow">→</span> <span class="player">Silas</span> or <span class="player">Nora</span> first to the ball · cross-shot
+          </div>
+        </div>
+
+        <div class="drill" style="margin-top: 8px;">
+          <div class="drill-prescription" data-weeks="1,2">3 patterns · 4 reps each · 90s between · learn the transitions</div>
+          <div class="drill-prescription" data-weeks="3,4">3 patterns · 5 reps each · 90s between · full speed</div>
+          <div class="drill-prescription" data-weeks="5,6">3 patterns · 4 reps each · 8-second clock per rep</div>
+          <div class="drill-prescription" data-weeks="7,8">2 patterns · 4 reps each · live match scenario · 2v2+GK mini-game at the end</div>
+
+          <div class="week-note" data-weeks="7,8"><span class="label">Phase 4 add</span>End every Friday with a 4-minute family scrimmage. 2v2 + GK. Score the most goals as a team. This is the final expression of every drill done this week.</div>
+          <div class="week-note" data-weeks="8"><span class="label">Week 8 finale</span>Final family scrimmage of the program. 8 minutes. Document with video. Celebrate the work — what you saw on Day 1 vs today.</div>
+
+          <div class="mods" data-weeks="1,2">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">Speed of first 10yd · early head-up</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">Cross while sprinting · weak-foot OK</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">1-touch finish · reduce time on ball</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">Distribution accuracy · launch the counter</div></div>
+          </div>
+          <div class="mods" data-weeks="3,4">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">Drive 10-20yd (space permitting) · scan during sprint</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">Cross with first available foot · no setup touch</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">Finish in 1 touch · choose foot before ball arrives</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">Distribution under 2s of catch</div></div>
+          </div>
+          <div class="mods" data-weeks="5,6">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">Transition speed PR · video timing</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">Cross under live defender pressure</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">Finish under recovery defender chase</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">Decide best counter target in &lt;2s</div></div>
+          </div>
+          <div class="mods" data-weeks="7,8">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">Match speed · positional discipline</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">Match speed · either foot equally</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">Match speed · finish on either foot</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">Sweeper-keeper + distribution combined</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-header"><h4>5 · Decompression finisher</h4><div class="meta">5 min · easy</div></div>
+        <div class="drill">
+          <div class="drill-name">Walk + breathe + stretch</div>
+          <div class="drill-cue">Slow walk to drop heart rate, then standing hamstring + hip flexor + calf. Weekend recovery starts now.</div>
+          <div class="drill-prescription">Nasal breathing only</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SYNERGY LIBRARY -->
+<section id="patterns">
+  <div class="container">
+    <div class="section-intro">
+      <div class="eyebrow">Synergy Library</div>
+      <h2>How they play together</h2>
+      <p class="lead">Reference catalog of the position-synergy patterns. Each one is a real match phase — keeper distributes, midfielder receives, winger drives, striker finishes — and every player has an active, developmental role in each pattern, never a passive server. When someone supports or serves, rotate the role and give it a technical focus (weight of pass, scan before delivery, recovery run). Rotate through these across the 8 weeks.</p>
+    </div>
+
+    <div class="patterns">
+      <div class="pattern-card">
+        <h4>Pattern A · Wide cross + finish</h4>
+        <div class="ptag">MON · CORE PATTERN</div>
+        <div class="pflow">
+          <span style="color: var(--silas);">SILAS</span> wide · drives byline → cross<br>
+          <span style="color: var(--isaiah);">ISAIAH</span> attacks near post<br>
+          <span style="color: var(--nora);">NORA</span> arrives far post<br>
+          <span style="color: var(--eli);">ELI</span> coverage decision
+        </div>
+        <div class="pcue">The cleanest synergy drill in the program. Everyone is in their natural position. Run on both flanks — Silas crosses with his strong left from LW, with his weak right when starting RW.</div>
+      </div>
+
+      <div class="pattern-card">
+        <h4>Pattern B · Build-out + switch</h4>
+        <div class="ptag">THU · BUILD-UP</div>
+        <div class="pflow">
+          <span style="color: var(--eli);">ELI</span> rolls to CMF<br>
+          <span style="color: var(--nora);">NORA</span> opens body, switches play<br>
+          <span style="color: var(--silas);">SILAS</span> receives wide, attacks 1v1<br>
+          <span style="color: var(--isaiah);">ISAIAH</span> finishes
+        </div>
+        <div class="pcue">Teaches scanning before receiving, weight of switch, and timing of striker runs in one pattern. Slow tempo in W1-2, full speed by W5.</div>
+      </div>
+
+      <div class="pattern-card">
+        <h4>Pattern C · Breakaway 1v1</h4>
+        <div class="ptag">TUE · ISOLATED</div>
+        <div class="pflow">
+          <span style="color: var(--isaiah);">ISAIAH</span> starts 25yd out · drives at goal<br>
+          <span style="color: var(--eli);">ELI</span> sets · narrows angle<br>
+          <span style="color: var(--isaiah);">ISAIAH</span> decides: round vs shoot<br>
+          <span style="color: var(--eli);">ELI</span> reacts to first move
+        </div>
+        <div class="pcue">Pure 1v1 work between striker and keeper. Other siblings rotate as defenders coming back to recover — adds Nora/Silas defensive context.</div>
+      </div>
+
+      <div class="pattern-card">
+        <h4>Pattern D · Counter-attack</h4>
+        <div class="ptag">FRI · TRANSITION</div>
+        <div class="pflow">
+          <span style="color: var(--eli);">ELI</span> claims/saves · immediate distribution<br>
+          <span style="color: var(--nora);">NORA</span> + <span style="color: var(--silas);">SILAS</span> sprint into space<br>
+          <span style="color: var(--isaiah);">ISAIAH</span> link or finish<br>
+          Finish in ≤4 touches as a team
+        </div>
+        <div class="pcue">High-CNS pattern. Trains transition speed and Eli's distribution under match-realistic pressure. Add a stopwatch — goal scored under 8 seconds.</div>
+      </div>
+
+      <div class="pattern-card">
+        <h4>Pattern E · Wall pass + arrival</h4>
+        <div class="ptag">THU · COMBINATION</div>
+        <div class="pflow">
+          <span style="color: var(--silas);">SILAS</span> + <span style="color: var(--nora);">NORA</span> 1-2 down the left<br>
+          <span style="color: var(--silas);">SILAS</span> crosses<br>
+          <span style="color: var(--isaiah);">ISAIAH</span> arrives late at far post<br>
+          <span style="color: var(--eli);">ELI</span> faces 2v1 in box
+        </div>
+        <div class="pcue">Teaches Nora the wall-pass timing as a midfielder, Silas the early cross after combination, Isaiah the late run. Eli's footwork challenged by the cross direction.</div>
+      </div>
+
+      <div class="pattern-card">
+        <h4>Pattern F · Striker drop + run</h4>
+        <div class="ptag">TUE · MOVEMENT</div>
+        <div class="pflow">
+          <span style="color: var(--isaiah);">ISAIAH</span> drops to receive from <span style="color: var(--eli);">ELI</span><br>
+          Lays off to <span style="color: var(--nora);">NORA</span> (CMF)<br>
+          <span style="color: var(--isaiah);">ISAIAH</span> spins, runs behind<br>
+          <span style="color: var(--nora);">NORA</span> threads through ball · <span style="color: var(--silas);">SILAS</span> arriving second wave
+        </div>
+        <div class="pcue">The hardest pattern in the library — needs scanning, timing, and clean technique. Save for W5+ when habits are formed.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOAD & SAFETY -->
+<section id="load-safety">
+  <div class="container">
+    <div class="section-intro">
+      <div class="eyebrow">Load &amp; Safety</div>
+      <h2>Plyometric load tracking &amp; readiness gates</h2>
+      <p class="lead">Athletic development is bought with controlled stress. These pages track plyometric load across the week (not just Monday), set the landing-quality gates that must be passed before high-intensity progressions unlock, and lay out the goalkeeper safety rules that protect Eli's body for the long arc of his career.</p>
+    </div>
+
+    <h3 style="margin-top: 56px; margin-bottom: 4px;">Weekly plyometric contact targets</h3>
+    <p style="color: var(--text-secondary); font-size: 15px; max-width: 60ch;">Per-session ceilings respected at all times. Numbers reflect peak-week (W4) targets. W1-2 sits 30% below; W5-6 sits 15% below; W7-8 sits 30% below.</p>
+
+    <div class="load-grid">
+      <div class="load-card nora">
+        <h4>Nora</h4>
+        <div class="ceiling">Session ceiling · 60 contacts</div>
+        <div class="load-row"><span class="day-label">Mon · plyo block</span><span class="contacts">40</span></div>
+        <div class="load-row"><span class="day-label">Tue · mini-hurdles</span><span class="contacts">15</span></div>
+        <div class="load-row"><span class="day-label">Wed · jump rope (low)</span><span class="contacts">~</span></div>
+        <div class="load-row"><span class="day-label">Thu · COD only</span><span class="contacts">0</span></div>
+        <div class="load-row"><span class="day-label">Fri · small-space</span><span class="contacts">5</span></div>
+        <div class="load-row"><span class="day-label" style="color: var(--nora); font-weight: 600;">Week total (W4)</span><span class="contacts" style="color: var(--nora);">~60</span></div>
+      </div>
+
+      <div class="load-card silas">
+        <h4>Silas</h4>
+        <div class="ceiling">Session ceiling · 80 contacts</div>
+        <div class="load-row"><span class="day-label">Mon · plyo block</span><span class="contacts">65</span></div>
+        <div class="load-row"><span class="day-label">Tue · mini-hurdles</span><span class="contacts">20</span></div>
+        <div class="load-row"><span class="day-label">Wed · jump rope (low)</span><span class="contacts">~</span></div>
+        <div class="load-row"><span class="day-label">Thu · COD only</span><span class="contacts">0</span></div>
+        <div class="load-row"><span class="day-label">Fri · small-space</span><span class="contacts">10</span></div>
+        <div class="load-row"><span class="day-label" style="color: var(--silas); font-weight: 600;">Week total (W4)</span><span class="contacts" style="color: var(--silas);">~95</span></div>
+      </div>
+
+      <div class="load-card isaiah">
+        <h4>Isaiah</h4>
+        <div class="ceiling">Session ceiling · 120 contacts</div>
+        <div class="load-row"><span class="day-label">Mon · plyo block</span><span class="contacts">110</span></div>
+        <div class="load-row"><span class="day-label">Tue · mini-hurdles</span><span class="contacts">25</span></div>
+        <div class="load-row"><span class="day-label">Wed · jump rope (low)</span><span class="contacts">~</span></div>
+        <div class="load-row"><span class="day-label">Thu · COD only</span><span class="contacts">0</span></div>
+        <div class="load-row"><span class="day-label">Fri · small-space</span><span class="contacts">10</span></div>
+        <div class="load-row"><span class="day-label" style="color: var(--isaiah); font-weight: 600;">Week total (W4)</span><span class="contacts" style="color: var(--isaiah);">~145</span></div>
+      </div>
+
+      <div class="load-card eli">
+        <h4>Eli</h4>
+        <div class="ceiling">Two ceilings, tracked apart · ~100 plyo + ~30 GK dive contacts</div>
+        <div class="load-row"><span class="day-label">Mon · plyo (pogo/broad/bound)</span><span class="contacts">100</span></div>
+        <div class="load-row"><span class="day-label">Mon · GK dives (separate)</span><span class="contacts">30</span></div>
+        <div class="load-row"><span class="day-label">Tue · mini-hurdles</span><span class="contacts">25</span></div>
+        <div class="load-row"><span class="day-label">Wed · NO diving</span><span class="contacts">~</span></div>
+        <div class="load-row"><span class="day-label">Thu · COD + handling</span><span class="contacts">10</span></div>
+        <div class="load-row"><span class="day-label">Fri · small-space + few dives</span><span class="contacts">15</span></div>
+        <div class="load-row"><span class="day-label" style="color: var(--eli); font-weight: 600;">Plyo total (W4)</span><span class="contacts" style="color: var(--eli);">~135</span></div>
+        <div class="load-row"><span class="day-label" style="color: var(--eli); font-weight: 600;">GK dive total (W4)</span><span class="contacts" style="color: var(--eli);">~45</span></div>
+      </div>
+    </div>
+
+    <div class="gate-card safety" style="margin-top: 24px;">
+      <div class="label">Goalkeeper load · tracked separately</div>
+      <h4>A dive is not a pogo hop</h4>
+      <p>Eli has two separate ceilings — a plyometric contact ceiling (pogos, broad jumps, bounds, hurdle hops) and a separate goalkeeper dive-load ceiling (collapse dives, step-saves, power dives, depth-jump-to-save). Do not combine them into one number. A goalkeeper dive loads the shoulder, wrist, hip, back, and groin in ways a broad jump does not, so it gets its own count. High-amplitude dives, depth-jump-to-save reps, and broad-jump-to-dive reps are treated as very-high-intensity goalkeeper contacts and should remain in single digits per session.</p>
+      <p style="font-family: var(--font-mono); font-size: 13px; line-height: 1.9; color: var(--text-secondary);">
+        GK dive load — track each separately, both sides logged:<br>
+        <span style="color: var(--eli);">LOW</span> · low dives · collapse dives · set-position resets<br>
+        <span style="color: var(--eli);">MEDIUM</span> · step-saves · reactive step-saves · high-intensity lateral shuffles<br>
+        <span style="color: var(--eli);">HIGH</span> · power dives · distribution volume (drop kicks tax the groin)<br>
+        <span style="color: var(--eli);">VERY HIGH</span> · max-amplitude dives · depth-jump-to-save · broad-jump-to-dive — keep these in single digits, never when fatigued, never stacked
+      </p>
+    </div>
+
+    <h3 style="margin-top: 56px; margin-bottom: 4px;">Plyometric intensity classification</h3>
+    <p style="color: var(--text-secondary); font-size: 15px; max-width: 65ch;">Not all contacts are equal — 80 low-level rhythm contacts are nothing like 80 single-leg bounds. Classify every plyo drill into one of these four tiers, and keep the high and very-high tiers deliberately low in volume. The weekly totals above are mostly low and medium tier; the very-high tier should stay in single digits per session.</p>
+
+    <div class="intensity-table">
+      <div class="intensity-row low">
+        <div class="tier">Low</div>
+        <div class="examples">Jump rope rhythm, small pogos, low mini-hurdle rhythm bounces</div>
+      </div>
+      <div class="intensity-row medium">
+        <div class="tier">Medium</div>
+        <div class="examples">Broad jump stick, double-leg hops, controlled lateral bounds, vertical jumps for height</div>
+      </div>
+      <div class="intensity-row high">
+        <div class="tier">High</div>
+        <div class="examples">Single-leg bounds, repeated lateral bounds, higher-intensity hurdle hops, alternate-leg bounds</div>
+      </div>
+      <div class="intensity-row veryhigh">
+        <div class="tier">Very high</div>
+        <div class="examples">Depth jumps, depth-jump-to-cut, depth-jump-to-save, broad-jump-to-dive, max-amplitude GK plyo-dive work — keep volume very low, gate by readiness, never when fatigued</div>
+      </div>
+    </div>
+
+    <div class="count-rules">
+      <div class="counts">
+        <h5 class="counts">What counts as a plyo contact</h5>
+        <ul>
+          <li>Pogo hops (low)</li>
+          <li>Broad jumps — each landing (medium)</li>
+          <li>Lateral bounds (medium-high)</li>
+          <li>Single-leg hops &amp; bounds (high)</li>
+          <li>Mini-hurdle hops (low-high by intensity)</li>
+          <li>Depth jumps (very high)</li>
+          <li>Horizontal bounds (high)</li>
+          <li>Broad-jump-to-dive simulations — Eli (very high)</li>
+          <li>Depth-jump-to-save reps — Eli (very high)</li>
+        </ul>
+      </div>
+      <div class="skips">
+        <h5 class="skips">What does NOT count</h5>
+        <ul>
+          <li>Ladder steps (running pattern, not hopping)</li>
+          <li>Sprint reps without jumps</li>
+          <li>Decel sticks (force absorption, no take-off)</li>
+          <li>Jump rope tracked separately as low-impact only — logged when auditing total session impact, not added to the high/very-high count</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 56px; margin-bottom: 4px;">Readiness gates · before depth jumps unlock</h3>
+    <p style="color: var(--text-secondary); font-size: 15px; max-width: 65ch;">Isaiah and Eli are scheduled to add depth jumps in week 4. That progression only unlocks if every item below is true on the morning of the session. If any gate fails, regress the drill that day and reassess next session.</p>
+
+    <div class="gate-card">
+      <div class="label">Pre-depth-jump checklist</div>
+      <h4>Land cleanly before you fall hard</h4>
+      <ul>
+        <li>Broad jump landing is quiet — no audible slap, no double-bounce</li>
+        <li>Knees track over toes, no inward collapse on landing</li>
+        <li>Single-leg landings from a 6-inch step are stable for 2 seconds</li>
+        <li>Deceleration sticks (Thursday block) executed without trunk lean</li>
+        <li>No current knee, hip, heel, or back pain — even mild</li>
+        <li>Posture stays tall by the third set of any Monday block (no fatigue collapse)</li>
+      </ul>
+    </div>
+
+    <h3 style="margin-top: 56px; margin-bottom: 4px;">Goalkeeper safety rules · Eli</h3>
+    <p style="color: var(--text-secondary); font-size: 15px; max-width: 65ch;">Diving and plyometric-to-dive combinations are some of the highest-stress patterns in this program. These rules are non-negotiable for the duration of the 8 weeks and beyond.</p>
+
+    <div class="gate-card safety">
+      <div class="label">Diving safety</div>
+      <h4>Protect the body for the long arc</h4>
+      <ul>
+        <li>Diving only on safe grass, turf, or padded mat — never on hard ground</li>
+        <li>Stop immediately if pain appears in wrist, shoulder, hip, back, or groin</li>
+        <li>No max-amplitude dives when fatigued — regress to step-save or collapse dive</li>
+        <li>Both sides must be trained evenly across the week — log left/right reps</li>
+        <li>Diving and depth-jump-to-save days are never stacked — at least 48 hours between them</li>
+        <li>Distribution volume monitored — if hip or groin feel tight, reduce drop-kick reps that day</li>
+        <li>Broad-jump-to-dive only when landing mechanics are clean and the surface is safe</li>
+      </ul>
+    </div>
+
+    <div class="gate-card safety">
+      <div class="label">Diving progression · 5 stages</div>
+      <h4>Earn each stage before the next</h4>
+      <ul>
+        <li>Stage 1 · Landing mechanics — collapse dive from set, fall onto side of leg, no max amplitude</li>
+        <li>Stage 2 · Step-save — one explosive step + dive, ball at moderate pace, both sides equally</li>
+        <li>Stage 3 · Low-amplitude power dive — two steps + jump, ball thrown firmly, ground first not hip-first</li>
+        <li>Stage 4 · Reactive step-save — server adds late direction call, dive in response, not in plan</li>
+        <li>Stage 5 · Depth-drop / depth-jump to save — only when stages 1-4 are clean, only on safe surface, only in W4+</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- OFF THE FIELD -->
+<section id="holistic">
+  <div class="container">
+    <div class="section-intro">
+      <div class="eyebrow">Off the Field</div>
+      <h2>The other 23 hours</h2>
+      <p class="lead">The on-field session stays capped at 60 minutes — that doesn't change. But the hour of training is only as good as the 23 hours around it. These two pillars are where a lot of the actual development happens: how they recover, and how they learn to read the game. Both are tuned to these four specific kids — not a generic elite template.</p>
+    </div>
+
+    <!-- PILLAR 1: RECOVERY -->
+    <div class="pillar recovery">
+      <div class="pillar-head">
+        <div class="pnum">01</div>
+        <h3>Recovery culture</h3>
+      </div>
+      <p class="pillar-lead">A development block is a stress-and-adapt cycle: the training is the stress, recovery is where the adaptation actually happens. Skip the recovery and you're just accumulating fatigue. The single highest-leverage item here is also the cheapest — sleep.</p>
+
+      <div class="holo-grid">
+        <div class="holo-card">
+          <h4>Sleep</h4>
+          <div class="tagline">The biggest lever, and it's free</div>
+          <p>Nothing else in this program returns as much as consistent sleep. Growth, motor learning, and CNS recovery all happen here. Keep wake/sleep times consistent — even on weekends — and wind down off screens before bed.</p>
+          <div class="by-child">
+            <span class="who nora">Nora</span> &amp; <span class="who silas">Silas</span> · ~9-12 hrs<br>
+            <span class="who isaiah">Isaiah</span> &amp; <span class="who eli">Eli</span> · ~8-10 hrs
+          </div>
+        </div>
+
+        <div class="holo-card">
+          <h4>Refuel</h4>
+          <div class="tagline">Real food, soon after</div>
+          <p>After every session — especially the hard CNS days (Mon, Thu) — eat a proper snack or meal with both carbs and protein within an hour. Keep it simple and food-first: a sandwich, eggs and toast, fruit and yogurt, chocolate milk, rice and chicken. Hydrate through the day, not just at training. No counting, no rules — just refuel well and regularly.</p>
+        </div>
+
+        <div class="holo-card">
+          <h4>Soft tissue &amp; mobility</h4>
+          <div class="tagline">10 min on the heavy days</div>
+          <p>Light foam rolling and easy mobility on Monday and Thursday evenings (the heaviest CNS days) helps the next day feel better. Wednesday's session already serves as active recovery. Eli's daily 10-minute mobility block already covers his — the others can borrow the same routine.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PILLAR 2: GAME IQ -->
+    <div class="pillar gameiq">
+      <div class="pillar-head">
+        <div class="pnum">02</div>
+        <h3>Game IQ &amp; film</h3>
+      </div>
+      <p class="pillar-lead">The on-field plan is strong on micro-tactics — 1v1 reads, defender hips, movement to lose a marker. The macro layer (shape, spacing, when to press) is best added off the field through film. Keep it short and age-tiered, and build it on their <em>own</em> game footage first — that's the most transferable. Roughly once a week, on a rest evening.</p>
+
+      <div class="holo-grid">
+        <div class="holo-card">
+          <h4>Nora &amp; Silas · 15-20 min</h4>
+          <div class="tagline">Principles, not systems</div>
+          <p>At 10-11, skip 11v11 systems — that's premature. Watch their own game clips and look for simple principles: creating width, getting depth, supporting angles, and the decision of when to dribble vs. release. Small-group (2v2, 3v3) shapes, not full-team structure.</p>
+        </div>
+
+        <div class="holo-card">
+          <h4>Isaiah · 20-30 min</h4>
+          <div class="tagline">Role-specific</div>
+          <p>Old enough for deeper context. Own-game film focused on his roles: striker movement and timing of runs, CMF scanning and receiving between lines, and the beginnings of when-to-press as part of a unit. Supplement with a pro striker/8 he likes.</p>
+        </div>
+
+        <div class="holo-card">
+          <h4>Eli · 30 min</h4>
+          <div class="tagline">Highest-leverage of the four</div>
+          <p>At ECNL RL + Varsity, film is genuinely high-value for a keeper. Study positioning and angles, starting position vs. through-balls, organizing and commanding the back line, cross management, and distribution decisions. Own-game footage plus a pro keeper to model.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPMENT -->
+<section id="equipment">
+  <div class="container">
+    <div class="section-intro">
+      <div class="eyebrow">Setup</div>
+      <h2>Equipment &amp; field setup</h2>
+      <p class="lead">Everything used in this program. Standard kit plus Eli's goalkeeper gear. Nothing exotic.</p>
+    </div>
+
+    <div class="eq-grid">
+      <div class="eq-item"><div class="name">Agility ladder</div><div class="note">Daily use · all SAQ blocks</div></div>
+      <div class="eq-item"><div class="name">Mini hurdles</div><div class="note">5-6 hurdles · 6-12in for rhythm work · 18-24in only for older/advanced progressions when landing quality is clean</div></div>
+      <div class="eq-item"><div class="name">Cones · 20+</div><div class="note">Markers, gates, COD drills</div></div>
+      <div class="eq-item"><div class="name">Soccer balls · 4+</div><div class="note">One per player minimum</div></div>
+      <div class="eq-item"><div class="name">Resistance bands</div><div class="note">Ankle and knee · activation only</div></div>
+      <div class="eq-item"><div class="name">Full-size goal</div><div class="note">For Eli + finishing patterns</div></div>
+      <div class="eq-item"><div class="name">Goalkeeper gloves</div><div class="note">Eli · every session</div></div>
+      <div class="eq-item"><div class="name">Reaction ball</div><div class="note">Eli · Tue + Thu reactive work</div></div>
+      <div class="eq-item"><div class="name">Plyo box / step</div><div class="note">Start 12 inch · up to 18 only as earned · W4+</div></div>
+      <div class="eq-item"><div class="name">Stopwatch</div><div class="note">Benchmark testing · sprint timing</div></div>
+      <div class="eq-item"><div class="name">Wall (for passing)</div><div class="note">Weak-foot rebound drills</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="brand">Rodriguez Family Training · Summer '26</div>
+    <div class="meta-line">8 weeks · 5 days · 60 min · 1 family</div>
+  </div>
+</footer>
+
+<script>
+  // ===== State =====
+  let currentWeek = 1;
+  let currentDay = 'mon';
+
+  const phaseMap = {
+    1: { phase: 'foundation', label: 'Foundation', focus: 'Establish', note: 'Teach every drill, every cue, every setup. Quality over quantity.' },
+    2: { phase: 'foundation', label: 'Foundation', focus: 'Refine', note: 'Same volume as W1. Tighten technique. Begin tracking weak-foot juggling PRs.' },
+    3: { phase: 'development', label: 'Development', focus: 'Build', note: '+25% plyo volume. Add cuts off both feet. Synergy reps rise to 6.' },
+    4: { phase: 'development', label: 'Development', focus: 'Load', note: 'Peak volume week. Depth jumps may unlock for Isaiah + Eli IF readiness gates pass. Mid-program benchmark Wed (replaces normal volume).' },
+    5: { phase: 'sharpening', label: 'Sharpening', focus: 'React', note: '-15% volume, +intensity. Every drill gets a reactive cue. 1v1s go live.' },
+    6: { phase: 'sharpening', label: 'Sharpening', focus: 'Compete', note: 'Scoring in every synergy block. Time-pressure on finishing. Reaction-ball block added.' },
+    7: { phase: 'peak', label: 'Peak', focus: 'Sharpen', note: '-30% from W4. Rest doubles. Full match scenarios. 2v2+GK on Fri.' },
+    8: { phase: 'peak', label: 'Peak', focus: 'Express', note: 'Lowest volume, sharpest expression. Final benchmarks Wed. Family scrimmage Fri.' }
+  };
+
+  // ===== UI Updates =====
+  function setWeek(n) {
+    currentWeek = n;
+    const info = phaseMap[n];
+    document.body.dataset.phase = info.phase;
+    document.getElementById('ctx-week').textContent = n;
+    document.getElementById('ctx-phase').textContent = info.label;
+    document.getElementById('ctx-focus').textContent = info.focus;
+    document.getElementById('ctx-note').textContent = info.note;
+
+    document.querySelectorAll('.week-btn').forEach(btn => {
+      btn.classList.toggle('active', parseInt(btn.dataset.week, 10) === n);
+    });
+
+    refreshWeekContent();
+  }
+
+  function setDay(d) {
+    currentDay = d;
+    document.querySelectorAll('.day-tab').forEach(t => t.classList.toggle('active', t.dataset.day === d));
+    document.querySelectorAll('.day-panel').forEach(p => p.classList.toggle('active', p.id === d));
+  }
+
+  function refreshWeekContent() {
+    document.querySelectorAll('[data-weeks]').forEach(el => {
+      const weeks = el.dataset.weeks.split(',').map(s => s.trim());
+      el.style.display = weeks.includes(String(currentWeek)) ? '' : 'none';
+    });
+  }
+
+  // ===== Bindings =====
+  document.querySelectorAll('.week-btn').forEach(btn => {
+    btn.addEventListener('click', () => setWeek(parseInt(btn.dataset.week, 10)));
+  });
+  document.querySelectorAll('.day-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      setDay(tab.dataset.day);
+      tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+    });
+  });
+
+  // ===== Init =====
+  refreshWeekContent();
+</script>
+
 </body>
 </html>
