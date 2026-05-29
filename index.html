@@ -97,6 +97,18 @@
   .player-card .focus-list { list-style: none; border-top: 1px solid var(--border); padding-top: 20px; }
   .player-card .focus-list li { font-size: 14px; color: var(--text-secondary); padding: 5px 0; position: relative; padding-left: 16px; }
   .player-card .focus-list li::before { content: ''; position: absolute; left: 0; top: 12px; width: 6px; height: 1px; background: var(--accent); }
+  .player-card .view-program {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 22px;
+    font-family: var(--font-mono); font-size: 12px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--accent); text-decoration: none;
+    border: 1px solid var(--accent); border-radius: 3px;
+    padding: 10px 16px; transition: background 0.2s, color 0.2s;
+  }
+  .player-card .view-program:hover { background: var(--accent); color: #0a0a0a; }
+  .player-card .view-program .arrow { transition: transform 0.2s; }
+  .player-card .view-program:hover .arrow { transform: translateX(3px); }
   .player-card.nora { --accent: var(--nora); }
   .player-card.silas { --accent: var(--silas); }
   .player-card.isaiah { --accent: var(--isaiah); }
@@ -960,15 +972,16 @@
     padding-top: 12px;
     border-top: 1px dashed var(--border);
   }
-  .phase {
+  .phases .phase {
     display: grid;
     grid-template-columns: 30px 1fr auto;
     gap: 14px;
     align-items: start;
     padding: 10px 0;
     border-top: 1px dashed rgba(255,255,255,0.06);
+    background: none;
   }
-  .phase:first-child { border-top: none; padding-top: 4px; }
+  .phases .phase:first-child { border-top: none; padding-top: 4px; }
   .phase-num {
     font-family: var(--font-mono);
     font-size: 12px;
@@ -992,7 +1005,7 @@
     color: var(--text-secondary);
     line-height: 1.5;
   }
-  .phase-spec {
+  .phases .phase-spec {
     font-family: var(--font-mono);
     font-size: 11px;
     color: var(--text-muted);
@@ -1000,9 +1013,61 @@
     padding-top: 3px;
   }
   @media (max-width: 720px) {
-    .phase { grid-template-columns: 24px 1fr; gap: 10px; }
-    .phase-spec { grid-column: 2; padding-top: 0; }
+    .phases .phase { grid-template-columns: 24px 1fr; gap: 10px; }
+    .phases .phase-spec { grid-column: 2; padding-top: 0; white-space: normal; }
   }
+
+  /* === Equipment checklist per day === */
+  .equipment-bar {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent-hot);
+    border-radius: 0 6px 6px 0;
+    padding: 18px 22px;
+    margin-bottom: 28px;
+  }
+  .equipment-bar .eq-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent-hot);
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+  .equipment-bar .eq-items { display: flex; flex-wrap: wrap; gap: 10px; }
+  .eq-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-secondary);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 8px 15px 8px 12px;
+    cursor: pointer;
+    user-select: none;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+  }
+  .eq-chip .box {
+    width: 17px; height: 17px;
+    border: 1.5px solid var(--text-muted);
+    border-radius: 4px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 12px; line-height: 1; color: transparent;
+    transition: all 0.15s;
+  }
+  .eq-chip:hover { border-color: var(--text-secondary); }
+  .eq-chip.checked { color: var(--text-primary); border-color: var(--accent-hot); background: rgba(255,255,255,0.02); }
+  .eq-chip.checked .box { background: var(--accent-hot); border-color: var(--accent-hot); color: #0a0a0a; }
+  .eq-chip .who-tag {
+    font-family: var(--font-mono); font-size: 10px; text-transform: uppercase;
+    letter-spacing: 0.05em; padding: 2px 6px; border-radius: 3px;
+    background: rgba(255,255,255,0.06); color: var(--text-muted);
+  }
+  .eq-chip .who-tag.eli { color: var(--eli); background: rgba(55,138,221,0.12); }
 
   /* === Mic indicator === */
   .mic-indicator {
@@ -1110,6 +1175,7 @@
           <li>Receive-turn-pass mechanics for CMF</li>
           <li>Acceleration mechanics, posture, arm action</li>
         </ul>
+        <a class="view-program" href="nora.html">View Nora's full program <span class="arrow">→</span></a>
       </div>
       <div class="player-card silas">
         <div class="name">Silas</div>
@@ -1122,6 +1188,7 @@
           <li>Striker movement and finishing from crosses</li>
           <li>Multi-directional plyometrics at moderate volume</li>
         </ul>
+        <a class="view-program" href="silas.html">View Silas's full program <span class="arrow">→</span></a>
       </div>
       <div class="player-card isaiah">
         <div class="name">Isaiah</div>
@@ -1134,10 +1201,11 @@
           <li>CMF receiving between lines, through balls</li>
           <li>Bounds, depth drops, sprint mechanics</li>
         </ul>
+        <a class="view-program" href="isaiah.html">View Isaiah's full program <span class="arrow">→</span></a>
       </div>
       <div class="player-card eli">
         <div class="name">Eli</div>
-        <div class="age-badge">15 · ECNL RL + VARSITY · RIGHT FOOT</div>
+        <div class="age-badge">15 · N1/SCCL + VARSITY · RIGHT FOOT</div>
         <div class="position">Goalkeeper</div>
         <div class="level">Post-pubescent age — full progressive plyometric and position-specific strength menu unlocks. Reactive work is the centerpiece.</div>
         <ul class="focus-list">
@@ -1146,6 +1214,7 @@
           <li>Distribution with both feet (heavy left emphasis)</li>
           <li>Daily 10-min hip/shoulder/spine mobility</li>
         </ul>
+        <a class="view-program" href="eli.html">View Eli's full program <span class="arrow">→</span></a>
       </div>
     </div>
   </div>
@@ -1236,6 +1305,19 @@
 
     <!-- ============== MONDAY ============== -->
     <div class="day-panel active" id="mon">
+
+        <div class="equipment-bar">
+          <div class="eq-label">Grab before you start</div>
+          <div class="eq-items">
+            <span class="eq-chip" onclick="toggleEq(this)"><span class="box">✓</span>1 ball each</span>
+            <span class="eq-chip" onclick="toggleEq(this)"><span class="box">✓</span>8-10 cones</span>
+            <span class="eq-chip" onclick="toggleEq(this)"><span class="box">✓</span>Agility ladder</span>
+            <span class="eq-chip" onclick="toggleEq(this)"><span class="box">✓</span>Resistance bands</span>
+            <span class="eq-chip" onclick="toggleEq(this)"><span class="box">✓</span>Plyo box<span class="who-tag w4+">W4+</span></span>
+            <span class="eq-chip" onclick="toggleEq(this)"><span class="box">✓</span>GK gloves<span class="who-tag eli">Eli</span></span>
+          </div>
+        </div>
+
 
       <!-- Block 1: Warm-up -->
       <div class="block">
@@ -1772,6 +1854,18 @@
     <!-- ============== TUESDAY ============== -->
     <div class="day-panel" id="tue">
 
+        <div class="equipment-bar">
+          <div class="eq-label">Grab before you start</div>
+          <div class="eq-items">
+            <span class="eq-chip" onclick="toggleEq(this)"><span class="box">✓</span>1 ball each</span>
+            <span class="eq-chip" onclick="toggleEq(this)"><span class="box">✓</span>8-10 cones</span>
+            <span class="eq-chip" onclick="toggleEq(this)"><span class="box">✓</span>Agility ladder</span>
+            <span class="eq-chip" onclick="toggleEq(this)"><span class="box">✓</span>Mini hurdles</span>
+            <span class="eq-chip" onclick="toggleEq(this)"><span class="box">✓</span>GK gloves<span class="who-tag eli">Eli</span></span>
+          </div>
+        </div>
+
+
       <div class="block">
         <div class="block-header"><h4>1 · Dynamic warm-up</h4><div class="meta">8 min · mobility-weighted</div></div>
         <div class="block-intro">Lower CNS load today — warm-up has extra mobility, especially for Eli's hips and shoulders.</div>
@@ -2089,6 +2183,17 @@
     <!-- ============== WEDNESDAY ============== -->
     <div class="day-panel" id="wed">
 
+        <div class="equipment-bar">
+          <div class="eq-label">Grab before you start</div>
+          <div class="eq-items">
+            <span class="eq-chip" onclick="toggleEq(this)"><span class="box">✓</span>1 ball each</span>
+            <span class="eq-chip" onclick="toggleEq(this)"><span class="box">✓</span>6-8 cones</span>
+            <span class="eq-chip" onclick="toggleEq(this)"><span class="box">✓</span>Jump rope</span>
+            <span class="eq-chip" onclick="toggleEq(this)"><span class="box">✓</span>Soft surface / mat</span>
+          </div>
+        </div>
+
+
       <div class="block">
         <div class="block-header"><h4>1 · Light warm-up</h4><div class="meta">8 min · easy</div></div>
         <div class="block-intro">Low-impact technical rhythm day. Heart rate stays low — focus stays sharp. Clean touches, clean posture, no wasted reps.</div>
@@ -2281,6 +2386,17 @@
 
     <!-- ============== THURSDAY ============== -->
     <div class="day-panel" id="thu">
+
+        <div class="equipment-bar">
+          <div class="eq-label">Grab before you start</div>
+          <div class="eq-items">
+            <span class="eq-chip" onclick="toggleEq(this)"><span class="box">✓</span>1 ball each</span>
+            <span class="eq-chip" onclick="toggleEq(this)"><span class="box">✓</span>10-12 cones</span>
+            <span class="eq-chip" onclick="toggleEq(this)"><span class="box">✓</span>Resistance band</span>
+            <span class="eq-chip" onclick="toggleEq(this)"><span class="box">✓</span>GK gloves<span class="who-tag eli">Eli</span></span>
+          </div>
+        </div>
+
 
       <div class="block">
         <div class="block-header"><h4>1 · Dynamic warm-up · multi-directional</h4><div class="meta">8 min · all together</div></div>
@@ -2605,6 +2721,16 @@
 
     <!-- ============== FRIDAY ============== -->
     <div class="day-panel" id="fri">
+
+        <div class="equipment-bar">
+          <div class="eq-label">Grab before you start</div>
+          <div class="eq-items">
+            <span class="eq-chip" onclick="toggleEq(this)"><span class="box">✓</span>1 ball each</span>
+            <span class="eq-chip" onclick="toggleEq(this)"><span class="box">✓</span>8-10 cones</span>
+            <span class="eq-chip" onclick="toggleEq(this)"><span class="box">✓</span>GK gloves<span class="who-tag eli">Eli</span></span>
+          </div>
+        </div>
+
 
       <div class="block">
         <div class="block-header"><h4>1 · Dynamic warm-up · sprint prep</h4><div class="meta">8 min · linear emphasis</div></div>
@@ -3039,7 +3165,7 @@
     <div class="section-intro">
       <div class="eyebrow">Load &amp; Safety</div>
       <h2>Plyometric load tracking &amp; readiness gates</h2>
-      <p class="lead">Athletic development is bought with controlled stress. These pages track plyometric load across the week (not just Monday), set the landing-quality gates that must be passed before high-intensity progressions unlock, and lay out the goalkeeper safety rules that protect Eli's body for the long arc of his career.</p>
+      <p class="lead">Athletic development is bought with controlled stress. These pages track plyometric load across the week (not just Monday), and set the landing-quality gates that must be passed before high-intensity progressions unlock. Eli's goalkeeper-specific dive load and diving safety rules now live on his own page.</p>
     </div>
 
     <h3 style="margin-top: 56px; margin-bottom: 4px;">Weekly plyometric contact targets</h3>
@@ -3091,19 +3217,6 @@
         <div class="load-row"><span class="day-label" style="color: var(--eli); font-weight: 600;">Plyo total (W4)</span><span class="contacts" style="color: var(--eli);">~135</span></div>
         <div class="load-row"><span class="day-label" style="color: var(--eli); font-weight: 600;">GK dive total (W4)</span><span class="contacts" style="color: var(--eli);">~45</span></div>
       </div>
-    </div>
-
-    <div class="gate-card safety" style="margin-top: 24px;">
-      <div class="label">Goalkeeper load · tracked separately</div>
-      <h4>A dive is not a pogo hop</h4>
-      <p>Eli has two separate ceilings — a plyometric contact ceiling (pogos, broad jumps, bounds, hurdle hops) and a separate goalkeeper dive-load ceiling (collapse dives, step-saves, power dives, depth-jump-to-save). Do not combine them into one number. A goalkeeper dive loads the shoulder, wrist, hip, back, and groin in ways a broad jump does not, so it gets its own count. High-amplitude dives, depth-jump-to-save reps, and broad-jump-to-dive reps are treated as very-high-intensity goalkeeper contacts and should remain in single digits per session.</p>
-      <p style="font-family: var(--font-mono); font-size: 13px; line-height: 1.9; color: var(--text-secondary);">
-        GK dive load — track each separately, both sides logged:<br>
-        <span style="color: var(--eli);">LOW</span> · low dives · collapse dives · set-position resets<br>
-        <span style="color: var(--eli);">MEDIUM</span> · step-saves · reactive step-saves · high-intensity lateral shuffles<br>
-        <span style="color: var(--eli);">HIGH</span> · power dives · distribution volume (drop kicks tax the groin)<br>
-        <span style="color: var(--eli);">VERY HIGH</span> · max-amplitude dives · depth-jump-to-save · broad-jump-to-dive — keep these in single digits, never when fatigued, never stacked
-      </p>
     </div>
 
     <h3 style="margin-top: 56px; margin-bottom: 4px;">Plyometric intensity classification</h3>
@@ -3170,34 +3283,6 @@
       </ul>
     </div>
 
-    <h3 style="margin-top: 56px; margin-bottom: 4px;">Goalkeeper safety rules · Eli</h3>
-    <p style="color: var(--text-secondary); font-size: 15px; max-width: 65ch;">Diving and plyometric-to-dive combinations are some of the highest-stress patterns in this program. These rules are non-negotiable for the duration of the 8 weeks and beyond.</p>
-
-    <div class="gate-card safety">
-      <div class="label">Diving safety</div>
-      <h4>Protect the body for the long arc</h4>
-      <ul>
-        <li>Diving only on safe grass, turf, or padded mat — never on hard ground</li>
-        <li>Stop immediately if pain appears in wrist, shoulder, hip, back, or groin</li>
-        <li>No max-amplitude dives when fatigued — regress to step-save or collapse dive</li>
-        <li>Both sides must be trained evenly across the week — log left/right reps</li>
-        <li>Diving and depth-jump-to-save days are never stacked — at least 48 hours between them</li>
-        <li>Distribution volume monitored — if hip or groin feel tight, reduce drop-kick reps that day</li>
-        <li>Broad-jump-to-dive only when landing mechanics are clean and the surface is safe</li>
-      </ul>
-    </div>
-
-    <div class="gate-card safety">
-      <div class="label">Diving progression · 5 stages</div>
-      <h4>Earn each stage before the next</h4>
-      <ul>
-        <li>Stage 1 · Landing mechanics — collapse dive from set, fall onto side of leg, no max amplitude</li>
-        <li>Stage 2 · Step-save — one explosive step + dive, ball at moderate pace, both sides equally</li>
-        <li>Stage 3 · Low-amplitude power dive — two steps + jump, ball thrown firmly, ground first not hip-first</li>
-        <li>Stage 4 · Reactive step-save — server adds late direction call, dive in response, not in plan</li>
-        <li>Stage 5 · Depth-drop / depth-jump to save — only when stages 1-4 are clean, only on safe surface, only in W4+</li>
-      </ul>
-    </div>
   </div>
 </section>
 
@@ -3279,7 +3364,7 @@
         <div class="holo-card">
           <h4>Eli · 30 min</h4>
           <div class="tagline">Highest-leverage of the four</div>
-          <p>At ECNL RL + Varsity, film is genuinely high-value for a keeper. Study positioning and angles, starting position vs. through-balls, organizing and commanding the back line, cross management, and distribution decisions. Own-game footage plus a pro keeper to model.</p>
+          <p>At N1/SCCL + Varsity, film is genuinely high-value for a keeper. Study positioning and angles, starting position vs. through-balls, organizing and commanding the back line, cross management, and distribution decisions. Own-game footage plus a pro keeper to model.</p>
         </div>
       </div>
     </div>
@@ -3363,6 +3448,9 @@
       el.style.display = weeks.includes(String(currentWeek)) ? '' : 'none';
     });
   }
+
+  // Equipment checklist toggle (visual only — resets each visit, so they re-check every session)
+  window.toggleEq = function(el) { el.classList.toggle('checked'); };
 
   // ===== Bindings =====
   document.querySelectorAll('.week-btn').forEach(btn => {
@@ -3478,7 +3566,7 @@
   const playerSettings = {
     voice: true,
     sound: true,
-    voiceControl: false,
+    voiceControl: true,
     duration: 180,
   };
 
