@@ -3857,8 +3857,8 @@
     playerState.remaining = step.duration || playerSettings.duration;
     updateTimerDisplay();
 
-    // Speak drill name and cue
-    speak(`${step.drillName}. ${step.drillCue}`);
+    // Speak just the drill name (the cue is shown on screen)
+    speak(step.drillName);
 
     if (!playerState.paused) startTimer();
     document.getElementById('p-pause-btn').innerHTML = playerState.paused ? '▶ Resume' : '⏸ Pause';
@@ -3964,14 +3964,23 @@
     if (!playerSettings.voice || !window.speechSynthesis || !text) return;
     try {
       speechSynthesis.cancel();
-      const u = new SpeechSynthesisUtterance(speakable(text));
+      const clean = speakable(text);
+      const u = new SpeechSynthesisUtterance(clean);
       u.rate = 1.0; u.pitch = 1.0; u.volume = 1.0;
-      u.onstart = () => { recMutedForTTS = true; updateMicIndicator(); };
+      // Guard against the mic hearing the app's own speech. Use a TIME ESTIMATE,
+      // not the onend event — mobile browsers frequently never fire onend, which
+      // would otherwise leave the mic muted forever.
+      const estMs = Math.min(9000, Math.max(1500, clean.length * 65)) + 500;
+      recMuteUntil = Date.now() + estMs;
+      updateMicIndicator();
+      setTimeout(updateMicIndicator, estMs + 60);
+      // If onend DOES fire, shorten the mute so the mic comes back promptly.
       u.onend = () => {
-        // Add a short safety delay before re-enabling mic so any echo dies out
-        setTimeout(() => { recMutedForTTS = false; updateMicIndicator(); }, 350);
+        recMuteUntil = Date.now() + 400;
+        updateMicIndicator();
+        setTimeout(updateMicIndicator, 460);
       };
-      u.onerror = () => { recMutedForTTS = false; updateMicIndicator(); };
+      u.onerror = () => { recMuteUntil = Date.now(); updateMicIndicator(); };
       speechSynthesis.speak(u);
     } catch(e) {}
   }
@@ -4084,10 +4093,14 @@
 
   // === Voice Recognition state (declared before init so updateMicIndicator can read them) ===
   let speechRec = null;
-  let recListening = false;
-  let recMutedForTTS = false;
+  let recListening = false;      // user intends voice control to be on
+  let recRunning = false;        // recognition service is currently active
+  let recMuteUntil = 0;          // ignore results until this timestamp (TTS self-trigger guard)
   let recRestartTimer = null;
-  let recMicBlocked = false;
+  let recKeepAlive = null;       // watchdog that keeps recognition alive on mobile
+  let recMicBlocked = false;     // permission denied / unsupported
+  let recHeardText = '';         // last phrase heard (on-screen feedback)
+  let recHeardUntil = 0;
 
   // Init
   loadSettings();
@@ -4099,43 +4112,55 @@
     if (!SR) return false;
     speechRec = new SR();
     speechRec.continuous = true;
-    speechRec.interimResults = false;
+    speechRec.interimResults = true;   // mobile fires final results more reliably with interim on
     speechRec.lang = 'en-US';
     speechRec.maxAlternatives = 1;
 
+    speechRec.onstart = () => { recRunning = true; };
+
     speechRec.onresult = (ev) => {
-      if (recMutedForTTS) return;
+      // Ignore anything heard while the app is speaking (TTS self-trigger guard)
+      if (Date.now() < recMuteUntil) return;
       for (let i = ev.resultIndex; i < ev.results.length; i++) {
-        if (!ev.results[i].isFinal) continue;
-        const phrase = ev.results[i][0].transcript.toLowerCase().trim();
+        const res = ev.results[i];
+        if (!res.isFinal) continue;
+        const phrase = (res[0].transcript || '').toLowerCase().trim();
+        if (!phrase) continue;
+        // Show what was heard so the user gets feedback that it's working
+        recHeardText = phrase.length > 22 ? phrase.slice(0, 22) + '…' : phrase;
+        recHeardUntil = Date.now() + 1600;
+        updateMicIndicator();
+        setTimeout(updateMicIndicator, 1700);
         handleVoiceCommand(phrase);
       }
     };
 
     speechRec.onend = () => {
-      // Auto-restart for continuous listening (most browsers stop after ~60s).
-      // Never restart if the mic is blocked or we've stopped listening.
+      recRunning = false;
       if (recListening && !recMicBlocked) {
         clearTimeout(recRestartTimer);
+        // Restart once any TTS mute window has passed
+        const delay = Math.max(250, recMuteUntil - Date.now() + 100);
         recRestartTimer = setTimeout(() => {
-          if (recListening && !recMicBlocked) {
+          if (recListening && !recMicBlocked && !recRunning) {
             try { speechRec.start(); } catch(e) {}
           }
-        }, 250);
+        }, delay);
       }
     };
 
     speechRec.onerror = (ev) => {
       if (ev.error === 'not-allowed' || ev.error === 'service-not-allowed') {
-        // Mic permission denied/blocked. This is expected on devices that haven't
-        // granted access — handle quietly. No alert, no console spam, no auto-restart.
+        // Permission denied/blocked — handle quietly, no alert, no restart.
         recMicBlocked = true;
         recListening = false;
+        recRunning = false;
         clearTimeout(recRestartTimer);
+        clearInterval(recKeepAlive);
         updateMicIndicator();
       }
       // Transient errors (no-speech, audio-capture, network, aborted) are normal —
-      // ignore them and let onend handle any restart.
+      // onend + the keepalive watchdog handle restarting.
     };
     return true;
   }
@@ -4143,20 +4168,28 @@
   function startVoiceRec() {
     if (recMicBlocked) { updateMicIndicator(); return; }
     if (!initVoiceRec()) {
-      // Browser doesn't support speech recognition — turn the toggle off silently
-      // and reflect it in the indicator. No nagging alert.
-      recMicBlocked = true;
+      recMicBlocked = true;       // unsupported browser — reflect quietly
       updateMicIndicator();
       return;
     }
     recListening = true;
+    recMuteUntil = 0;
     try { speechRec.start(); } catch(e) { /* already running */ }
+    // Watchdog: if recognition has dropped (and we're not muted/blocked), restart it.
+    clearInterval(recKeepAlive);
+    recKeepAlive = setInterval(() => {
+      if (recListening && !recMicBlocked && !recRunning && Date.now() >= recMuteUntil) {
+        try { speechRec.start(); } catch(e) {}
+      }
+    }, 2000);
     updateMicIndicator();
   }
 
   function stopVoiceRec() {
     recListening = false;
+    recRunning = false;
     clearTimeout(recRestartTimer);
+    clearInterval(recKeepAlive);
     if (speechRec) {
       try { speechRec.stop(); } catch(e) {}
       try { speechRec.abort(); } catch(e) {}
@@ -4189,7 +4222,10 @@
       label.textContent = 'mic blocked';
     } else if (!playerSettings.voiceControl) {
       label.textContent = 'voice off';
-    } else if (recMutedForTTS) {
+    } else if (recHeardText && Date.now() < recHeardUntil) {
+      ind.classList.add('active');
+      label.textContent = 'heard: ' + recHeardText;
+    } else if (Date.now() < recMuteUntil) {
       ind.classList.add('muted');
       label.textContent = 'voice (paused)';
     } else if (recListening) {
