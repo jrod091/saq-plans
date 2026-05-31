@@ -1077,6 +1077,29 @@
   }
   .eq-chip .who-tag.eli { color: var(--eli); background: rgba(55,138,221,0.12); }
 
+  /* === Equipment "gear" tags on drills and in the player === */
+  .drill-gear, .player-gear {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 7px;
+    margin: 8px 0 4px;
+  }
+  .player-gear { margin: 10px 0 14px; }
+  .gear-label {
+    font-family: var(--font-mono); font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted);
+    margin-right: 2px;
+  }
+  .gear-pill {
+    display: inline-flex; align-items: center;
+    font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+    color: var(--accent-hot);
+    background: rgba(216,90,48,0.10);
+    border: 1px solid rgba(216,90,48,0.30);
+    border-radius: 4px; padding: 3px 9px;
+    letter-spacing: 0.02em;
+  }
+  .player-gear .gear-pill { font-size: 13px; padding: 5px 12px; }
+  .player-gear .gear-label { font-size: 12px; }
+
   /* === Player equipment-first screen === */
   .player-equipment {
     display: none;
@@ -1448,7 +1471,7 @@
             <div class="mod nora"><div class="who">Nora</div><div class="what">2 × 10 each pattern · light band</div></div>
             <div class="mod silas"><div class="who">Silas</div><div class="what">2 × 10 each pattern · medium band</div></div>
             <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">2 × 12 each pattern · medium band</div></div>
-            <div class="mod eli"><div class="who">Eli</div><div class="what">2 × 10 each pattern + adductor side-lying band + shoulder external rotation band work</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">2 × 10 each pattern · then add your adductor + shoulder band work (see your page)</div></div>
           </div>
           <div class="phases">
             <div class="phase" data-duration="60">
@@ -1475,14 +1498,6 @@
               </div>
               <div class="phase-spec">2 × 10 reps · 20s iso hold</div>
             </div>
-            <div class="phase" data-duration="60">
-              <div class="phase-num">4</div>
-              <div class="phase-body">
-                <div class="phase-name">Eli only — adductor / shoulder ER</div>
-                <div class="phase-cue">Eli adds two extras: side-lying band squeeze for the groin (10 reps per side, slow), and external rotation band work for the shoulders (10 reps each arm). The rest of the family is finishing up — Eli takes the extra minute.</div>
-              </div>
-              <div class="phase-spec">10 each · Eli only</div>
-            </div>
           </div>
         </div>
       </div>
@@ -1497,61 +1512,43 @@
 
         <div class="drill" data-phased="true">
           <div class="drill-name">Ladder · vertical pattern series</div>
-          <div class="drill-cue">Three ladder patterns for foot speed, coordination, and rhythm. Eyes up, arms active, light quiet contacts. Stay tall. Quick off the ground. Each pattern down + back is one rep.</div>
+          <div class="drill-cue">Three ladder patterns for foot speed and coordination. The player walks you through each one for 30 seconds — do clean, fast reps down and back, rest between, then the next pattern. Eyes up, arms active, light quiet contacts, stay tall.</div>
 
-          <div class="drill-prescription" data-weeks="1,2">3 sets · 30s work / 30s rest · choreographed tempo</div>
-          <div class="drill-prescription" data-weeks="3,4">4 sets · 30s work / 30s rest · build to fast tempo</div>
-          <div class="drill-prescription" data-weeks="5,6">3 sets · 25s work / 35s rest · pattern called mid-rep</div>
-          <div class="drill-prescription" data-weeks="7,8">3 sets · 25s work / 45s rest · max quality only</div>
+          <div class="drill-prescription" data-weeks="1,2">1 round of all three patterns · 30s work each · rest between · learn the rhythm</div>
+          <div class="drill-prescription" data-weeks="3,4">2 rounds of all three · 30s work each · build to fast tempo</div>
+          <div class="drill-prescription" data-weeks="5,6">2 rounds · 30s work each · coach calls the pattern mid-rep (no plan)</div>
+          <div class="drill-prescription" data-weeks="7,8">1-2 rounds · 25s work each · max quality, longest rest</div>
 
-          <div class="mods" data-weeks="1,2">
-            <div class="mod nora"><div class="who">Nora</div><div class="what">2 patterns/set · 60s rest</div></div>
-            <div class="mod silas"><div class="who">Silas</div><div class="what">3 patterns/set · 45s rest</div></div>
-            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">3 patterns/set · 30s rest</div></div>
-            <div class="mod eli"><div class="who">Eli</div><div class="what">3 patterns/set · 30s rest</div></div>
-          </div>
-          <div class="mods" data-weeks="3,4">
-            <div class="mod nora"><div class="who">Nora</div><div class="what">3 patterns/set · 50s rest</div></div>
-            <div class="mod silas"><div class="who">Silas</div><div class="what">4 patterns/set · 40s rest</div></div>
-            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">4 patterns/set + reactive call</div></div>
-            <div class="mod eli"><div class="who">Eli</div><div class="what">4 patterns/set + GK shuffle stance on exit</div></div>
-          </div>
-          <div class="mods" data-weeks="5,6">
-            <div class="mod nora"><div class="who">Nora</div><div class="what">3 patterns/set · directional cue</div></div>
-            <div class="mod silas"><div class="who">Silas</div><div class="what">3 patterns/set · color/directional cue</div></div>
-            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">3 patterns/set · reactive every rep</div></div>
-            <div class="mod eli"><div class="who">Eli</div><div class="what">3 patterns/set · GK set-position exit on every rep</div></div>
-          </div>
-          <div class="mods" data-weeks="7,8">
-            <div class="mod nora"><div class="who">Nora</div><div class="what">2 patterns/set · 60s rest · max effort</div></div>
-            <div class="mod silas"><div class="who">Silas</div><div class="what">3 patterns/set · 45s rest · sharpest tempo</div></div>
-            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">3 patterns/set · 45s rest · max effort</div></div>
-            <div class="mod eli"><div class="who">Eli</div><div class="what">3 patterns/set · 45s rest · game-tempo footwork</div></div>
+          <div class="mods">
+            <div class="mod nora"><div class="who">Nora</div><div class="what">Clean tempo over speed · rest as long as needed</div></div>
+            <div class="mod silas"><div class="who">Silas</div><div class="what">Build toward fast tempo once the pattern is clean</div></div>
+            <div class="mod isaiah"><div class="who">Isaiah</div><div class="what">Max clean tempo · short rest</div></div>
+            <div class="mod eli"><div class="who">Eli</div><div class="what">Drop into a GK set-position stance the moment you exit the ladder</div></div>
           </div>
           <div class="phases">
-            <div class="phase" data-duration="60">
+            <div class="phase" data-duration="30">
               <div class="phase-num">1</div>
               <div class="phase-body">
                 <div class="phase-name">In-in-out-out</div>
-                <div class="phase-cue">Two feet in, two feet out. Both feet land inside the box, then both feet land outside, then advance to the next box. Quick rhythm, light contacts. Down the ladder, walk back, repeat.</div>
+                <div class="phase-cue">Two feet in, two feet out. Both feet land inside the box, then both feet land outside, then advance to the next box. Quick rhythm, light contacts. Down the ladder, walk back, and keep going until the timer ends.</div>
               </div>
-              <div class="phase-spec">30s work · per prescription</div>
+              <div class="phase-spec">30 seconds of clean reps</div>
             </div>
-            <div class="phase" data-duration="60">
+            <div class="phase" data-duration="30">
               <div class="phase-num">2</div>
               <div class="phase-body">
                 <div class="phase-name">Icky shuffle</div>
-                <div class="phase-cue">Three contacts per box advancing diagonally: in-in-out-step-up. Looks like a quick triple-step that drifts diagonally across the ladder. Light feet, head up.</div>
+                <div class="phase-cue">Three contacts per box advancing diagonally: in-in-out-step-up. Looks like a quick triple-step that drifts diagonally across the ladder. Light feet, head up. Keep going until the timer ends.</div>
               </div>
-              <div class="phase-spec">30s work · per prescription</div>
+              <div class="phase-spec">30 seconds of clean reps</div>
             </div>
-            <div class="phase" data-duration="60">
+            <div class="phase" data-duration="30">
               <div class="phase-num">3</div>
               <div class="phase-body">
                 <div class="phase-name">Lateral 2-in</div>
-                <div class="phase-cue">Face sideways, travel along the ladder laterally with two feet in each box before moving to the next. Both directions per rep. Hips square — don't bounce.</div>
+                <div class="phase-cue">Face sideways, travel along the ladder laterally with two feet in each box before moving to the next. Both directions. Hips square — don't bounce. Keep going until the timer ends.</div>
               </div>
-              <div class="phase-spec">30s work · per prescription</div>
+              <div class="phase-spec">30 seconds of clean reps</div>
             </div>
           </div>
         </div>
@@ -1598,33 +1595,33 @@
               <div class="phase-num">1</div>
               <div class="phase-body">
                 <div class="phase-name">Pogo hops</div>
-                <div class="phase-cue">Bounce in place — knees and hips locked, all action through the ankle. Quiet contacts, off the ground fast. 5-10 hops per set. Tall posture, ribs stacked.</div>
+                <div class="phase-cue">Bounce in place — knees and hips locked, all action through the ankle. Quiet contacts, off the ground fast. Tall posture, ribs stacked. Do sets of 8-10 hops, rest, repeat until the timer ends.</div>
               </div>
-              <div class="phase-spec">Per the prescription · contact count by child</div>
+              <div class="phase-spec">Sets of 8-10 hops · stop when the timer ends</div>
             </div>
             <div class="phase" data-duration="90">
               <div class="phase-num">2</div>
               <div class="phase-body">
                 <div class="phase-name">Broad jump</div>
-                <div class="phase-cue">Two-foot horizontal jump for distance. Arms swing back then drive forward, knees and hips fold then extend together. Reach with the feet.</div>
+                <div class="phase-cue">Two-foot horizontal jump for distance. Arms swing back then drive forward, knees and hips fold then extend together. Reach with the feet. Walk back between each jump.</div>
               </div>
-              <div class="phase-spec">Per the prescription · contact count by child</div>
+              <div class="phase-spec">5-6 jumps · walk back between each</div>
             </div>
             <div class="phase" data-duration="90">
               <div class="phase-num">3</div>
               <div class="phase-body">
                 <div class="phase-name">Stick landing</div>
-                <div class="phase-cue">Land the broad jump in an athletic position — knees over toes, hips back, chest up. Freeze the landing for 2 seconds. Quiet feet. No stomp, no wobble.</div>
+                <div class="phase-cue">Land each broad jump in an athletic position — knees over toes, hips back, chest up. Freeze the landing for 2 seconds. Quiet feet. No stomp, no wobble.</div>
               </div>
-              <div class="phase-spec">2-second hold every landing</div>
+              <div class="phase-spec">5-6 landings · hold each 2 seconds</div>
             </div>
-            <div class="phase" data-duration="60">
+            <div class="phase" data-duration="60" data-weeks="3,4,5,6,7,8">
               <div class="phase-num">4</div>
               <div class="phase-body">
-                <div class="phase-name">Lateral broad jump (W3-4+ add-on)</div>
-                <div class="phase-cue">Same setup but jump sideways instead of forward. Land in athletic stance, freeze. Both directions. From Week 3 onward — earlier weeks skip this phase.</div>
+                <div class="phase-name">Lateral broad jump</div>
+                <div class="phase-cue">Same setup but jump sideways instead of forward. Land in athletic stance, freeze 2 seconds. Both directions.</div>
               </div>
-              <div class="phase-spec">W3-8 only · 2-3 reps each direction</div>
+              <div class="phase-spec">2-3 jumps each direction</div>
             </div>
           </div>
         </div>
@@ -1680,53 +1677,53 @@
               </div>
               <div class="phase-spec">2 reps · 45-60s recovery</div>
             </div>
-            <div class="phase" data-duration="120">
+            <div class="phase" data-weeks="3,4,5,6,7,8" data-duration="120">
               <div class="phase-num">3</div>
               <div class="phase-body">
-                <div class="phase-name">Knee start (W3+)</div>
-                <div class="phase-cue">Start kneeling on one knee, other foot flat. Drive up and forward — the up has to convert immediately into forward. From Week 3.</div>
+                <div class="phase-name">Knee start</div>
+                <div class="phase-cue">Start kneeling on one knee, other foot flat. Drive up and forward — the up has to convert immediately into forward.</div>
               </div>
-              <div class="phase-spec">W3-8 · 1-2 reps each side</div>
+              <div class="phase-spec">1-2 reps each side</div>
             </div>
-            <div class="phase" data-duration="120">
+            <div class="phase" data-weeks="3,4,5,6,7,8" data-duration="120">
               <div class="phase-num">4</div>
               <div class="phase-body">
-                <div class="phase-name">Push-up start (W3+)</div>
-                <div class="phase-cue">Start in the top of a push-up. On "go" pop up, drive a knee through, and accelerate. Forces an aggressive first step from a hard angle. From Week 3.</div>
+                <div class="phase-name">Push-up start</div>
+                <div class="phase-cue">Start in the top of a push-up. On "go" pop up, drive a knee through, and accelerate. Forces an aggressive first step from a hard angle.</div>
               </div>
-              <div class="phase-spec">W3-8 · 1-2 reps</div>
+              <div class="phase-spec">1-2 reps</div>
             </div>
-            <div class="phase" data-duration="120">
+            <div class="phase" data-weeks="5,6,7,8" data-duration="120">
               <div class="phase-num">5</div>
               <div class="phase-body">
-                <div class="phase-name">Falling start (W5+)</div>
-                <div class="phase-cue">Stand tall, lean forward from the ankles past the balance point — when you're about to fall, the legs kick in. Trains the body to find the lean. From Week 5.</div>
+                <div class="phase-name">Falling start</div>
+                <div class="phase-cue">Stand tall, lean forward from the ankles past the balance point — when you're about to fall, the legs kick in. Trains the body to find the lean.</div>
               </div>
-              <div class="phase-spec">W5-8 · 2 reps</div>
+              <div class="phase-spec">2 reps</div>
             </div>
-            <div class="phase" data-duration="120">
+            <div class="phase" data-weeks="5,6,7,8" data-duration="120">
               <div class="phase-num">6</div>
               <div class="phase-body">
-                <div class="phase-name">Band-resisted first step (W5+)</div>
-                <div class="phase-cue">Partner holds a resistance band around the waist behind you. Explode forward against the band for 3-5 steps. Builds first-step force. Then 1 unresisted rep right after to feel the difference. From Week 5.</div>
+                <div class="phase-name">Band-resisted first step</div>
+                <div class="phase-cue">Partner holds a resistance band around the waist behind you. Explode forward against the band for 3-5 steps. Builds first-step force. Then 1 unresisted rep right after to feel the difference.</div>
               </div>
-              <div class="phase-spec">W5-8 · 2 reps + 1 unresisted</div>
+              <div class="phase-spec">2 reps + 1 unresisted</div>
             </div>
-            <div class="phase" data-duration="120">
+            <div class="phase" data-weeks="5,6,7,8" data-duration="120">
               <div class="phase-num">7</div>
               <div class="phase-body">
-                <div class="phase-name">Reactive start (W5+)</div>
-                <div class="phase-cue">Stand in athletic stance. Coach gives a visual or auditory cue (point left/right, or call a color). Sprint to the matching gate. Trains the brain-to-body link. From Week 5.</div>
+                <div class="phase-name">Reactive start</div>
+                <div class="phase-cue">Stand in athletic stance. Coach gives a visual or auditory cue (point left/right, or call a color). Sprint to the matching gate. Trains the brain-to-body link.</div>
               </div>
-              <div class="phase-spec">W5-8 · 2-3 reps</div>
+              <div class="phase-spec">2-3 reps</div>
             </div>
-            <div class="phase" data-duration="180">
+            <div class="phase" data-weeks="7,8" data-duration="180">
               <div class="phase-num">8</div>
               <div class="phase-body">
-                <div class="phase-name">Race-to-gate (W7-8)</div>
-                <div class="phase-cue">Paired with a sibling, both on the line. Coach calls "go" or drops a ball. First to the 10yd gate wins. PR attempts — full recovery between, max effort each. From Week 7.</div>
+                <div class="phase-name">Race-to-gate</div>
+                <div class="phase-cue">Paired with a sibling, both on the line. Coach calls "go" or drops a ball. First to the 10yd gate wins. PR attempts — full recovery between, max effort each.</div>
               </div>
-              <div class="phase-spec">W7-8 · 3-4 reps · 2 min rest</div>
+              <div class="phase-spec">3-4 reps · 2 min rest</div>
             </div>
           </div>
         </div>
@@ -1738,7 +1735,7 @@
           <h4>3 · Ball mastery</h4>
           <div class="meta">12 min · 50% weak foot</div>
         </div>
-        <div class="block-intro">Field players work in parallel on touch sequences. Eli runs a parallel handling block — same duration, different content.</div>
+        <div class="block-intro">Field players work on the touch sequences below. <strong>Eli runs his parallel GK handling block instead — see his page for the full progression.</strong></div>
 
         <div class="drill">
           <div class="drill-name">Wall touches · weak foot</div>
@@ -1750,22 +1747,14 @@
         </div>
 
         <div class="drill">
-          <div class="drill-name">Cone manipulation · 8 touches</div>
-          <div class="drill-cue">Inside-inside-outside-outside, both directions. Toe up, ball close to laces, head up between touches.</div>
+          <div class="drill-name">Cone manipulation</div>
+          <div class="drill-cue">Move the ball around a single cone using a repeating 4-touch pattern: inside of the foot, inside again, then outside, outside — keeping the ball tight to the cone. Do it one way, then circle the other way. Toe up, ball close to the laces, head up between touches.</div>
           <div class="drill-prescription" data-weeks="1,2">4 sets each side · slow tempo · 20s rest</div>
           <div class="drill-prescription" data-weeks="3,4">4 sets each side · build to fast tempo · 20s rest</div>
           <div class="drill-prescription" data-weeks="5,6">4 sets each side · timed (under 30s per set)</div>
           <div class="drill-prescription" data-weeks="7,8">3 sets each side · max speed clean · 30s rest</div>
         </div>
 
-        <div class="drill">
-          <div class="drill-name">Eli · GK handling block (parallel)</div>
-          <div class="drill-cue">Basket catches (chest-high underhand) → diamond catches (overhead) → W-grip drives (chest-driven on contact). Server kneels 6yd away. Smooth not snappy on collection.</div>
-          <div class="drill-prescription" data-weeks="1,2">3 × 10 each technique · static server</div>
-          <div class="drill-prescription" data-weeks="3,4">3 × 12 each technique · server adds short footwork before catch</div>
-          <div class="drill-prescription" data-weeks="5,6">3 × 10 each technique · verbal direction call mid-throw</div>
-          <div class="drill-prescription" data-weeks="7,8">3 × 8 each technique · reaction ball mixed in</div>
-        </div>
       </div>
 
       <!-- Block 4: Synergy -->
@@ -1956,8 +1945,8 @@
             <div class="phase" data-duration="45">
               <div class="phase-num">4</div>
               <div class="phase-body">
-                <div class="phase-name">Step through</div>
-                <div class="phase-cue">Stand up smoothly, step the back foot through to start the next round. No rushing — controlled tempo only.</div>
+                <div class="phase-name">Walk through to the next rep</div>
+                <div class="phase-cue">Stand up out of the hamstring sweep, step the back foot all the way forward into a walking stride, and drop straight into the next lunge — this time leading with the other leg. That links the lunges into one continuous flow down the line. Controlled tempo, no rushing.</div>
               </div>
               <div class="phase-spec">~45s · transition</div>
             </div>
@@ -2031,34 +2020,34 @@
               <div class="phase-num">4</div>
               <div class="phase-body">
                 <div class="phase-name">Hopscotch</div>
-                <div class="phase-cue">One foot in, two feet in (split outside the square), one foot in, two feet out. Hop-step-hop rhythm. Trains the single-leg-to-double-leg transition.</div>
+                <div class="phase-cue">Both feet jump into the box, then both feet split out to straddle the ladder (one foot on each side), then both feet jump into the next box. In, straddle, in, straddle down the ladder. Light, springy, quiet landings.</div>
               </div>
               <div class="phase-spec">3 sets · 20s rest between</div>
             </div>
-            <div class="phase" data-duration="75">
+            <div class="phase" data-weeks="3,4,5,6,7,8" data-duration="75">
               <div class="phase-num">5</div>
               <div class="phase-body">
-                <div class="phase-name">Choice pattern (W3+)</div>
-                <div class="phase-cue">From Week 3, add a 5th pattern of your choice each session — could be a repeat of the toughest one or a new variation you want to master. Coach-called from Week 5.</div>
+                <div class="phase-name">Choice pattern</div>
+                <div class="phase-cue">Add a 5th pattern of your choice — a repeat of the toughest one, or a new variation to master. In the later weeks the coach calls which pattern (no plan).</div>
               </div>
-              <div class="phase-spec">W3-8 · 3 sets</div>
+              <div class="phase-spec">3 sets</div>
             </div>
           </div>
         </div>
 
         <div class="drill">
-          <div class="drill-name">Mini-hurdle weave</div>
-          <div class="drill-cue">5 hurdles, 18 inches apart. Lateral two-foot in/out, then single-leg hops down + back. Quiet landings.</div>
-          <div class="drill-prescription" data-weeks="1,2">3 sets each pattern · 30s rest · two-foot only</div>
-          <div class="drill-prescription" data-weeks="3,4">3 sets each pattern · add single-leg hops (high tier — only if single-leg landings are stable)</div>
-          <div class="drill-prescription" data-weeks="5,6">3 sets each pattern · single-leg + lateral progression (high tier — gate by landing quality)</div>
-          <div class="drill-prescription" data-weeks="7,8">2 sets each pattern · max quality · long rest</div>
+          <div class="drill-name">Mini-hurdle lateral steps</div>
+          <div class="drill-cue">Set 5 mini-hurdles in a line, about 18 inches apart, and stand side-on to them. Travel sideways down the line stepping both feet over each hurdle — lead foot over, trail foot follows, on to the next. Down the line and back is one trip. Stay low, soft quiet landings. (Higher weeks add single-leg hops over each hurdle — only once two-foot landings are clean.)</div>
+          <div class="drill-prescription" data-weeks="1,2">3 sets · two-foot steps only · 30s rest</div>
+          <div class="drill-prescription" data-weeks="3,4">3 sets · add single-leg hops over each hurdle (only if two-foot landings are clean and stable)</div>
+          <div class="drill-prescription" data-weeks="5,6">3 sets · single-leg hops both directions (only if landings stay clean)</div>
+          <div class="drill-prescription" data-weeks="7,8">2 sets · max quality · long rest</div>
         </div>
       </div>
 
       <div class="block">
         <div class="block-header"><h4>3 · Extended ball mastery</h4><div class="meta">12 min · the long mastery block of the week</div></div>
-        <div class="block-intro">Tuesday is the high-volume touch day. More reps, more variations, more weak-foot. Eli runs parallel footwork-with-ball.</div>
+        <div class="block-intro">Tuesday is the high-volume touch day. More reps, more variations, more weak-foot. <strong>Eli runs his parallel footwork-with-ball block — see his page.</strong></div>
 
         <div class="drill" data-phased="true">
           <div class="drill-name">Sole rolls &amp; toe taps</div>
@@ -2116,7 +2105,7 @@
           <div class="drill-prescription" data-weeks="7,8">10 each foot · used in 1v1 reps after</div>
         </div>
 
-        <div class="drill">
+        <div class="drill" data-duration="300">
           <div class="drill-name">Juggling PR challenge</div>
           <div class="drill-cue">Weak foot only, knee high. Count out loud. Two attempts at PB.</div>
           <div class="drill-prescription">5 min · track best score in tracker</div>
@@ -2195,33 +2184,25 @@
               <div class="phase-num">1</div>
               <div class="phase-body">
                 <div class="phase-name">Couch stretch</div>
-                <div class="phase-cue">Back foot up on a couch/wall, front leg in a kneeling lunge. Tuck the pelvis under to stretch the front of the back hip. 45s each side.</div>
+                <div class="phase-cue">Back foot up on a couch/wall, front leg in a kneeling lunge. Tuck the pelvis under to stretch the front of the back hip. Do 45 seconds on one side, then switch — the timer covers both.</div>
               </div>
-              <div class="phase-spec">45s · each side · 1 round</div>
+              <div class="phase-spec">45s each side · 90s total</div>
             </div>
             <div class="phase" data-duration="90">
               <div class="phase-num">2</div>
               <div class="phase-body">
                 <div class="phase-name">Pigeon</div>
-                <div class="phase-cue">Front shin across the body, back leg straight behind. Sink the hips forward. Stretches the deep glute and outer hip. 45s each side.</div>
+                <div class="phase-cue">Front shin across the body, back leg straight behind. Sink the hips forward. Stretches the deep glute and outer hip. Do 45 seconds on one side, then switch — the timer covers both.</div>
               </div>
-              <div class="phase-spec">45s · each side · 1 round</div>
+              <div class="phase-spec">45s each side · 90s total</div>
             </div>
-            <div class="phase" data-duration="60">
+            <div class="phase" data-duration="45">
               <div class="phase-num">3</div>
               <div class="phase-body">
                 <div class="phase-name">Child's pose</div>
                 <div class="phase-cue">Knees wide, hips back to the heels, arms reach forward. Relax the back and breathe. 45s.</div>
               </div>
               <div class="phase-spec">45s · 1 round</div>
-            </div>
-            <div class="phase" data-duration="90">
-              <div class="phase-num">4</div>
-              <div class="phase-body">
-                <div class="phase-name">Eli only — figure-4 + overhead reach</div>
-                <div class="phase-cue">On the back, ankle on opposite knee (figure-4), pull the bottom thigh in for 45s each side. Then a tall overhead reach with deep breath. Eli only — others can finish with their own light stretching.</div>
-              </div>
-              <div class="phase-spec">45s each side · Eli only</div>
             </div>
           </div>
         </div>
@@ -2331,7 +2312,7 @@
               <div class="phase-num">4</div>
               <div class="phase-body">
                 <div class="phase-name">Choice round</div>
-                <div class="phase-cue">Last round — pick whichever rhythm feels best today. W5+: optional double-under attempts at the end. Technical attempts only — not a performance demand.</div>
+                <div class="phase-cue">Last round — pick whichever rhythm feels best today. Optional: try a few double-under attempts at the end (just experimenting, not a performance demand).</div>
               </div>
               <div class="phase-spec">45s · final round</div>
             </div>
@@ -2347,17 +2328,11 @@
       <div class="block">
         <div class="block-header"><h4>3 · Free juggling &amp; weak foot</h4><div class="meta">12 min · refined touches</div></div>
         <div class="block-intro">Low intensity, high focus. Juggle, freestyle, try new things — but every touch is deliberate. This is the day to refine.</div>
-        <div class="drill">
+        <div class="drill" data-duration="600">
           <div class="drill-name">Juggling games</div>
           <div class="drill-cue">PB attempts, alternating-foot juggling, around-the-world tries. Family scoreboard if you want competition.</div>
           <div class="drill-prescription">Open · 10 min</div>
         </div>
-        <div class="drill">
-          <div class="drill-name">Eli · light handling</div>
-          <div class="drill-cue">Soft tosses from siblings — basket and diamond catches only. No diving today.</div>
-          <div class="drill-prescription">20-30 catches total · easy</div>
-        </div>
-
         <div class="week-note" data-weeks="4"><span class="label">Week 4 · Mid-program test</span>Testing replaces normal Wednesday volume this week — don't stack it on top. After the warm-up and a brief technical touch block (while fresh, before any fatiguing work), run the retests: 10yd sprint, 5-0-5 each side, vertical jump, weak-foot juggling PR. Then finish with light touches and mobility. Log everyone's numbers against W1.</div>
         <div class="week-note" data-weeks="8"><span class="label">Week 8 · Final test</span>Final benchmark test day — testing replaces normal volume, run while fresh after the warm-up. Same battery as W1 + W4, plus the 5-10-5 added in Phase 3. Document all numbers, then finish light. Celebrate the progress across the block.</div>
       </div>
@@ -2418,14 +2393,6 @@
                 <div class="phase-cue">Both straight-leg and bent-knee versions. 30s each leg each version. Wall in front, push the heel down.</div>
               </div>
               <div class="phase-spec">30s × 2 versions × each leg</div>
-            </div>
-            <div class="phase" data-duration="90">
-              <div class="phase-num">5</div>
-              <div class="phase-body">
-                <div class="phase-name">Eli only — shoulder finish</div>
-                <div class="phase-cue">Sleeper stretch (30s each side), doorway pec stretch (30s each side), banded shoulder dislocates (8-10 slow passes with a light band or stick). Eli only — others can extend their own mobility instead.</div>
-              </div>
-              <div class="phase-spec">Eli only · 30s each + 8-10 dislocates</div>
             </div>
           </div>
         </div>
@@ -2639,7 +2606,7 @@
 
       <div class="block">
         <div class="block-header"><h4>3 · Ball mastery · COD with ball</h4><div class="meta">12 min · combine touch with cuts</div></div>
-        <div class="block-intro">Today's mastery block adds the cuts learned in block 2 — but now with the ball. Same principles, harder execution.</div>
+        <div class="block-intro">Today's mastery block adds the cuts learned in block 2 — but now with the ball. Same principles, harder execution. <strong>Eli runs his footwork + handling block — see his page.</strong></div>
         <div class="drill">
           <div class="drill-name">Cone weave + cut</div>
           <div class="drill-cue">5 cones, 5ft apart. Inside-outside weave, then cut at the end cone with outside foot, sprint 5yd out.</div>
@@ -2655,14 +2622,6 @@
           <div class="drill-prescription" data-weeks="3,4">5 reps each direction · full speed</div>
           <div class="drill-prescription" data-weeks="5,6">5 reps each · finish with a strike at the end</div>
           <div class="drill-prescription" data-weeks="7,8">4 reps each · combine into the synergy block flow</div>
-        </div>
-        <div class="drill">
-          <div class="drill-name">Eli · footwork + handling</div>
-          <div class="drill-cue">Shuffle 3yd, set, catch (server tosses), shuffle 3yd opposite, set, catch. Power through legs into hands.</div>
-          <div class="drill-prescription" data-weeks="1,2">3 × 10 catches · static server</div>
-          <div class="drill-prescription" data-weeks="3,4">3 × 12 catches · server adds direction call</div>
-          <div class="drill-prescription" data-weeks="5,6">3 × 12 catches · reaction ball substituted 4 reps/set</div>
-          <div class="drill-prescription" data-weeks="7,8">3 × 10 catches · double-server reactive shots</div>
         </div>
       </div>
 
@@ -2850,7 +2809,7 @@
 
       <div class="block">
         <div class="block-header"><h4>2 · Small-space speed &amp; reaction</h4><div class="meta">16 min · 5-10yd bursts · reactive starts · soccer-speed</div></div>
-        <div class="block-intro">Friday is soccer-speed, not track-speed. Short bursts, varied start positions, reactive triggers, and chase races — the speeds you actually run in a game. Long recoveries between reps because quality matters more than quantity.</div>
+        <div class="block-intro">Friday is soccer-speed, not track-speed. Short bursts, varied start positions, reactive triggers, and chase races — the speeds you actually run in a game. Long recoveries between reps because quality matters more than quantity. <strong>Eli works distribution-under-load in parallel — see his page.</strong></div>
 
         <div class="drill" data-phased="true">
           <div class="drill-name">5yd burst starts · varied positions</div>
@@ -2910,37 +2869,37 @@
               </div>
               <div class="phase-spec">2 reps each side · 30s rest</div>
             </div>
-            <div class="phase" data-duration="90">
+            <div class="phase" data-weeks="3,4,5,6,7,8" data-duration="90">
               <div class="phase-num">4</div>
               <div class="phase-body">
-                <div class="phase-name">Push-up start · 5yd (W3+)</div>
-                <div class="phase-cue">Top of push-up. Pop up, knee through, sprint 5yd. Aggressive first step from a hard angle. From Week 3.</div>
+                <div class="phase-name">Push-up start · 5yd</div>
+                <div class="phase-cue">Top of push-up. Pop up, knee through, sprint 5yd. Aggressive first step from a hard angle.</div>
               </div>
-              <div class="phase-spec">W3-8 · 2 reps · 30s rest</div>
+              <div class="phase-spec">2 reps · 30s rest</div>
             </div>
-            <div class="phase" data-duration="90">
+            <div class="phase" data-weeks="3,4,5,6,7,8" data-duration="90">
               <div class="phase-num">5</div>
               <div class="phase-body">
-                <div class="phase-name">Lateral start · 5yd (W3+)</div>
-                <div class="phase-cue">Start facing sideways. On cue, plant the lead foot, snap the hips toward the gate, sprint 5yd. Both directions. From Week 3.</div>
+                <div class="phase-name">Lateral start · 5yd</div>
+                <div class="phase-cue">Start facing sideways. On cue, plant the lead foot, snap the hips toward the gate, sprint 5yd. Both directions.</div>
               </div>
-              <div class="phase-spec">W3-8 · 2 reps each direction</div>
+              <div class="phase-spec">2 reps each direction</div>
             </div>
-            <div class="phase" data-duration="90">
+            <div class="phase" data-weeks="5,6,7,8" data-duration="90">
               <div class="phase-num">6</div>
               <div class="phase-body">
-                <div class="phase-name">Falling start · 5yd (W5+)</div>
-                <div class="phase-cue">Stand tall, lean past the balance point. When you start to fall, the legs catch and accelerate. Finds the lean automatically. From Week 5.</div>
+                <div class="phase-name">Falling start · 5yd</div>
+                <div class="phase-cue">Stand tall, lean past the balance point. When you start to fall, the legs catch and accelerate. Finds the lean automatically.</div>
               </div>
-              <div class="phase-spec">W5-8 · 2 reps · 45s rest</div>
+              <div class="phase-spec">2 reps · 45s rest</div>
             </div>
-            <div class="phase" data-duration="120">
+            <div class="phase" data-weeks="7,8" data-duration="120">
               <div class="phase-num">7</div>
               <div class="phase-body">
-                <div class="phase-name">Race-to-gate · 5yd (W7-8)</div>
-                <div class="phase-cue">Paired with a sibling. On "go" (or a ball drop), first one to the gate wins. PR attempts. Full recovery between, max effort each. From Week 7.</div>
+                <div class="phase-name">Race-to-gate · 5yd</div>
+                <div class="phase-cue">Paired with a sibling. On "go" (or a ball drop), first one to the gate wins. PR attempts. Full recovery between, max effort each.</div>
               </div>
-              <div class="phase-spec">W7-8 · 3-5 reps · 60s rest</div>
+              <div class="phase-spec">3-5 reps · 60s rest</div>
             </div>
           </div>
         </div>
@@ -3009,14 +2968,6 @@
           <div class="drill-prescription" data-weeks="3,4">3 × 10 each direction · full speed</div>
           <div class="drill-prescription" data-weeks="5,6">3 × 8 each direction · time pressure (under 30s)</div>
           <div class="drill-prescription" data-weeks="7,8">2 × 10 each direction · sharpest execution</div>
-        </div>
-        <div class="drill">
-          <div class="drill-name">Eli · distribution under load</div>
-          <div class="drill-cue">After 5yd reactive sprint, set feet, distribute (drop kick, throw, side volley) to a target gate. Both feet.</div>
-          <div class="drill-prescription" data-weeks="1,2">3 × 10 reps · right + left · static targets</div>
-          <div class="drill-prescription" data-weeks="3,4">3 × 12 reps · right + left · moving targets (siblings)</div>
-          <div class="drill-prescription" data-weeks="5,6">3 × 10 reps · server adds time pressure (3 sec clock)</div>
-          <div class="drill-prescription" data-weeks="7,8">2 × 10 reps · counter-attack initiation context</div>
         </div>
       </div>
 
@@ -3217,7 +3168,7 @@
     </div>
 
     <h3 style="margin-top: 56px; margin-bottom: 4px;">Weekly plyometric contact targets</h3>
-    <p style="color: var(--text-secondary); font-size: 15px; max-width: 60ch;">Per-session ceilings respected at all times. Numbers reflect peak-week (W4) targets. W1-2 sits 30% below; W5-6 sits 15% below; W7-8 sits 30% below.</p>
+    <p style="color: var(--text-secondary); font-size: 15px; max-width: 60ch;">Per-session ceilings respected at all times. Numbers reflect peak-week (W4) targets. W1-2 sits 30% below; W5-6 sits 15% below; sits 30% below.</p>
 
     <div class="load-grid">
       <div class="load-card nora">
@@ -3500,6 +3451,41 @@
   // Equipment checklist toggle (visual only — resets each visit, so they re-check every session)
   window.toggleEq = function(el) { el.classList.toggle('checked'); };
 
+  // === Equipment detection (which gear a drill/phase needs) ===
+  function detectGear(text) {
+    const t = (text || '').toLowerCase();
+    const gear = [];
+    if (/\bladder\b/.test(t)) gear.push('Agility ladder');
+    if (/\bband\b|banded|resistance band|band-resisted/.test(t)) gear.push('Resistance band');
+    if (/jump rope|\brope\b|double-under/.test(t)) gear.push('Jump rope');
+    if (/hurdle/.test(t)) gear.push('Mini hurdles');
+    if (/plyo box|depth jump|box step|box jump|onto a box|12-inch|12 inch|15in|18in|inch box/.test(t)) gear.push('Plyo box');
+    if (/\bcones?\b/.test(t)) gear.push('Cones');
+    return gear;
+  }
+  function gearPillsHTML(gear) {
+    if (!gear.length) return '';
+    // gear values come from detectGear's fixed whitelist, so no escaping needed
+    return gear.map(g => `<span class="gear-pill">${g}</span>`).join('');
+  }
+  // Inject gear tags into every static drill card on load
+  function injectGearTags() {
+    document.querySelectorAll('.day-panel .drill').forEach(drill => {
+      let text = (drill.querySelector('.drill-name')?.textContent || '') + ' ' +
+                 (drill.querySelector('.drill-cue')?.textContent || '');
+      drill.querySelectorAll('.phase-name, .phase-cue').forEach(p => { text += ' ' + p.textContent; });
+      const gear = detectGear(text);
+      if (!gear.length) return;
+      const nameEl = drill.querySelector('.drill-name');
+      if (!nameEl) return;
+      const tag = document.createElement('div');
+      tag.className = 'drill-gear';
+      tag.innerHTML = '<span class="gear-label">Gear</span>' + gearPillsHTML(gear);
+      nameEl.insertAdjacentElement('afterend', tag);
+    });
+  }
+  injectGearTags();
+
   // ===== Bindings =====
   document.querySelectorAll('.week-btn').forEach(btn => {
     btn.addEventListener('click', () => setWeek(parseInt(btn.dataset.week, 10)));
@@ -3569,6 +3555,7 @@
   <div class="player-body">
     <div class="player-block-tag" id="p-block-tag">Block 1 · Warm-up</div>
     <div class="player-drill-name" id="p-drill">Drill name</div>
+    <div class="player-gear" id="p-gear"></div>
     <div class="player-cue" id="p-cue">Coaching cue appears here</div>
     <div class="player-prescription" id="p-prescription"></div>
     <div class="player-patterns" id="p-patterns" style="display: none;">
@@ -3709,9 +3696,10 @@
           }
         });
 
-        // === PHASED DRILL: walk each phase as its own step ===
+        // === PHASED DRILL: walk each visible phase as its own step ===
         if (drill.dataset.phased === 'true') {
-          const phases = drill.querySelectorAll('.phase');
+          // Only walk phases prescribed for the current week (data-weeks gating)
+          const phases = Array.from(drill.querySelectorAll('.phase')).filter(isVisible);
           phases.forEach((phase, phaseIdx) => {
             const pName = (phase.querySelector('.phase-name')?.textContent || '').trim();
             const pCue = (phase.querySelector('.phase-cue')?.textContent || '').trim();
@@ -3742,6 +3730,8 @@
         }
 
         // === Non-phased drill: one step ===
+        // Honor an explicit data-duration (e.g. a 10-minute juggling block); else use the default.
+        const drillDuration = parseInt(drill.dataset.duration, 10) || playerSettings.duration;
         queue.push({
           blockNum: blockIdx + 1,
           blockName: header,
@@ -3751,7 +3741,7 @@
           prescription: rx,
           modsHTML: modsHTML,
           patterns: (isSynergy && drillIdx === drills.length - 1) ? patterns : [],
-          duration: playerSettings.duration,
+          duration: drillDuration,
           videoKey: normalizeKey(name),
         });
       });
@@ -3854,6 +3844,12 @@
 
     renderVideo(step.videoKey);
 
+    // Show which equipment this step needs
+    const gearEl = document.getElementById('p-gear');
+    const gear = detectGear(`${step.drillName} ${step.drillCue}`);
+    gearEl.innerHTML = gear.length ? '<span class="gear-label">Gear</span>' + gearPillsHTML(gear) : '';
+    gearEl.style.display = gear.length ? '' : 'none';
+
     playerState.remaining = step.duration || playerSettings.duration;
     updateTimerDisplay();
 
@@ -3952,8 +3948,13 @@
 
   // Convert text into something that reads naturally aloud — hyphens and slashes
   // would otherwise be spoken as "dash" / "slash" (e.g. "A-skip" → "a dash skip").
+  const SPEAK_FIXES = [
+    [/\bcarioca\b/gi, 'kary-okee'],   // pronounced like "karaoke"
+  ];
   function speakable(text) {
-    return (text || '')
+    let out = text || '';
+    SPEAK_FIXES.forEach(([re, rep]) => { out = out.replace(re, rep); });
+    return out
       .replace(/-/g, ' ')
       .replace(/\//g, ' ')
       .replace(/\s+/g, ' ')
